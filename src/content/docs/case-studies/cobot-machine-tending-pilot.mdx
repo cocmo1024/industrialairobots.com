@@ -1,0 +1,39 @@
+---
+title: Cobot Machine Tending Pilot
+description: A pilot pattern focused on machine tending, operator trust, recovery design, and realistic scale-up criteria.
+referenceType: case-study
+adProfile: case-study
+commercialIntent: high
+reviewCadence: Quarterly review
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Cobot Machine Tending Pilot
+
+This pattern fits environments where management wants an accessible robotics pilot, but the real question is not whether a cobot can move parts. The real question is whether the cell can recover cleanly from interruptions, coexist with operators, and maintain uptime without hidden support burden.
+
+## What the pilot should validate
+
+- How parts are presented and recovered when upstream variation appears
+- Whether operator interaction genuinely reduces deployment friction
+- How maintenance and reset procedures affect real uptime
+
+## Common trap
+
+Teams often over-focus on collaborative branding and under-model machine handshake logic, guarding boundaries, and changeover behavior.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Palletizing and machine tending"
+		href="/applications/palletizing-and-machine-tending/"
+		description="Use the application lens to separate end-of-line stability from machine-interface complexity."
+	/>
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Pressure-test whether the pilot is representative enough to support real rollout decisions."
+	/>
+</div>

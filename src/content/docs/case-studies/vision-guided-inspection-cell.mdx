@@ -1,0 +1,39 @@
+---
+title: Vision-Guided Inspection Cell
+description: A case pattern for robotics cells where sensing quality, exception handling, and false-confidence risk dominate the rollout outcome.
+referenceType: case-study
+adProfile: case-study
+commercialIntent: high
+reviewCadence: Quarterly review
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Vision-Guided Inspection Cell
+
+Inspection-oriented robotics programs often fail for reasons that are harder to see in early demos. The mechanical motion may work, but the system breaks down when image variability, reject logic, operator overrides, and evidence handling are not designed carefully.
+
+## What matters most
+
+- The definition of acceptable uncertainty in the inspection decision
+- How false rejects and false accepts are handled operationally
+- Whether the cell produces usable evidence instead of opaque automation behavior
+
+## Why this pattern is valuable
+
+It forces teams to evaluate sensing and deployment as one system. A vision stack is only as useful as the workflow around it.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Inspection and guidance systems"
+		href="/vision-and-sensing/inspection-and-guidance-systems/"
+		description="Map the perception problem before assuming the model or camera is the hard part."
+	/>
+	<LinkCard
+		title="Change management and maintenance readiness"
+		href="/deployment/change-management-and-maintenance-readiness/"
+		description="See how support readiness affects whether an advanced cell survives beyond the pilot phase."
+	/>
+</div>

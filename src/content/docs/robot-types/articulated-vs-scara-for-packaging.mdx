@@ -1,0 +1,41 @@
+---
+title: Articulated vs SCARA for Packaging
+description: A practical comparison framework for packaging tasks where reach, footprint, cadence, and integration boundaries matter more than labels.
+referenceType: robot-type
+adProfile: robot-type
+commercialIntent: high
+reviewCadence: Quarterly review
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Articulated vs SCARA for Packaging
+
+Packaging environments often invite simplistic robot comparisons. In reality, the correct choice depends on product presentation, motion profile, footprint, cadence stability, and how much variability lives upstream or downstream of the robot.
+
+## Articulated robots tend to fit when
+
+- Reach flexibility matters more than minimal footprint
+- Multiple infeed or outfeed conditions have to be handled in one cell
+- Packaging motion is only one part of a broader automation sequence
+
+## SCARA robots tend to fit when
+
+- The motion envelope is tighter and more repeatable
+- Speed and compactness matter more than broad reach geometry
+- The work can stay within a disciplined operating plane
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Palletizing and machine tending"
+		href="/applications/palletizing-and-machine-tending/"
+		description="Use the application frame to see whether packaging behaves more like end-of-line handling or machine interaction."
+	/>
+	<LinkCard
+		title="Safety, layout, and throughput"
+		href="/cell-design/safety-layout-and-throughput/"
+		description="Robot-class decisions only make sense inside the cell layout and flow reality."
+	/>
+</div>

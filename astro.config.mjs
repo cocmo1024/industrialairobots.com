@@ -13,6 +13,7 @@ export default defineConfig({
 			description:
 				'Application-focused reference system for industrial robotics, machine vision, cell design, and deployment strategy.',
 			tagline: 'Industrial robotics organized by application, robot class, vision complexity, cell design, and deployment reality.',
+			lastUpdated: true,
 			social: [
 				{
 					icon: 'github',
@@ -27,6 +28,10 @@ export default defineConfig({
 						{
 							label: 'Applications',
 							autogenerate: { directory: 'applications' },
+						},
+						{
+							label: 'Case Studies',
+							autogenerate: { directory: 'case-studies' },
 						},
 						{
 							label: 'Robot Types',
@@ -49,13 +54,26 @@ export default defineConfig({
 				{
 					label: 'Site',
 					collapsed: true,
-					items: ['about', 'contact', 'privacy', 'disclaimer'],
+					items: [
+						'about',
+						'contact',
+						'privacy',
+						'terms-of-use',
+						'disclaimer',
+						'editorial-policy',
+						'advertising',
+						'affiliate-disclosure',
+					],
 				},
 			],
 			customCss: ['./src/styles/global.css'],
 			pagefind: true,
 			favicon: '/favicon.svg',
 			credits: false,
+			components: {
+				PageSidebar: './src/components/PageSidebar.astro',
+				Footer: './src/components/Footer.astro',
+			},
 		}),
 		sitemap(),
 	],

@@ -2,6 +2,10 @@
 title: Industrial AI Robots
 description: Application-focused reference system for industrial robotics, machine vision, cell design, and deployment strategy.
 template: splash
+referenceType: home
+adProfile: foundation
+commercialIntent: medium
+reviewCadence: Monthly review
 hero:
   title: |
     Industrial AI Robots
@@ -20,6 +24,9 @@ import { Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
 <CardGrid stagger>
 	<Card title="Applications" icon="open-book">
 		Start with the manufacturing job, throughput goal, and cell constraint before discussing robot brand or payload.
+	</Card>
+	<Card title="Case studies" icon="document">
+		Implementation patterns translated into reusable lessons around pilot scope, operator adoption, sensing complexity, and rollout discipline.
 	</Card>
 	<Card title="Robot types" icon="add-document">
 		Cobots, articulated robots, gantries, and related classes mapped to practical fit instead of marketing labels.
@@ -42,6 +49,11 @@ import { Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
 		title="Start with applications"
 		href="/applications/"
 		description="Frame the manufacturing job, variability, and throughput target before selecting hardware."
+	/>
+	<LinkCard
+		title="Study case patterns"
+		href="/case-studies/"
+		description="See how real pilot and rollout patterns expose hidden integration, adoption, and sensing risks."
 	/>
 	<LinkCard
 		title="Compare robot classes"
@@ -97,6 +109,8 @@ import { Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
 	<a href="/contact/">Contact</a>
 	<span aria-hidden="true"> / </span>
 	<a href="/privacy/">Privacy</a>
+	<span aria-hidden="true"> / </span>
+	<a href="/terms-of-use/">Terms</a>
 	<span aria-hidden="true"> / </span>
 	<a href="/disclaimer/">Disclaimer</a>
 </p>

@@ -1,0 +1,41 @@
+---
+title: Vision-Guided Picking and Inspection
+description: A practical frame for robotic applications where part uncertainty, image quality, and exception handling shape the cell design.
+referenceType: application
+adProfile: application
+commercialIntent: high
+reviewCadence: Quarterly review
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Vision-Guided Picking and Inspection
+
+Applications that combine picking and inspection look attractive because they promise labor reduction and consistency. In practice, they tend to concentrate uncertainty in one place: the sensing layer. That changes not only the software choice, but the entire cell design and support model.
+
+## Typical pressures
+
+- Variable part presentation or unpredictable orientation
+- Inspection logic that needs more than simple presence detection
+- Exception paths that can quickly destroy apparent throughput gains
+
+## What to pressure-test early
+
+- Whether the cell needs robust recovery logic or only best-case demonstration logic
+- How much operator intervention is still required when sensing confidence drops
+- Whether the application should be split into separate automation stages
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Inspection and guidance systems"
+		href="/vision-and-sensing/inspection-and-guidance-systems/"
+		description="Understand what level of sensing sophistication the application truly needs."
+	/>
+	<LinkCard
+		title="Vision-guided inspection cell"
+		href="/case-studies/vision-guided-inspection-cell/"
+		description="See how this pattern behaves when pushed into pilot and rollout reality."
+	/>
+</div>
