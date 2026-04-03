@@ -1,0 +1,82 @@
+---
+title: Machine Tending Pilot KPIs
+description: A deployment reference for robotics teams deciding which metrics actually prove a machine tending pilot is ready to scale.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: machine tending pilot kpis
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Manufacturing leaders
+  - Pilot sponsors
+  - Robotics engineers
+  - Operations managers
+contentStatus: seed
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Machine Tending Pilot KPIs
+
+Machine tending pilots often look successful because the robot ran a repeatable cycle on a good day. That is not enough. A scale-worthy pilot needs KPIs that show whether the cell can survive real variation, operator interaction, machine interruptions, and maintenance handoffs.
+
+## Decision objective
+
+Pilot KPIs should help answer:
+
+- is the application commercially worth scaling;
+- is the cell operationally supportable;
+- what variability still breaks the process;
+- whether the next rollout step should expand scope or tighten it.
+
+This makes KPI selection a deployment decision, not a reporting exercise.
+
+## What should be validated early
+
+The most useful pilot measures often include:
+
+- unattended cycle stability across a realistic run window;
+- intervention frequency and recovery time;
+- spindle or machine utilization effect;
+- changeover burden if multiple part families are in scope;
+- operator and maintenance acceptance.
+
+These indicators say more about rollout potential than a single best-case cycle-time chart.
+
+## Why ROI models fail
+
+ROI models often fail when they ignore:
+
+- engineering effort needed to keep the cell tuned;
+- downtime from misfeeds or fixturing issues;
+- training and support requirements on later shifts;
+- the difference between a stable pilot and a fragile production asset.
+
+Good KPIs expose those gaps early.
+
+## Related paths
+
+<div class="portal-links">
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Place KPI choices inside the larger business-case logic."
+	/>
+	<LinkCard
+		title="High-mix low-volume machine tending"
+		href="/applications/high-mix-low-volume-machine-tending/"
+		description="Use a demanding application profile to test whether the KPIs are measuring the right risks."
+	/>
+	<LinkCard
+		title="High-mix machine tending pilot"
+		href="/case-studies/high-mix-machine-tending-pilot/"
+		description="See how pilot metrics behave when changeover complexity is real."
+	/>
+	<LinkCard
+		title="Door interlocks, machine handshakes, and recovery"
+		href="/cell-design/door-interlocks-machine-handshakes-and-recovery/"
+		description="Tie KPI failures back to the cell behaviors that often cause them."
+	/>
+</div>

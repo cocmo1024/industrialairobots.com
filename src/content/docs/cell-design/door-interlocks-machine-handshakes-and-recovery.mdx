@@ -1,0 +1,81 @@
+---
+title: Door Interlocks, Machine Handshakes, and Recovery
+description: A cell-design guide for machine tending projects where interface logic, interlocks, and recovery steps often determine uptime more than robot motion itself.
+referenceType: cell-design
+adProfile: cell-design
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: machine tending door interlocks handshakes recovery
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Cell designers
+  - Robotics integrators
+  - Controls engineers
+  - Manufacturing engineers
+contentStatus: seed
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Door Interlocks, Machine Handshakes, and Recovery
+
+Many tending cells look mechanically simple and still disappoint in production because the interface logic is messy. Door timing, machine ready states, part-present confirmation, and recovery after alarms all sit in the narrow space between a working demo and a dependable cell.
+
+## Why this layer matters
+
+This part of the design determines:
+
+- how cleanly the robot and machine coordinate;
+- whether safe access and throughput can coexist;
+- how much downtime an alarm or misfeed creates;
+- whether operators can recover the cell without a specialist.
+
+When these rules are weak, the robot often gets blamed for a systems problem.
+
+## What should be defined early
+
+Teams should write down:
+
+- which machine states the robot can trust;
+- what conditions must be true before door open, unload, load, and close steps;
+- how the cell behaves when a part is missing or the machine faults mid-cycle;
+- what operators are allowed to reset without advanced support.
+
+That logic needs to be explicit long before full production rollout.
+
+## Hidden failure points
+
+Common issues include:
+
+- handshake assumptions that only work in best-case timing;
+- unclear ownership between robot, PLC, and machine interface logic;
+- recovery routines that are safe but too slow, or fast but unclear;
+- interlock design that complicates setup and changeover more than expected.
+
+These are exactly the details that separate a promising pilot from a stable asset.
+
+## Related paths
+
+<div class="portal-links">
+	<LinkCard
+		title="CNC machine tending cells"
+		href="/applications/cnc-machine-tending-cells/"
+		description="Keep interface logic tied to the real machine tending workflow."
+	/>
+	<LinkCard
+		title="Machine tending pilot KPIs"
+		href="/deployment/machine-tending-pilot-kpis/"
+		description="Use downtime and recovery metrics to see whether handshake logic is limiting the pilot."
+	/>
+	<LinkCard
+		title="Part presentation and fixturing"
+		href="/cell-design/part-presentation-and-fixturing-for-machine-tending/"
+		description="Pair handshake design with the physical handoff conditions entering the cell."
+	/>
+	<LinkCard
+		title="Night-shift machine tending rollout"
+		href="/case-studies/night-shift-machine-tending-rollout/"
+		description="See how interface and recovery logic behave once staffing is thinner and uptime pressure rises."
+	/>
+</div>

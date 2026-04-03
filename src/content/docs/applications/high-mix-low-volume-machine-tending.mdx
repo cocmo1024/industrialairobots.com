@@ -1,0 +1,81 @@
+---
+title: High-Mix Low-Volume Machine Tending
+description: An application guide for manufacturers evaluating robot machine tending in environments where part variation, changeovers, and operator recovery dominate the economics.
+referenceType: application
+adProfile: application
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: high mix low volume machine tending
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Manufacturing engineers
+  - Plant managers
+  - Robotics integrators
+  - Automation buyers
+contentStatus: seed
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# High-Mix Low-Volume Machine Tending
+
+High-mix low-volume tending is attractive because labor pressure and machine availability still matter, even when production is not highly repetitive. It is also where many automation projects overreach. The economics depend less on a single perfect cycle and more on whether the cell can survive changeovers, part variation, and limited specialist support.
+
+## Why this application matters
+
+Manufacturers look at this application when they want to:
+
+- extend tending coverage across varied part families;
+- reduce repetitive loading work without forcing a full process redesign;
+- stabilize output on scarce skilled labor;
+- learn whether automation can fit the shop's actual production mix.
+
+That makes the traffic valuable because the reader is usually deciding whether the application is feasible at all.
+
+## Process pressures
+
+The hardest issues usually include:
+
+- fixture and gripper adaptability;
+- setup time between jobs;
+- part presentation that changes more than expected;
+- operator intervention patterns that break the automation story.
+
+These pressures make it dangerous to borrow assumptions from low-mix tending demos.
+
+## What teams should pressure-test
+
+Strong early analysis usually asks:
+
+- how narrow the first target part family can be;
+- whether changeover can be standardized enough to protect uptime;
+- how the cell recovers when the next part is not staged ideally;
+- whether the pilot should prove coverage, throughput, or staffing flexibility first.
+
+Those questions shape a much better first deployment path than robot specs alone.
+
+## Related paths
+
+<div class="portal-links">
+	<LinkCard
+		title="CNC machine tending cells"
+		href="/applications/cnc-machine-tending-cells/"
+		description="Start with the core cell model before evaluating high-mix expansion."
+	/>
+	<LinkCard
+		title="High-mix machine tending pilot"
+		href="/case-studies/high-mix-machine-tending-pilot/"
+		description="See how pilot logic changes once variation and changeovers are no longer theoretical."
+	/>
+	<LinkCard
+		title="Machine tending pilot KPIs"
+		href="/deployment/machine-tending-pilot-kpis/"
+		description="Measure whether a high-mix pilot is proving the right thing."
+	/>
+	<LinkCard
+		title="Part presentation and fixturing"
+		href="/cell-design/part-presentation-and-fixturing-for-machine-tending/"
+		description="Most high-mix tending projects succeed or fail at the handoff layer."
+	/>
+</div>

@@ -1,0 +1,81 @@
+---
+title: Night-Shift Machine Tending Rollout
+description: A case-study pattern for scaling machine tending cells into lower-supervision shifts where recovery logic, operator confidence, and maintenance readiness matter more than demo speed.
+referenceType: case-study
+adProfile: case-study
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: night shift machine tending rollout
+searchIntent: deploy
+decisionStage: operations
+targetRoles:
+  - Plant managers
+  - Automation leaders
+  - Operations managers
+  - Robotics integrators
+contentStatus: seed
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Night-Shift Machine Tending Rollout
+
+Rolling a tending cell into a lower-supervision shift is where many organizations discover whether they built an automation asset or only a well-supported daytime pilot. Night-shift operation stresses recovery logic, operator confidence, and maintenance readiness in ways that a daytime commissioning environment can hide.
+
+## What this rollout pattern is trying to prove
+
+This rollout phase usually needs to prove:
+
+- that the cell can recover predictably when support staff are thinner;
+- that operators understand resets, faults, and escalation paths;
+- that maintenance can support the cell without depending on its original project team;
+- that utilization gains survive outside the most supervised shift.
+
+If those points are weak, the pilot has not really scaled.
+
+## Hidden failure points
+
+The common issues are:
+
+- too many interventions that still depend on one expert integrator;
+- unclear machine or door recovery procedures;
+- staffing assumptions that worked only on first shift;
+- a support model that cannot absorb alarms, jams, or fixture issues after hours.
+
+Night-shift rollout is useful precisely because it exposes operational truth quickly.
+
+## Why the outcome matters
+
+If the rollout succeeds, it is strong evidence that:
+
+- the cell design is supportable;
+- the pilot KPIs were measuring the right things;
+- the organization can justify broader tending expansion;
+- the automation is beginning to behave like an operating asset.
+
+If it struggles, the problem is often not the robot class alone. It is usually the support model around the cell.
+
+## Related deployment pages
+
+<div class="portal-links">
+	<LinkCard
+		title="Machine tending pilot KPIs"
+		href="/deployment/machine-tending-pilot-kpis/"
+		description="Check whether the pilot metrics were strong enough to predict night-shift behavior."
+	/>
+	<LinkCard
+		title="Door interlocks, machine handshakes, and recovery"
+		href="/cell-design/door-interlocks-machine-handshakes-and-recovery/"
+		description="Most after-hours tending issues show up in recovery and interface logic first."
+	/>
+	<LinkCard
+		title="Change management and maintenance readiness"
+		href="/deployment/change-management-and-maintenance-readiness/"
+		description="Extend rollout planning into the training and maintenance model required for real shift expansion."
+	/>
+	<LinkCard
+		title="High-mix low-volume machine tending"
+		href="/applications/high-mix-low-volume-machine-tending/"
+		description="Apply the same rollout logic to harder tending environments with more variation."
+	/>
+</div>
