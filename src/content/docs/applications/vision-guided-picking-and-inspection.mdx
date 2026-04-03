@@ -1,29 +1,70 @@
 ---
 title: Vision-Guided Picking and Inspection
-description: A practical frame for robotic applications where part uncertainty, image quality, and exception handling shape the cell design.
+description: A practical application guide for robotic cells where picking, inspection, image quality, and exception handling all shape deployment risk.
 referenceType: application
 adProfile: application
 commercialIntent: high
 reviewCadence: Quarterly review
+primaryKeyword: vision guided picking inspection
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Robotics engineers
+  - Manufacturing leaders
+  - Vision system buyers
+  - Integrators
+contentStatus: growing
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # Vision-Guided Picking and Inspection
 
-Applications that combine picking and inspection look attractive because they promise labor reduction and consistency. In practice, they tend to concentrate uncertainty in one place: the sensing layer. That changes not only the software choice, but the entire cell design and support model.
+Applications that combine robotic picking and inspection are attractive because they promise labor reduction, quality gains, and process consistency in one project. In practice, they concentrate uncertainty in the sensing layer. That changes not only the camera or model choice, but the cell design, recovery logic, and support model around the whole system.
 
-## Typical pressures
+## Why this application is harder than it looks
 
-- Variable part presentation or unpredictable orientation
-- Inspection logic that needs more than simple presence detection
-- Exception paths that can quickly destroy apparent throughput gains
+The basic robot motion is often not the hardest part. The real difficulty usually comes from:
 
-## What to pressure-test early
+- variable part presentation or orientation;
+- lighting and image consistency;
+- reject logic and confidence thresholds;
+- exception handling when perception is uncertain.
 
-- Whether the cell needs robust recovery logic or only best-case demonstration logic
-- How much operator intervention is still required when sensing confidence drops
-- Whether the application should be split into separate automation stages
+That is why a great demo can still turn into a weak production system if the sensing assumptions are too optimistic.
+
+## What teams should define early
+
+Before choosing hardware or software, teams should clarify:
+
+- whether the goal is inspection, guidance, or both;
+- how much uncertainty is acceptable before a human must intervene;
+- whether the application can tolerate false rejects, false accepts, or both;
+- how the cell should recover when the vision layer is inconclusive.
+
+Those answers reshape the robot type, cell layout, and maintenance model.
+
+## Common failure modes
+
+The most common failure patterns include:
+
+- trying to combine too many perception tasks in one pilot;
+- ignoring image variation caused by the surrounding process;
+- designing for best-case presentation instead of real production behavior;
+- failing to make exception handling visible to operators.
+
+When those problems appear, throughput often drops long before the robot itself becomes the bottleneck.
+
+## How to scope the first deployment
+
+Strong first deployments usually narrow the problem:
+
+- start with one defined picking pattern or one inspection decision;
+- simplify the infeed or part presentation if possible;
+- build clear fallback handling for low-confidence states;
+- define how human intervention is logged and learned from.
+
+That creates the evidence needed to decide whether the cell should expand, split into stages, or stay tightly bounded.
 
 ## Compare next
 
@@ -31,11 +72,16 @@ Applications that combine picking and inspection look attractive because they pr
 	<LinkCard
 		title="Inspection and guidance systems"
 		href="/vision-and-sensing/inspection-and-guidance-systems/"
-		description="Understand what level of sensing sophistication the application truly needs."
+		description="Match the sensing layer to the real uncertainty in the process before buying into a vision narrative."
 	/>
 	<LinkCard
 		title="Vision-guided inspection cell"
 		href="/case-studies/vision-guided-inspection-cell/"
-		description="See how this pattern behaves when pushed into pilot and rollout reality."
+		description="See how perception risk behaves when pushed into pilot and rollout reality."
+	/>
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Use pilot design logic to decide whether the sensing challenge is commercially and operationally justified."
 	/>
 </div>

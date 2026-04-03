@@ -1,25 +1,78 @@
 ---
 title: ROI and Pilot Design
-description: A practical deployment framework for designing robotics pilots that support real scale-up decisions.
+description: A practical framework for robotics pilot design and ROI modeling, focused on proving operational value before scale-up.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: robot pilot roi
+searchIntent: deploy
+decisionStage: implementation
+targetRoles:
+  - Automation leaders
+  - Plant managers
+  - Manufacturing engineers
+  - Robotics integrators
+contentStatus: cornerstone
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # ROI and Pilot Design
 
-The best pilot is not the one with the flashiest demo. It is the one that exposes the real integration burden, operator response, maintenance demand, and value creation pattern early enough to improve the rollout strategy.
+The best pilot is not the flashiest robotics demo. It is the one that exposes the real integration burden, operator response, maintenance demand, and value creation pattern early enough to improve the rollout strategy. This is one of the most commercially valuable robotics topics because buyers are often trying to answer a hard question: not "can we automate this?" but "can we justify, operate, and scale this after the first install?"
 
-## A strong pilot usually has
+## What a good pilot should prove
 
-- A narrow application scope with visible pain and measurable improvement potential.
-- Enough variability to be representative, but not so much that every failure is ambiguous.
-- Clear ownership for operations, engineering, and maintenance.
+A strong pilot usually proves five things:
 
-## Weak ROI models often fail because
+1. the application is stable enough to automate meaningfully;
+2. the cell can achieve useful throughput under realistic conditions;
+3. operators and maintenance teams can live with the system;
+4. exception handling does not destroy uptime;
+5. the value model survives beyond the demo phase.
 
-- They assume uptime and adoption without testing them.
-- They ignore support, recovery, or changeover burden.
-- They overvalue labor displacement while undervaluing process stability and quality impact.
+If a pilot does not test those points, it may create confidence without creating evidence.
+
+## Why ROI models fail
+
+Weak ROI models often fail because they:
+
+- assume uptime without validating it;
+- ignore recovery, changeover, and support burden;
+- overvalue labor displacement while undervaluing quality and stability;
+- use a pilot scope that is too easy to represent real rollout conditions.
+
+The result is a funding model that looks strong on paper and weak in production.
+
+## How to choose a pilot scope
+
+The strongest pilot scope is usually:
+
+- narrow enough to implement cleanly;
+- painful enough that improvement matters;
+- variable enough to represent real conditions;
+- visible enough that stakeholders can understand the result.
+
+A perfect demo case is often the wrong pilot. It removes the very uncertainty the program needs to understand.
+
+## What to measure beyond labor
+
+Useful pilot metrics often include:
+
+- throughput stability;
+- reject or quality impact;
+- recovery time after interruptions;
+- operator intervention burden;
+- maintenance readiness and support ownership.
+
+Those measures create a more honest view of rollout potential than labor assumptions alone.
+
+## Why pilot design and robot choice are linked
+
+Robot-class choice, sensing complexity, and cell layout can all change the ROI model. A pilot that ignores those relationships may understate integration cost or overstate scalability.
+
+That is why the best pilot frameworks are cross-functional. Finance, operations, engineering, and maintenance all need to see the same system through different lenses.
 
 ## Compare next
 
@@ -27,11 +80,16 @@ The best pilot is not the one with the flashiest demo. It is the one that expose
 	<LinkCard
 		title="Cobots vs industrial robots"
 		href="/robot-types/cobots-vs-industrial-robots/"
-		description="Robot class decisions can change both integration cost and payback profile."
+		description="Robot class decisions change both integration cost and payback profile."
 	/>
 	<LinkCard
-		title="Safety, layout, and throughput"
-		href="/cell-design/safety-layout-and-throughput/"
-		description="Cell design quality is one of the largest hidden inputs into whether the pilot actually supports scale."
+		title="Change management and maintenance readiness"
+		href="/deployment/change-management-and-maintenance-readiness/"
+		description="Support ownership is one of the biggest hidden inputs into whether ROI survives past install."
+	/>
+	<LinkCard
+		title="Vision-guided inspection cell"
+		href="/case-studies/vision-guided-inspection-cell/"
+		description="Use a real case pattern to see how sensing complexity reshapes pilot economics."
 	/>
 </div>
