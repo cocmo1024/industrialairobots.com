@@ -1,0 +1,105 @@
+---
+import SidebarCard from '../components/SidebarCard.astro';
+import ClassicShell from '../layouts/ClassicShell.astro';
+import { SITE_CONTACT_EMAIL, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_TITLE } from '../consts';
+---
+
+<ClassicShell
+	title={`${SITE_TITLE} | About`}
+	description={SITE_DESCRIPTION}
+	pageTitle="About Industrial AI Robots"
+	pageIntro="Industrial AI Robots is being built as an English-language robotics reference brand for plant teams, automation buyers, and integrators who need more than surface-level commentary."
+	introLabel="About"
+	keywords={[...SITE_KEYWORDS, 'about Industrial AI Robots']}
+	breadcrumbs={[
+		{ name: 'Home', path: '/' },
+		{ name: 'About', path: '/about/' },
+	]}
+>
+	<Fragment slot="left-rail">
+		<SidebarCard title="Audience" eyebrow="Who It Helps">
+			<ul>
+				<li>Plant teams exploring where robotics pays off first</li>
+				<li>Integrators and technical buyers comparing deployment paths</li>
+				<li>Readers sorting through the AI vision and component stack</li>
+			</ul>
+		</SidebarCard>
+
+		<SidebarCard title="Editorial Bias" eyebrow="What We Favor">
+			<p>
+				We favor application depth, deployment realism, and content that respects the cost and
+				complexity of industrial automation decisions.
+			</p>
+		</SidebarCard>
+	</Fragment>
+
+	<section class="section-block">
+		<div class="section-head">
+			<div>
+				<p class="eyebrow">Editorial Thesis</p>
+				<h2>Industrial robotics coverage should start with the use case</h2>
+			</div>
+		</div>
+		<p>
+			This site is intended to grow into a premium application-first publication, where ROI logic,
+			deployment readiness, and vision-stack decisions all connect. That structure is better for reader
+			utility, internal linking, and future commercial value than generic trend coverage.
+		</p>
+	</section>
+
+	<div class="detail-grid">
+		<section class="detail-card">
+			<p class="section-kicker">SEO Logic</p>
+			<h3>Problems beat buzzwords</h3>
+			<p>
+				Search value grows when articles speak to inspection, quality, palletizing, line automation,
+				and deployment constraints rather than broad robotics hype.
+			</p>
+		</section>
+
+		<section class="detail-card">
+			<p class="section-kicker">Commercial Logic</p>
+			<h3>High-value audiences need depth</h3>
+			<p>
+				OEMs, integrators, and training partners only become a natural fit when the site genuinely
+				helps readers move through a meaningful buying and rollout process.
+			</p>
+		</section>
+
+		<section class="detail-card">
+			<p class="section-kicker">Brand Goal</p>
+			<h3>Bold, premium, and credible</h3>
+			<p>
+				The visual language is intentionally more dramatic than a typical industrial blog, but the
+				editorial structure stays practical so the site still feels trustworthy.
+			</p>
+		</section>
+	</div>
+
+	<section class="section-block">
+		<div class="section-head">
+			<div>
+				<p class="eyebrow">Planning Surface</p>
+				<h2>The long-term framework is visible inside the site</h2>
+			</div>
+		</div>
+		<p>
+			The <a href="/topics/">topic map</a> defines the application clusters worth building, while the
+			<a href="/methodology/"> methodology page</a> explains how use-case, deployment, and stack pages
+			should stay credible over time.
+		</p>
+	</section>
+
+	<section class="section-block">
+		<div class="section-head">
+			<div>
+				<p class="eyebrow">Reach Out</p>
+				<h2>Editorial feedback and future partner fit</h2>
+			</div>
+		</div>
+		<p>
+			For corrections, topic ideas, or future partnership conversations, email <a href={`mailto:${SITE_CONTACT_EMAIL}`}>{SITE_CONTACT_EMAIL}</a>.
+			The current priority is building a deeper use-case library first so any later sponsor inventory is supported by real authority.
+		</p>
+	</section>
+</ClassicShell>

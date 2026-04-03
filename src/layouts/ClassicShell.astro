@@ -1,0 +1,141 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import AdSlot from '../components/AdSlot.astro';
+import SidebarCard from '../components/SidebarCard.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	pageTitle?: string;
+	pageIntro?: string;
+	introLabel?: string;
+	showPageIntro?: boolean;
+	keywords?: string[];
+	pageType?: "website" | "article";
+	robots?: string;
+	publishedTime?: string;
+	modifiedTime?: string;
+	section?: string;
+	tags?: string[];
+	schemas?: Record<string, unknown>[];
+	breadcrumbs?: { name: string; path: string }[];
+}
+
+const {
+	title = SITE_TITLE,
+	description = SITE_DESCRIPTION,
+	image,
+	pageTitle = SITE_TITLE,
+	pageIntro = SITE_DESCRIPTION,
+	introLabel = "Front Page",
+	showPageIntro = true,
+	keywords = [],
+	pageType = "website",
+	robots,
+	publishedTime,
+	modifiedTime,
+	section,
+	tags = [],
+	schemas = [],
+	breadcrumbs = [],
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={title}
+			description={description}
+			image={image}
+			keywords={keywords}
+			pageType={pageType}
+			robots={robots}
+			publishedTime={publishedTime}
+			modifiedTime={modifiedTime}
+			section={section}
+			tags={tags}
+			schemas={schemas}
+			breadcrumbs={breadcrumbs}
+		/>
+	</head>
+	<body>
+		<div class="site-frame">
+			<Header />
+
+			<div class="site-grid">
+				<aside class="left-rail">
+					<div class="rail-stack">
+						<SidebarCard title="Application Lenses" eyebrow="Pillars">
+							<ul>
+								<li>Use case economics that tie robotics to measurable plant gains</li>
+								<li>Deployment playbooks for pilots, safety, and rollout planning</li>
+								<li>Vision and compute coverage for technical stack decisions</li>
+							</ul>
+						</SidebarCard>
+
+						<SidebarCard title="Commercial Intent" eyebrow="Buyer Quality" compact={true}>
+							<ul>
+								<li>Plant teams comparing where automation investment starts</li>
+								<li>Integrators and OEM buyers evaluating application fit</li>
+								<li>Readers moving from exploration into deployment planning</li>
+							</ul>
+						</SidebarCard>
+
+						<slot name="left-rail" />
+					</div>
+				</aside>
+
+				<main class="content-column">
+					<div class="content-stack">
+						{
+							showPageIntro && (
+								<section class="page-intro">
+									<p class="eyebrow">{introLabel}</p>
+									<h1>{pageTitle}</h1>
+									<p>{pageIntro}</p>
+								</section>
+							)
+						}
+
+						<slot />
+					</div>
+				</main>
+
+				<aside class="right-rail">
+					<div class="rail-stack">
+						<AdSlot
+							slotId="rail-robot-vendor"
+							format="rectangle"
+							headline="Reserved automation sponsor"
+							note="Keep this premium rectangle ready for future OEM, vision platform, or robotics integrator sponsorships once the application library has enough authority."
+						/>
+
+						<SidebarCard title="Why Buyers Stay" eyebrow="Retention Logic">
+							<p>
+								Industrial robotics readers return when the site helps them understand economics,
+								implementation risk, and component choices in the same place. That mix creates a
+								stronger long-term base for premium direct partnerships.
+							</p>
+						</SidebarCard>
+
+						<AdSlot
+							slotId="rail-integrator-tower"
+							format="tower"
+							headline="OEM showcase tower"
+							note="Reserve this tall unit for future robot vendor campaigns, integrator promos, or house offers tied to high-value deployment topics."
+						/>
+
+						<slot name="right-rail" />
+					</div>
+				</aside>
+			</div>
+
+			<Footer />
+		</div>
+	</body>
+</html>

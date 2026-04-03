@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="industrialairobots.com">
+  <rect width="64" height="64" rx="14" fill="#b4462a"/>
+  <circle cx="24" cy="24" r="7" fill="#fff5f1"/>
+  <circle cx="40" cy="24" r="7" fill="#fff5f1"/>
+  <rect x="18" y="36" width="28" height="8" rx="4" fill="#fff5f1"/>
+</svg>
