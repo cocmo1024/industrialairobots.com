@@ -1,70 +1,113 @@
-@import "tailwindcss";
-@import "./typography.css";
+@layer base, starlight, theme, components, utilities;
 
-@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+@import '@astrojs/starlight-tailwind';
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import '@fontsource/manrope/400.css';
+@import '@fontsource/manrope/500.css';
+@import '@fontsource/manrope/700.css';
+@import '@fontsource/space-mono/400.css';
+@import '@fontsource/space-mono/700.css';
 
 :root,
-html[data-theme="light"] {
-  --background: #fdfdfd;
-  --foreground: #282728;
-  --accent: #006cac;
-  --muted: #e6e6e6;
-  --border: #ece9e9;
+::backdrop {
+	--sl-font: 'Manrope';
+	--sl-font-mono: 'Space Mono';
+	--sl-color-accent-low: hsl(10, 72%, 13%);
+	--sl-color-accent: hsl(18, 94%, 62%);
+	--sl-color-accent-high: hsl(38, 86%, 82%);
+	--sl-color-gray-1: hsl(18, 18%, 92%);
+	--sl-color-gray-2: hsl(18, 12%, 78%);
+	--sl-color-gray-3: hsl(16, 10%, 60%);
+	--sl-color-gray-4: hsl(12, 10%, 38%);
+	--sl-color-gray-5: hsl(12, 12%, 20%);
+	--sl-color-gray-6: hsl(10, 16%, 12%);
+	--sl-color-black: hsl(300, 10%, 5%);
+	--site-sheen: hsla(22, 92%, 62%, 0.16);
+	--site-panel: linear-gradient(180deg, hsla(12, 16%, 12%, 0.96), hsla(300, 12%, 8%, 0.92));
 }
 
-html[data-theme="dark"] {
-  --background: #212737;
-  --foreground: #eaedf3;
-  --accent: #ff6b01;
-  --muted: #343f60;
-  --border: #ab4b08;
+:root[data-theme='light'] {
+	--sl-color-accent-low: hsl(32, 88%, 92%);
+	--sl-color-accent: hsl(17, 86%, 41%);
+	--sl-color-accent-high: hsl(7, 78%, 19%);
+	--sl-color-gray-1: hsl(6, 18%, 18%);
+	--sl-color-gray-2: hsl(8, 12%, 28%);
+	--sl-color-gray-3: hsl(10, 10%, 42%);
+	--sl-color-gray-4: hsl(13, 8%, 59%);
+	--sl-color-gray-5: hsl(18, 24%, 84%);
+	--sl-color-gray-6: hsl(28, 36%, 95%);
+	--sl-color-black: hsl(0, 0%, 100%);
+	--sl-color-white: hsl(306, 20%, 9%);
+	--sl-color-bg-nav: hsla(0, 0%, 100%, 0.9);
+	--sl-color-bg-sidebar: hsl(28, 42%, 97%);
+	--sl-color-bg: linear-gradient(180deg, #fff7f1 0%, #fffdf9 100%);
+	--site-sheen: hsla(17, 88%, 44%, 0.12);
+	--site-panel: linear-gradient(180deg, hsla(0, 0%, 100%, 0.9), hsla(20, 50%, 98%, 0.9));
 }
 
-@theme inline {
-  --font-app: var(--font-google-sans-code);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-muted: var(--muted);
-  --color-border: var(--border);
+body {
+	background:
+		radial-gradient(circle at top right, var(--site-sheen), transparent 24rem),
+		linear-gradient(135deg, rgba(255, 255, 255, 0.02) 25%, transparent 25%) 0 0 / 2rem 2rem,
+		var(--sl-color-bg);
 }
 
-@layer base {
-  * {
-    @apply border-border outline-accent/75;
-    scrollbar-width: auto;
-    scrollbar-color: var(--color-muted) transparent;
-  }
-  html {
-    @apply overflow-y-scroll scroll-smooth;
-  }
-  body {
-    @apply flex min-h-svh flex-col bg-background font-app text-foreground selection:bg-accent/75 selection:text-background;
-  }
-  a,
-  button {
-    @apply outline-offset-1 outline-accent focus-visible:no-underline focus-visible:outline-2 focus-visible:outline-dashed;
-  }
-  button:not(:disabled),
-  [role="button"]:not(:disabled) {
-    cursor: pointer;
-  }
+.site-title {
+	font-size: 0.88rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
 }
 
-@utility max-w-app {
-  @apply max-w-3xl;
+.hero {
+	padding: clamp(2.25rem, 4vw, 3.25rem);
+	border-radius: 1.75rem;
+	border: 1px solid color-mix(in srgb, var(--sl-color-accent) 22%, transparent);
+	background: var(--site-panel);
+	box-shadow: 0 28px 72px rgba(0, 0, 0, 0.28);
 }
 
-@utility app-layout {
-  @apply mx-auto w-full max-w-app px-4;
+.hero h1 {
+	max-width: 10ch;
+	font-weight: 700;
+	letter-spacing: -0.06em;
 }
 
-.active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-8;
+.hero .tagline {
+	max-width: 43rem;
 }
 
-/* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
-/* Anything that has been anchored to should have extra scroll margin */
-:target {
-  scroll-margin-block: 1rem;
+.hero .actions a:first-child {
+	box-shadow: 0 20px 44px rgba(0, 0, 0, 0.24);
+}
+
+.card {
+	border-radius: 1.25rem;
+	border-color: color-mix(in srgb, var(--sl-color-accent) 18%, var(--sl-color-hairline));
+	background:
+		linear-gradient(180deg, color-mix(in srgb, var(--sl-color-accent-low) 40%, transparent), transparent 70%),
+		var(--site-panel);
+}
+
+.card .title {
+	font-weight: 700;
+}
+
+.card .icon {
+	border-radius: 0.8rem;
+}
+
+.sl-markdown-content :is(h1, h2, h3) {
+	letter-spacing: -0.04em;
+}
+
+.sl-markdown-content h2 {
+	padding-bottom: 0.45rem;
+	border-bottom: 1px solid color-mix(in srgb, var(--sl-color-accent) 18%, var(--sl-color-hairline));
+}
+
+.content-panel,
+.right-sidebar-panel {
+	background: color-mix(in srgb, var(--site-panel) 92%, transparent);
 }

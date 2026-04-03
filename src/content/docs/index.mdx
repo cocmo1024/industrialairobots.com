@@ -1,0 +1,43 @@
+---
+title: Industrial AI Robots
+description: Application-focused reference material for industrial robotics, machine vision, AI-assisted automation, and deployment strategy.
+template: splash
+hero:
+  title: |
+    Industrial AI Robots
+  tagline: Application-focused reference material for industrial robotics, machine vision, AI-assisted automation, and deployment strategy.
+  actions:
+    - text: Browse applications
+      link: /applications/
+      icon: right-arrow
+    - text: About this site
+      link: /about/
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+	<Card title="Applications" icon="open-book">
+		Robotics coverage organized around the jobs industrial cells are expected to perform.
+	</Card>
+	<Card title="Robot types" icon="add-document">
+		Articulated robots, cobots, gantries, and other system classes in operational context.
+	</Card>
+	<Card title="Vision and sensing" icon="puzzle">
+		Perception layers, inspection, guidance, and AI-assisted decision support in the cell.
+	</Card>
+	<Card title="Deployment" icon="approve-check-circle">
+		Cell design, rollout logic, operational constraints, and return-on-investment framing.
+	</Card>
+</CardGrid>
+
+<p class="mt-8 text-sm text-[var(--sl-color-gray-3)]">
+	<a href="/about/">About</a>
+	<span aria-hidden="true"> · </span>
+	<a href="/contact/">Contact</a>
+	<span aria-hidden="true"> · </span>
+	<a href="/privacy/">Privacy</a>
+	<span aria-hidden="true"> · </span>
+	<a href="/disclaimer/">Disclaimer</a>
+</p>

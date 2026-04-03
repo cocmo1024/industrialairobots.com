@@ -1,6 +1,12 @@
 # Industrial AI Robots
 
-Static Astro site for [industrialairobots.com](https://industrialairobots.com/).
+Starlight-based documentation site for `industrialairobots.com`.
+
+## Focus
+
+- Industrial robotics by application and cell type
+- Vision, sensing, and AI-assisted deployment topics
+- Deployment, ROI, and system design reference material
 
 ## Local Development
 
@@ -15,11 +21,11 @@ npm run dev
 npm run build
 ```
 
-## Foundation
+## Deployment
 
-- Homepage
-- About page
-- Contact page
-- Privacy policy
-- Disclaimer
-- Sitemap, robots, RSS, and base SEO metadata
+Use Cloudflare Pages with:
+
+- Build command: `npm run build`
+- Output directory: `dist`
+
+Do not use `wrangler deploy` for this repository.
