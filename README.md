@@ -1,22 +1,25 @@
-# industrialairobots.com
+# Industrial AI Robots
 
-Independent Astro site for `industrialairobots.com`.
+Static Astro site for [industrialairobots.com](https://industrialairobots.com/).
 
-## Positioning
-
-- Topic: AI robotics, cobots, machine vision, robotic cells, and industrial automation decision-making
-- Layout: three-column industrial editorial site with strong sponsor support
-- Monetization: robotics vendor sponsorships, integrator partnerships, training programs, and component supplier campaigns
-
-## Quick Start
+## Local Development
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Content Direction
+## Build
 
-- Publish ROI-driven articles about robotics applications, not just product news
-- Build evergreen guides for cobot pilots, machine vision, edge compute, and cell design
-- Use the side rails for vendor units, training promos, and integrator lead capture
+```bash
+npm run build
+```
+
+## Foundation
+
+- Homepage
+- About page
+- Contact page
+- Privacy policy
+- Disclaimer
+- Sitemap, robots, RSS, and base SEO metadata

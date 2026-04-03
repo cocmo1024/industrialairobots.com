@@ -1,215 +1,29 @@
 ---
-import { getCollection } from 'astro:content';
-import AdSlot from '../components/AdSlot.astro';
-import PostPreviewCard from '../components/PostPreviewCard.astro';
-import SidebarCard from '../components/SidebarCard.astro';
-import ClassicShell from '../layouts/ClassicShell.astro';
-import { SITE_DESCRIPTION, SITE_KEYWORDS } from '../consts';
-import { SITE_PRIORITY_CLUSTERS, SITE_UPDATE_PLAYBOOK } from '../sitePlan';
-import { sortPosts } from '../utils/content';
-
-const posts = sortPosts(await getCollection('blog'));
-const [featuredPost, ...morePosts] = posts;
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import { SITE } from "@/config";
 ---
 
-<ClassicShell
-	title="Industrial AI Robots | Production Use Cases, Deployment Playbooks, and Vision Systems"
-	description={SITE_DESCRIPTION}
-	pageTitle="Industrial AI robotics for real production use cases and premium automation demand"
-	pageIntro="Industrial AI Robots is built as a bold English-language application publication for manufacturers, integrators, and automation teams. The framework emphasizes where spend starts, how deployment risk is reduced, and why specific robotics topics can hold both search value and commercial value over time."
-	introLabel="Industrial AI Robots"
-	keywords={[...SITE_KEYWORDS, 'industrial robotics magazine', 'robotics applications', 'AI vision deployment']}
->
-	<Fragment slot="left-rail">
-		<SidebarCard title="Start Here" eyebrow="Core Routes">
-			<ul>
-				<li><a href="/categories/use-case-economics/">Use Case Economics</a> for ROI and operational fit</li>
-				<li><a href="/categories/deployment-playbooks/">Deployment Playbooks</a> for pilots, safety, and rollout detail</li>
-				<li><a href="/categories/vision-and-compute/">Vision &amp; Compute</a> for component and stack decisions</li>
-			</ul>
-		</SidebarCard>
-
-		<SidebarCard title="High-Value Traffic" eyebrow="Why It Matters">
-			<p>
-				The strongest readers here are evaluating where robotics can justify capex, labor relief, or
-				quality gains. That intent is far more valuable than broad automation curiosity.
-			</p>
-		</SidebarCard>
-	</Fragment>
-
-	<section class="hero-panel">
-		<div class="hero-grid">
-			<div>
-				<p class="eyebrow">Application Magazine</p>
-				<h2>Built around where automation budgets actually open</h2>
-				<p>
-					This site should win by organizing robotics coverage around use cases, deployment logic, and
-					vision stack decisions that stay relevant long after product launch press releases are forgotten.
-				</p>
-				<div class="chip-row">
-					<a class="taxonomy-link" href="/categories/use-case-economics/">Use Case Economics</a>
-					<a class="taxonomy-link" href="/categories/deployment-playbooks/">Deployment Playbooks</a>
-					<a class="taxonomy-link" href="/categories/vision-and-compute/">Vision &amp; Compute</a>
-					<a class="taxonomy-link" href="/blog/">Archive</a>
-				</div>
-			</div>
-
-			<div class="hero-aside">
-				<article class="detail-card">
-					<p class="section-kicker">Reader Intent</p>
-					<h3>Why the audience matters</h3>
-					<ul class="signal-list">
-						<li>Plant teams evaluating application fit and payback</li>
-						<li>Integrators planning rollout and system scope</li>
-						<li>Buyers comparing vision, compute, and robotics partners</li>
-					</ul>
-				</article>
-
-				<article class="detail-card">
-					<p class="section-kicker">Long-Term Asset</p>
-					<h3>What ages well</h3>
-					<p>
-						Use-case breakdowns, pilot planning guides, component explainers, and ROI frameworks create
-						a deeper search moat than generic automation headlines.
-					</p>
-				</article>
-			</div>
-		</div>
-	</section>
-
-	<section class="section-block">
-		<div class="section-head">
-			<div>
-				<p class="eyebrow">Application Radar</p>
-				<h2>Three editorial lanes with strong commercial gravity</h2>
-			</div>
-		</div>
-		<div class="hub-grid">
-			<article class="hub-card">
-				<h4><a href="/categories/use-case-economics/">Use Case Economics</a></h4>
-				<p>Pages that explain where robotics and AI change throughput, inspection, quality, or staffing economics first.</p>
-			</article>
-			<article class="hub-card">
-				<h4><a href="/categories/deployment-playbooks/">Deployment Playbooks</a></h4>
-				<p>Rollout-focused content covering pilots, safety, staffing, line integration, and execution detail.</p>
-			</article>
-			<article class="hub-card">
-				<h4><a href="/categories/vision-and-compute/">Vision &amp; Compute</a></h4>
-				<p>Technical stack coverage for cameras, lighting, edge compute, and inference hardware tied to real applications.</p>
-			</article>
-		</div>
-	</section>
-
-	{featuredPost ? (
-		<>
-			<section class="section-block">
-				<div class="section-head">
-					<div>
-						<p class="eyebrow">Lead Application</p>
-						<h2>Featured robotics article</h2>
-					</div>
-				</div>
-				<PostPreviewCard post={featuredPost} featured={true} />
-			</section>
-
-			<AdSlot
-				slotId="home-robotics-banner"
-				format="banner"
-				headline="Reserved automation solution sponsor"
-				note="This billboard-sized unit is reserved for future robotics OEM, machine vision, or integrator campaigns once the site has built enough application authority."
-			/>
-		</>
-	) : (
-		<section class="section-block">
-			<div class="section-head">
-				<div>
-					<p class="eyebrow">Lead Application</p>
-					<h2>No posts published yet</h2>
-				</div>
-			</div>
-			<p>Start with application economics, deployment playbooks, and component guides that move buyers closer to action.</p>
-		</section>
-	)}
-
-	<section class="section-block">
-		<div class="section-head">
-			<div>
-				<p class="eyebrow">Why This Can Win</p>
-				<h2>Traffic quality, retention, and sponsor fit are aligned</h2>
-			</div>
-		</div>
-		<div class="detail-grid">
-			<article class="detail-card">
-				<p class="section-kicker">Search Moat</p>
-				<h3>Application-first coverage</h3>
-				<p>Pages that solve inspection, handling, palletizing, or quality problems tend to stay relevant longer than generic robotics explainers.</p>
-			</article>
-			<article class="detail-card">
-				<p class="section-kicker">Commercial Fit</p>
-				<h3>Decision-stage attention</h3>
-				<p>Readers evaluating real use cases are better candidates for future OEM, integrator, and training partnerships.</p>
-			</article>
-			<article class="detail-card">
-				<p class="section-kicker">Retention</p>
-				<h3>One topic leads to the whole stack</h3>
-				<p>Application pages naturally lead into safety, compute, and deployment guides, creating a stronger internal-link network and deeper session value.</p>
-			</article>
-		</div>
-	</section>
-
-	<section class="section-block">
-		<div class="section-head">
-			<div>
-				<p class="eyebrow">Editorial Engine</p>
-				<h2>The long-term robotics strategy is now visible on-site</h2>
-			</div>
-		</div>
-		<div class="detail-grid">
-			<article class="detail-card">
-				<p class="section-kicker">Topic Map</p>
-				<h3><a href="/topics/">See the application cluster plan</a></h3>
-				<p>
-					The current top-priority cluster is <strong>{SITE_PRIORITY_CLUSTERS[0].title}</strong>, a
-					high-value application theme that can keep attracting industrial decision-stage readers.
-				</p>
-			</article>
-			<article class="detail-card">
-				<p class="section-kicker">Methodology</p>
-				<h3><a href="/methodology/">Read how this archive should evolve</a></h3>
-				<p>
-					The methodology page defines how the site should connect application economics, deployment
-					reality, and technical stack coverage without drifting into hype.
-				</p>
-			</article>
-			<article class="detail-card">
-				<p class="section-kicker">Cadence</p>
-				<h3>{SITE_UPDATE_PLAYBOOK[0].title}</h3>
-				<p>{SITE_UPDATE_PLAYBOOK[0].summary}</p>
-			</article>
-		</div>
-	</section>
-
-	<section class="section-block">
-		<div class="section-head">
-			<div>
-				<p class="eyebrow">Archive Stream</p>
-				<h2>Recent robotics and AI entries</h2>
-			</div>
-		</div>
-
-		<div class="post-stream">
-			{morePosts.length > 0 ? (
-				morePosts.map((post) => <PostPreviewCard post={post} />)
-			) : (
-				<p>Use this stream for deployment checklists, component guides, and application-level industrial AI content.</p>
-			)}
-		</div>
-	</section>
-
-	<AdSlot
-		slotId="home-mobile-training"
-		format="mobile"
-		headline="Reserved mobile training slot"
-		note="This compact unit can later support a robotics training offer, demo CTA, or partner promotion without cluttering the mobile reading experience."
-	/>
-</ClassicShell>
+<Layout title={SITE.title}>
+  <Header />
+  <main id="main-content" data-layout="index" class="app-layout">
+    <section class="py-14 sm:py-20">
+      <p class="text-sm font-medium tracking-[0.18em] uppercase text-accent">
+        {new URL(SITE.website).hostname}
+      </p>
+      <h1 class="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">
+        {SITE.title}
+      </h1>
+      <p class="mt-5 max-w-2xl text-lg text-muted">
+        {SITE.desc}
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <LinkButton href="/about">About</LinkButton>
+        <LinkButton href="/contact">Contact</LinkButton>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
