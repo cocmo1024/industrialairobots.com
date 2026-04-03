@@ -11,8 +11,8 @@ export default defineConfig({
 		starlight({
 			title: 'Industrial AI Robots',
 			description:
-				'Application-focused reference material for industrial robotics, machine vision, AI-assisted automation, and deployment strategy.',
-			tagline: 'Industrial robotics reference material organized by application, cell design, and deployment reality.',
+				'Application-focused reference system for industrial robotics, machine vision, cell design, and deployment strategy.',
+			tagline: 'Industrial robotics organized by application, robot class, vision complexity, cell design, and deployment reality.',
 			social: [
 				{
 					icon: 'github',
@@ -23,7 +23,28 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Reference Areas',
-					items: ['applications', 'robot-types', 'vision-and-sensing', 'cell-design', 'deployment'],
+					items: [
+						{
+							label: 'Applications',
+							autogenerate: { directory: 'applications' },
+						},
+						{
+							label: 'Robot Types',
+							autogenerate: { directory: 'robot-types' },
+						},
+						{
+							label: 'Vision and Sensing',
+							autogenerate: { directory: 'vision-and-sensing' },
+						},
+						{
+							label: 'Cell Design',
+							autogenerate: { directory: 'cell-design' },
+						},
+						{
+							label: 'Deployment',
+							autogenerate: { directory: 'deployment' },
+						},
+					],
 				},
 				{
 					label: 'Site',

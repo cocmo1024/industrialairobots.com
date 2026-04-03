@@ -1,43 +1,102 @@
 ---
 title: Industrial AI Robots
-description: Application-focused reference material for industrial robotics, machine vision, AI-assisted automation, and deployment strategy.
+description: Application-focused reference system for industrial robotics, machine vision, cell design, and deployment strategy.
 template: splash
 hero:
   title: |
     Industrial AI Robots
-  tagline: Application-focused reference material for industrial robotics, machine vision, AI-assisted automation, and deployment strategy.
+  tagline: Application-focused reference system for industrial robotics, machine vision, cell design, and deployment strategy.
   actions:
     - text: Browse applications
       link: /applications/
       icon: right-arrow
-    - text: About this site
-      link: /about/
+    - text: Explore deployment
+      link: /deployment/
       variant: minimal
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
 
 <CardGrid stagger>
 	<Card title="Applications" icon="open-book">
-		Robotics coverage organized around the jobs industrial cells are expected to perform.
+		Start with the manufacturing job, throughput goal, and cell constraint before discussing robot brand or payload.
 	</Card>
 	<Card title="Robot types" icon="add-document">
-		Articulated robots, cobots, gantries, and other system classes in operational context.
+		Cobots, articulated robots, gantries, and related classes mapped to practical fit instead of marketing labels.
 	</Card>
 	<Card title="Vision and sensing" icon="puzzle">
-		Perception layers, inspection, guidance, and AI-assisted decision support in the cell.
+		Perception, inspection, and guidance layers connected to actual cell performance and deployment risk.
+	</Card>
+	<Card title="Cell design" icon="document">
+		Layout, safety, material flow, guarding, and integration boundaries shaped around real operations.
 	</Card>
 	<Card title="Deployment" icon="approve-check-circle">
-		Cell design, rollout logic, operational constraints, and return-on-investment framing.
+		Pilot design, ROI framing, rollout sequencing, and change management for automation programs that have to survive contact with operations.
 	</Card>
 </CardGrid>
 
-<p class="mt-8 text-sm text-[var(--sl-color-gray-3)]">
+## Navigate by decision path
+
+<div class="portal-links">
+	<LinkCard
+		title="Start with applications"
+		href="/applications/"
+		description="Frame the manufacturing job, variability, and throughput target before selecting hardware."
+	/>
+	<LinkCard
+		title="Compare robot classes"
+		href="/robot-types/"
+		description="Understand which robot family fits the motion, payload, collaboration, and integration boundary."
+	/>
+	<LinkCard
+		title="Plan perception"
+		href="/vision-and-sensing/"
+		description="Match sensing and vision complexity to the real uncertainty inside the cell."
+	/>
+	<LinkCard
+		title="Design the cell"
+		href="/cell-design/"
+		description="Translate the use case into safety, layout, handoff, and maintenance reality."
+	/>
+	<LinkCard
+		title="Model deployment"
+		href="/deployment/"
+		description="Pressure-test pilot scope, ROI assumptions, and operational adoption before expansion."
+	/>
+</div>
+
+## What this site optimizes
+
+<div class="signal-strip">
+	<div>
+		<strong>Research model</strong>
+		<p>Application first, robot type second, cell design and deployment after that. This keeps the coverage grounded in plant reality.</p>
+	</div>
+	<div>
+		<strong>High-value traffic</strong>
+		<p>Project traffic is strongest around cell design, robot comparisons, vision fit, and deployment economics.</p>
+	</div>
+	<div>
+		<strong>Long-term edge</strong>
+		<p>Reference pages improve over time because the operational questions stay stable even when specific products change.</p>
+	</div>
+</div>
+
+## How to use this reference
+
+<Steps>
+	1. Start with the application and define the manufacturing task, variability, and throughput requirement.
+	2. Narrow the robot class before debating vendors, payload tables, or AI terminology.
+	3. Use vision and cell design pages to pressure-test the hidden complexity in sensing, layout, and safety.
+	4. Finish with deployment guidance to decide whether the project survives financially and operationally after install.
+</Steps>
+
+<p class="footnote-links">
 	<a href="/about/">About</a>
-	<span aria-hidden="true"> · </span>
+	<span aria-hidden="true"> / </span>
 	<a href="/contact/">Contact</a>
-	<span aria-hidden="true"> · </span>
+	<span aria-hidden="true"> / </span>
 	<a href="/privacy/">Privacy</a>
-	<span aria-hidden="true"> · </span>
+	<span aria-hidden="true"> / </span>
 	<a href="/disclaimer/">Disclaimer</a>
 </p>

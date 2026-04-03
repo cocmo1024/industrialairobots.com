@@ -1,0 +1,39 @@
+---
+title: Cell Design
+description: Reference pages for robotics cell layout, safety, material flow, integration boundaries, and maintainability.
+---
+
+import { LinkCard, Steps } from '@astrojs/starlight/components';
+
+# Cell Design
+
+Cell design is where technical promise meets operational reality. Good cell design connects the robot, tooling, guarding, material flow, maintenance access, and operator interactions into something the plant can actually run.
+
+## Core paths
+
+<div class="portal-links">
+	<LinkCard
+		title="Safety, layout, and throughput"
+		href="/cell-design/safety-layout-and-throughput/"
+		description="A practical design path for balancing guarding, material flow, operator interaction, and performance."
+	/>
+	<LinkCard
+		title="Vision and sensing"
+		href="/vision-and-sensing/"
+		description="Evaluate sensing choices as cell design decisions, not isolated technology add-ons."
+	/>
+	<LinkCard
+		title="Deployment"
+		href="/deployment/"
+		description="Connect cell design decisions to rollout sequence, adoption risk, and maintenance readiness."
+	/>
+</div>
+
+## Cell design questions
+
+<Steps>
+	1. Where do parts enter, wait, transfer, and exit?
+	2. How do guarding, access, and operator intervention affect the layout?
+	3. What maintenance and recovery actions must happen without breaking the cell design?
+	4. Which design choices protect throughput instead of only optimizing demo behavior?
+</Steps>

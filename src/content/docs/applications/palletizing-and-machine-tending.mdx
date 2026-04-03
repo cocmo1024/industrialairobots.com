@@ -1,0 +1,37 @@
+---
+title: Palletizing and Machine Tending
+description: A practical look at two common automation paths that reveal very different robotics and deployment tradeoffs.
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Palletizing and Machine Tending
+
+These use cases often appear together in automation planning conversations, but they stress the system in different ways. Palletizing usually emphasizes payload, reach, throughput consistency, and end-of-line logistics. Machine tending adds more interaction with upstream and downstream equipment, variable part presentation, and cycle timing dependencies.
+
+## Palletizing usually emphasizes
+
+- Reach, payload, and stack pattern reliability.
+- End-of-line material flow and downstream packaging constraints.
+- Cycle consistency more than adaptive perception complexity.
+
+## Machine tending usually emphasizes
+
+- Part presentation and fixture variability.
+- Machine handshake logic, safety integration, and uptime sensitivity.
+- A tighter interaction between the cell and surrounding equipment.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Cobots vs industrial robots"
+		href="/robot-types/cobots-vs-industrial-robots/"
+		description="Use the application profile to test whether collaboration actually changes the robot choice."
+	/>
+	<LinkCard
+		title="Safety, layout, and throughput"
+		href="/cell-design/safety-layout-and-throughput/"
+		description="See how these applications reshape guarding, space planning, and line performance."
+	/>
+</div>

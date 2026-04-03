@@ -1,0 +1,39 @@
+---
+title: Deployment
+description: Deployment guidance for robotics pilots, ROI framing, rollout sequencing, and change management.
+---
+
+import { LinkCard, Steps } from '@astrojs/starlight/components';
+
+# Deployment
+
+Deployment is where otherwise reasonable automation ideas often fail. The goal here is to connect technical choices to pilot scope, ROI reality, organizational readiness, and the path from first cell to repeatable rollout.
+
+## Core paths
+
+<div class="portal-links">
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Shape a pilot that is ambitious enough to matter but controlled enough to survive first contact with operations."
+	/>
+	<LinkCard
+		title="Applications"
+		href="/applications/"
+		description="Return to the use case if the business case depends on assumptions the production environment cannot support."
+	/>
+	<LinkCard
+		title="Cell design"
+		href="/cell-design/"
+		description="Deployment quality is tightly linked to whether the cell was designed for maintainability and operator reality."
+	/>
+</div>
+
+## Deployment flow
+
+<Steps>
+	1. Choose a first application with clear pain, measurable value, and manageable variability.
+	2. Define the pilot boundary before adding adjacent ambitions.
+	3. Test adoption risk, maintenance readiness, and ownership structure, not just robot performance.
+	4. Use lessons from the first cell to improve the rollout model before scaling.
+</Steps>

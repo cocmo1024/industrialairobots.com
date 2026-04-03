@@ -1,0 +1,39 @@
+---
+title: Vision and Sensing
+description: Vision, perception, and sensing reference pages for robotics inspection, guidance, and AI-assisted automation.
+---
+
+import { LinkCard, Steps } from '@astrojs/starlight/components';
+
+# Vision and Sensing
+
+Vision and sensing decisions should reflect how uncertain the environment really is. The point of this section is to connect perception complexity to application variability, quality requirements, and ongoing maintainability.
+
+## Core paths
+
+<div class="portal-links">
+	<LinkCard
+		title="Inspection and guidance systems"
+		href="/vision-and-sensing/inspection-and-guidance-systems/"
+		description="A reference path for deciding when vision is adding meaningful value versus unnecessary complexity."
+	/>
+	<LinkCard
+		title="Applications"
+		href="/applications/"
+		description="Return to the task if sensing requirements feel underdefined or inflated."
+	/>
+	<LinkCard
+		title="Cell design"
+		href="/cell-design/"
+		description="Use cell design pages to connect perception to lighting, layout, guarding, and maintenance access."
+	/>
+</div>
+
+## Vision review flow
+
+<Steps>
+	1. Identify what variability the robot must actually resolve.
+	2. Decide whether sensing is needed for guidance, inspection, quality confirmation, or all three.
+	3. Map how environment, lighting, cycle time, and maintenance influence the sensing stack.
+	4. Compare the operational burden of perception against the value it creates.
+</Steps>

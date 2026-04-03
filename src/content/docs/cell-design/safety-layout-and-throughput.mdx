@@ -1,0 +1,37 @@
+---
+title: Safety, Layout, and Throughput
+description: A practical framework for balancing guarding, layout, operator access, and production flow in robotics cells.
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Safety, Layout, and Throughput
+
+These three factors should be designed together. Throughput goals that ignore guarding and material flow become unreliable. Safety plans that ignore maintenance and recovery often create workarounds the plant cannot sustain.
+
+## Design priorities
+
+- Guarding that matches the real hazard, not only the idealized one.
+- Layouts that preserve safe access for maintenance and recovery.
+- Material flow that supports the takt target without creating hidden congestion.
+
+## Common design errors
+
+- Treating the robot motion plan as the cell design.
+- Underestimating space for infeed, outfeed, buffering, or operator interaction.
+- Adding vision or tooling complexity without reevaluating recovery procedures.
+
+## Related paths
+
+<div class="portal-links">
+	<LinkCard
+		title="Palletizing and machine tending"
+		href="/applications/palletizing-and-machine-tending/"
+		description="See how application type changes the tradeoff between layout simplicity and throughput."
+	/>
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Cell design mistakes are one of the fastest ways to weaken a business case."
+	/>
+</div>

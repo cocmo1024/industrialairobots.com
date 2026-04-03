@@ -1,0 +1,37 @@
+---
+title: Inspection and Guidance Systems
+description: A framework for deciding how much sensing and vision complexity a robotics cell should really carry.
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Inspection and Guidance Systems
+
+Vision earns its place when it resolves variability that would otherwise block automation or damage quality. It becomes a liability when it is added without a clear operational job, stable maintenance path, or realistic tolerance for calibration work.
+
+## Vision is usually justified when
+
+- Part orientation or presentation varies enough to break fixed automation.
+- Quality confirmation must happen inside the cell or immediately adjacent to it.
+- The application needs guidance that mechanical design alone cannot stabilize.
+
+## Vision is often overused when
+
+- Fixtures or presentation controls could remove the variability more reliably.
+- The cell cannot support calibration, cleaning, or lighting discipline.
+- Teams are using perception to compensate for an unclear application design.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Safety, layout, and throughput"
+		href="/cell-design/safety-layout-and-throughput/"
+		description="Perception design should be evaluated inside the full cell, not as an isolated subsystem."
+	/>
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="See whether the sensing stack supports a credible first deployment or adds too much risk too early."
+	/>
+</div>

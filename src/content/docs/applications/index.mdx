@@ -1,0 +1,54 @@
+---
+title: Applications
+description: Application-first reference pages for industrial robotics projects, automation cells, and manufacturing task design.
+---
+
+import { LinkCard, Steps } from '@astrojs/starlight/components';
+
+# Applications
+
+Applications are where automation strategy becomes concrete. The real unit of analysis is the manufacturing job to be done, together with its variability, takt requirements, space limits, and quality expectations.
+
+<div class="signal-strip">
+	<div>
+		<strong>Use this section for</strong>
+		<p>Palletizing, machine tending, inspection, pick-and-place, end-of-line work, and similar task-driven robotics research.</p>
+	</div>
+	<div>
+		<strong>What it prevents</strong>
+		<p>Selecting a robot class or vision stack before the manufacturing task and its variability are defined clearly.</p>
+	</div>
+	<div>
+		<strong>Move next to</strong>
+		<p>Robot types and cell design once the application profile is stable enough to test integration and safety consequences.</p>
+	</div>
+</div>
+
+## Core paths
+
+<div class="portal-links">
+	<LinkCard
+		title="Palletizing and machine tending"
+		href="/applications/palletizing-and-machine-tending/"
+		description="Two common high-intent robotics paths with very different cell, tooling, and deployment pressures."
+	/>
+	<LinkCard
+		title="Robot types"
+		href="/robot-types/"
+		description="Narrow the likely robot family once the application is defined."
+	/>
+	<LinkCard
+		title="Cell design"
+		href="/cell-design/"
+		description="Translate the job into layout, guarding, handoff, and maintenance reality."
+	/>
+</div>
+
+## Decision flow
+
+<Steps>
+	1. Define the manufacturing task, throughput target, and variability source.
+	2. Identify what is rigid, what is uncertain, and where human intervention remains necessary.
+	3. Narrow the likely robot class, sensing burden, and end-of-arm tooling complexity.
+	4. Move into cell design and deployment planning only after the task model is credible.
+</Steps>

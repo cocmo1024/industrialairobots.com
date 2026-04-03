@@ -1,0 +1,39 @@
+---
+title: Robot Types
+description: Reference pages for industrial robot classes and how they fit specific automation tasks and operating environments.
+---
+
+import { LinkCard, Steps } from '@astrojs/starlight/components';
+
+# Robot Types
+
+Robot class selection is a consequence of the application, not a substitute for understanding it. This section focuses on where major robot families fit operationally and where they create avoidable complexity.
+
+## Core paths
+
+<div class="portal-links">
+	<LinkCard
+		title="Cobots vs industrial robots"
+		href="/robot-types/cobots-vs-industrial-robots/"
+		description="A practical comparison of collaboration, guarding reality, payload limits, and deployment fit."
+	/>
+	<LinkCard
+		title="Applications"
+		href="/applications/"
+		description="Return to the task definition if robot class debates become detached from manufacturing reality."
+	/>
+	<LinkCard
+		title="Deployment"
+		href="/deployment/"
+		description="Use deployment guidance to connect robot class decisions to pilot scope and operational adoption."
+	/>
+</div>
+
+## Selection questions
+
+<Steps>
+	1. What payload, reach, repeatability, and speed are required?
+	2. How much variability exists in part presentation, changeover, or human proximity?
+	3. What guarding or collaborative design constraints are realistic in this environment?
+	4. Which class minimizes total cell complexity instead of only looking attractive in demos?
+</Steps>
