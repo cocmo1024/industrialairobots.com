@@ -1,0 +1,92 @@
+---
+title: CNC Machine Tending Cells
+description: A practical application guide for robot machine tending cells where spindle utilization, part presentation, safety, and operator recovery all shape deployment value.
+referenceType: application
+adProfile: application
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: cnc machine tending robot cell
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Manufacturing engineers
+  - Robotics integrators
+  - Plant managers
+  - Automation buyers
+contentStatus: seed
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# CNC Machine Tending Cells
+
+CNC machine tending is one of the highest-intent industrial robotics categories because the economics are easy to understand. Idle spindles are expensive, loading work is repetitive, and manufacturers often want better labor coverage without immediately redesigning the machining process. The difficulty is that successful tending cells depend on much more than robot reach and cycle time.
+
+## Why this application matters
+
+Machine tending projects are attractive when plants need to:
+
+- improve spindle utilization;
+- reduce repetitive loading and unloading labor;
+- extend unattended runtime or add shift coverage;
+- stabilize part handoff and operator workload.
+
+That makes the application commercially strong, but only if the integration model fits the real variability in the cell.
+
+## Process variability and throughput pressures
+
+The hardest part is often not the robot motion. It is the surrounding process:
+
+- part orientation and handoff consistency;
+- door timing and machine interface behavior;
+- changeover patterns across SKUs or fixtures;
+- recovery when a part is not seated or a machine alarm interrupts flow.
+
+Plants that underestimate those details often build a cell that looks fast in a demo and brittle in production.
+
+## Robot and sensing implications
+
+The right robot choice depends on:
+
+- payload and reach relative to the machine envelope;
+- guarding and operator coexistence requirements;
+- part repeatability and whether sensing is needed at all;
+- how much future process variation the cell must absorb.
+
+Some tending cells benefit from a simple, rigid robot path. Others need a more forgiving combination of sensing, fixturing, and operator fallback.
+
+## Cell-design implications
+
+Machine tending cells reward attention to:
+
+- part presentation and buffer design;
+- gripper change or finger design if the part mix varies;
+- maintenance access and jam recovery;
+- safe operator access during setup and exception handling.
+
+If these details are weak, the robot becomes the visible part of a cell whose real constraints live elsewhere.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Cobot vs six-axis for machine tending"
+		href="/robot-types/cobot-vs-six-axis-for-machine-tending/"
+		description="Choose the robot class around enclosure, reach, payload, and tending reality instead of buzzwords."
+	/>
+	<LinkCard
+		title="Part presentation and fixturing"
+		href="/cell-design/part-presentation-and-fixturing-for-machine-tending/"
+		description="Most tending cells win or fail at the handoff and fixture layer before the robot becomes the issue."
+	/>
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Use pilot logic to prove whether spindle utilization and labor coverage gains are real."
+	/>
+	<LinkCard
+		title="High-mix machine tending pilot"
+		href="/case-studies/high-mix-machine-tending-pilot/"
+		description="See how changeover pressure reshapes a tending pilot in practice."
+	/>
+</div>

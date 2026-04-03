@@ -1,0 +1,81 @@
+---
+title: High-Mix Machine Tending Pilot
+description: A case-study pattern for manufacturers piloting robotic machine tending in environments where changeovers, part variation, and operator recovery matter more than idealized cycle time.
+referenceType: case-study
+adProfile: case-study
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: high mix machine tending pilot
+searchIntent: deploy
+decisionStage: implementation
+targetRoles:
+  - Manufacturing leaders
+  - Robotics integrators
+  - Pilot sponsors
+  - Automation engineers
+contentStatus: seed
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# High-Mix Machine Tending Pilot
+
+High-mix environments are where machine tending pilots become genuinely informative. A low-variation demo can make almost any tending concept look good. A high-mix pilot forces the team to confront changeovers, fixture realities, operator intervention, and whether the cell can survive beyond a single scripted part family.
+
+## What this pilot pattern is trying to prove
+
+This kind of pilot usually needs to validate:
+
+- whether the target part range is narrow enough for a shared cell concept;
+- whether fixturing and gripper logic can survive variation;
+- how much human support is still required during normal changeover;
+- whether the throughput gains remain credible outside a best-case demo.
+
+Those answers matter more than whether the robot can complete a single polished tending loop.
+
+## Hidden failure points
+
+High-mix pilots often expose problems that simple pilots hide:
+
+- gripper and fixture assumptions that only fit one part family;
+- too much setup time between runs;
+- exception handling that depends on a specialist being nearby;
+- ROI models that ignore engineering effort to maintain the expanded part mix.
+
+That is why many good teams deliberately use a high-mix pilot to decide where the automation boundary should stop.
+
+## Why the outcome matters
+
+If the pilot succeeds, the manufacturer gains a stronger basis for:
+
+- targeting families of parts rather than every possible job;
+- deciding whether a cobot or six-axis path is more scalable;
+- standardizing fixturing and staging rules before larger rollout;
+- estimating what real staffing and maintenance support will be required.
+
+If the pilot struggles, that is still useful. It may show that the process needs better presentation discipline before more robotics investment makes sense.
+
+## Related deployment pages
+
+<div class="portal-links">
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Use the pilot to pressure-test whether the business case survives real variability."
+	/>
+	<LinkCard
+		title="CNC machine tending cells"
+		href="/applications/cnc-machine-tending-cells/"
+		description="Keep the pilot anchored to the real machine tending job instead of a generic automation story."
+	/>
+	<LinkCard
+		title="Part presentation and fixturing"
+		href="/cell-design/part-presentation-and-fixturing-for-machine-tending/"
+		description="Most high-mix pilots succeed or fail at the handoff and changeover layer."
+	/>
+	<LinkCard
+		title="Change management and maintenance readiness"
+		href="/deployment/change-management-and-maintenance-readiness/"
+		description="Carry pilot findings into the support model needed for production rollout."
+	/>
+</div>

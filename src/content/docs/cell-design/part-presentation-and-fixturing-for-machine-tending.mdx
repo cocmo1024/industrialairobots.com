@@ -1,0 +1,92 @@
+---
+title: Part Presentation and Fixturing for Machine Tending
+description: A cell-design reference for machine tending projects where part presentation, fixturing, and recovery logic often decide whether the robot cell is stable in production.
+referenceType: cell-design
+adProfile: cell-design
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: machine tending part presentation fixturing
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Cell designers
+  - Robotics integrators
+  - Manufacturing engineers
+  - Automation leads
+contentStatus: seed
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Part Presentation and Fixturing for Machine Tending
+
+Machine tending cells often get judged by robot brand or cycle time, but part presentation and fixturing usually decide whether the cell is actually dependable. If parts arrive inconsistently, if fixturing does not tolerate variation, or if recovery after a mispick is awkward, the robot becomes the most visible component in a cell whose real weakness lies in the handoff design.
+
+## Why this layer matters
+
+The part-handling layer determines:
+
+- whether the robot sees consistent pickup conditions;
+- how easily operators recover from misfeeds or jams;
+- how much changeover complexity the cell can tolerate;
+- whether throughput assumptions are realistic.
+
+This is why fixturing is not a mechanical afterthought. It is a core automation design decision.
+
+## Common presentation patterns
+
+Tending cells usually rely on one or more of these patterns:
+
+- tray or nest presentation for repeatable part locations;
+- conveyor or palletized infeed with orientation control;
+- semi-manual staging for lower-volume or higher-mix work;
+- intermediate buffering to decouple machine cycle timing from robot timing.
+
+The right pattern depends less on what is elegant in CAD and more on how the surrounding machining process actually behaves.
+
+## What good fixturing should prove
+
+Strong fixturing should make it easier to answer:
+
+- can the robot pick and place reliably through normal variation;
+- what happens when a part is missing, skewed, or rejected;
+- how much operator intervention is still needed at changeover;
+- whether the cell can recover quickly without a specialist on every incident.
+
+If the fixturing layer cannot answer those questions, the pilot is not ready.
+
+## Hidden failure points
+
+The most common problems include:
+
+- assuming part repeatability that the upstream process does not deliver;
+- designing a beautiful fixture that is slow to maintain or clean;
+- creating recovery routines that force operators into awkward manual work;
+- underestimating the effect of chip, coolant, or debris on pickup repeatability.
+
+Many machine tending cells fail for environmental and handling reasons before robot programming becomes the limiting factor.
+
+## Related paths
+
+<div class="portal-links">
+	<LinkCard
+		title="CNC machine tending cells"
+		href="/applications/cnc-machine-tending-cells/"
+		description="Keep the fixturing design tied to the real machining task and throughput target."
+	/>
+	<LinkCard
+		title="Cobot vs six-axis for machine tending"
+		href="/robot-types/cobot-vs-six-axis-for-machine-tending/"
+		description="The right robot choice often changes once the handoff and fixture burden is visible."
+	/>
+	<LinkCard
+		title="Safety, layout, and throughput"
+		href="/cell-design/safety-layout-and-throughput/"
+		description="Extend the handoff discussion into full-cell layout and operator access consequences."
+	/>
+	<LinkCard
+		title="High-mix machine tending pilot"
+		href="/case-studies/high-mix-machine-tending-pilot/"
+		description="See how fixture and changeover pressure shape a real pilot outcome."
+	/>
+</div>
