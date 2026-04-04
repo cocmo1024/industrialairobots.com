@@ -3,22 +3,22 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import tailwindcss from '@tailwindcss/vite';
+import { siteMeta } from './src/utils/site-meta.mjs';
 
 export default defineConfig({
-	site: 'https://industrialairobots.com',
+	site: siteMeta.siteUrl,
 	trailingSlash: 'always',
 	integrations: [
 		starlight({
-			title: 'Industrial AI Robots',
-			description:
-				'Application-focused reference system for industrial robotics, machine vision, cell design, and deployment strategy.',
-			tagline: 'Industrial robotics organized by application, robot class, vision complexity, cell design, and deployment reality.',
+			title: siteMeta.name,
+			description: siteMeta.description,
+			tagline: siteMeta.tagline,
 			lastUpdated: true,
 			social: [
 				{
 					icon: 'github',
 					label: 'GitHub',
-					href: 'https://github.com/cocmo1024/industrialairobots.com',
+					href: siteMeta.repoUrl,
 				},
 			],
 			sidebar: [
@@ -68,9 +68,10 @@ export default defineConfig({
 			],
 			customCss: ['./src/styles/global.css'],
 			pagefind: true,
-			favicon: '/favicon.svg',
+			favicon: siteMeta.faviconPath,
 			credits: false,
 			components: {
+				Head: './src/components/Head.astro',
 				PageSidebar: './src/components/PageSidebar.astro',
 				Footer: './src/components/Footer.astro',
 			},

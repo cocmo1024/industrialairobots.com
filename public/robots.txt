@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://industrialairobots.com/sitemap-index.xml
+Host: industrialairobots.com
