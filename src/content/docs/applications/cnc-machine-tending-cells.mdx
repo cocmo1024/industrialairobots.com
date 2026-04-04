@@ -13,14 +13,44 @@ targetRoles:
   - Robotics integrators
   - Plant managers
   - Automation buyers
-contentStatus: seed
+contentStatus: cornerstone
+problemSolved: How to decide whether a CNC machine tending cell is viable, and how to design it so throughput, recovery, fixturing, and operator reality do not destroy the pilot after the demo.
+readerTakeaway: You should leave with a machine-tending decision model, cell-design priorities, pilot KPI logic, and a clear view of when the application is a poor fit.
+keyQuestions:
+  - What conditions make a CNC machine tending cell worth pursuing?
+  - How do fixturing, machine interface, and recovery design affect whether the robot actually improves spindle utilization?
+  - What should a pilot prove before the cell is expanded to more machines?
+notFor:
+  - Shops expecting the robot alone to solve unstable machining processes
+  - High-mix environments with no plan for part presentation or changeover discipline
+  - Buyers treating tending as a labor-replacement pitch without throughput and recovery analysis
+updateTriggers:
+  - New controller or machine-interface standards that affect handshaking
+  - New integrator lessons on high-mix tending rollouts
+  - Changes in cobot versus six-axis deployment economics
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # CNC Machine Tending Cells
 
-CNC machine tending is one of the highest-intent industrial robotics categories because the economics are easy to understand. Idle spindles are expensive, loading work is repetitive, and manufacturers often want better labor coverage without immediately redesigning the machining process. The difficulty is that successful tending cells depend on much more than robot reach and cycle time.
+CNC machine tending is one of the highest-intent industrial robotics categories because the economics are visible. Idle spindles are expensive, loading work is repetitive, and manufacturers want better labor coverage without redesigning the machining process. The trap is that a tending cell does not succeed because a robot can reach into a machine. It succeeds because the part flow, interface logic, recovery behavior, and changeover model support stable production after the demo is over.
+
+## Quick answer
+
+A CNC machine tending cell is usually worth pursuing when the loading pattern is repetitive enough to standardize, the machine interface can be controlled reliably, and the plant has a realistic plan for part presentation, jam recovery, and changeover. The robot choice matters, but it is rarely the first decision. Most tending failures happen because the surrounding process is brittle, not because the arm could not move fast enough.
+
+## When this page should guide your decision
+
+Use this page when you are asking:
+
+- whether unattended or extended-hours tending is realistic;
+- whether a cobot or a fenced six-axis robot is the better fit;
+- how to evaluate a pilot beyond a short cycle-time demo;
+- where fixturing, machine interface, and recovery planning should sit in the design;
+- whether the application is stable enough to automate at all.
+
+This page is less useful if the machining process itself is still unstable. A robot cannot rescue poor process discipline.
 
 ## Why this application matters
 
@@ -31,7 +61,24 @@ Machine tending projects are attractive when plants need to:
 - extend unattended runtime or add shift coverage;
 - stabilize part handoff and operator workload.
 
-That makes the application commercially strong, but only if the integration model fits the real variability in the cell.
+That makes the application commercially strong, but only if the integration model fits the real variability in the cell and the plant is willing to own the operating discipline around it.
+
+## What must be true before a tending cell is a good bet
+
+The application is usually a good fit when:
+
+- the machine cycle is long enough to justify automation;
+- the part family is stable enough that fixturing is manageable;
+- the machine door, chuck, and handshaking logic are predictable;
+- there is enough floor space and access for safe loading, service, and setup;
+- operators or technicians can recover from common faults without heroic intervention.
+
+It is often a poor fit when:
+
+- part orientation is inconsistent and not addressed upstream;
+- changeovers are frequent and unmanaged;
+- chips, coolant, or part variation create constant recovery events;
+- the plant wants lights-out performance from a process that still needs frequent manual judgment.
 
 ## Process variability and throughput pressures
 
@@ -44,27 +91,68 @@ The hardest part is often not the robot motion. It is the surrounding process:
 
 Plants that underestimate those details often build a cell that looks fast in a demo and brittle in production.
 
+## The core cell-design decisions
+
+The right tending cell usually depends on five decisions made together:
+
+| Design area | What must be decided | Why it matters |
+| --- | --- | --- |
+| Robot class | Cobot, six-axis, or another format | Affects enclosure, reach, payload, and cycle expectations |
+| End-of-arm tooling | Gripper geometry, compliance, sensing, part retention | Drives reliability at pickup and placement |
+| Part presentation | Trays, conveyors, pallets, vision, feeders | Most cells fail here before the robot path is the issue |
+| Machine interface | Door control, chuck status, cycle complete, fault states | Controls whether the cell can recover safely and predictably |
+| Safety and access | Guarding, operator entry, maintenance access, reset logic | Determines whether the cell is supportable in daily operations |
+
+The practical lesson is simple: machine tending is a **cell problem**, not an arm problem.
+
 ## Robot and sensing implications
 
 The right robot choice depends on:
 
 - payload and reach relative to the machine envelope;
-- guarding and operator coexistence requirements;
-- part repeatability and whether sensing is needed at all;
+- enclosure and operator-coexistence requirements;
+- part repeatability and whether sensing is genuinely needed;
 - how much future process variation the cell must absorb.
 
-Some tending cells benefit from a simple, rigid robot path. Others need a more forgiving combination of sensing, fixturing, and operator fallback.
+Some tending cells benefit from a simple, rigid robot path and tight fixturing. Others need a more forgiving combination of sensing, compliant tooling, and operator fallback. Vision should not be treated as default sophistication. It is justified when part variability, orientation uncertainty, or presentation instability make rigid assumptions too brittle.
 
-## Cell-design implications
+## The pilot should prove more than cycle time
 
-Machine tending cells reward attention to:
+Many pilots fail because they only prove that the robot can complete a clean cycle. A useful tending pilot should validate:
 
-- part presentation and buffer design;
-- gripper change or finger design if the part mix varies;
-- maintenance access and jam recovery;
-- safe operator access during setup and exception handling.
+- actual spindle utilization improvement;
+- recovery time from common faults;
+- changeover burden across the real part mix;
+- operator and technician confidence during setup and restart;
+- whether the cell stays stable across a full shift, not just a short demo.
+
+Those proof points matter more than a polished video of a successful pick-and-place loop.
+
+## Failure modes worth catching early
+
+The most common machine-tending failures come from:
+
+- weak part presentation and inconsistent pickup conditions;
+- fragile handshaking with the machine controller;
+- poor jam recovery design;
+- overestimating how unattended the process can be;
+- understating operator burden during changeover;
+- selecting a robot class before understanding the real process envelope.
 
 If these details are weak, the robot becomes the visible part of a cell whose real constraints live elsewhere.
+
+## A go / no-go checklist for rollout
+
+Before expanding from pilot to repeat deployment, the team should be able to answer yes to these:
+
+- Are the top three failure modes known and recoverable?
+- Is the machine interface stable enough for repeatable handshakes?
+- Can operators restart the cell without specialist intervention?
+- Is changeover time acceptable for the real part mix?
+- Is the safety layout compatible with daily production and maintenance?
+- Are the KPI gains visible outside a demo window?
+
+If not, the next step is not “buy more robots.” It is to fix the cell assumptions first.
 
 ## Compare next
 
