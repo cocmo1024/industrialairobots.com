@@ -13,58 +13,132 @@ targetRoles:
   - Robotics integrators
   - Manufacturing engineers
   - Automation leads
-contentStatus: seed
+contentStatus: cornerstone
+problemSolved: How to design part presentation and fixturing so a machine tending cell is actually stable, recoverable, and worth the money once real variation reaches the floor.
+readerTakeaway: You should leave with a more realistic view of where presentation and fixture cost sits in a machine-tending budget, what needs to be proven before robot programming matters, and which handoff choices are most likely to fail in production.
+keyQuestions:
+  - How much of machine tending success is really determined by presentation and fixturing rather than robot brand?
+  - What public price anchors help estimate the budget weight of drawers, carts, safety, and robot hardware?
+  - Which presentation patterns create the best mix of autonomy and recoverability for the first rollout?
+notFor:
+  - Pure greenfield cells where presentation is already standardized by the machine builder
+  - Applications with no feasible part repeatability at all
+  - Teams looking for robot programming guidance without addressing physical handoff design
+updateTriggers:
+  - Public price changes in common machine-tending cell components
+  - New public machine-tending hardware kits or presentation options
+  - New deployment lessons from high-mix and unattended tending case studies
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # Part Presentation and Fixturing for Machine Tending
 
-Machine tending cells often get judged by robot brand or cycle time, but part presentation and fixturing usually decide whether the cell is actually dependable. If parts arrive inconsistently, if fixturing does not tolerate variation, or if recovery after a mispick is awkward, the robot becomes the most visible component in a cell whose real weakness lies in the handoff design.
+Machine tending cells are often judged by robot model or cycle time, but part presentation and fixturing usually decide whether the cell is dependable. If parts arrive inconsistently, if fixturing does not tolerate variation, or if recovery after a mispick is awkward, the robot becomes the most visible component in a cell whose real weakness sits in the handoff design. That is why strong teams prototype presentation and fixturing before they obsess over motion polish.
 
-## Why this layer matters
+## Quick answer
 
-The part-handling layer determines:
+If the robot cannot expect a repeatable pickup condition, a repeatable placement condition, and a repeatable recovery path, the cell is not ready. Presentation and fixturing are not accessories. They are the layer that converts a robot from a demo asset into a production asset. In many machine tending projects, that layer determines more of the ROI than the robot arm itself.
 
-- whether the robot sees consistent pickup conditions;
-- how easily operators recover from misfeeds or jams;
-- how much changeover complexity the cell can tolerate;
-- whether throughput assumptions are realistic.
+## Public price snapshot checked April 4, 2026
 
-This is why fixturing is not a mechanical afterthought. It is a core automation design decision.
+These published Vention prices are useful budget anchors because they show how expensive the physical handoff layer becomes once it is engineered properly:
 
-## Common presentation patterns
+| Public Vention item | Published price snapshot | Why it matters |
+| --- | --- | --- |
+| [Machine Tending Mobile Robot Station](https://vention.io/designs/machine-tending-mobile-robot-station-275368) | $5,181.65 | Even a relatively simple presentation platform is a real capital line item |
+| [UR safety add-on for machine tending](https://vention.io/parts/ur-safety-add-on-for-machine-tending-3250) | $5,089.45 | Safe operator access and cell protection must be budgeted with the handoff design |
+| [Drawer Base for Machine Tending](https://vention.io/parts/drawer-base-for-machine-tending-3228) | $24,135.32 | High-autonomy presentation hardware can cost more than many teams expect |
+| [FANUC CRX-10iA collaborative robot arm](https://vention.io/parts/fanuc-crx-10ia-collaborative-robot-arm-1923) | $46,025.61 | The robot is expensive, but it is only one piece of the total handoff system |
 
-Tending cells usually rely on one or more of these patterns:
+The point is not that every cell should buy these exact components. The point is that presentation, safety, and autonomy hardware are large enough cost drivers that they must be designed intentionally, not left to the end of the project.
 
-- tray or nest presentation for repeatable part locations;
-- conveyor or palletized infeed with orientation control;
-- semi-manual staging for lower-volume or higher-mix work;
-- intermediate buffering to decouple machine cycle timing from robot timing.
+## The three handoff questions that matter most
 
-The right pattern depends less on what is elegant in CAD and more on how the surrounding machining process actually behaves.
+Before finalizing the cell, the team should be able to answer:
 
-## What good fixturing should prove
+1. **How will the part appear to the robot every time?**
+2. **What happens when that condition is slightly wrong?**
+3. **How does an operator recover without breaking the cell rhythm?**
 
-Strong fixturing should make it easier to answer:
+If those answers are vague, the cell is still mechanically underdesigned no matter how advanced the robot choice looks.
 
-- can the robot pick and place reliably through normal variation;
-- what happens when a part is missing, skewed, or rejected;
-- how much operator intervention is still needed at changeover;
-- whether the cell can recover quickly without a specialist on every incident.
+## Common presentation patterns and where they fit
 
-If the fixturing layer cannot answer those questions, the pilot is not ready.
+| Pattern | Best fit | Common weakness |
+| --- | --- | --- |
+| Drawer or tray presentation | Medium to high autonomy, repeatable parts, unattended windows | Higher hardware cost and more design effort up front |
+| Flat or angled part presenter | Moderate mix with simple nesting and good visual access | Parts can shift or topple if the nest logic is weak |
+| Conveyor or palletized infeed | Repeatable flow and strong upstream discipline | Orientation issues get pushed upstream and can still break pickup quality |
+| Manual or semi-manual staging | Lower volume, early pilot, or wide variation | Recovery depends heavily on operator consistency |
 
-## Hidden failure points
+The right choice depends less on elegance and more on how much repeatability the process can really support.
 
-The most common problems include:
+## What good fixturing needs to prove
 
-- assuming part repeatability that the upstream process does not deliver;
-- designing a beautiful fixture that is slow to maintain or clean;
-- creating recovery routines that force operators into awkward manual work;
-- underestimating the effect of chip, coolant, or debris on pickup repeatability.
+A strong fixture or nest should make it easy to answer:
 
-Many machine tending cells fail for environmental and handling reasons before robot programming becomes the limiting factor.
+- can the robot pick and place reliably through normal part variation;
+- what happens when a part is skewed, missing, or rejected;
+- how many adjustments are required at changeover;
+- whether cleaning, chip management, coolant, and wear will degrade repeatability.
+
+If a fixture only works under ideal bench conditions, it is not a production fixture yet.
+
+## Why high autonomy can be worth the money
+
+The public pricing above helps explain why drawer bases and more elaborate presentation systems exist. They are not just fancy add-ons. They buy:
+
+- more unattended runtime;
+- more predictable part location;
+- cleaner operator interaction;
+- easier scaling to repeated cell designs.
+
+That can be worth the cost when the machine cycle is valuable and labor coverage is tight. It is not worth the cost if the part family is still too unstable to justify a higher-autonomy presentation layer.
+
+## Where teams overspend
+
+Overspending usually happens in one of three ways:
+
+- buying autonomy hardware before the part family is narrowed;
+- building beautiful fixtures that are difficult to clean, adjust, or recover;
+- using robot capability as a substitute for better presentation discipline.
+
+This is why fixturing should be treated like an ROI lever, not just a mechanical detail.
+
+## Where teams underspend
+
+Underspending is just as dangerous when teams assume:
+
+- a simple cart can support a highly variable handoff without nesting discipline;
+- operator recovery does not need to be designed;
+- safety, access, and maintenance can be "added later";
+- the robot can compensate for bad presentation indefinitely.
+
+The result is usually a cell that works on launch week and degrades under normal production conditions.
+
+## What to prototype first
+
+The first prototype should focus on:
+
+- part repeatability at pickup;
+- part repeatability at placement;
+- worst-case recovery after a bad part or missed pickup;
+- changeover steps for the target part family.
+
+That work usually teaches more than a polished robot path ever will.
+
+## Implementation checklist
+
+The cell is ready for the next design phase when:
+
+- presentation and fixturing are priced as part of the cell, not treated as leftovers;
+- operator recovery is designed, not assumed;
+- safety and access hardware are budgeted;
+- the team knows whether it is paying for autonomy, flexibility, or both;
+- the part family is narrow enough to justify the chosen presentation method.
+
+If those points are still unresolved, keep prototyping the handoff layer.
 
 ## Related paths
 
@@ -72,17 +146,17 @@ Many machine tending cells fail for environmental and handling reasons before ro
 	<LinkCard
 		title="CNC machine tending cells"
 		href="/applications/cnc-machine-tending-cells/"
-		description="Keep the fixturing design tied to the real machining task and throughput target."
+		description="Keep fixturing tied to the machining task and throughput target."
 	/>
 	<LinkCard
 		title="Cobot vs six-axis for machine tending"
 		href="/robot-types/cobot-vs-six-axis-for-machine-tending/"
-		description="The right robot choice often changes once the handoff and fixture burden is visible."
+		description="Robot choice often changes once the fixture and recovery burden becomes visible."
 	/>
 	<LinkCard
 		title="Safety, layout, and throughput"
 		href="/cell-design/safety-layout-and-throughput/"
-		description="Extend the handoff discussion into full-cell layout and operator access consequences."
+		description="Extend handoff design into full-cell layout, guarding, and operator access."
 	/>
 	<LinkCard
 		title="High-mix machine tending pilot"

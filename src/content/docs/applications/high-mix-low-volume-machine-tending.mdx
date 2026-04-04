@@ -13,47 +13,137 @@ targetRoles:
   - Plant managers
   - Robotics integrators
   - Automation buyers
-contentStatus: seed
+contentStatus: cornerstone
+problemSolved: How to decide whether high-mix, low-volume machine tending can produce a real return without burning budget on a robot cell that cannot survive changeovers, recovery, and part variation.
+readerTakeaway: You should leave with a tighter pilot scope, a clearer sense of where the budget really goes, and a decision framework for whether your mix is narrow enough to automate first.
+keyQuestions:
+  - When is high-mix machine tending commercially viable and when is it still too chaotic?
+  - Which parts of the budget are driven by robot hardware versus presentation, safety, and recovery design?
+  - What should a first pilot prove before you expand to more part families?
+notFor:
+  - Lights-out ambitions with no disciplined first part family
+  - Processes with severe part inconsistency and no practical fixturing plan
+  - Teams expecting a packaged robot cell to solve changeover discipline by itself
+updateTriggers:
+  - Public price changes in common machine-tending hardware packages
+  - New public case studies or machine-tending hardware releases
+  - Changes in standard cell components that materially shift pilot economics
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # High-Mix Low-Volume Machine Tending
 
-High-mix low-volume tending is attractive because labor pressure and machine availability still matter, even when production is not highly repetitive. It is also where many automation projects overreach. The economics depend less on a single perfect cycle and more on whether the cell can survive changeovers, part variation, and limited specialist support.
+High-mix low-volume tending is attractive because labor pressure and machine availability still matter even when production is not highly repetitive. It is also where many automation projects overreach. Teams see a few successful demos and assume the robot can absorb all variation that operators handle by instinct. In reality, the economics hinge on whether the cell can survive changeovers, messy presentation, and imperfect recovery without turning every job switch into a mini commissioning event.
 
-## Why this application matters
+## Quick answer
 
-Manufacturers look at this application when they want to:
+High-mix machine tending works when the first rollout is narrower than the production schedule makes it appear. The winning pilot is usually built around one part family, one recovery pattern, and one predictable presentation method. It should prove that changeover time, pickup consistency, and operator intervention are all acceptable before broader mix expansion. If the project starts by promising to automate "everything the operator touches," it usually becomes an expensive lesson in hidden variation.
 
-- extend tending coverage across varied part families;
-- reduce repetitive loading work without forcing a full process redesign;
-- stabilize output on scarce skilled labor;
-- learn whether automation can fit the shop's actual production mix.
+## What makes this application commercially different
 
-That makes the traffic valuable because the reader is usually deciding whether the application is feasible at all.
+Low-mix tending often wins through repeatability. High-mix tending wins through **controlled flexibility**. That means the cell has to tolerate:
 
-## Process pressures
+- part-family variation;
+- fixture swaps or presentation changes;
+- inconsistent upstream staging;
+- operator recovery during odd events;
+- more frequent restarts, overrides, and manual interventions.
 
-The hardest issues usually include:
+The robot is only one part of that problem. The real question is whether the surrounding mechanical and operational design is disciplined enough to protect uptime.
 
-- fixture and gripper adaptability;
-- setup time between jobs;
-- part presentation that changes more than expected;
-- operator intervention patterns that break the automation story.
+## Public price snapshot checked April 4, 2026
 
-These pressures make it dangerous to borrow assumptions from low-mix tending demos.
+The published prices below are useful because they show where high-mix budgets actually stack up:
 
-## What teams should pressure-test
+| Public Vention item | Published price snapshot | Why it matters |
+| --- | --- | --- |
+| [Machine Tending Mobile Robot Station](https://vention.io/designs/machine-tending-mobile-robot-station-275368) | $5,181.65 | A presentation cart or mobile staging layer can consume a meaningful budget before the robot even enters the picture |
+| [UR safety add-on for machine tending](https://vention.io/parts/ur-safety-add-on-for-machine-tending-3250) | $5,089.45 | Safety hardware is not a rounding error; it is a real line item in cell economics |
+| [Drawer Base for Machine Tending](https://vention.io/parts/drawer-base-for-machine-tending-3228) | $24,135.32 | Part presentation autonomy and repeatability can cost far more than teams expect |
+| [FANUC CRX-10iA collaborative robot arm](https://vention.io/parts/fanuc-crx-10ia-collaborative-robot-arm-1923) | $46,025.61 | The robot arm is often the largest single visible line item, but not the only one that determines viability |
 
-Strong early analysis usually asks:
+Those public prices do not include integration labor, tooling design, guarding changes beyond the listed hardware, CNC communication, or commissioning. They do show why high-mix projects get expensive fast when presentation and recovery are not constrained early.
 
-- how narrow the first target part family can be;
-- whether changeover can be standardized enough to protect uptime;
-- how the cell recovers when the next part is not staged ideally;
-- whether the pilot should prove coverage, throughput, or staffing flexibility first.
+## The better economic question
 
-Those questions shape a much better first deployment path than robot specs alone.
+The real question is not "Can we afford the robot?" It is:
+
+**Can we define a first scope where the robot, presentation, safety, and recovery design together create dependable coverage of a narrow set of jobs?**
+
+If the answer is yes, the economics can work. If the answer is no, the project will often spend tens of thousands of dollars before it learns that the process variation was the bigger problem.
+
+## What should be narrow in the first pilot
+
+High-mix pilots are safer when they narrow all of these:
+
+- one machine type or one machine family;
+- one part family or a very small set of similar parts;
+- one presentation pattern;
+- one clear operator recovery method;
+- one target shift or staffing problem to solve.
+
+That scope feels conservative, but it is what produces a credible scale path.
+
+## Where projects usually break
+
+The fragile points are rarely the robot brochure specs. They are:
+
+- inconsistent part orientation at pickup;
+- too many changeover adjustments;
+- gripper or fixture assumptions that only work on ideal parts;
+- unclear handoff between robot and machine;
+- recovery logic that only the integrator understands.
+
+These issues are common because teams treat them like downstream details instead of first-order economics.
+
+## The budget lesson buyers miss
+
+A high-mix cell budget often grows in this sequence:
+
+1. robot arm;
+2. base or presentation equipment;
+3. safety system;
+4. gripper and workholding;
+5. fixturing and changeover refinement;
+6. integration and operator recovery logic.
+
+That means the robot purchase alone tells you very little about total feasibility. A shop can buy a capable arm and still fail because the presentation, nesting, and recovery layer was never stabilized.
+
+## When the application is ready
+
+High-mix tending is often ready when:
+
+- the part family can be narrowed without political conflict;
+- operators already use a repeatable manual staging pattern;
+- changeover steps can be documented and simplified;
+- the machine interface and handoff logic are understandable;
+- the plant knows which KPI matters first: labor coverage, spindle utilization, unattended runtime, or staffing flexibility.
+
+If those are not yet true, the best next step is process preparation, not more robot shopping.
+
+## What a credible pilot should prove
+
+The pilot should prove four things:
+
+- the cell can recover from ordinary part variation;
+- changeover time is acceptable relative to the staffing benefit;
+- operators can understand the cell without specialist dependence;
+- the machine keeps producing useful output after initial excitement fades.
+
+If a pilot only proves that the robot can complete a clean demo cycle, it has not proven the real business case.
+
+## Implementation checklist
+
+Use this as a green-light test:
+
+- one narrow part family is selected for first deployment;
+- presentation and fixturing strategy are priced, not hand-waved;
+- safety, recovery, and human access are part of the budget model;
+- public hardware pricing has been translated into realistic pilot scope;
+- the plant knows what expansion criteria would justify adding more mix later.
+
+If several of those are missing, the project is still in concept mode.
 
 ## Related paths
 
@@ -66,12 +156,12 @@ Those questions shape a much better first deployment path than robot specs alone
 	<LinkCard
 		title="High-mix machine tending pilot"
 		href="/case-studies/high-mix-machine-tending-pilot/"
-		description="See how pilot logic changes once variation and changeovers are no longer theoretical."
+		description="See how pilot logic changes once variation and changeovers stop being theoretical."
 	/>
 	<LinkCard
 		title="Machine tending pilot KPIs"
 		href="/deployment/machine-tending-pilot-kpis/"
-		description="Measure whether a high-mix pilot is proving the right thing."
+		description="Measure the pilot on recovery, uptime, and staffing value instead of on demo polish."
 	/>
 	<LinkCard
 		title="Part presentation and fixturing"
