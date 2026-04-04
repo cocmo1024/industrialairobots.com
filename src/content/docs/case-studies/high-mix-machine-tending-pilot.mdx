@@ -13,65 +13,146 @@ targetRoles:
   - Robotics integrators
   - Pilot sponsors
   - Automation engineers
-contentStatus: seed
+contentStatus: cornerstone
+problemSolved: How to scope a high-mix machine tending pilot so it reveals the real economics of changeovers, presentation, and recovery instead of only proving a clean demo loop.
+readerTakeaway: You should leave with a pilot structure, a realistic view of the budget stack around robot hardware, and a sharper idea of what success should mean before approving a larger rollout.
+keyQuestions:
+  - What should a high-mix tending pilot actually prove?
+  - How do public hardware prices change the economics of a pilot before integration labor is even counted?
+  - Which warning signs mean the plant should narrow the scope instead of scaling up?
+notFor:
+  - Teams trying to justify a full rollout before a narrow pilot is stable
+  - Processes with no practical way to narrow the initial part family
+  - Buyers looking for a robot-brand comparison without evaluating the whole cell
+updateTriggers:
+  - Public price changes in common machine-tending hardware packages
+  - New public case studies or packaged tending cell options
+  - New lessons on changeover, presentation, and unattended runtime in high-mix cells
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # High-Mix Machine Tending Pilot
 
-High-mix environments are where machine tending pilots become genuinely informative. A low-variation demo can make almost any tending concept look good. A high-mix pilot forces the team to confront changeovers, fixture realities, operator intervention, and whether the cell can survive beyond a single scripted part family.
+High-mix environments are where machine tending pilots become genuinely informative. A low-variation demo can make almost any tending concept look good. A high-mix pilot forces the team to confront changeovers, fixture realities, operator intervention, and whether the cell can survive beyond a single scripted part family. That is why this kind of pilot is valuable even when it exposes weaknesses. It shows where the automation boundary should really stop.
 
-## What this pilot pattern is trying to prove
+## Quick answer
 
-This kind of pilot usually needs to validate:
+A good high-mix pilot should prove repeatable performance on a narrow but representative part family, not universal coverage of every possible job. The first goal is not to automate the cell. It is to learn whether changeover discipline, part presentation, and recovery behavior are stable enough that the economics could scale. If the pilot only proves that one clean cycle works, it has not answered the real business question.
+
+## Public price snapshot checked April 4, 2026
+
+These current public Vention prices are useful because they show how quickly a machine-tending pilot becomes a full-cell budget, not just a robot-arm budget:
+
+| Public item | Published price snapshot | Why it matters |
+| --- | --- | --- |
+| [Machine Tending Mobile Robot Station](https://vention.io/designs/machine-tending-mobile-robot-station-275368) | $5,181.65 | Base presentation and mobility already create a real capital line item |
+| [UR safety add-on for machine tending](https://vention.io/parts/ur-safety-add-on-for-machine-tending-3250) | $5,089.45 | Safety hardware belongs in the pilot economics from day one |
+| [Drawer Base for Machine Tending](https://vention.io/parts/drawer-base-for-machine-tending-3228) | $24,135.32 | Higher-autonomy part handling can cost more than teams initially expect |
+| [FANUC CRX-10iA collaborative robot arm](https://vention.io/parts/fanuc-crx-10ia-collaborative-robot-arm-1923) | $46,025.61 | The robot arm is often the largest visible line item, but not the only one that drives viability |
+
+These prices do not include integration labor, grippers, CNC interface work, commissioning, or changeover refinement. They do show why a pilot has to be scoped as a business experiment, not as a brand demonstration.
+
+## What this pilot should really prove
+
+This type of pilot usually needs to validate:
 
 - whether the target part range is narrow enough for a shared cell concept;
-- whether fixturing and gripper logic can survive variation;
-- how much human support is still required during normal changeover;
-- whether the throughput gains remain credible outside a best-case demo.
+- whether fixturing and gripper logic can survive normal variation;
+- how much human support is still required during changeover;
+- whether the throughput and labor benefits remain credible outside a polished demo.
 
-Those answers matter more than whether the robot can complete a single polished tending loop.
+Those answers matter more than whether the robot can complete a single best-case tending loop.
 
-## Hidden failure points
+## The better pilot economics
 
-High-mix pilots often expose problems that simple pilots hide:
+A weak pilot budget asks, "What does the robot cost?"
+
+A strong pilot budget asks:
+
+- what does the robot cost;
+- what does part presentation cost;
+- what does safety and access cost;
+- what does recovery simplicity cost;
+- what does integration rework cost if the mix is still too broad.
+
+This is the real reason to use public component prices. They help the team see that the robot is only one layer in the total pilot economics.
+
+## Where high-mix pilots usually fail
+
+The hidden failure points are usually:
 
 - gripper and fixture assumptions that only fit one part family;
 - too much setup time between runs;
 - exception handling that depends on a specialist being nearby;
-- ROI models that ignore engineering effort to maintain the expanded part mix.
+- ROI models that ignore engineering effort to maintain the expanded part mix;
+- safety or access compromises made in order to keep the demo compact.
 
-That is why many good teams deliberately use a high-mix pilot to decide where the automation boundary should stop.
+A high-mix pilot is successful when it reveals those weaknesses early enough to correct scope.
 
-## Why the outcome matters
+## What success should look like
 
-If the pilot succeeds, the manufacturer gains a stronger basis for:
+A credible pilot normally shows:
 
-- targeting families of parts rather than every possible job;
-- deciding whether a cobot or six-axis path is more scalable;
-- standardizing fixturing and staging rules before larger rollout;
-- estimating what real staffing and maintenance support will be required.
+- stable pickup and placement on the target part family;
+- changeover effort that operators can actually sustain;
+- recovery behavior that does not require expert-only intervention;
+- enough staffing or uptime value to justify the next investment step.
 
-If the pilot struggles, that is still useful. It may show that the process needs better presentation discipline before more robotics investment makes sense.
+Notice that none of those metrics is the robot moved quickly in the demo.
+
+## What should happen if the pilot struggles
+
+If the pilot struggles, that can still be a good outcome if it clarifies:
+
+- which part family should be excluded;
+- whether the plant needs better presentation discipline first;
+- whether a cobot or six-axis path is still wrong for the application;
+- whether a broader rollout should be delayed until fixture and changeover logic improve.
+
+The expensive mistake is not a struggling pilot. It is pretending the pilot succeeded because the team wants to preserve momentum.
+
+## A better pilot sequence
+
+Use this order:
+
+1. choose a narrow but representative part family;
+2. price the physical handoff and safety layers explicitly;
+3. define the recovery events the pilot must survive;
+4. set success metrics around uptime, changeover, and operator intervention;
+5. expand only if the pilot proves those metrics under normal conditions.
+
+That sequence protects the plant from scaling a demo that never matured into a process.
+
+## Implementation checklist
+
+The pilot is ready when:
+
+- part-family scope is narrow and explicit;
+- public hardware pricing has been translated into full-cell budget logic;
+- safety and presentation are part of the pilot economics;
+- success metrics include changeover and recovery, not just cycle completion;
+- the team knows what pilot outcome would justify expansion and what outcome would force rescoping.
+
+If those points are fuzzy, the pilot is still being treated too much like a demo.
 
 ## Related deployment pages
 
 <div class="portal-links">
 	<LinkCard
-		title="ROI and pilot design"
-		href="/deployment/roi-and-pilot-design/"
-		description="Use the pilot to pressure-test whether the business case survives real variability."
-	/>
-	<LinkCard
-		title="CNC machine tending cells"
-		href="/applications/cnc-machine-tending-cells/"
-		description="Keep the pilot anchored to the real machine tending job instead of a generic automation story."
+		title="High-mix low-volume machine tending"
+		href="/applications/high-mix-low-volume-machine-tending/"
+		description="Use the broader application page to decide whether the pilot should exist at all."
 	/>
 	<LinkCard
 		title="Part presentation and fixturing"
 		href="/cell-design/part-presentation-and-fixturing-for-machine-tending/"
 		description="Most high-mix pilots succeed or fail at the handoff and changeover layer."
+	/>
+	<LinkCard
+		title="Machine tending pilot KPIs"
+		href="/deployment/machine-tending-pilot-kpis/"
+		description="Measure the pilot on business value instead of demo polish."
 	/>
 	<LinkCard
 		title="Change management and maintenance readiness"

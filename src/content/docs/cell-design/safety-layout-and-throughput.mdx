@@ -1,37 +1,157 @@
 ---
 title: Safety, Layout, and Throughput
 description: A practical framework for balancing guarding, layout, operator access, and production flow in robotics cells.
+referenceType: cell-design
+adProfile: cell-design
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: robot cell safety layout throughput
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Cell designers
+  - Manufacturing engineers
+  - Robotics integrators
+  - Automation leads
+contentStatus: cornerstone
+problemSolved: How to design a robot cell so safety, floor layout, and throughput support each other instead of fighting each other after installation.
+readerTakeaway: You should leave with a more realistic view of how safety hardware and layout choices affect usable throughput, operator recovery, and total pilot cost.
+keyQuestions:
+  - How should teams balance guarding, operator access, and output targets in the same design?
+  - Which public hardware prices show that safety and layout are not minor add-ons?
+  - What layout mistakes quietly destroy throughput even when the robot itself is capable?
+notFor:
+  - Pure software simulation work with no physical cell implications
+  - Teams looking only for standards interpretation without cell-level design decisions
+  - Projects that have not yet named the real operator, maintenance, and material-flow interactions
+updateTriggers:
+  - Public price changes in safety and machine-tending hardware
+  - New packaged cell components that shift layout economics
+  - New deployment lessons about recovery, access, or throughput loss
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # Safety, Layout, and Throughput
 
-These three factors should be designed together. Throughput goals that ignore guarding and material flow become unreliable. Safety plans that ignore maintenance and recovery often create workarounds the plant cannot sustain.
+These three factors should be designed together. Throughput goals that ignore guarding and material flow become unreliable. Safety plans that ignore maintenance and recovery often create workarounds the plant cannot sustain. Layout is the bridge between them. It determines whether people can safely reach the cell, whether material actually moves the way the takt target assumes, and whether recovery after a fault is practical.
 
-## Design priorities
+## Quick answer
 
-- Guarding that matches the real hazard, not only the idealized one.
-- Layouts that preserve safe access for maintenance and recovery.
-- Material flow that supports the takt target without creating hidden congestion.
+If the cell is safe only during the ideal cycle, it is not truly safe. If the cell is fast only when no one services or resets it, it is not truly productive. The best designs optimize for the entire operating reality: guarded motion, operator access, material staging, recovery, and maintenance. Throughput that depends on awkward human workarounds is borrowed throughput.
 
-## Common design errors
+## Public price snapshot checked April 4, 2026
 
-- Treating the robot motion plan as the cell design.
-- Underestimating space for infeed, outfeed, buffering, or operator interaction.
-- Adding vision or tooling complexity without reevaluating recovery procedures.
+These public prices make one point clear: safety and layout are material budget items, not finishing touches.
+
+| Public item | Published price snapshot | Why it matters |
+| --- | --- | --- |
+| [UR safety add-on for machine tending](https://vention.io/parts/ur-safety-add-on-for-machine-tending-3250) | $5,089.45 | Safety hardware has real budget impact even before broader guarding or integration labor |
+| [Machine Tending Mobile Robot Station](https://vention.io/designs/machine-tending-mobile-robot-station-275368) | $5,181.65 | Floor layout and physical staging already influence cost at the platform level |
+| [Drawer Base for Machine Tending](https://vention.io/parts/drawer-base-for-machine-tending-3228) | $24,135.32 | High-autonomy material presentation changes both footprint and budget dramatically |
+| [FANUC CRX-10iA collaborative robot arm](https://vention.io/parts/fanuc-crx-10ia-collaborative-robot-arm-1923) | $46,025.61 | The robot may be the most visible cost, but layout and safety decisions shape whether that cost pays back |
+
+These prices do not include site-specific guarding, integration, or commissioning. They still make the key point: safety and layout are not small enough to treat as afterthoughts.
+
+## Design priorities that belong together
+
+Strong cell design usually protects all three of these:
+
+- guarding that matches the real hazard, not only the idealized one;
+- layouts that preserve safe access for maintenance and recovery;
+- material flow that supports the takt target without creating hidden congestion.
+
+If one of those is designed in isolation, the other two usually suffer later.
+
+## What layout mistakes do to throughput
+
+The most common layout mistakes are:
+
+- underestimating space for infeed, outfeed, and buffering;
+- forcing operators to reach or wait in awkward ways during resets;
+- placing safety hardware or barriers where they preserve compliance but damage serviceability;
+- designing a robot path that looks efficient while the material flow around it is not.
+
+These mistakes are costly because they rarely appear in the clean concept drawing. They appear under production pressure.
+
+## Why safety is a throughput issue
+
+Safety is not separate from output. It directly shapes:
+
+- how often the cell pauses or requires human intervention;
+- whether operators can recover the process quickly;
+- how much buffer and staging the cell really needs;
+- whether maintenance can work without improvised bypass behavior.
+
+That is why good safety design often increases usable throughput. It reduces hesitation, awkward resets, and unplanned friction.
+
+## The operator-access test
+
+A useful layout should be able to answer:
+
+- how an operator loads, unloads, or supervises the cell safely;
+- how a technician clears a bad part or fault without confusion;
+- how safety devices affect travel paths and staging;
+- how long recovery actually takes after a non-ideal event.
+
+If those answers only exist in the integrator's head, the layout is still immature.
+
+## Throughput assumptions teams should challenge
+
+Pressure-test any throughput estimate that assumes:
+
+- no meaningful recovery time;
+- no material handling congestion;
+- no operator hesitation around safety zones;
+- no change in cycle behavior once guarding and access are finalized.
+
+Those assumptions are why some cells look strong in a proposal and disappointing after launch.
+
+## A better design sequence
+
+Use this order:
+
+1. define the real human interactions with the cell;
+2. map safety boundaries around those interactions;
+3. design material flow and buffering to support them;
+4. validate the robot path inside the real layout, not an abstract one;
+5. check whether the resulting throughput still justifies the investment.
+
+That sequence keeps the team from optimizing the robot while underdesigning the cell.
+
+## Implementation checklist
+
+The cell design is healthy when:
+
+- safety hardware and layout costs are explicit in the budget;
+- operator and maintenance access are designed into the footprint;
+- material flow has been treated as a first-order design input;
+- throughput assumptions include recovery and service reality;
+- no one is relying on procedural workarounds to preserve the target output.
+
+If several of those are not true, the layout needs another pass before hardware lock-in.
 
 ## Related paths
 
 <div class="portal-links">
 	<LinkCard
-		title="Palletizing and machine tending"
-		href="/applications/palletizing-and-machine-tending/"
-		description="See how application type changes the tradeoff between layout simplicity and throughput."
+		title="Part presentation and fixturing"
+		href="/cell-design/part-presentation-and-fixturing-for-machine-tending/"
+		description="Layout quality depends heavily on how parts are staged, nested, and recovered."
 	/>
 	<LinkCard
 		title="ROI and pilot design"
 		href="/deployment/roi-and-pilot-design/"
 		description="Cell design mistakes are one of the fastest ways to weaken a business case."
+	/>
+	<LinkCard
+		title="High-mix machine tending pilot"
+		href="/case-studies/high-mix-machine-tending-pilot/"
+		description="Use a pilot to test whether safety, layout, and output can coexist outside a demo."
+	/>
+	<LinkCard
+		title="CNC machine tending cells"
+		href="/applications/cnc-machine-tending-cells/"
+		description="Keep cell design tied to the actual machine interface and production task."
 	/>
 </div>
