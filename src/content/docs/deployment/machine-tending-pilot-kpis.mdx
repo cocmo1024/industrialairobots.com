@@ -13,14 +13,51 @@ targetRoles:
   - Pilot sponsors
   - Robotics engineers
   - Operations managers
-contentStatus: seed
+contentStatus: cornerstone
+problemSolved: How to choose pilot KPIs that prove a machine tending cell is commercially and operationally ready to scale instead of just looking good in a short demo.
+readerTakeaway: You should leave with a KPI set that tests throughput, recovery, stability, operator burden, and rollout readiness in a realistic production context.
+keyQuestions:
+  - Which KPIs actually prove a machine tending pilot is scale-worthy?
+  - What metrics reveal hidden recovery, changeover, and support problems?
+  - How should pilot metrics be tied to rollout and ROI decisions?
+notFor:
+  - Teams measuring only cycle time or units handled in a demo window
+  - Pilots with no baseline data from the current process
+  - Organizations that have not defined what “ready to scale” means
+updateTriggers:
+  - New rollout criteria from production deployments
+  - Changes in staffing, shift coverage, or maintenance model
+  - New failure patterns observed during pilot audits
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # Machine Tending Pilot KPIs
 
-Machine tending pilots often look successful because the robot ran a repeatable cycle on a good day. That is not enough. A scale-worthy pilot needs KPIs that show whether the cell can survive real variation, operator interaction, machine interruptions, and maintenance handoffs.
+Machine tending pilots often look successful because the robot ran a repeatable cycle on a good day. That is not enough. A scale-worthy pilot needs KPIs that show whether the cell can survive real variation, operator interaction, machine interruptions, and maintenance handoffs. If the KPI set is weak, leadership gets a false sense of confidence and the rollout absorbs problems that should have been caught while the pilot was still cheap to adjust.
+
+## Quick answer
+
+Good pilot KPIs do not just prove that the robot can move. They prove that the **cell can keep working** under realistic production conditions. The strongest KPI sets usually cover five areas:
+
+- utilization impact;
+- interruption and recovery behavior;
+- changeover and process variation burden;
+- operator and maintenance supportability;
+- business-case viability for rollout.
+
+If the pilot is only measuring cycle time, it is almost certainly missing the most important risks.
+
+## When this page should guide the pilot
+
+Use this page when:
+
+- a machine tending cell is moving from demo to real pilot;
+- leadership needs to decide whether to scale, tighten, or stop the rollout;
+- engineering wants to avoid a KPI set that flatters the pilot but hides production fragility;
+- multiple part families, shifts, or recovery scenarios are in play.
+
+This page matters less if the cell is still at a conceptual stage with no defined operating window. KPI design should start once the pilot objective and baseline process are understood.
 
 ## Decision objective
 
@@ -32,6 +69,18 @@ Pilot KPIs should help answer:
 - whether the next rollout step should expand scope or tighten it.
 
 This makes KPI selection a deployment decision, not a reporting exercise.
+
+## The five KPI groups that matter most
+
+| KPI group | What it proves | Example metrics |
+| --- | --- | --- |
+| Throughput and utilization | Whether the cell improves productive machine time | spindle utilization, machine up-time during tending, parts per staffed hour |
+| Stability and recovery | Whether the cell survives real-world disturbances | interventions per shift, mean recovery time, repeat fault classes |
+| Variation handling | Whether the cell can cope with actual process diversity | changeover time, first-pass success after changeover, part-mix stability |
+| Supportability | Whether operators and maintenance can keep it running | restart without specialist, maintenance call frequency, operator acceptance |
+| Commercial value | Whether scale is justified | avoided labor exposure, added machine capacity, downtime reduction trend |
+
+A pilot does not need dozens of metrics. It needs the right few metrics from each of these groups.
 
 ## What should be validated early
 
@@ -52,9 +101,60 @@ ROI models often fail when they ignore:
 - engineering effort needed to keep the cell tuned;
 - downtime from misfeeds or fixturing issues;
 - training and support requirements on later shifts;
-- the difference between a stable pilot and a fragile production asset.
+- the difference between a stable pilot and a fragile production asset;
+- the cost of recovery events that do not appear in polished demos.
 
-Good KPIs expose those gaps early.
+Good KPIs expose those gaps early. A realistic ROI case is built on recovery and support data, not only on automated cycle counts.
+
+## A pilot scorecard should include baseline comparison
+
+One easy way to make pilot data misleading is to skip the baseline. The team should compare pilot performance against the current manual or semi-manual process for:
+
+- utilization;
+- labor exposure;
+- intervention rate;
+- changeover time;
+- quality or scrap impact;
+- support burden by shift.
+
+Without that comparison, the pilot may look productive while still failing to outperform the status quo meaningfully.
+
+## The metrics that often get neglected
+
+Plants commonly miss these:
+
+- restart time after common faults;
+- performance on second or third shift;
+- operator confidence during setup and recovery;
+- how often maintenance needs to intervene;
+- how quickly the cell degrades when presentation conditions drift.
+
+These are often the metrics that decide whether the pilot can survive rollout.
+
+## What a scale-worthy pilot usually proves
+
+A pilot is often ready for broader rollout when it can demonstrate:
+
+- stable operation across realistic run windows, not isolated demos;
+- failure modes that are known, categorized, and recoverable;
+- acceptable changeover burden for the intended part mix;
+- operator and maintenance ownership that does not depend on one expert;
+- measurable improvement in machine utilization, coverage, or labor deployment.
+
+That is the difference between a technically interesting cell and a deployable production asset.
+
+## Implementation checklist
+
+Before calling the pilot successful, the team should be able to answer yes to these:
+
+- Do we have baseline process numbers for comparison?
+- Are intervention frequency and recovery time being measured?
+- Have we tested real part variation and real shift behavior?
+- Can operators restart the cell without specialist support?
+- Do we know the top recurring fault classes?
+- Do the KPI gains still look meaningful after support burden is included?
+
+If several of those answers are no, the pilot is not mature enough for rollout no matter how smooth the demo looked.
 
 ## Related paths
 

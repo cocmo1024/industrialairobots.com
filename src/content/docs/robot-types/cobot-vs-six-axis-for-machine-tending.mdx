@@ -13,14 +13,56 @@ targetRoles:
   - Robotics buyers
   - Integrators
   - Plant managers
-contentStatus: seed
+contentStatus: cornerstone
+problemSolved: How to choose between a cobot and a traditional six-axis robot for machine tending based on real cell constraints instead of marketing assumptions.
+readerTakeaway: You should leave with a shortlist framework tied to part handling, enclosure strategy, throughput demands, and rollout maturity.
+keyQuestions:
+  - When is a cobot the right machine-tending choice and when is it the wrong one?
+  - What cell conditions favor a six-axis robot even if the pilot started with a cobot idea?
+  - How should safety, recovery, and changeover reality influence robot selection?
+notFor:
+  - Buyers comparing robot classes without a defined tending application
+  - Teams assuming collaboration labeling eliminates cell design work
+  - Projects where machine interface and part presentation are still undefined
+updateTriggers:
+  - New safety guidance or integrator experience for tending cells
+  - Changes in cobot payload, reach, or controller capabilities
+  - New rollout patterns from machine tending pilots
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # Cobot vs Six-Axis for Machine Tending
 
-This is one of the most common shortlisting decisions in industrial robotics. The mistake is assuming the answer is about safety branding or ease of use alone. In machine tending, the right choice usually depends on enclosure strategy, part size, cycle expectations, door integration, and how much unpredictability the cell must tolerate.
+This is one of the most common shortlisting decisions in industrial robotics. The mistake is assuming the answer is about safety branding or ease of use alone. In machine tending, the right choice usually depends on enclosure strategy, part size, cycle expectations, door integration, and how much unpredictability the cell must tolerate. The wrong answer creates either an overbuilt cell that struggles to justify itself or an underpowered one that becomes fragile in production.
+
+## Quick verdict
+
+If the project is narrow, the payload is modest, operator interaction is frequent, and the organization wants a lower-friction first deployment, a cobot can be the right machine-tending path. If throughput expectations are higher, stiffness and reach matter more, the cell is naturally guarded, or the process is being built as a durable production asset, a six-axis robot is often the stronger choice.
+
+The real decision is not “modern vs traditional.” It is **which robot class best fits the operating model of the cell**.
+
+## When this comparison should guide the shortlist
+
+Use this page when:
+
+- a plant is planning its first machine tending cell;
+- the team is split between pilot simplicity and long-term production robustness;
+- the machine envelope, part family, and changeover profile are mostly understood;
+- the buyer wants to know whether a cobot-first strategy is practical or just emotionally attractive.
+
+This page matters less when the application is still undefined. Robot selection should come after the team understands the part flow, machine interface, and recovery conditions.
+
+## The four questions that usually decide the answer
+
+Most machine-tending robot choices can be clarified by four questions:
+
+1. How demanding are payload, reach, and cycle requirements?
+2. Will the cell live in a lightly collaborative environment or a more conventional guarded automation layout?
+3. How much variability, recovery, and future process expansion must the cell absorb?
+4. Is this a narrow pilot or a production asset expected to scale?
+
+Those questions matter more than whether one robot class feels easier to buy politically.
 
 ## Where cobots fit
 
@@ -29,9 +71,10 @@ Cobots often fit best when:
 - payload and reach are modest;
 - the cell needs easier setup or frequent operator interaction;
 - the first deployment is deliberately narrow;
-- the buyer values a lighter-weight pilot and simpler introduction to automation.
+- the buyer values a lighter-weight pilot and simpler introduction to automation;
+- throughput expectations are meaningful but not highly aggressive.
 
-They can be especially attractive for first-wave tending pilots where the organization wants operational proof quickly.
+They can be especially attractive for first-wave tending pilots where the organization wants operational proof quickly and is still learning how much tending discipline the process can support.
 
 ## Where six-axis robots fit
 
@@ -40,26 +83,66 @@ Traditional six-axis robots often become the stronger fit when:
 - cycle demands are higher or uptime expectations are stricter;
 - reach, stiffness, or payload needs are more demanding;
 - the cell will live inside a more conventional guarded automation footprint;
-- future expansion or heavier process integration is likely.
+- future expansion or heavier process integration is likely;
+- the business case assumes the cell will become a long-lived production asset.
 
-They are often better aligned with cells that are meant to become durable production assets rather than experimental automation steps.
+They are often better aligned with cells meant to become durable production systems rather than experimental automation steps.
+
+## A practical comparison by cell condition
+
+| Cell condition | More likely fit | Why |
+| --- | --- | --- |
+| Light payload, modest cadence, frequent human setup | Cobot | Lower-friction pilot and easier coexistence model |
+| Demanding payload or deep machine reach | Six-axis | Better mechanical headroom |
+| Conventional guarded cell with limited human interaction | Six-axis | Simpler alignment with standard automation pattern |
+| Early pilot where change-management burden matters | Cobot | Helps the organization learn with less initial friction |
+| Expected future process expansion and tighter throughput | Six-axis | More long-term production headroom |
+
+This table is not a rulebook, but it reflects where these choices usually land in practice.
 
 ## Where each option is overused
 
-Cobots are often overused when buyers assume collaboration labeling removes the need for real cell thinking. Six-axis robots are often overused when a lighter, simpler cell would prove the application with less friction.
+Cobots are often overused when buyers assume collaboration labeling removes the need for real cell thinking. It does not. Guarding, recovery, and machine interaction still matter.  
+
+Six-axis robots are often overused when a lighter, simpler cell would prove the application with less friction. In those cases the organization ends up paying for more production headroom than the first rollout can realistically use.
 
 In both cases, the robot choice becomes a proxy for uncertainty elsewhere in the design.
 
-## Operational tradeoffs
+## Operational tradeoffs that matter more than the brochure
 
 The real tradeoffs usually include:
 
 - speed versus coexistence expectations;
 - guarding complexity versus pilot simplicity;
 - future scalability versus first-project accessibility;
-- maintenance and operator familiarity versus raw performance headroom.
+- maintenance and operator familiarity versus raw performance headroom;
+- how much recovery burden the process creates.
 
-The best choice is usually the one that matches the intended operating model, not the one that sounds more advanced in a sales conversation.
+These are operational tradeoffs, not just hardware tradeoffs. The best choice is usually the one that matches the intended operating model, not the one that sounds more advanced in a sales conversation.
+
+## How safety and recovery influence the choice
+
+The robot class should never be chosen independently of:
+
+- machine door and chuck behavior;
+- operator access during setup;
+- jam recovery expectations;
+- where the human re-enters the process after a fault;
+- how often the cell must be re-taught or adjusted.
+
+This is why cobot versus six-axis decisions often need to be revisited after the team maps recovery logic. A cell that looks collaborative in concept can still behave like a conventional guarded cell once real failure modes are considered.
+
+## A healthier selection pattern
+
+The most reliable sequence is usually:
+
+1. define the tending application and part family;
+2. map safety, access, and recovery requirements;
+3. validate payload, reach, and presentation constraints;
+4. decide whether the first rollout is a learning pilot or a durable production cell;
+5. shortlist robot class only after those questions are stable.
+
+That path prevents the robot brand or category from driving the architecture too early.
 
 ## Compare next
 
