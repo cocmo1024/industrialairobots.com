@@ -1,0 +1,197 @@
+---
+title: AI Visual Inspection Pilot Acceptance Criteria
+description: A deployment-focused framework for deciding whether an AI visual inspection pilot is ready to scale, needs redesign, or should be stopped before it burns credibility and budget.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: ai visual inspection pilot acceptance criteria
+searchIntent: deploy
+decisionStage: implementation
+targetRoles:
+  - Quality leaders
+  - Manufacturing engineers
+  - Automation managers
+  - Robotics integrators
+contentStatus: cornerstone
+problemSolved: What an industrial team should require before calling an AI visual inspection pilot successful enough to move toward production scale.
+readerTakeaway: You should leave with a measurable acceptance framework tied to defect economics, false decisions, line impact, support readiness, and current public hardware price anchors instead of treating a good demo as a good pilot.
+keyQuestions:
+  - What metrics should an AI inspection pilot meet before it scales?
+  - Which pilot failures mean the model should be redesigned rather than deployed wider?
+  - How should teams separate acceptable pilot noise from evidence that the inspection concept is not operationally ready?
+notFor:
+  - Labs running vision experiments without any production-readiness decision this year
+  - Teams that have not defined defect classes or adjudication ownership
+  - Projects using visual AI only for offline exploration rather than line-side decisions
+updateTriggers:
+  - Public price changes in common edge AI pilot hardware classes
+  - New vendor capabilities that materially lower the cost of deploying visual inspection locally
+  - Shifts in manufacturing quality expectations around explainability, traceability, or inspection governance
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# AI Visual Inspection Pilot Acceptance Criteria
+
+AI visual inspection is one of the strongest current themes in industrial automation because it promises value on defects, quality escapes, and labor-intensive inspection loops. That makes it commercially attractive, but it also creates a familiar trap: teams call a pilot successful because the model demo looks impressive, not because the production decision is stable. A real pilot needs acceptance criteria strong enough to say "scale," "redesign," or "stop" without hand-waving.
+
+## Quick answer
+
+An AI visual inspection pilot is ready to move forward only if it can prove three things at the same time:
+
+1. the system catches the defects that actually matter;
+2. the false decision burden is low enough that operators and quality teams can live with it;
+3. the inspection stack can survive line conditions, maintenance routines, and changeovers without becoming a full-time science project.
+
+If the pilot only proves model accuracy on a curated set of images, it has not yet proved operational value.
+
+## Why this matters now
+
+Manufacturing AI and physical AI are now being pushed much more aggressively in the market, especially around inspection, robotics, and edge inference. NVIDIA is explicitly tying manufacturing AI to inspection and physical AI workflows, and the broader robotics ecosystem is pushing more visual AI into production. That makes the timing real. It also means more plants will be asked to fund pilots before they have a rigorous acceptance model.
+
+## What the pilot should prove before it starts
+
+Before the first run, the team should already know:
+
+- which defect classes matter commercially;
+- which misses are unacceptable and which are tolerable;
+- what manual adjudication path exists when the system is unsure;
+- whether the output drives operator review, robot action, or automatic reject logic;
+- what success threshold would justify broader rollout.
+
+If those are undefined, the pilot may generate technical enthusiasm without producing a deployable decision.
+
+## Public pilot hardware anchors checked April 8, 2026
+
+These are public hardware anchors, not full pilot budgets:
+
+| Public hardware source | Published price snapshot | Why it matters |
+| --- | --- | --- |
+| [NVIDIA Jetson Orin Nano Super Developer Kit](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/) | $249 | Useful for early proof work, but not evidence that the deployment stack is production ready |
+| [NVIDIA Jetson AGX Orin Developer Kit](https://nvidianews.nvidia.com/news/nvidia-announces-availability-of-jetson-agx-orin-developer-kit-to-advance-robotics-and-edge-ai) | $1,999 | A stronger benchmark for higher-end vision workloads and more demanding pilot compute needs |
+| [AAEON BOXER-8622AI](https://eshop.aaeon.com/ai-embedded-box-pc-nvidia-jetson-orin-nano-boxer-8622ai.html) | As low as $840 | An industrialized compact AI system that better reflects early line-side deployment economics |
+| [AAEON BOXER-8641AI-PLUS](https://eshop.aaeon.com/ai-embedded-box-pc-nvidia-jetson-agx-orin-boxer-8641ai-plus.html) | As low as $2,733 | A reminder that hardened deployment hardware is a different budget class than a lab dev kit |
+
+The acceptance point is simple: the pilot should not be judged only against the price of a developer kit. It should be judged against the real cost of the hardware and support posture needed in production.
+
+## The acceptance criteria that actually matter
+
+Use these categories, not vague phrases like "the model looks promising."
+
+| Acceptance category | What good looks like | Failure signal |
+| --- | --- | --- |
+| Defect coverage | The pilot reliably detects the defect classes that are economically meaningful | The system performs well on easy defects but misses the costly ones |
+| False rejects | Rejections are low enough that operators do not start bypassing the system | The line creates excess rework, stoppage, or distrust because too many good parts are flagged |
+| False escapes | The miss rate is low enough for the business consequence of the inspected process | The system still lets through the defects the pilot was supposed to reduce |
+| Cycle-time impact | Inspection fits the real line pace with acceptable buffer design | Throughput or line balance is damaged by inference time, image handling, or review loops |
+| Environmental stability | Lighting, positioning, and contamination controls are stable enough for repeatable performance | The pilot only works under demo conditions or drifts as soon as the environment varies |
+| Human adjudication | Operators and quality teams have a clear review path for uncertain results | The team improvises judgment calls or ignores uncertain outputs |
+| Support and rollback | The team can update, monitor, and roll back the system without production drama | Every model or configuration change feels like a special event with outsized risk |
+
+## The metric that matters more than model accuracy alone
+
+Model accuracy matters, but acceptance should focus on **decision quality inside the real process**. A 97 percent image-level score can still be operationally poor if:
+
+- the misses cluster around the most expensive defects;
+- the false rejects force manual review on too many parts;
+- the model fails after lighting shifts, part finish variation, or camera fouling;
+- quality engineers cannot explain why the system rejected a part.
+
+That is why acceptance criteria should be tied to the production decision, not just the model benchmark.
+
+## When the pilot is strong enough to advance
+
+Move forward when the pilot shows that:
+
+- defect classes and edge cases are known well enough to govern the next phase;
+- the inspection result improves or accelerates a real business decision;
+- false decisions are rare enough that the line can absorb them;
+- operators and quality staff understand how to act on uncertain cases;
+- the hardware and software stack can survive the real operating rhythm.
+
+This means the pilot created an operating model, not just a promising classifier.
+
+## When the right answer is redesign, not scale
+
+Redesign first when:
+
+- the system works only with controlled part presentation that the line cannot sustain;
+- too much performance depends on lighting conditions no one will actually maintain;
+- manual adjudication volume is so high that the "AI" layer mostly moved labor around;
+- the deployment hardware class is mismatched to the real throughput or environmental burden.
+
+That is not failure. It is the pilot doing its job by exposing the wrong assumptions early.
+
+## When the right answer is stop
+
+Stop the pilot when:
+
+- the defect classes are too ambiguous to label consistently;
+- the cost of false decisions remains unacceptably high even after workflow tuning;
+- the line cannot support the physical discipline the inspection method requires;
+- the team cannot assign long-term support ownership;
+- the value case depends on assumptions no stakeholder is willing to back with real operational change.
+
+Stopping early is healthier than scaling a system that never had production fit.
+
+## The hidden burden buyers forget
+
+Visual inspection pilots often under-budget:
+
+- lighting control and contamination management;
+- calibration and reference checking;
+- retraining governance when product variants change;
+- evidence capture for disputed decisions;
+- the labor cost of reinspection when the system is uncertain.
+
+These costs decide whether the pilot becomes a production system or a tolerated demo.
+
+## A practical acceptance rule
+
+The pilot is not ready to scale unless it can answer "yes" to all of these:
+
+1. Does it reduce a real quality or labor problem the plant already agrees matters?
+2. Can the process absorb the remaining false reject and false escape profile?
+3. Can operators and quality staff work with the uncertain cases without chaos?
+4. Is the deployment stack supportable with named owners?
+5. Would the business still choose this system if judged against production hardware and support cost, not dev-kit cost?
+
+If one of those is still "no," the pilot is not yet an acceptance success.
+
+## Implementation checklist
+
+The team is ready to make a scale decision when:
+
+- defect classes, reject thresholds, and adjudication rules are documented;
+- pilot metrics are tied to production consequence, not only model scores;
+- the environmental controls are realistic for normal operation;
+- hardware class and support plan are explicit;
+- the pilot owner can defend why the next phase should be wider, narrower, redesigned, or stopped.
+
+That is what a useful pilot acceptance package looks like.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="AI visual inspection for mixed-model production"
+		href="/vision-and-sensing/ai-visual-inspection-for-mixed-model-production/"
+		description="Use the application page to define where visual AI is operationally valuable before setting acceptance rules."
+	/>
+	<LinkCard
+		title="Inspection and guidance systems"
+		href="/vision-and-sensing/inspection-and-guidance-systems/"
+		description="Clarify how much sensing complexity the cell should really carry."
+	/>
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Pressure-test whether the economics and scope of the pilot are honest enough to scale."
+	/>
+	<LinkCard
+		title="Change management and maintenance readiness"
+		href="/deployment/change-management-and-maintenance-readiness/"
+		description="A pilot cannot count as successful if the plant is not ready to own it after the integrator leaves."
+	/>
+</div>
