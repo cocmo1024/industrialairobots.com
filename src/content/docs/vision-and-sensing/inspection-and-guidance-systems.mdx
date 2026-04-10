@@ -1,25 +1,200 @@
 ---
 title: Inspection and Guidance Systems
 description: A framework for deciding how much sensing and vision complexity a robotics cell should really carry.
+referenceType: vision
+adProfile: vision
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: inspection and guidance systems robotics
+searchIntent: design
+decisionStage: solution-aware
+targetRoles:
+  - Manufacturing engineers
+  - Quality leaders
+  - Robotics integrators
+  - Automation managers
+contentStatus: cornerstone
+problemSolved: How to decide whether a robotics cell truly needs inspection, guidance, or both, without using vision to compensate for weak application design or poor part control.
+readerTakeaway: You should leave with a practical framework for separating guidance, inspection, and confirmation tasks, plus a clearer view of when sensing complexity is justified and when fixturing or process control is the better investment.
+keyQuestions:
+  - When does a cell need guidance, inspection, or both?
+  - Which forms of variability should be solved mechanically before adding perception?
+  - What maintenance and support burden comes with each added sensing layer?
+notFor:
+  - Labs evaluating algorithms with no near-term deployment decision
+  - Teams that already know the cell will be fully fixture-driven with no sensing role
+  - Projects using vision language without defining the production decision the system must support
+updateTriggers:
+  - New inspection and edge-AI deployment patterns that change the economics of local vision
+  - Public hardware price changes in common industrial AI vision stacks
+  - Shifts in manufacturing quality programs that raise the value of in-cell confirmation
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # Inspection and Guidance Systems
 
-Vision earns its place when it resolves variability that would otherwise block automation or damage quality. It becomes a liability when it is added without a clear operational job, stable maintenance path, or realistic tolerance for calibration work.
+Vision earns its place when it resolves uncertainty that would otherwise block automation or damage quality. It becomes a liability when it is added without a clear operational job, stable maintenance path, or realistic tolerance for calibration work. The most useful way to think about vision in robotics is not "do we need AI?" but "what decision cannot be made reliably without sensing?"
 
-## Vision is usually justified when
+## Quick answer
 
-- Part orientation or presentation varies enough to break fixed automation.
-- Quality confirmation must happen inside the cell or immediately adjacent to it.
-- The application needs guidance that mechanical design alone cannot stabilize.
+Use **guidance** when the robot must locate or orient variable parts. Use **inspection** when the cell must judge whether something is acceptable. Use **confirmation** when the system only needs to verify that a known step happened correctly. Many cells need one of these, not all three. The fastest way to overbuild a cell is to collapse them into one vague "vision system" requirement.
 
-## Vision is often overused when
+## Why this matters now
 
-- Fixtures or presentation controls could remove the variability more reliably.
-- The cell cannot support calibration, cleaning, or lighting discipline.
-- Teams are using perception to compensate for an unclear application design.
+Industrial AI keeps pushing more plants toward visual inspection, flexible guidance, and mixed-model automation. That trend is real. It still does not change the engineering truth that perception should solve a named source of uncertainty. If the team cannot describe that uncertainty clearly, the sensing stack is probably doing speculative work.
+
+## The three jobs a sensing stack can do
+
+### 1. Guidance
+
+Guidance is about helping the robot locate, orient, or align with the part. It is common in:
+
+- machine tending with variable presentation;
+- picking and placement with orientation variation;
+- applications where fixtures do not fully constrain the part.
+
+Guidance adds value when mechanical control alone would be brittle, expensive, or unrealistic.
+
+### 2. Inspection
+
+Inspection is about deciding whether the part, feature, or process result is acceptable. It is common in:
+
+- defect detection;
+- presence and completeness checks;
+- surface, label, or assembly verification;
+- mixed-model quality confirmation.
+
+Inspection becomes commercially important when the cost of bad quality or manual checking is meaningful.
+
+### 3. Confirmation
+
+Confirmation is simpler. The system only needs to verify that a known event or state occurred, such as:
+
+- part present or not;
+- feature count;
+- placement complete;
+- a door or clamp state aligned with the cycle.
+
+This job is often over-engineered with full visual AI when simpler sensing would work.
+
+## Public deployment anchors checked April 9, 2026
+
+These are public hardware anchors, not full cell costs:
+
+| Public source | Published price snapshot | Why it matters |
+| --- | --- | --- |
+| [NVIDIA Jetson Orin Nano Super Developer Kit](https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/) | $249 | A reminder that proving a visual workload can start cheaply before production hardening |
+| [AAEON BOXER-8622AI](https://eshop.aaeon.com/ai-embedded-box-pc-nvidia-jetson-orin-nano-boxer-8622ai.html) | As low as $840 | Compact industrial AI hardware creates a more realistic floor for line-side deployment economics |
+| [AAEON BOXER-8641AI-PLUS](https://eshop.aaeon.com/ai-embedded-box-pc-nvidia-jetson-agx-orin-boxer-8641ai-plus.html) | As low as $2,733 | Higher-end visual stacks should only be bought when throughput, camera count, or inference demand makes them necessary |
+
+These anchors matter because teams often under-budget sensing by pricing the model and over-budget it by ignoring the operational value of a simpler confirmation design.
+
+## When vision is usually justified
+
+Vision is usually worth it when:
+
+- part orientation or presentation varies enough to break fixed automation;
+- quality confirmation must happen inside the cell or immediately adjacent to it;
+- the application needs guidance that mechanical design alone cannot stabilize;
+- the cost of misses or false accepts is high enough to justify the added complexity.
+
+This is the zone where perception is solving a real operational problem.
+
+## When vision is usually overused
+
+Vision is often the wrong answer when:
+
+- fixtures or presentation controls could remove the variability more reliably;
+- the cell cannot support calibration, cleaning, or lighting discipline;
+- teams are using perception to compensate for an unclear application design;
+- a simpler sensor would confirm the needed state more robustly.
+
+This is where vision turns from an enabler into a maintenance tax.
+
+## The question teams skip too often
+
+Before choosing cameras, models, or inference hardware, ask:
+
+**What would the cell do if no perception were allowed at all?**
+
+That question usually reveals whether the problem is:
+
+- mechanical presentation;
+- process instability;
+- quality ambiguity;
+- or true visual uncertainty.
+
+If the no-vision design is obviously possible and cleaner, the sensing stack may be unnecessary.
+
+## What guidance systems should be judged on
+
+For guidance tasks, evaluate:
+
+- how much presentation variability is real;
+- whether latency affects cycle time;
+- whether lighting and camera placement are maintainable;
+- how recovery works when the part cannot be resolved confidently.
+
+The best guidance system is not only accurate. It is recoverable.
+
+## What inspection systems should be judged on
+
+For inspection tasks, evaluate:
+
+- defect coverage on the defects that actually matter;
+- false reject burden on operations;
+- explainability for quality teams;
+- whether the review path for ambiguous results is workable.
+
+Inspection is valuable only if the plant can operationalize the decision, not just generate a score.
+
+## What confirmation systems should be judged on
+
+For confirmation tasks, judge the system by:
+
+- robustness;
+- low maintenance burden;
+- low false alarm rate;
+- easy integration into the cycle logic.
+
+This is why some confirmation jobs are better solved by simpler sensors than by visual AI.
+
+## The hidden cost of adding sensing
+
+Every added sensing layer usually brings:
+
+- calibration and cleaning routines;
+- lighting and contamination constraints;
+- more edge hardware or inference load;
+- exception handling for uncertain detections;
+- retraining or retuning whenever parts or finishes change.
+
+If the business value is weak, these burdens quickly outweigh the benefit.
+
+## A practical decision test
+
+Use these questions:
+
+1. Is the uncertainty geometric, quality-related, or only confirmational?
+2. Could process or fixturing changes solve the problem more cleanly?
+3. Can the site maintain lighting, lenses, and calibration discipline?
+4. What happens when the system is uncertain?
+5. Is the sensing stack solving a bottleneck, or only making the cell look more advanced?
+
+If the fifth answer is weak, the sensing layer may be wrong for the project.
+
+## Implementation checklist
+
+The sensing design is credible when:
+
+- the job is clearly identified as guidance, inspection, confirmation, or a defined mix;
+- the alternative mechanical or process options were considered honestly;
+- maintenance and recovery behavior are part of the design;
+- the hardware class matches the real inference load;
+- the operational consequence of uncertainty is documented.
+
+That is the point where vision becomes a design decision instead of a technology aspiration.
 
 ## Compare next
 
@@ -33,5 +208,15 @@ Vision earns its place when it resolves variability that would otherwise block a
 		title="ROI and pilot design"
 		href="/deployment/roi-and-pilot-design/"
 		description="See whether the sensing stack supports a credible first deployment or adds too much risk too early."
+	/>
+	<LinkCard
+		title="Synthetic data for industrial inspection"
+		href="/vision-and-sensing/synthetic-data-for-industrial-inspection-programs/"
+		description="Use synthetic data only when it reduces a real inspection bottleneck instead of masking a weak pilot design."
+	/>
+	<LinkCard
+		title="AI visual inspection acceptance criteria"
+		href="/deployment/ai-visual-inspection-pilot-acceptance-criteria/"
+		description="Pressure-test whether the inspection system is operationally ready, not just technically promising."
 	/>
 </div>
