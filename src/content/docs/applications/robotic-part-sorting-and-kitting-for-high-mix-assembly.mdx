@@ -1,0 +1,159 @@
+---
+title: Robotic Part Sorting and Kitting for High-Mix Assembly
+description: A practical guide for assembly operations considering robotic sorting or kitting where part variation, presentation, and exception handling can destroy value quickly.
+referenceType: application
+adProfile: application
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: robotic part sorting and kitting for high mix assembly
+searchIntent: design
+decisionStage: solution-aware
+targetRoles:
+  - Assembly engineers
+  - Automation leads
+  - Manufacturing managers
+  - Systems integrators
+contentStatus: cornerstone
+problemSolved: How to decide whether robotic sorting or kitting is viable in high-mix assembly, and what must be true for the cell to handle part variation without turning into an exception engine.
+readerTakeaway: You should leave with a high-mix sorting and kitting decision model tied to part variation, presentation quality, sensing burden, and operator fallback.
+keyQuestions:
+  - When does robotic sorting or kitting make sense in high-mix assembly?
+  - How much part variability can the cell absorb before exception handling overwhelms the value?
+  - What should a pilot prove about vision, presentation, and operator support before scale-up?
+notFor:
+  - Lines where part identity and presentation are still highly unstable
+  - Plants using automation to avoid basic material-discipline problems
+  - Teams expecting one vision stack to solve every part-family edge case
+updateTriggers:
+  - New lessons from high-mix assembly and kitting deployments
+  - Shifts in vision and guidance economics for structured picking
+  - Changes in operator-support and exception-handling patterns for assembly cells
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Robotic Part Sorting and Kitting for High-Mix Assembly
+
+High-mix assembly is where many attractive robotics ideas go to die. The labor story is appealing, but the real economics depend on whether the cell can deal with part variation, sequencing errors, and operator exceptions without creating a brittle support burden. Sorting and kitting can be strong applications, but only when the plant treats them as variation-management problems, not as generic picking demos.
+
+## Quick answer
+
+Robotic sorting and kitting make sense when the plant can bound part variation, present material consistently enough for sensing and pickup, and define what should happen when the expected sequence breaks. If every unusual part, container, or order mix becomes an exception, the cell will spend more time recovering than adding value.
+
+## What this page is for
+
+Use this page when the plant needs:
+
+- more stable kit creation for downstream assembly;
+- automation in a high-mix environment where manual handling is still costly;
+- a realistic view of how much part variety a sorting or kitting cell can absorb;
+- pilot guidance that goes beyond a controlled demo table.
+
+## Why high-mix makes this harder
+
+The challenge is rarely only the robot trajectory. It is the operating model around it:
+
+- different parts behave differently in bins, trays, or totes;
+- kit sequences change by product family or customer order;
+- missing, wrong, or damaged parts create exceptions that need clear handling;
+- sensors and vision systems need structured presentation to stay reliable.
+
+Without discipline around those inputs, the robot becomes the visible part of a poorly governed assembly-support process.
+
+## What must be true before the cell is viable
+
+The application is usually a fit when:
+
+- part families can be grouped into manageable handling logic;
+- containers and presentation methods are reasonably consistent;
+- the assembly sequence is stable enough that kit logic can be governed;
+- exception paths are known and acceptable;
+- operators and supervisors can explain what counts as a successful recovery.
+
+It becomes weak when the plant still lacks basic material discipline.
+
+## The core design questions
+
+The first design pass should answer:
+
+| Design area | Core question | Why it matters |
+| --- | --- | --- |
+| Part families | Which part groups can share handling logic? | Prevents one cell from trying to absorb unbounded variation |
+| Presentation | How are parts delivered to the robot? | Presentation quality often matters more than arm capability |
+| Verification | How is the cell confirming part identity and kit completeness? | Prevents silent quality loss |
+| Exception handling | What happens when a part is missing, damaged, or misoriented? | Many deployments fail here, not in normal flow |
+| Human support | When should an operator intervene? | Defines whether the cell is operationally usable |
+
+These questions decide whether the automation fits the plant more than the robot brand ever will.
+
+## Why vision alone is not the answer
+
+High-mix teams often assume that better vision solves everything. In practice, vision is one layer:
+
+- it helps when part identity or orientation is uncertain;
+- it becomes expensive when upstream presentation is uncontrolled;
+- it still needs clear exception logic and human fallback;
+- it does not replace stable kit rules or material governance.
+
+When the plant expects vision to rescue chaotic presentation, the project usually underperforms.
+
+## What pilots should prove
+
+A useful pilot should prove:
+
+- repeatable sorting or kitting accuracy across the real part range;
+- acceptable exception frequency under real operating conditions;
+- operator-friendly recovery for missing or ambiguous parts;
+- stable cycle behavior when orders and kit mixes change;
+- whether the sensing stack remains reliable outside a controlled demo.
+
+If those questions remain open, scaling the cell is premature.
+
+## Common failure modes
+
+These deployments often fail because:
+
+- one cell is asked to handle too broad a part universe;
+- bins or containers do not support repeatable presentation;
+- part identity rules are weak or inconsistent;
+- kit completeness checks are missing or treated casually;
+- exception handling becomes a hidden full-time human job.
+
+Those are not robot-motion problems. They are operating-model problems.
+
+## Implementation checklist
+
+Before scaling across more assembly flows, confirm that:
+
+- part families are intentionally grouped;
+- presentation methods are controlled;
+- kit validation is explicit;
+- operator fallback is part of the design;
+- exception rates are measured and acceptable.
+
+If the plant cannot answer those clearly, the cell is not ready to scale.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Vision-guided picking and inspection"
+		href="/applications/vision-guided-picking-and-inspection/"
+		description="See where sensing complexity belongs and where the process itself still needs simplification."
+	/>
+	<LinkCard
+		title="AI visual inspection for mixed-model production"
+		href="/vision-and-sensing/ai-visual-inspection-for-mixed-model-production/"
+		description="Use a related mixed-model problem to pressure-test how much perception the line really needs."
+	/>
+	<LinkCard
+		title="Change management and maintenance readiness"
+		href="/deployment/change-management-and-maintenance-readiness/"
+		description="Decide whether the plant can actually support a high-mix cell once exceptions start appearing."
+	/>
+	<LinkCard
+		title="Night-shift machine tending rollout"
+		href="/case-studies/night-shift-machine-tending-rollout/"
+		description="Use a rollout case to compare structured automation discipline against variability-driven failure."
+	/>
+</div>
