@@ -1,0 +1,160 @@
+---
+title: Foundation models vs classic machine vision for industrial inspection
+description: How manufacturers should decide when foundation-model-style vision belongs in inspection programs and when classic machine vision or narrower deep learning remains the better choice.
+referenceType: vision
+adProfile: vision
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: foundation models vs machine vision industrial inspection
+searchIntent: compare
+decisionStage: shortlist
+targetRoles:
+  - Quality engineers
+  - Vision system leads
+  - Manufacturing AI teams
+  - Robotics integrators
+contentStatus: growing
+problemSolved: How to decide whether industrial inspection should stay with classic machine vision or narrower deep learning, or move toward foundation-model-style perception workflows.
+readerTakeaway: You should leave with a practical rule for when foundation-model approaches are worth the complexity, and when deterministic or narrower vision systems still create the healthier inspection stack.
+keyQuestions:
+  - When does classic machine vision still outperform newer foundation-model-style approaches?
+  - Which inspection conditions actually benefit from broader visual generalization?
+  - What deployment costs and governance issues arrive with the newer stack?
+notFor:
+  - Labs comparing general computer vision models outside manufacturing
+  - Teams with no real inspection workflow or acceptance criteria
+  - Readers looking only for camera hardware recommendations
+updateTriggers:
+  - NVIDIA platform changes around industrial vision AI and physical AI
+  - New industrial inspection adoption patterns for foundation-model-like vision stacks
+  - Material changes in edge inference economics for inspection programs
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Foundation models vs classic machine vision for industrial inspection
+
+Foundation-model language is now entering factory conversations because manufacturers want systems that generalize better across defects, environments, and product variation. That momentum is real, but it does not erase the strengths of classic machine vision. Most inspection programs still succeed or fail on problem definition, lighting, fixturing, and pass-fail governance long before they hit the ceiling of traditional approaches. The right question is not whether foundation models are more advanced. It is whether they solve a plant problem the current stack cannot solve cheaply enough.
+
+## Quick answer
+
+Use **classic machine vision or narrow deep learning** when the visual task is stable, the defect patterns are well understood, and deterministic behavior matters more than flexible generalization. Move toward **foundation-model-style vision** when the inspection target varies materially across products, environments, or classes and the current stack is failing because the scene is too open-ended for narrow models and handcrafted logic.
+
+## Why this matters now
+
+NVIDIA is pushing factory vision AI, synthetic data, and physical AI workflows much harder than before, while industrial automation vendors continue shipping structured-light and robot-guided inspection solutions that look more classical and deterministic. That means buyers are now choosing between two viable narratives, not one inevitable future.
+
+## Official signals checked April 11, 2026
+
+| Official source | Current signal | Why it matters |
+| --- | --- | --- |
+| [NVIDIA Metropolis for Factories](https://developer.nvidia.com/metropolis-for-factories) | NVIDIA presents end-to-end vision AI workflows for inspection, synthetic data, and deployment from edge to cloud | Strong signal that broader AI-based inspection stacks are moving into practical factory tooling |
+| [NVIDIA Metropolis vision AI platform](https://www.nvidia.com/en-us/autonomous-machines/intelligent-video-analytics-platform/) | NVIDIA emphasizes customizable vision AI and AI agents for industrial visual inspection | The market is clearly moving beyond fixed-rule inspection narratives |
+| [NVIDIA physical AI newsroom update](https://nvidianews.nvidia.com/news/nvidia-and-global-robotics-leaders-take-physical-ai-to-the-real-world) | NVIDIA is framing physical AI as a production-scale robotics and inspection direction with industrial partners | Foundation-model-style momentum is no longer isolated to research demos |
+| [ABB 3DQi In-line](https://new.abb.com/products/robotics/nl/functional-modules/3dqi-in-line) | ABB continues to emphasize structured-light inspection tied to accuracy, repeatability, and robot integration | Deterministic, application-specific inspection remains commercially strong and operationally credible |
+
+## What classic machine vision still does well
+
+Classic machine vision remains excellent when:
+
+- geometry and lighting are tightly controlled,
+- the inspection criteria are explicit,
+- the product family is stable,
+- and the team needs deterministic repeatability more than broad visual adaptability.
+
+This is why structured-light, fixed-rule, and narrower defect systems still dominate many profitable deployments.
+
+## What foundation-model-style vision can improve
+
+The newer stack becomes interesting when:
+
+- the visual scene changes across many SKUs or variants,
+- defect appearance is less uniform,
+- the team wants faster adaptation across several inspection contexts,
+- or the plant is building a broader perception layer rather than one narrow station.
+
+The value is not "more AI." The value is handling variability that the current stack does not absorb well.
+
+## The hidden cost of choosing the newer stack too early
+
+Teams that jump too early often inherit:
+
+- harder debugging,
+- more data and evaluation burden,
+- weaker explainability for quality stakeholders,
+- and deployment systems that are more expensive than the visual problem justifies.
+
+This is especially dangerous when the real issue is poor lighting, weak fixturing, or inconsistent pass-fail labeling.
+
+## The hidden cost of staying classical too long
+
+Teams that stay narrow too long can end up with:
+
+- brittle rule sets,
+- repeated retuning across product variants,
+- manual thresholds that do not scale,
+- and inspection systems that cannot keep up with product mix or plant change.
+
+This is where broader AI vision starts to earn its keep.
+
+## A practical decision rule
+
+Choose classic or narrow deep learning when:
+
+1. the visual environment is controlled,
+2. the defect classes are well defined,
+3. the business needs precision and repeatability more than generalization.
+
+Choose broader foundation-model-style approaches when:
+
+1. variation across products or scenes is materially hurting performance,
+2. narrow retraining cycles are becoming too costly,
+3. the organization can support stronger data, evaluation, and runtime discipline.
+
+## The real bottleneck is still operational
+
+No inspection stack is healthy without:
+
+- stable image capture,
+- human adjudication rules,
+- quality ownership,
+- deployment acceptance criteria,
+- and review loops after rollout.
+
+That is why this comparison should never be run as a pure model conversation.
+
+## Implementation checklist
+
+The decision is defensible when:
+
+- the current failure mode is clear,
+- the team knows whether variability or determinism is the bigger need,
+- hardware and inference cost are part of the review,
+- and the quality organization agrees on what "better" means in production.
+
+That is when the vision stack becomes a business decision instead of an AI branding decision.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="AI visual inspection for mixed-model production"
+		href="/vision-and-sensing/ai-visual-inspection-for-mixed-model-production/"
+		description="Pressure-test the comparison against a real mixed-model inspection problem instead of an abstract vision discussion."
+	/>
+	<LinkCard
+		title="Synthetic data for industrial inspection"
+		href="/vision-and-sensing/synthetic-data-for-industrial-inspection-programs/"
+		description="The newer stack often pulls synthetic data into the conversation; use this page to decide when that actually helps."
+	/>
+	<LinkCard
+		title="AI visual inspection pilot acceptance criteria"
+		href="/deployment/ai-visual-inspection-pilot-acceptance-criteria/"
+		description="A stronger inspection stack still needs a pilot that can prove scale-readiness."
+	/>
+	<LinkCard
+		title="Inspection and guidance systems"
+		href="/vision-and-sensing/inspection-and-guidance-systems/"
+		description="Return to the broader sensing framework if the team is still mixing guidance, inspection, and quality confirmation into one conversation."
+	/>
+</div>
