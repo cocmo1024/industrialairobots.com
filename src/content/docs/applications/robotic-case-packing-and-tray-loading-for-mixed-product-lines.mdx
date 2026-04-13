@@ -1,0 +1,138 @@
+---
+title: Robotic Case Packing and Tray Loading for Mixed-Product Lines
+description: A practical guide for case packing and tray-loading automation where package variation, product presentation, and recovery logic determine whether the cell creates value.
+referenceType: application
+adProfile: application
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: robotic case packing and tray loading for mixed product lines
+searchIntent: design
+decisionStage: solution-aware
+targetRoles:
+  - Packaging engineers
+  - Automation managers
+  - Manufacturing engineers
+  - Systems integrators
+contentStatus: cornerstone
+problemSolved: How to decide whether robotic case packing or tray loading fits a mixed-product line before package variation and exception handling erase the automation value.
+readerTakeaway: You should leave with a fit model tied to product presentation, package stability, EOAT burden, and operator recovery expectations.
+keyQuestions:
+  - When do robotic case packing and tray loading make sense on mixed-product lines?
+  - What product and package variation makes the cell fragile?
+  - What should a pilot prove before the plant scales the application?
+notFor:
+  - Highly standardized lines where a fixed mechanical packer already solves the problem well
+  - Plants expecting one cell to absorb uncontrolled product presentation and packaging variation
+  - Projects using robotics to avoid unresolved upstream packaging-discipline issues
+updateTriggers:
+  - New lessons from mixed-product packing and tray-loading deployments
+  - Changes in EOAT and sensing economics for secondary packaging automation
+  - New rollout patterns for packaging cells with variable SKUs and formats
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Robotic Case Packing and Tray Loading for Mixed-Product Lines
+
+Case packing and tray loading look attractive because the labor story is easy to see. The real question is whether the line can present product consistently enough, recover from variability quickly enough, and keep the end-of-arm tooling simple enough that the cell remains an asset instead of a service project. Mixed-product packaging raises the bar sharply because what changes the application is often not robot motion, but product behavior and recovery logic.
+
+## Quick answer
+
+These applications are strongest when:
+
+- product presentation is constrained enough to keep pickup and placement reliable;
+- package or tray variation is grouped into a manageable number of handling patterns;
+- the line has a clear recovery plan for misfeeds, wrong counts, and unstable pack patterns.
+
+If the project depends on the cell absorbing chaotic product presentation, fragile packaging, and frequent SKU drift at the same time, the rollout usually underperforms.
+
+## What this page is for
+
+Use this page when the plant needs:
+
+- a realistic decision model for robotic secondary packaging on mixed lines;
+- a way to compare product presentation improvements against more cell complexity;
+- pilot criteria that go beyond a polished showroom demo;
+- better understanding of where case packing and tray loading fail operationally.
+
+## Why mixed-product packaging is harder than it looks
+
+The robot does not only need to pick and place. It needs to survive:
+
+| Variation source | Why it matters |
+| --- | --- |
+| Product presentation drift | Changes pickup confidence and cycle consistency |
+| Package or tray format changes | Raises EOAT and recipe complexity |
+| Count, spacing, or orientation errors | Creates hidden recovery burden |
+| Unstable packaging materials | Makes placement and downstream quality harder |
+| Manual intervention during jams or rejects | Changes the operating model around the cell |
+
+These are process and packaging realities, not just robot issues.
+
+## What must be true before the cell is viable
+
+The application is usually a fit when:
+
+- the product families can be grouped into a limited set of handling rules;
+- the infeed is consistent enough that the robot is not constantly searching for order;
+- case or tray formats are manageable without excessive tooling churn;
+- operator intervention rules are explicit instead of improvised.
+
+Without those conditions, the cell becomes an exception-management system.
+
+## What pilots should prove
+
+The pilot should prove:
+
+- acceptable pickup and placement performance across the real product mix;
+- repeatable behavior when presentation quality drifts moderately;
+- clear recovery for wrong counts, misfeeds, or unstable packaging;
+- maintenance burden from EOAT, sensors, and change parts;
+- whether the economics still hold once realistic exception time is included.
+
+If these are unresolved, scaling is premature.
+
+## Common failure modes
+
+These cells usually disappoint when:
+
+- the project assumes all mixed-product variation is equally manageable;
+- the line keeps changing trays, cartons, or patterns without disciplined grouping;
+- EOAT complexity grows faster than expected;
+- the operator becomes the hidden recovery engine every shift;
+- upstream presentation problems are left in place and pushed onto the robot.
+
+## Implementation checklist
+
+Before expanding the application, confirm that:
+
+- product and packaging variation are measured, not guessed;
+- infeed and presentation quality are stable enough for automation;
+- recovery rules are explicit for common faults and misfeeds;
+- EOAT change parts and wear burden are understood;
+- the business case includes operational support, not just nominal cycle time.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="End-of-arm tooling selection"
+		href="/cell-design/end-of-arm-tooling-selection-for-palletizing-and-machine-tending/"
+		description="Translate product and package behavior into a gripper strategy before overcommitting to the robot."
+	/>
+	<LinkCard
+		title="End-of-line palletizing for mixed-case operations"
+		href="/applications/end-of-line-palletizing-for-mixed-case-operations/"
+		description="Compare outbound case-handling complexity with the tray and carton variability in this application."
+	/>
+	<LinkCard
+		title="Safety, layout, and throughput"
+		href="/cell-design/safety-layout-and-throughput/"
+		description="Recheck material flow and intervention assumptions once packing and tray recovery behavior is included."
+	/>
+	<LinkCard
+		title="Internal robotics champions and shift support"
+		href="/deployment/internal-robotics-champions-and-shift-support-before-scale-up/"
+		description="Decide whether the line can actually support the cell after handoff from the project team."
+	/>
+</div>
