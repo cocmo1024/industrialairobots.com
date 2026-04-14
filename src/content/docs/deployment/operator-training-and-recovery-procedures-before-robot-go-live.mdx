@@ -1,0 +1,76 @@
+---
+title: Operator training and recovery procedures before robot go-live
+description: How to define operator training, jam recovery, restart discipline, and escalation rules before a robot cell goes live into normal production.
+referenceType: deployment
+adProfile: application
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: operator training and recovery procedures before robot go live
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Production managers
+  - Automation managers
+  - Plant engineers
+  - Continuous improvement leaders
+contentStatus: growing
+problemSolved: Helps teams define what operators must know and what recovery procedures must exist before the robot cell moves from integrator support into normal production.
+readerTakeaway: You should leave with a practical go-live training model tied to restart behavior, escalation rules, and shift-level ownership.
+keyQuestions:
+  - What should operators be trained to do before go-live?
+  - Which recovery actions should stay local and which should escalate?
+  - What makes a robot cell look ready while still being operationally fragile?
+notFor:
+  - Integrator-only acceptance testing with no plant ownership transition
+  - Sites where operators will never interact with the cell directly
+updateTriggers:
+  - New practical patterns in robotics adoption and shift support
+  - Changes in go-live training expectations for production robotics
+---
+
+# Operator training and recovery procedures before robot go-live
+
+Go-live is where the support model becomes real. Many cells pass technical acceptance and still fail operationally because operators were trained to avoid the cell, not to run it. When the first jam, mispick, or machine handshake failure appears on a live shift, the plant discovers whether the system is truly owned or just temporarily installed.
+
+## Quick answer
+
+Before go-live, operators should be trained on:
+
+- what normal operation looks like;
+- which alerts or conditions they can recover locally;
+- what sequence is required for safe restart;
+- and when the event must escalate to maintenance, controls, or the integrator.
+
+If the recovery logic exists only in the integrator's head or in a startup binder no shift team uses, the rollout is not ready.
+
+## What training must cover
+
+At minimum, training should cover:
+
+- cell states and basic terminology;
+- jam and fault recognition;
+- permitted intervention points;
+- restart sequence after common stops;
+- who owns what during abnormal conditions.
+
+That is the practical layer that decides whether the cell survives the first month.
+
+## The most common go-live mistake
+
+The most common mistake is training operators only on nominal flow. They can watch the cell run but cannot recover it with confidence. That produces two bad outcomes:
+
+- the cell pauses too long waiting for expert support;
+- or operators improvise unsafe or inconsistent recovery behavior.
+
+Neither outcome scales.
+
+## What a credible go-live standard looks like
+
+The site should be able to show:
+
+- written local recovery procedures for common events;
+- shift-level ownership, not just day-shift ownership;
+- clear escalation boundaries;
+- and observed recovery drills before the cell enters full production.
+
+If those are missing, the cell may be technically ready but operationally unready.
