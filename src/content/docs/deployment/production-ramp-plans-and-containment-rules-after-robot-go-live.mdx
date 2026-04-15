@@ -1,0 +1,105 @@
+---
+title: Production ramp plans and containment rules after robot go-live
+description: How to define ramp plans, fallback rules, and containment triggers so a new robot cell can enter production without exposing the line to unmanaged disruption.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: production ramp plans and containment rules after robot go live
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Production managers
+  - Automation managers
+  - Plant engineers
+  - Continuous improvement leaders
+contentStatus: growing
+problemSolved: Helps teams define how production should ramp after go-live, when the line should fall back, and what early containment rules protect output while the cell stabilizes.
+readerTakeaway: You should leave with a clearer model for protecting production during the first days and weeks after a robotics cell enters live operation.
+keyQuestions:
+  - How should a new robot cell ramp into full production?
+  - When should the line fall back to manual or alternate operation?
+  - What containment rules protect output without hiding real cell weakness?
+notFor:
+  - Integrator-only prove-out before plant ownership begins
+  - Cells with no meaningful effect on production continuity
+updateTriggers:
+  - New field lessons in robot go-live ramp and containment strategy
+  - Changes in common plant practice for post-commissioning support
+---
+
+# Production ramp plans and containment rules after robot go-live
+
+Go-live is not the finish line. It is the point where the plant begins learning what the cell does under real shift pressure, real product variation, and real recovery behavior. Many projects fail this phase because they move from commissioning confidence straight to full-rate production without clear ramp logic or fallback rules.
+
+## Quick answer
+
+A credible post-go-live plan should define:
+
+- how fast the cell is allowed to ramp toward normal production;
+- what triggers fallback to manual or alternate operation;
+- who can make that call on each shift;
+- and which failure patterns are acceptable during stabilization versus unacceptable in production.
+
+Without those rules, the line either hides robot problems too long or abandons the cell too early.
+
+## What the ramp should protect
+
+The ramp exists to protect:
+
+- plant output;
+- operator confidence;
+- customer and quality commitments;
+- and the learning needed to stabilize the cell.
+
+If the ramp only protects the appearance of a successful launch, it is not doing its job.
+
+## What a phased ramp usually looks like
+
+| Phase | Typical goal |
+| --- | --- |
+| Controlled start | Verify repeatability and recovery on limited production windows |
+| Managed expansion | Increase run time while monitoring faults, intervention rate, and pace loss |
+| Normalized production | Transition ownership from project mode to line-support mode |
+
+The exact pace varies, but the principle is stable: do not ask the cell to prove everything in one jump.
+
+## Containment rules that matter
+
+Containment rules should answer:
+
+- after how many repeated faults the line must step back;
+- which alarms require maintenance or controls support immediately;
+- when product or package quality risk overrides automation ambition;
+- and whether shift teams are allowed to continue with a degraded tool or recipe state.
+
+Those rules protect production from optimism.
+
+## The common failure mode
+
+The most common failure mode is informal escalation. Everyone feels pressure to keep the robot running, so the line tolerates:
+
+- repeated unstable recoveries;
+- excessive manual intervention;
+- recurring product mishandling;
+- and unsupported workarounds that no one wants to document.
+
+That creates a weak launch disguised as commitment.
+
+## What good ramp governance looks like
+
+The plant should be able to show:
+
+- written production-rate expectations by phase;
+- a clear fallback path that operators and supervisors understand;
+- daily review of recurring faults and intervention patterns;
+- and a shared decision owner for progressing, holding, or rolling back the ramp.
+
+That is how the cell earns its place in normal production.
+
+## What to read next
+
+- [Operator training and recovery procedures before robot go-live](/deployment/operator-training-and-recovery-procedures-before-robot-go-live/)
+- [Spare parts, service, and integrator support before robot rollout](/deployment/spare-parts-service-and-integrator-support-before-robot-rollout/)
+- [Robotic empty-pallet and slip-sheet handling for packaging lines](/applications/robotic-empty-pallet-and-slip-sheet-handling-for-packaging-lines/)
+
