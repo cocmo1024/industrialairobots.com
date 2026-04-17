@@ -11,11 +11,9 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 # Cobot Machine Tending Pilot
 
-This pattern fits environments where management wants an accessible robotics pilot, but the real question is not whether a cobot can move parts. The real question is whether the cell can recover cleanly from interruptions, coexist with operators, and maintain uptime without hidden support burden.
+This pattern fits plants that want a first robot cell without starting with a fully fenced, fully isolated automation project. That sounds straightforward, but the real question is not whether a cobot can move parts in and out of a machine. The real question is whether the cell can recover cleanly from interruptions, coexist with operators, and keep running without leaning on one expert every time something drifts.
 
-## Quick answer
-
-A cobot machine tending pilot is strongest when the site needs a contained first cell, the tending task is mechanically credible, and operator interaction is part of the real operating model. It is weak when the project uses the word "cobot" to avoid dealing with machine handshake logic, part presentation quality, or recovery ownership.
+A cobot machine-tending pilot is strongest when the site needs a contained first cell, the tending task is mechanically credible, and operator interaction is part of the actual operating model. It becomes weak when the project uses the word "cobot" as a shortcut around machine-handshake logic, part presentation quality, or recovery ownership.
 
 ## What the pilot should validate
 
@@ -23,9 +21,9 @@ A cobot machine tending pilot is strongest when the site needs a contained first
 - Whether operator interaction genuinely reduces deployment friction
 - How maintenance and reset procedures affect real uptime
 
-## Common trap
+## The common trap
 
-Teams often over-focus on collaborative branding and under-model machine handshake logic, guarding boundaries, and changeover behavior.
+Teams often over-focus on collaborative branding and under-model the harder parts of the job: machine handshake logic, guarding boundaries, restart behavior, and what changeovers really do to uptime. That usually produces a pilot that looks safe and approachable during demos, but still behaves like a support-heavy custom cell on the floor.
 
 ## What a credible pilot scope looks like
 
@@ -48,9 +46,9 @@ Useful pilot measures include:
 - operator and maintenance confidence after training;
 - and the amount of support still needed from controls or the integrator.
 
-## Why this pattern stays valuable
+## Why this page matters
 
-This pattern matters because many first-cell programs start here. It sits close to real machine utilization, but still looks approachable enough to win internal funding. That makes it one of the most important places to separate a healthy pilot from an attractive but misleading demo.
+This pattern stays relevant because many first-cell robotics programs start here. It sits close to real machine utilization, but still looks approachable enough to win internal funding. That combination makes it one of the easiest places for a plant to confuse a healthy pilot with an attractive demo. A useful case pattern should help the team see that difference early.
 
 ## Compare next
 

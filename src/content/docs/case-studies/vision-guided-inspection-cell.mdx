@@ -11,11 +11,9 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 # Vision-Guided Inspection Cell
 
-Inspection-oriented robotics programs often fail for reasons that are harder to see in early demos. The mechanical motion may work, but the system breaks down when image variability, reject logic, operator overrides, and evidence handling are not designed carefully.
+Inspection-oriented robotics programs often fail for reasons that are harder to see in early demos. The arm may move correctly, the camera may detect obvious defects, and the pilot may still collapse once real image variation, reject handling, operator overrides, and evidence review enter the picture.
 
-## Quick answer
-
-This case pattern is valuable when a team is deciding whether a vision-guided inspection cell is operationally credible, not just technically impressive. The right question is whether the site can manage uncertainty, evidence, and human override rules well enough to trust the inspection result in production.
+This case pattern matters when a team is trying to decide whether a vision-guided inspection cell is operationally credible, not just technically impressive. The real test is whether the site can manage uncertainty, evidence, and human override rules well enough to trust the inspection result in production.
 
 ## What matters most
 
@@ -25,7 +23,7 @@ This case pattern is valuable when a team is deciding whether a vision-guided in
 
 ## Why this pattern is valuable
 
-It forces teams to evaluate sensing and deployment as one system. A vision stack is only as useful as the workflow around it.
+It forces teams to evaluate sensing and deployment as one system. A vision stack is only as useful as the workflow around it, and that workflow usually decides whether the cell becomes a production tool or a perpetual engineering project.
 
 ## What should be validated before scale-up
 
