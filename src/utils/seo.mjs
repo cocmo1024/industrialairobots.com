@@ -16,6 +16,14 @@ const PAGE_TYPE_BY_ID = {
 	contact: 'ContactPage',
 };
 
+const NOINDEX_PAGE_IDS = new Set([
+	'advertising',
+	'affiliate-disclosure',
+	'privacy',
+	'terms-of-use',
+	'disclaimer',
+]);
+
 function toAbsoluteUrl(pathname) {
 	return new URL(pathname, `${siteMeta.siteUrl}/`).toString();
 }
@@ -93,7 +101,7 @@ function buildOrganizationNode() {
 		url: `${siteMeta.siteUrl}/`,
 		description: siteMeta.description,
 		email: siteMeta.email,
-		sameAs: [siteMeta.repoUrl],
+		sameAs: siteMeta.sameAs,
 		knowsAbout: siteMeta.keywords,
 		logo: {
 			'@type': 'ImageObject',
@@ -123,6 +131,11 @@ function buildWebsiteNode() {
 		description: siteMeta.description,
 		inLanguage: siteMeta.languageTag,
 		publisher: { '@id': `${siteMeta.siteUrl}/#organization` },
+		potentialAction: {
+			'@type': 'SearchAction',
+			target: `${siteMeta.siteUrl}/search/?q={search_term_string}`,
+			'query-input': 'required name=search_term_string',
+		},
 	};
 }
 
@@ -130,8 +143,6 @@ export function buildSeo(route, currentUrl) {
 	const title = getString(route.entry?.data?.title) ?? siteMeta.name;
 	const description = getString(route.entry?.data?.description) ?? siteMeta.description;
 	const primaryKeyword = getString(route.entry?.data?.primaryKeyword);
-	const adProfile = getString(route.entry?.data?.adProfile);
-	const commercialIntent = getString(route.entry?.data?.commercialIntent);
 	const pageKind = getPageKind(route);
 	const canonicalUrl = new URL(currentUrl.pathname, `${siteMeta.siteUrl}/`).toString();
 	const articleSection = getFirstSectionLabel(route);
@@ -163,7 +174,7 @@ export function buildSeo(route, currentUrl) {
 			: pageKind === 'section'
 				? 'CollectionPage'
 				: pageKind === 'content'
-					? 'Article'
+					? 'TechArticle'
 					: PAGE_TYPE_BY_ID[route.id] ?? 'WebPage';
 
 	const pageNode =
@@ -233,10 +244,8 @@ export function buildSeo(route, currentUrl) {
 		imageHeight: 630,
 		modifiedTime,
 		articleSection,
-		adProfile,
-		commercialIntent,
 		robots:
-			pageKind === 'not-found'
+			pageKind === 'not-found' || NOINDEX_PAGE_IDS.has(route.id)
 				? 'noindex, nofollow, noarchive, max-snippet:0, max-image-preview:none, max-video-preview:0'
 				: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
 		structuredData: [buildOrganizationNode(), buildWebsiteNode(), breadcrumbNode, pageNode].filter(

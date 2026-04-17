@@ -13,6 +13,10 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 Inspection-oriented robotics programs often fail for reasons that are harder to see in early demos. The mechanical motion may work, but the system breaks down when image variability, reject logic, operator overrides, and evidence handling are not designed carefully.
 
+## Quick answer
+
+This case pattern is valuable when a team is deciding whether a vision-guided inspection cell is operationally credible, not just technically impressive. The right question is whether the site can manage uncertainty, evidence, and human override rules well enough to trust the inspection result in production.
+
 ## What matters most
 
 - The definition of acceptable uncertainty in the inspection decision
@@ -22,6 +26,23 @@ Inspection-oriented robotics programs often fail for reasons that are harder to 
 ## Why this pattern is valuable
 
 It forces teams to evaluate sensing and deployment as one system. A vision stack is only as useful as the workflow around it.
+
+## What should be validated before scale-up
+
+A serious inspection pilot should prove:
+
+- the true source of image variation across shifts and product conditions;
+- how the system handles uncertain classifications instead of hiding them;
+- whether rejected parts can be reviewed and traced without chaos;
+- and whether operators trust the inspection outcome enough to use it correctly.
+
+## The hidden failure mode
+
+The dangerous failure mode is false confidence. A cell may appear stable because it passes nominal samples well, while still collapsing under lighting drift, contaminant buildup, fixture variation, or ambiguous edge cases. That is why inspection cells need evidence handling and review logic, not just model accuracy claims.
+
+## Why this pattern stays relevant
+
+Inspection cells keep showing up in industrial AI programs because they promise quality improvement and labor leverage at the same time. That makes them attractive, but also prone to over-claiming. A strong case-study page helps readers separate real inspection readiness from pilot-stage optimism.
 
 ## Compare next
 

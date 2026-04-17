@@ -57,12 +57,10 @@ export default defineConfig({
 					items: [
 						'about',
 						'contact',
+						'editorial-policy',
 						'privacy',
 						'terms-of-use',
 						'disclaimer',
-						'editorial-policy',
-						'advertising',
-						'affiliate-disclosure',
 					],
 				},
 			],

@@ -1,0 +1,109 @@
+---
+title: When does robot automation not make sense in a factory?
+description: A practical decision guide for recognizing when a manufacturing task is still a poor fit for robotics, even if labor pain and automation pressure are real.
+referenceType: application
+adProfile: application
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: when does robot automation not make sense
+searchIntent: learn
+decisionStage: problem-aware
+targetRoles:
+  - Plant managers
+  - Manufacturing engineers
+  - Automation leaders
+  - Operations directors
+contentStatus: cornerstone
+problemSolved: Helps teams identify when a task is still a poor robotics candidate, so they do not fund a robot cell to hide process instability or operational ambiguity.
+readerTakeaway: You should leave with a practical filter for spotting tasks that need process cleanup, fixture work, presentation control, or staffing redesign before they need a robot.
+keyQuestions:
+  - When is a manufacturing task still a poor fit for robotics?
+  - Which problems should be fixed before automation is funded?
+  - What signs show that a robot would automate instability rather than create value?
+notFor:
+  - Plants already executing a well-defined automation rollout with validated cell assumptions
+  - Readers looking for vendor comparisons before the application is stable
+updateTriggers:
+  - Recurring deployment failures in first-cell robotics programs
+  - New evidence on support burden, changeover risk, and operator recovery constraints
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# When does robot automation not make sense in a factory?
+
+Automation pressure often appears before the application is healthy enough for robotics. Labor is tight, leaders want visible modernization, and a repetitive task looks like an obvious target. The harder question is whether the task is actually stable enough to automate without turning the robot into a very expensive shock absorber for upstream disorder.
+
+## Quick answer
+
+Robot automation usually does **not** make sense when the process is still dominated by uncontrolled variation, unstable presentation, unclear ownership, or weak recovery discipline. In those cases the site often needs process cleanup, fixturing, buffering, or work redesign before it needs a robot.
+
+## The strongest warning signs
+
+The task is usually not ready when several of these are true:
+
+- incoming product orientation changes unpredictably;
+- the process has frequent undocumented exceptions;
+- operators solve problems by feel rather than by repeatable procedure;
+- the line has no agreed restart or escalation logic;
+- and maintenance does not yet own the likely fault boundary.
+
+These are not small details. They decide whether the cell creates value or creates new stoppages.
+
+## Bad reasons to automate
+
+The project is at risk when the real motivation is:
+
+- to hide chronic upstream instability;
+- to satisfy a modernization narrative without a healthy pilot scope;
+- to avoid solving presentation, fixture, or buffer design;
+- or to remove labor from a task that is still too variable to standardize.
+
+Robots amplify process truth. They do not remove the need for process truth.
+
+## When manual work is still the better answer
+
+Manual work can remain the healthier answer when:
+
+- the product mix changes faster than the site can manage recipes or tooling;
+- takt demand is real but inconsistent enough that staffing flexibility still beats fixed automation;
+- the handling task changes too often for the mechanical solution to stay stable;
+- or the site lacks the support depth to recover the cell under live conditions.
+
+That does not mean "never automate." It means "not yet, not this way, or not at this boundary."
+
+## What should be fixed before the robot discussion
+
+Before funding a robot cell, many sites should first improve:
+
+1. part or package presentation discipline;
+2. buffer behavior between process steps;
+3. fixture repeatability and machine handshakes;
+4. operator restart and escalation rules;
+5. ownership for maintenance, controls, and production response.
+
+Those changes often do more for future automation success than early vendor shortlisting.
+
+## A practical decision rule
+
+If the team cannot explain what "normal" looks like, what the most common abnormal events are, and who owns recovery on each shift, the application is not ready for robotics. The first milestone is not robot selection. The first milestone is operational clarity.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="What is the best first robot application for a mid-sized factory?"
+		href="/applications/what-is-the-best-first-robot-application-for-a-mid-sized-factory/"
+		description="Move from negative filtering into a healthier first-cell selection framework."
+	/>
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Use a stronger pilot model once the application is stable enough to justify automation."
+	/>
+	<LinkCard
+		title="Change management and maintenance readiness"
+		href="/deployment/change-management-and-maintenance-readiness/"
+		description="Check whether the site can really support a cell after install instead of only during startup."
+	/>
+</div>

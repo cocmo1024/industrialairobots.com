@@ -75,3 +75,18 @@ A useful pilot should prove:
 - whether the machine handshake logic is robust under shift conditions.
 
 If the pilot proves only nominal flow, it is under-scoped.
+
+## What usually breaks first after go-live
+
+The first real failures are usually not robot reach failures. They are:
+
+- empty or misaligned infeed positions;
+- pallets or trays that drift out of the assumed handling envelope;
+- downstream machines that do not return a clean ready / busy / fault state;
+- and local operators improvising recovery sequences under pressure.
+
+Those are operating-model failures. The robot only exposes them.
+
+## What a healthy first version looks like
+
+The healthiest early version of this application is usually narrower than teams want. It handles a smaller transfer family, a smaller set of buffer states, and a tighter recovery model than the eventual scaled system. That is not weakness. It is how the site learns whether the transfer boundary is stable enough to justify broader automation.

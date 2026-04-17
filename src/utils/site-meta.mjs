@@ -1,6 +1,7 @@
 export const siteMeta = {
 	name: 'Industrial AI Robots',
 	shortName: 'Industrial AI Robots',
+	editorialTeamName: 'Industrial AI Robots Editorial Team',
 	domain: 'industrialairobots.com',
 	siteUrl: 'https://industrialairobots.com',
 	description:
@@ -20,6 +21,10 @@ export const siteMeta = {
 	icon512Path: '/icon-512.png',
 	appleTouchIconPath: '/apple-touch-icon.png',
 	repoUrl: 'https://github.com/cocmo1024/industrialairobots.com',
+	xUrl: 'https://x.com/oocxx_com',
+	sameAs: ['https://x.com/oocxx_com'],
+	editorialMethodSummary:
+		'Pages are built from public vendor documentation, deployment patterns, technical standards language, and editorial analysis aimed at manufacturing decision-making.',
 	indexNowKey: 'c7c0317f-3864-4fb8-9520-589781c244f9',
 	keywords: [
 		'industrial robotics',

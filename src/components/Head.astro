@@ -59,6 +59,4 @@ const filteredHead = route.head.filter((entry) => {
 		content={import.meta.env.PUBLIC_YANDEX_SITE_VERIFICATION}
 	/>
 )}
-{seo.adProfile && <meta name="ad-profile" content={seo.adProfile} />}
-{seo.commercialIntent && <meta name="commercial-intent" content={seo.commercialIntent} />}
 <script type="application/ld+json" is:inline set:html={JSON.stringify(seo.structuredData)} />

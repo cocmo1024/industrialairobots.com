@@ -1,5 +1,6 @@
 ---
 type RouteData = Record<string, unknown>;
+import { siteMeta } from '../utils/site-meta.mjs';
 type Signal = {
 	label: string;
 	value: string | string[];
@@ -50,6 +51,8 @@ const updateTriggers =
 		: [];
 
 const signals = [
+	{ label: 'Created By', value: siteMeta.editorialTeamName },
+	{ label: 'Method', value: siteMeta.editorialMethodSummary },
 	typeof data.problemSolved === 'string' && { label: 'Problem Solved', value: data.problemSolved },
 	typeof data.readerTakeaway === 'string' && { label: 'Reader Outcome', value: data.readerTakeaway },
 	typeof data.primaryKeyword === 'string' && { label: 'Primary Keyword', value: data.primaryKeyword },

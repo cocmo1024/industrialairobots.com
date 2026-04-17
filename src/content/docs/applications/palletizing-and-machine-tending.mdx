@@ -9,6 +9,12 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 These use cases often appear together in automation planning conversations, but they stress the system in different ways. Palletizing usually emphasizes payload, reach, throughput consistency, and end-of-line logistics. Machine tending adds more interaction with upstream and downstream equipment, variable part presentation, and cycle timing dependencies.
 
+## Quick answer
+
+If the manufacturing job is repetitive, end-of-line, and governed mainly by package handling and pallet pattern rules, the project often behaves like palletizing. If the robot has to interact tightly with machine states, fixtures, part presentation, and cycle timing, it behaves like machine tending.
+
+That distinction matters because the hidden failure points are different. Palletizing fails when package behavior, pallet quality, and recovery logic are underestimated. Machine tending fails when part presentation, machine handshakes, and restart discipline are weaker than the demo implied.
+
 ## Palletizing usually emphasizes
 
 - Reach, payload, and stack pattern reliability.
@@ -20,6 +26,42 @@ These use cases often appear together in automation planning conversations, but 
 - Part presentation and fixture variability.
 - Machine handshake logic, safety integration, and uptime sensitivity.
 - A tighter interaction between the cell and surrounding equipment.
+
+## What teams get wrong when they compare them
+
+The common mistake is to treat both as generic "pick and place" automation. That hides the fact that one application is often dominated by material flow and pattern stability, while the other is dominated by interface discipline and recovery time.
+
+Questions that usually separate the two:
+
+1. Does the robot mainly manage packages and pallet rules, or does it manage machine interaction?
+2. Is the hardest problem geometric reach, or controlled exchange with another process?
+3. Is variation mostly in the load, or in the machine-side part presentation and state logic?
+
+## When palletizing is usually the healthier first project
+
+Palletizing is often the better first robotics path when:
+
+- labor pain is real and repetitive at end of line;
+- case or bag behavior is manageable enough for repeatable pickup and placement;
+- pallet quality and pattern rules are known;
+- and the plant needs value from a contained cell before attempting tighter machine integration.
+
+## When machine tending creates more upside
+
+Machine tending can create more strategic value when:
+
+- spindle or machine utilization matters more than pure end-of-line labor;
+- the robot can protect expensive equipment uptime;
+- part handoff and cycle timing are stable enough to standardize;
+- and the site is prepared to own the higher integration and support burden.
+
+## Poor fit assumptions
+
+Neither path is healthy if the robot is expected to hide uncontrolled upstream variation. A robot cell is not a substitute for basic presentation discipline, buffer logic, or restart ownership.
+
+## Move next based on the application
+
+Once this split is clear, the next step is not vendor comparison. The next step is to go deeper into the application, then test robot-class fit, cell layout, and deployment burden against the real manufacturing boundary.
 
 ## Compare next
 

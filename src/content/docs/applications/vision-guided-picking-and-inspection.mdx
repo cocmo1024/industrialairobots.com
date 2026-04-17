@@ -55,6 +55,21 @@ The most common failure patterns include:
 
 When those problems appear, throughput often drops long before the robot itself becomes the bottleneck.
 
+## When this application is usually worth the complexity
+
+This application is usually justified when one cell can remove a meaningful inspection burden or picking burden that operators currently absorb through slow, inconsistent manual judgment. It is less attractive when the site is only bundling inspection into the project because it sounds strategic.
+
+## What should stay simple in version one
+
+Healthy first versions usually simplify at least one of these:
+
+- the number of product states the model must classify;
+- the geometry the robot must pick from;
+- the escalation rule for low-confidence outcomes;
+- the amount of downstream workflow that depends on a perfect automated decision.
+
+That restraint often makes the difference between a useful first system and a stalled science project.
+
 ## How to scope the first deployment
 
 Strong first deployments usually narrow the problem:

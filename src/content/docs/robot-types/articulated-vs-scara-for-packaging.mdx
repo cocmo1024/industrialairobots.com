@@ -13,6 +13,10 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 Packaging environments often invite simplistic robot comparisons. In reality, the correct choice depends on product presentation, motion profile, footprint, cadence stability, and how much variability lives upstream or downstream of the robot.
 
+## Quick answer
+
+SCARA robots usually win when the packaging task stays in a disciplined plane, the footprint is tight, and speed matters more than reach flexibility. Articulated robots usually win when the cell has to tolerate more geometry variation, multiple pickup or drop positions, or a broader handling envelope over time.
+
 ## Articulated robots tend to fit when
 
 - Reach flexibility matters more than minimal footprint
@@ -24,6 +28,25 @@ Packaging environments often invite simplistic robot comparisons. In reality, th
 - The motion envelope is tighter and more repeatable
 - Speed and compactness matter more than broad reach geometry
 - The work can stay within a disciplined operating plane
+
+## What teams underestimate
+
+The robot comparison only makes sense if the packaging task itself is well defined. Teams often compare arm geometry before defining:
+
+- whether products arrive consistently;
+- whether the robot must serve one position or several;
+- how much reorientation is required;
+- and how often the cell recipe or SKU envelope changes.
+
+If those are still moving targets, the robot comparison is premature.
+
+## A practical decision rule
+
+Choose SCARA first when the packaging motion is short, planar, highly repeatable, and physically constrained. Choose articulated first when the cell has to absorb layout complexity, reach around equipment, or support a wider future operating envelope without immediate redesign.
+
+## Where teams choose the wrong one
+
+Teams tend to choose the wrong platform when they buy for a demo motion instead of the full packaging boundary. That usually means buying SCARA where future geometry will expand, or buying articulated where the real job would have benefited more from planar speed and compactness.
 
 ## Compare next
 

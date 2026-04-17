@@ -13,6 +13,10 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 This pattern fits environments where management wants an accessible robotics pilot, but the real question is not whether a cobot can move parts. The real question is whether the cell can recover cleanly from interruptions, coexist with operators, and maintain uptime without hidden support burden.
 
+## Quick answer
+
+A cobot machine tending pilot is strongest when the site needs a contained first cell, the tending task is mechanically credible, and operator interaction is part of the real operating model. It is weak when the project uses the word "cobot" to avoid dealing with machine handshake logic, part presentation quality, or recovery ownership.
+
 ## What the pilot should validate
 
 - How parts are presented and recovered when upstream variation appears
@@ -22,6 +26,31 @@ This pattern fits environments where management wants an accessible robotics pil
 ## Common trap
 
 Teams often over-focus on collaborative branding and under-model machine handshake logic, guarding boundaries, and changeover behavior.
+
+## What a credible pilot scope looks like
+
+A credible scope usually includes:
+
+- a defined part family instead of an artificially easy sample part;
+- realistic machine stop, door, and ready-state behavior;
+- operator recovery drills for the most common stoppages;
+- and a support model that still works after the integrator leaves.
+
+If the pilot only proves arm motion and normal-cycle handling, it is not yet proving rollout health.
+
+## What should be measured
+
+Useful pilot measures include:
+
+- sustained cycle impact on the machine, not just robot motion speed;
+- intervention frequency per shift;
+- time to recover the most common faults;
+- operator and maintenance confidence after training;
+- and the amount of support still needed from controls or the integrator.
+
+## Why this pattern stays valuable
+
+This pattern matters because many first-cell programs start here. It sits close to real machine utilization, but still looks approachable enough to win internal funding. That makes it one of the most important places to separate a healthy pilot from an attractive but misleading demo.
 
 ## Compare next
 
