@@ -36,8 +36,6 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 Machine tending pilots often look successful because the robot ran a repeatable cycle on a good day. That is not enough. A scale-worthy pilot needs KPIs that show whether the cell can survive real variation, operator interaction, machine interruptions, and maintenance handoffs. If the KPI set is weak, leadership gets a false sense of confidence and the rollout absorbs problems that should have been caught while the pilot was still cheap to adjust.
 
-## Quick answer
-
 Good pilot KPIs do not just prove that the robot can move. They prove that the **cell can keep working** under realistic production conditions. The strongest KPI sets usually cover five areas:
 
 - utilization impact;
@@ -69,6 +67,17 @@ Pilot KPIs should help answer:
 - whether the next rollout step should expand scope or tighten it.
 
 This makes KPI selection a deployment decision, not a reporting exercise.
+
+## Why dashboard-friendly metrics are often the wrong ones
+
+The easiest metrics to show on a dashboard are often the least useful for rollout decisions. Cycle time, part count, and hours run can all look healthy while the cell is quietly depending on:
+
+- too much manual intervention;
+- too much engineering attention;
+- too much tolerance for unstable recoveries;
+- or too much optimism about the real changeover burden.
+
+That is why the KPI set has to be uncomfortable enough to reveal operational weakness, not just polished enough to support a presentation.
 
 ## The five KPI groups that matter most
 

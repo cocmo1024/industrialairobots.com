@@ -36,8 +36,6 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 The first robot cell can look successful and still hide the exact issues that break the rollout later. When there is only one cell, skilled people can absorb weak maintenance planning with extra attention. Once there are several cells, that informal support model collapses. Scale-up depends as much on support readiness as on application fit.
 
-## Quick answer
-
 A plant is not ready to scale robot cells just because the first cell hits cycle time. It is ready when it has a support model for spare parts, recovery ownership, maintenance training, fault triage, and change control that can survive multiple cells without depending on a handful of experts.
 
 ## What this page is for
@@ -59,6 +57,17 @@ The first cell can hide problems because:
 - operators tolerate awkward recovery steps during the pilot.
 
 Those conditions disappear as rollout broadens. A program that depends on them is not yet mature.
+
+## Why support breaks before application logic does
+
+Teams often assume that if the first cell can run, the bigger challenge is just building more copies. In practice, support usually breaks first. The reasons are predictable:
+
+- fault triage starts bouncing between production, maintenance, controls, and the integrator;
+- spare-parts lists were written once, but never tested against real failures;
+- configuration changes begin drifting from one cell to another;
+- and shift teams start escalating routine issues because no one defined where ownership stops.
+
+That is why scale-up is not just an engineering multiplication problem. It is an operating-model problem.
 
 ## The support model that must exist
 
@@ -108,6 +117,18 @@ One of the most common failures is assuming the first cell's informal experts ca
 - change discipline between cells and sites.
 
 Without those, every new cell increases operational risk faster than it increases value.
+
+## What a plant should audit before adding another cell
+
+Before approving another rollout wave, the site should audit:
+
+- the top recurring faults from the first cell and who actually resolved them;
+- which spare parts were truly critical and which ones were overstocked out of fear;
+- how often maintenance needed outside support;
+- whether software or recipe changes were being governed consistently;
+- and whether second- and third-shift support looked materially different from day shift.
+
+That audit is usually more valuable than another polished ROI deck.
 
 ## What scale-ready maintenance looks like
 
