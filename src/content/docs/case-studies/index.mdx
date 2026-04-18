@@ -7,6 +7,8 @@ commercialIntent: high
 reviewCadence: Quarterly review
 ---
 
+import { LinkCard } from '@astrojs/starlight/components';
+
 # Case Studies
 
 Case-study pages convert deployment patterns into reusable decision support. The goal is not to glamorize automation projects, but to show where scope, variability, sensing, handoffs, and adoption determine whether a robotics rollout actually succeeds.
@@ -25,7 +27,28 @@ A strong case-study page should help a reader answer questions such as:
 - Pilot designs that exposed the right operational risks early
 - Rollouts where robot type or sensing strategy changed the result
 - Cell patterns that improved or harmed scale-up economics
+- Packaging and palletizing rollouts where staging, recovery, and line volatility decide whether the first cell survives
 
 ## How to use case-study pages
 
 Use these pages to stress-test assumptions from application, robot-type, and deployment research before turning a concept into a funded project.
+
+## Start here
+
+<div class="portal-links">
+	<LinkCard
+		title="Mixed-case palletizing rollout"
+		href="/case-studies/mixed-case-palletizing-rollout-for-volatile-packaging-lines/"
+		description="A packaging rollout pattern for seeing where upstream volatility and weak recovery rules show up after go-live."
+	/>
+	<LinkCard
+		title="Cobot machine tending pilot"
+		href="/case-studies/cobot-machine-tending-pilot/"
+		description="A contained first-cell pattern where machine handshake, recovery, and operator reality matter more than demo simplicity."
+	/>
+	<LinkCard
+		title="Vision-guided inspection cell"
+		href="/case-studies/vision-guided-inspection-cell/"
+		description="A case pattern for inspection cells where evidence review and uncertainty handling decide whether the pilot scales."
+	/>
+</div>

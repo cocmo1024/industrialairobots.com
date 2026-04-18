@@ -1,0 +1,101 @@
+---
+title: Mixed-Case Palletizing Rollout for Volatile Packaging Lines
+description: A case-study pattern for palletizing projects where SKU churn, unstable infeed, and packaging variation decide whether the first successful demo can survive real production.
+referenceType: case-study
+adProfile: case-study
+commercialIntent: high
+reviewCadence: Quarterly review
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Mixed-Case Palletizing Rollout for Volatile Packaging Lines
+
+Mixed-case palletizing projects often look stronger in the proposal stage than they feel six weeks after go-live. The robot can usually stack cases. The real problem is whether the line can feed it a stable enough stream, whether pattern logic can keep up with SKU churn, and whether operators can recover without turning every shift into a packaging support exercise.
+
+This case-study pattern matters because many packaging plants do not struggle with one dramatic automation failure. They struggle with a steady stream of small disruptions: wrong-case sequencing, soft cartons, half-clean changeovers, label-side inconsistency, and pallet rules that live in one supervisor's head. A rollout survives only when those realities are treated as core design inputs.
+
+## What usually pushes the plant into this project
+
+Most sites get here after one of three repeated pain patterns:
+
+- operators are spending too much time rebuilding pallets after upstream drift;
+- manual palletizing can no longer keep up once SKU variety and customer-specific loads increase;
+- the line technically runs, but late-shift pallet quality and recovery discipline are inconsistent enough to create customer risk.
+
+Those are useful triggers because they point at operational pain, not just automation ambition.
+
+## What the first promising demo usually hides
+
+The demo rarely shows:
+
+- what happens when case spacing drifts after a minor jam;
+- how often one odd package family changes the gripper or pattern logic burden;
+- how much line rate gets lost when operators must confirm or override pattern recovery;
+- whether the packaging team and controls team agree on who owns bad sequence conditions.
+
+That gap between demo behavior and line behavior is why rollout discipline matters more than a clean sample pallet.
+
+## The floor conditions that usually decide the outcome
+
+In real packaging environments, the robot inherits more than cases. It inherits:
+
+- accumulation behavior from cartoners, wrappers, or case sealers upstream;
+- mixed case condition caused by rushed replenishment or operator intervention;
+- load-pattern changes driven by customer rules rather than engineering simplicity;
+- downstream pressure from pallet wrappers, labelers, or fork-truck timing.
+
+If the project is scoped as "robot plus pattern software," it is usually missing half the real system.
+
+## What a healthy rollout actually proves
+
+A rollout is healthier when the first cell proves:
+
+- the line can maintain a stable enough case stream across normal changeovers;
+- pattern logic can be updated without turning every new SKU into a controls project;
+- recovery steps are simple enough that operators do not avoid using them;
+- pallet quality remains acceptable during shift transitions, not only during supervised day runs.
+
+Those signals matter more than the cleanest hourly throughput number from a supervised trial.
+
+## Where support burden usually spikes
+
+The support spike often appears in one of these places:
+
+- a few package families create most of the unstable picks or placements;
+- line supervisors override sequence rules differently by shift;
+- manual fallback exists, but only works with extra labor the line does not actually have;
+- pattern or recipe updates remain too dependent on the original integrator.
+
+That is why the first rollout should be narrower than the eventual vision. It is better to prove a smaller stable system than to install a broad fragile one.
+
+## What managers should ask before approving another cell
+
+Before expanding to another line, management should ask:
+
+- Which SKU families generated most of the recovery time?
+- Did off-shift pallet quality match day-shift quality?
+- Can pattern updates be handled internally without waiting for project engineering?
+- Did the line lose more time to sequence and presentation issues than anyone expected?
+
+If those questions still lead to guesswork, the site is not yet scaling a system. It is scaling optimism.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="End-of-line palletizing for mixed-case operations"
+		href="/applications/end-of-line-palletizing-for-mixed-case-operations/"
+		description="Use the application page to pressure-test whether the line should automate the mixed-case boundary at all."
+	/>
+	<LinkCard
+		title="Infeed buffering and product staging"
+		href="/cell-design/infeed-buffering-and-product-staging-for-robot-cells/"
+		description="See why packaging cells fail when staging and buffer rules are treated as an afterthought."
+	/>
+	<LinkCard
+		title="FAT, SAT, and runoff criteria"
+		href="/deployment/fat-sat-runoff-and-acceptance-criteria-for-robot-cells/"
+		description="Connect rollout quality to what the project actually proves before and after shipment."
+	/>
+</div>

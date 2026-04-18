@@ -1,0 +1,135 @@
+---
+title: FAT, SAT, Runoff, and Acceptance Criteria for Robot Cells
+description: A practical guide for deciding what a robot cell must prove before shipment, at site, and during early production so acceptance does not become wishful thinking.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: FAT SAT runoff acceptance criteria for robot cells
+searchIntent: deploy
+decisionStage: implementation
+targetRoles:
+  - Automation managers
+  - Plant engineers
+  - Manufacturing leaders
+  - Systems integrators
+contentStatus: growing
+problemSolved: Helps teams define factory acceptance, site acceptance, and runoff criteria so the project proves the right things before full handoff.
+readerTakeaway: You should leave with a clearer split between what belongs in FAT, what must wait for SAT, and what only real runoff can validate.
+keyQuestions:
+  - What should a robot cell prove at FAT versus SAT?
+  - Which acceptance criteria are usually too weak or too early?
+  - What should the first production runoff measure before the cell is considered stable?
+notFor:
+  - Concept-only discussions with no project scope
+  - Teams looking only for contractual language without operational intent
+updateTriggers:
+  - New rollout lessons around acceptance testing and post-install runoff
+  - Changes in how integrators or OEMs structure validation and handoff
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# FAT, SAT, Runoff, and Acceptance Criteria for Robot Cells
+
+Many robot projects start slipping long before anyone says the word "delay." The real problem is often that FAT, SAT, and runoff are proving different things in different people's heads. Engineering thinks the cell has already succeeded because the core motion works. Operations thinks the cell is still unproven because recovery and staffing are not stable. Management hears both messages and assumes the last mile is minor. It rarely is.
+
+This page exists to separate those phases clearly. A healthy project proves the right things at the factory, the right things on site, and the right things only under real production runoff.
+
+## What each phase is actually for
+
+The clean split usually looks like this:
+
+| Phase | What it should prove |
+| --- | --- |
+| FAT | Core sequence, safety logic, major interfaces, and the basic designed behavior |
+| SAT | Site integration, utilities, line interfaces, access, and installation-specific interactions |
+| Runoff | Production reality: staffing, recovery, uptime drift, material behavior, and shift-level consistency |
+
+Projects get into trouble when they try to declare victory too early by asking FAT to stand in for everything else.
+
+## What does not belong in FAT
+
+FAT is usually the wrong place to make final claims about:
+
+- real shift throughput on unstable upstream flow;
+- operator recovery in a crowded production area;
+- maintenance response under live scheduling pressure;
+- packaging or part behavior after full-site environmental variation shows up.
+
+Those things may be previewed at FAT, but they are not fully proven there.
+
+## What usually belongs in FAT
+
+Strong FAT criteria usually include:
+
+- stable execution of the agreed sequence set;
+- correct safety-state transitions;
+- interface checks with simulated or available equipment signals;
+- evidence that common faults are detected and handled as designed;
+- enough visibility that the plant understands what remains unproven until site and runoff.
+
+Good FAT is honest. It proves what can be proven in a controlled environment and refuses to pretend that factory conditions equal production conditions.
+
+## What SAT should make visible
+
+SAT should focus on what changed because the cell is now on the real floor:
+
+- utilities and network reality;
+- line-side access and material approach paths;
+- timing with actual upstream and downstream assets;
+- what maintenance and operators can do without the integrator standing beside them.
+
+The point is not to rerun FAT. The point is to expose site-specific friction while the project can still react deliberately.
+
+## Why runoff is the real credibility test
+
+Runoff is where the project stops being a machine and starts becoming a production system. This is where teams finally see:
+
+- whether off-shift behavior is materially different from day shift;
+- whether recovery rules hold when schedule pressure rises;
+- which "rare" conditions actually happen several times per week;
+- whether the support model is real or only project-team heroics.
+
+If the cell cannot survive runoff honestly, the earlier acceptance stages were not wrong. They were incomplete.
+
+## Weak acceptance criteria usually share the same flaw
+
+Weak criteria often:
+
+- overfocus on nominal cycle behavior;
+- ignore who performs recovery and under what conditions;
+- avoid defining acceptable drift during the first production weeks;
+- leave too much room for one side to claim success while the other side is still absorbing pain.
+
+That is why acceptance criteria should be written around operating reality, not around whichever phase is easiest to pass.
+
+## What a better acceptance stack looks like
+
+A better stack usually says:
+
+1. FAT proves the designed system works as built.
+2. SAT proves the system still works when connected to the real plant.
+3. Runoff proves the system can survive production conditions with the actual people who will own it.
+
+That structure is harder to oversell and much easier to govern.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="ROI and pilot design"
+		href="/deployment/roi-and-pilot-design/"
+		description="Use pilot logic to decide what the project must prove before the handoff story sounds believable."
+	/>
+	<LinkCard
+		title="Production ramp plans and containment rules"
+		href="/deployment/production-ramp-plans-and-containment-rules-after-robot-go-live/"
+		description="Connect acceptance criteria to what still has to be contained after the cell enters production."
+	/>
+	<LinkCard
+		title="Mixed-case palletizing rollout"
+		href="/case-studies/mixed-case-palletizing-rollout-for-volatile-packaging-lines/"
+		description="See how weak acceptance boundaries usually surface during a volatile packaging rollout."
+	/>
+</div>
