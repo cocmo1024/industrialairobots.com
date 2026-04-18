@@ -58,6 +58,12 @@ The challenge is rarely only the robot trajectory. It is the operating model aro
 
 Without discipline around those inputs, the robot becomes the visible part of a poorly governed assembly-support process.
 
+## What the work often looks like before automation
+
+Plants usually arrive at this application after living with one of two pain patterns for a long time. The first is a kitting area where a few experienced operators can still keep up, but only by memorizing part families, tolerating frequent small shortages, and recovering from pick mistakes informally. The second is an assembly-support area where material handlers are constantly re-sorting bins, relabeling totes, or walking missing parts back upstream because the kit quality is too dependent on individual attention.
+
+That context matters. A robotic cell is not replacing a clean, perfectly defined process. It is usually entering a zone where tribal knowledge has been hiding the real failure modes for years.
+
 ## What must be true before the cell is viable
 
 The application is usually a fit when:
@@ -95,6 +101,17 @@ High-mix teams often assume that better vision solves everything. In practice, v
 
 When the plant expects vision to rescue chaotic presentation, the project usually underperforms.
 
+## The operational details that decide whether the cell survives
+
+The projects that hold up in production usually have a few unglamorous things in place:
+
+- replenishment rules that keep mixed parts from arriving in random container conditions;
+- clear ownership of kit verification when the cell cannot confirm a part confidently;
+- part-family boundaries that reflect real handling behavior instead of ERP naming;
+- supervisors who agree on what should trigger fallback to manual work instead of forcing every edge case through automation.
+
+Those decisions sound procedural, but they determine whether the robot behaves like a production asset or like a technically impressive sorter that needs constant babysitting.
+
 ## What pilots should prove
 
 A useful pilot should prove:
@@ -118,6 +135,8 @@ These deployments often fail because:
 - exception handling becomes a hidden full-time human job.
 
 Those are not robot-motion problems. They are operating-model problems.
+
+One of the most common misses is that management treats every bin-picking success rate the same. A missed pick on a low-pressure replenishment cell is inconvenient. A missed pick on a sequenced kitting cell that feeds final assembly can trigger rechecks, shortages, line waiting, and finger-pointing across shifts. The economics change fast when the miss affects kit confidence instead of only cycle time.
 
 ## Implementation checklist
 

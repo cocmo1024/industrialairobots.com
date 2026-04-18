@@ -21,6 +21,16 @@ A cobot machine-tending pilot is strongest when the site needs a contained first
 - Whether operator interaction genuinely reduces deployment friction
 - How maintenance and reset procedures affect real uptime
 
+## What this usually looks like on the floor
+
+In practice, this kind of pilot often shows up around one or two CNC assets with enough idle time to make loading labor visible but not enough complexity to justify a larger fenced system on day one. Typical examples include:
+
+- a vertical machining center loading one stable part family from trays or vises;
+- a twin-door lathe where one operator is currently walking between machines;
+- a small machining cell where operators already perform deburr, inspection, and load/unload work in the same area.
+
+The operational details matter more than the label "cobot." Coolant splash, chip carryover, part orientation, chuck confirmation, and what happens when a finished part sticks in the gripper often decide whether the pilot remains manageable.
+
 ## The common trap
 
 Teams often over-focus on collaborative branding and under-model the harder parts of the job: machine handshake logic, guarding boundaries, restart behavior, and what changeovers really do to uptime. That usually produces a pilot that looks safe and approachable during demos, but still behaves like a support-heavy custom cell on the floor.
@@ -36,6 +46,17 @@ A credible scope usually includes:
 
 If the pilot only proves arm motion and normal-cycle handling, it is not yet proving rollout health.
 
+## The machine-side details that make or break the pilot
+
+In a real plant, the pilot usually succeeds or fails at a few very specific boundaries:
+
+- whether the machine exposes clear cycle-complete, door-open, and part-clamped states;
+- whether the incoming part has a repeatable handoff condition instead of a loosely managed tray;
+- whether chip buildup or coolant contamination changes pickup reliability over a full shift;
+- whether the operator can clear the top two stoppages without waiting for controls or integrator help.
+
+That is why the best first pilot is usually narrower than management expects. It should be small enough to understand, but real enough to surface those machine-side details.
+
 ## What should be measured
 
 Useful pilot measures include:
@@ -45,6 +66,8 @@ Useful pilot measures include:
 - time to recover the most common faults;
 - operator and maintenance confidence after training;
 - and the amount of support still needed from controls or the integrator.
+
+Useful context behind those metrics also matters. For example, if intervention frequency rises only during fixture changeover or only when the tray is half-empty, that tells the team much more than a blended weekly average.
 
 ## Why this page matters
 

@@ -52,6 +52,12 @@ The value is usually not the robot alone. It is the combination of:
 
 If the surrounding material flow is still unstable, the robot mostly exposes that instability faster.
 
+## Where these projects usually start hurting
+
+Plants usually look at this application after operators have spent years wrestling with a task that seems too simple to deserve engineering attention. Empty pallets arrive with mixed quality, slip sheets cling together in humid conditions, and the line loses a little time many times per shift while someone clears a pickup fault or walks to a pallet magazine. None of those moments looks dramatic in isolation. Together they create the business case.
+
+That is also why these projects are easy to misjudge. A short demo with clean pallets and fresh separator stacks tells very little about what happens after weeks of damaged corners, inconsistent replenishment, and rushed line restarts.
+
 ## What makes the application harder than it looks
 
 Teams often underestimate:
@@ -62,6 +68,17 @@ Teams often underestimate:
 - recovery behavior when two pallets are pulled together.
 
 These are not edge cases. They are core application risks.
+
+## The floor-level details that usually decide uptime
+
+In production, the headache is rarely the robot path itself. It is usually one of these:
+
+- pallet stacks that lean enough to change pickup approach without technically "failing" incoming inspection;
+- separator material that behaves differently on dry winter shifts versus humid summer shifts;
+- operators replenishing magazines with mixed pallet conditions because the line is already under pressure;
+- downstream equipment recovering on a different timeline than the pallet feed cell.
+
+When teams talk only about payload and reach, they usually miss the actual uptime drivers.
 
 ## The design questions that matter most
 
@@ -85,6 +102,8 @@ A credible first rollout usually includes:
 
 That is how the application becomes repeatable.
 
+For beverage, corrugate, tissue, food, and other packaging environments, the better first rollout is usually narrower than leadership wants. It often means one pallet family, one separator style, and a transfer point where the consequences of a bad pick are obvious and measurable. Plants that start broader often learn the same lesson later, only with more support burden attached.
+
 ## Failure modes to watch
 
 The cell is usually underdesigned when:
@@ -95,6 +114,8 @@ The cell is usually underdesigned when:
 - or the downstream equipment cannot tolerate timing variation.
 
 In those cases, the robot is blamed for a material-flow problem.
+
+Another recurring miss is underestimating what "manual fallback" actually means. If fallback requires two operators, a forklift pause, or a long reset while the magazine is restacked, then the cell is not truly resilient. It only looks resilient on paper.
 
 ## What to read next
 

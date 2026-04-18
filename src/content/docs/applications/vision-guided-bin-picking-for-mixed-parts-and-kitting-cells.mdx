@@ -40,6 +40,16 @@ It is usually a poor fit when:
 
 The wrong decision is often not "using vision." It is trying to automate a parts-presentation problem with perception alone.
 
+## What this usually means in real factories
+
+On the floor, bin-picking projects tend to appear in a few recurring settings:
+
+- assembly kitting cells where operators currently sort fasteners, fittings, brackets, or stamped parts by hand;
+- machining or fabrication support cells where mixed finished parts are staged into downstream kits;
+- low-to-medium volume lines where the plant wants labor relief but cannot justify a fully dedicated feeder for every part.
+
+Those environments sound similar, but they create very different physical problems. Small matte metal parts behave differently from reflective machined parts, tangled wire forms, soft molded components, or oil-coated stampings. A useful bin-picking page has to keep those material realities visible.
+
 ## Why this page matters
 
 Bin picking sits in a dangerous part of the robotics market:
@@ -83,6 +93,8 @@ If the cell only works in the top half of the bin, it does not really work.
 
 A cell that occasionally misses is not automatically bad. A cell that misses in ways operators cannot recover cleanly is operationally dangerous.
 
+That is especially true in kitting cells. If a failed pick blocks the station, scrambles part counts, or forces the operator to re-verify an entire kit, the cost of the miss is much larger than the missed pick itself.
+
 ## What teams underestimate
 
 Teams often underestimate:
@@ -94,6 +106,15 @@ Teams often underestimate:
 - and the time spent deciding what the robot should do when no good pick is available.
 
 Those decisions usually matter more than the abstract question of whether the camera model is advanced enough.
+
+Teams also underestimate the last 20 percent of the bin. Many systems look acceptable when the container is full and the top layer is easy to access. The hard part often starts later:
+
+- parts nest together;
+- reflective surfaces create noisier views;
+- grasp points disappear;
+- the bin edge or dunnage starts affecting motion paths.
+
+If the cell only performs well in the first half of the bin, the process boundary is still wrong.
 
 ## When a simpler path is better
 

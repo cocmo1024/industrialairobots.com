@@ -21,6 +21,16 @@ This case pattern matters when a team is trying to decide whether a vision-guide
 - How false rejects and false accepts are handled operationally
 - Whether the cell produces usable evidence instead of opaque automation behavior
 
+## Where these cells usually appear
+
+On the floor, vision-guided inspection cells usually show up in a handful of recurring situations:
+
+- end-of-line packaging checks where label presence, print quality, or seal condition matter;
+- electronics or precision assembly steps where orientation, missing features, or cosmetic defects drive rework;
+- machined or molded-part cells where a robot is already handling the part and inspection is added to the same work envelope.
+
+Each environment creates a different evidence burden. A packaging line may care most about rapid reject handling and line-rate continuity. A precision assembly line may care more about traceability, repeat review, and how uncertain images are escalated.
+
 ## Why this pattern is valuable
 
 It forces teams to evaluate sensing and deployment as one system. A vision stack is only as useful as the workflow around it, and that workflow usually decides whether the cell becomes a production tool or a perpetual engineering project.
@@ -34,9 +44,13 @@ A serious inspection pilot should prove:
 - whether rejected parts can be reviewed and traced without chaos;
 - and whether operators trust the inspection outcome enough to use it correctly.
 
+The plant should also know what happens after the camera says "reject." Is the part diverted automatically? Does an operator review an image? Is there a hold bin? Does the MES or quality system receive the event? Those process questions are often more important than a headline accuracy number.
+
 ## The hidden failure mode
 
 The dangerous failure mode is false confidence. A cell may appear stable because it passes nominal samples well, while still collapsing under lighting drift, contaminant buildup, fixture variation, or ambiguous edge cases. That is why inspection cells need evidence handling and review logic, not just model accuracy claims.
+
+Another common failure mode is review overload. Teams build a cell that can flag uncertain parts, but never define how many uncertain events per shift are acceptable or who owns that queue. In production, the result is either blind acceptance or a growing pile of unresolved exceptions.
 
 ## Why this pattern stays relevant
 

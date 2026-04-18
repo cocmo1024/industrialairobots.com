@@ -67,6 +67,17 @@ The robot does not only need to pick and place. It needs to survive:
 
 These are process and packaging realities, not just robot issues.
 
+## The line conditions that usually matter most
+
+This application often sits at the end of a line that already has upstream pressure from flow wrappers, baggers, thermoformers, cartoners, or manual infeed accumulation. That means the robot cell does not only inherit product variation. It inherits:
+
+- bursty infeed when upstream equipment clears a minor jam;
+- unstable product spacing after operator intervention;
+- trays or cartons that are technically in spec but inconsistent enough to change pickup feel;
+- and downstream pressure from palletizing, checkweighing, or case sealing that limits how long recovery can take.
+
+If the cell is evaluated without that surrounding line behavior, the project is usually being judged in an unrealistically clean environment.
+
 ## What must be true before the cell is viable
 
 The application is usually a fit when:
@@ -88,6 +99,8 @@ The pilot should prove:
 - maintenance burden from EOAT, sensors, and change parts;
 - whether the economics still hold once realistic exception time is included.
 
+For mixed snack, bakery, ready-meal, personal-care, or multipack consumer lines, one of the most useful pilot questions is whether format families can be grouped into a small number of reliable handling patterns. If not, the line may still need packaging discipline before it needs more robot sophistication.
+
 If these are unresolved, scaling is premature.
 
 ## Common failure modes
@@ -99,6 +112,8 @@ These cells usually disappoint when:
 - EOAT complexity grows faster than expected;
 - the operator becomes the hidden recovery engine every shift;
 - upstream presentation problems are left in place and pushed onto the robot.
+
+Another frequent miss is underestimating change-parts and clean-down reality. A tray-loading cell that looks acceptable in a short run can become expensive quickly if every SKU family adds more tool parts, more sensor reteach, or more sanitation downtime.
 
 ## Implementation checklist
 
