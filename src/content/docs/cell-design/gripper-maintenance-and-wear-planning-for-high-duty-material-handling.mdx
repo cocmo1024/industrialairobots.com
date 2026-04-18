@@ -32,8 +32,6 @@ updateTriggers:
 
 Many cells fail slowly, not dramatically. The gripper works on day one, then vacuum cups wear, fingers drift, pads harden, seals leak, and alignment slips. The robot is still technically operating, but throughput, pickup confidence, and recovery time all degrade until operations stop trusting the cell.
 
-## Quick answer
-
 High-duty handling cells need EOAT planning that covers:
 
 - consumable replacement frequency;
@@ -54,6 +52,17 @@ They under-plan:
 
 These are not maintenance details added later. They are part of the cell design.
 
+## Why wear planning changes the economics of the cell
+
+EOAT wear is easy to underestimate because it rarely appears as a line item big enough to scare a project team. The real cost shows up later:
+
+- unstable pickup quality that quietly drags cycle performance down;
+- more nuisance faults that operators start working around instead of escalating;
+- maintenance time spent re-tuning a tool that was never meant to be serviced quickly;
+- and spare-part delays that turn a simple wear item into an avoidable production outage.
+
+That is why the better question is not "How long do these cups or fingers last?" It is "What happens to production when they do not?"
+
 ## What a maintainable EOAT design should provide
 
 | Requirement | Why it matters |
@@ -69,6 +78,18 @@ The question is not whether wear will happen. It is whether the cell can survive
 
 Choose the gripper that wins under maintenance reality, not just peak performance. A slightly less elegant EOAT that is faster to inspect, clean, and reset is often the stronger production design.
 
+## What teams should specify before procurement closes
+
+By the time EOAT hardware is frozen, the plant should already know:
+
+- which parts of the tool are consumable and which are structural;
+- which maintenance actions can be done on shift and which require planned downtime;
+- how long a normal service event should take;
+- what alignment or reteach steps are needed after service;
+- and whether the same consumables will be stocked at every future rollout site.
+
+If those details are left until commissioning, the cell usually enters production with a tool that works, but is not yet supportable.
+
 ## What should exist before go-live
 
 Before launch, the site should already know:
@@ -79,3 +100,14 @@ Before launch, the site should already know:
 - and which spare parts need to be local rather than special-order.
 
 If those answers are missing, the cell may be mechanically clever but operationally fragile.
+
+## A practical review before scale-up
+
+Before copying the cell to more lines, review:
+
+- the top three wear points found during the first months of operation;
+- how often operators called maintenance because the tool no longer felt trustworthy;
+- whether the spare-parts list matched actual wear behavior;
+- and whether service time was stable across shifts or still dependent on one experienced technician.
+
+That review usually tells you whether the current EOAT is ready to become a standard or still needs redesign.

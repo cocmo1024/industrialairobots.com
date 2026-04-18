@@ -32,8 +32,6 @@ updateTriggers:
 
 Go-live is not the finish line. It is the point where the plant begins learning what the cell does under real shift pressure, real product variation, and real recovery behavior. Many projects fail this phase because they move from commissioning confidence straight to full-rate production without clear ramp logic or fallback rules.
 
-## Quick answer
-
 A credible post-go-live plan should define:
 
 - how fast the cell is allowed to ramp toward normal production;
@@ -42,6 +40,10 @@ A credible post-go-live plan should define:
 - and which failure patterns are acceptable during stabilization versus unacceptable in production.
 
 Without those rules, the line either hides robot problems too long or abandons the cell too early.
+
+## Why launch week often gives a false signal
+
+Launch week usually has more engineering attention, more management focus, and faster access to specialist support than normal production will have a month later. That can make a cell look more mature than it really is. A ramp plan exists to remove that false confidence and force the team to prove stability under more ordinary operating conditions.
 
 ## What the ramp should protect
 
@@ -63,6 +65,17 @@ If the ramp only protects the appearance of a successful launch, it is not doing
 | Normalized production | Transition ownership from project mode to line-support mode |
 
 The exact pace varies, but the principle is stable: do not ask the cell to prove everything in one jump.
+
+## What should trigger a pause in the ramp
+
+The ramp should pause when the cell shows patterns that point to structural weakness rather than normal post-startup noise. Common triggers are:
+
+- repeated restarts caused by the same unresolved fault;
+- manual interventions becoming the hidden normal process;
+- quality or handling errors that begin to accumulate faster than they can be reviewed;
+- or support load that still depends on engineering standing nearby.
+
+Those are not signs to "push through." They are signs to stop, learn, and correct.
 
 ## Containment rules that matter
 
@@ -97,9 +110,12 @@ The plant should be able to show:
 
 That is how the cell earns its place in normal production.
 
+## The management mistake to avoid
+
+The common management mistake is treating the first successful production day as proof that the rollout is complete. It is usually only proof that the cell can run under favorable conditions. A serious ramp asks whether it can keep running once attention shifts elsewhere, product variation returns, and the line team has to own the result.
+
 ## What to read next
 
 - [Operator training and recovery procedures before robot go-live](/deployment/operator-training-and-recovery-procedures-before-robot-go-live/)
 - [Spare parts, service, and integrator support before robot rollout](/deployment/spare-parts-service-and-integrator-support-before-robot-rollout/)
 - [Robotic empty-pallet and slip-sheet handling for packaging lines](/applications/robotic-empty-pallet-and-slip-sheet-handling-for-packaging-lines/)
-

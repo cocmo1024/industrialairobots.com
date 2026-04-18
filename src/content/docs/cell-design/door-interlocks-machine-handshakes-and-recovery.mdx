@@ -22,6 +22,8 @@ import { LinkCard } from '@astrojs/starlight/components';
 
 Many tending cells look mechanically simple and still disappoint in production because the interface logic is messy. Door timing, machine ready states, part-present confirmation, and recovery after alarms all sit in the narrow space between a working demo and a dependable cell.
 
+The reason this layer gets overlooked is that it does not look like the "robotics" part of the project. It looks like control detail, reset logic, and exception handling. In real production, that is often exactly where uptime is won or lost.
+
 ## Why this layer matters
 
 This part of the design determines:
@@ -44,6 +46,17 @@ Teams should write down:
 
 That logic needs to be explicit long before full production rollout.
 
+## What a clean handshake actually looks like
+
+A healthy robot-to-machine handshake usually gives each side a small number of states that operators and maintenance teams can understand without reading source code. In practice that means:
+
+- a clear start condition;
+- a clear "safe to enter" or "safe to unload/load" condition;
+- a clear cycle-complete or part-transfer-complete condition;
+- and a clear fault or timeout path that stops the sequence in a predictable way.
+
+If the interface only works when timing is ideal, it is not clean enough yet.
+
 ## Hidden failure points
 
 Common issues include:
@@ -55,9 +68,31 @@ Common issues include:
 
 These are exactly the details that separate a promising pilot from a stable asset.
 
+## Recovery has to be designed, not improvised
+
+The recovery path is where many cells reveal their real maturity. A workable recovery model answers simple floor-level questions:
+
+- If the machine faults with a part half-transferred, what happens next?
+- If the door state is unclear, who owns the reset?
+- If an operator enters the cell, what has to be re-established before motion can resume?
+- If a part is dropped or mis-seated, how does the sequence return to a known state?
+
+When teams cannot answer those questions in plain language, the interface design is still too fragile.
+
 ## A practical design rule
 
 The recovery model should be understandable to the shift team before the cell is considered complete. If safe restart depends on tribal knowledge, unclear state names, or one controls engineer, the interface layer is underdesigned no matter how well the arm path performs.
+
+## What to review before sign-off
+
+Before a tending cell is signed off for regular production, review:
+
+- the exact machine states exposed to the robot or PLC;
+- every operator-access event that interrupts automatic motion;
+- timeout behavior for missed signals and delayed machine response;
+- and the top three recovery events the shift team will face first.
+
+The objective is not to make the sequence look elegant on a controls drawing. The objective is to make sure a normal production team can live with it.
 
 ## Related paths
 
