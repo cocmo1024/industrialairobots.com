@@ -7,7 +7,17 @@ import { LinkCard, Steps } from '@astrojs/starlight/components';
 
 # Vision and Sensing
 
-Vision and sensing decisions should reflect how uncertain the environment really is. The point of this section is to connect perception complexity to application variability, quality requirements, and ongoing maintainability.
+Vision pages should answer a harder question than "can AI do this?" They should explain whether sensing reduces real production uncertainty or whether it is compensating for a weak mechanical process, poor fixturing, or unstable product flow.
+
+That distinction matters because vision-driven projects often fail after the pilot, not during it. The pilot proves detection. Production exposes lighting drift, presentation inconsistency, reject handling, rework burden, and review fatigue.
+
+## Where vision earns its keep
+
+Vision and sensing usually create real value when the cell has one of three problems:
+
+- part or package presentation is variable enough that fixed logic is brittle,
+- quality confirmation needs to happen at production speed,
+- or the plant needs better routing, sorting, or acceptance decisions than hard-coded rules can sustain.
 
 ## Core paths
 
@@ -15,50 +25,35 @@ Vision and sensing decisions should reflect how uncertain the environment really
 	<LinkCard
 		title="Inspection and guidance systems"
 		href="/vision-and-sensing/inspection-and-guidance-systems/"
-		description="A reference path for deciding when vision is adding meaningful value versus unnecessary complexity."
+		description="Use this page when the first question is whether the cell needs guidance, quality confirmation, or both."
 	/>
 	<LinkCard
-		title="Synthetic data for inspection"
-		href="/vision-and-sensing/synthetic-data-for-industrial-inspection-programs/"
-		description="A high-value current cluster on where synthetic data really helps industrial inspection and where it does not."
+		title="AI visual inspection for mixed-model production"
+		href="/vision-and-sensing/ai-visual-inspection-for-mixed-model-production/"
+		description="Use this page when line variety is high enough that inspection logic may need more than static thresholds."
 	/>
 	<LinkCard
 		title="Foundation models vs classic machine vision"
 		href="/vision-and-sensing/foundation-models-vs-classic-machine-vision-for-industrial-inspection/"
-		description="Use this page when the plant is weighing broader AI vision against the repeatability and simplicity of more classical inspection systems."
+		description="Use this page when the plant is trying to separate genuine AI leverage from overbuying perception complexity."
 	/>
 	<LinkCard
-		title="Applications"
-		href="/applications/"
-		description="Return to the task if sensing requirements feel underdefined or inflated."
+		title="Synthetic data for industrial inspection"
+		href="/vision-and-sensing/synthetic-data-for-industrial-inspection-programs/"
+		description="Use this page when the team is struggling with data coverage, defect rarity, or label imbalance."
 	/>
 	<LinkCard
-		title="Cell design"
-		href="/cell-design/"
-		description="Use cell design pages to connect perception to lighting, layout, guarding, and maintenance access."
-	/>
-</div>
-
-## Current durable pressure point
-
-<div class="portal-links">
-	<LinkCard
-		title="AI visual inspection for mixed-model production"
-		href="/vision-and-sensing/ai-visual-inspection-for-mixed-model-production/"
-		description="Treat current AI inspection momentum as a reason to sharpen pilot boundaries, not to skip cell engineering and review design."
-	/>
-	<LinkCard
-		title="Foundation-model boundary"
-		href="/vision-and-sensing/foundation-models-vs-classic-machine-vision-for-industrial-inspection/"
-		description="A higher-intent page for teams deciding whether the newer physical-AI narrative really changes their inspection stack."
+		title="Deployment"
+		href="/deployment/"
+		description="Move here when the pilot is no longer a vision science project and must become a release and support plan."
 	/>
 </div>
 
 ## Vision review flow
 
 <Steps>
-	1. Identify what variability the robot must actually resolve.
-	2. Decide whether sensing is needed for guidance, inspection, quality confirmation, or all three.
-	3. Map how environment, lighting, cycle time, and maintenance influence the sensing stack.
-	4. Compare the operational burden of perception against the value it creates.
+	1. Define what uncertainty the cell actually needs to resolve.
+	2. Decide whether the problem is inspection, guidance, sorting, or process compensation.
+	3. Map lighting, fixturing, reject handling, and operator review into the design.
+	4. Judge the sensing stack by maintainability and production stability, not just detection quality.
 </Steps>

@@ -1,13 +1,22 @@
 ---
 title: Robot Types
-description: Reference pages for industrial robot classes and how they fit specific automation tasks and operating environments.
+description: Reference pages for industrial robot classes and how they fit specific automation tasks, staffing realities, and plant constraints.
 ---
 
 import { LinkCard, Steps } from '@astrojs/starlight/components';
 
 # Robot Types
 
-Robot class selection is a consequence of the application, not a substitute for understanding it. This section focuses on where major robot families fit operationally and where they create avoidable complexity.
+Robot-type pages should help a plant narrow the class that matches the work, not turn payload charts into strategy. The wrong robot class usually shows up later as awkward guarding, fragile EOAT, poor uptime, or a cell that looked elegant in a demo but does not survive shift pressure.
+
+## What matters more than the brochure
+
+The useful comparison is rarely just collaborative versus traditional, or six-axis versus something smaller. The real questions are:
+
+- how stable the part presentation is,
+- how much cycle time pressure exists,
+- what kind of guarding and access are realistic,
+- and whether the cell needs graceful recovery when upstream conditions degrade.
 
 ## Core paths
 
@@ -15,40 +24,40 @@ Robot class selection is a consequence of the application, not a substitute for 
 	<LinkCard
 		title="Cobots vs industrial robots"
 		href="/robot-types/cobots-vs-industrial-robots/"
-		description="A practical comparison of collaboration, guarding reality, payload limits, and deployment fit."
+		description="Use this page when the team is still sorting out where collaboration is real value versus a misleading buying shortcut."
 	/>
 	<LinkCard
 		title="Universal Robots e-Series and UR20 or UR30"
 		href="/robot-types/universal-robots-e-series-and-ur20-ur30-in-factory-automation/"
-		description="A brand-family page for one of the most searched collaborative robot paths in factory automation."
+		description="Use this page when collaborative deployment speed and lighter payload handling are both real parts of the shortlist."
 	/>
 	<LinkCard
 		title="FANUC CRX and standard FANUC robots"
 		href="/robot-types/fanuc-crx-and-fanuc-standard-robots-for-machine-loading-and-inspection/"
-		description="A high-intent page for teams deciding whether CRX or a traditional FANUC path fits the real cell."
+		description="Use this page when the plant is choosing between easier collaborative adoption and a more traditional high-duty path."
 	/>
 	<LinkCard
 		title="ABB GoFa and IRB 1200"
 		href="/robot-types/abb-gofa-and-irb-1200-for-flexible-small-footprint-cells/"
-		description="A compact-cell page separating collaborative flexibility from classic ABB small-robot strength."
+		description="Use this page when compact-cell flexibility and long-term industrial robustness are both in scope."
 	/>
 	<LinkCard
-		title="Applications"
-		href="/applications/"
-		description="Return to the task definition if robot class debates become detached from manufacturing reality."
+		title="What is the best first robot application for a mid-sized factory?"
+		href="/applications/what-is-the-best-first-robot-application-for-a-mid-sized-factory/"
+		description="Use this page when robot-class debate is outrunning the harder question of where the first win should come from."
 	/>
 	<LinkCard
-		title="Deployment"
-		href="/deployment/"
-		description="Use deployment guidance to connect robot class decisions to pilot scope and operational adoption."
+		title="Cell design"
+		href="/cell-design/"
+		description="Move here when the robot class is mostly understood and the harder question is how the cell should actually be built."
 	/>
 </div>
 
-## Selection questions
+## How to narrow robot class without wasting time
 
 <Steps>
-	1. What payload, reach, repeatability, and speed are required?
-	2. How much variability exists in part presentation, changeover, or human proximity?
-	3. What guarding or collaborative design constraints are realistic in this environment?
-	4. Which class minimizes total cell complexity instead of only looking attractive in demos?
+	1. Start with the application, not the robot family.
+	2. Write down the payload, reach, part variability, and recovery expectations.
+	3. Decide whether collaboration is operationally real or just visually attractive.
+	4. Choose the class that minimizes total cell complexity, not just the robot that demos well.
 </Steps>

@@ -1,0 +1,88 @@
+---
+title: What Keeps a Robot Cell from Scaling Past the First Successful Pilot?
+description: A practical guide to the operational, service, and ownership problems that keep a seemingly successful first robot cell from becoming a repeatable program.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+contentStatus: cornerstone
+problemSolved: Explains why a first successful robot pilot often fails to scale and what plants need to fix before turning one cell into a repeatable rollout.
+readerTakeaway: You should leave with a clearer picture of the non-demo problems that stop scale-up, including support gaps, unstable upstream conditions, tooling fragility, and weak ownership.
+primaryKeyword: why robot pilot does not scale
+searchIntent: learn
+decisionStage: operations
+targetRoles:
+  - Plant engineering leaders
+  - Manufacturing managers
+  - Robotics champions
+  - Integrators
+keyQuestions:
+  - Why do robot pilots stall after the first success?
+  - What has to be true before a plant can copy the first cell confidently?
+  - Which hidden dependencies usually block scale-up?
+notFor:
+  - Readers looking for simple robot ROI math
+  - One-off lab demonstrations with no production responsibility
+updateTriggers:
+  - Shifts in rollout and service-readiness practices
+  - New market expectations around pilot-to-scale robotics programs
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# What Keeps a Robot Cell from Scaling Past the First Successful Pilot?
+
+Plants often mistake a successful pilot for a scalable operating model. The first cell may run well enough to impress leadership and survive a site tour, but scaling fails when the cell depends on unusual engineering attention, unusually clean product flow, or unusually patient operators.
+
+## The first success often hides structural debt
+
+Pilot cells are frequently protected by the best integrator talent, the cleanest product family, the most engaged supervisors, and the most tolerant launch window. Those conditions rarely hold when the second and third cells arrive.
+
+## The scale-up blockers that matter most
+
+### 1. Support is still personality-driven
+
+If the first cell works because two specific people know how to recover it, tune it, and defend it on bad shifts, then the plant does not yet have a rollout model. It has a hero model.
+
+### 2. Upstream variation has not been normalized
+
+Many pilot cells are placed where product flow, infeed condition, and operator cooperation are unusually stable. Scale fails when the next line is messier and the cell design was never built to absorb that mess.
+
+### 3. Tooling and changeover are still fragile
+
+Quick wins often hide the fact that EOAT wear, change-part discipline, or recipe management are still too manual. What looks manageable on one cell becomes a maintenance tax at program scale.
+
+### 4. The plant has not priced the true support load
+
+Spare parts, off-shift troubleshooting, operator retraining, and local champion time all scale nonlinearly when more cells go live. Plants that budget only for robot count usually discover this too late.
+
+## A better scale-up test
+
+Before copying the first cell, ask:
+
+- Can another shift recover the cell without the pilot team?
+- Has the plant seen the cell under realistic upstream disruption?
+- Are spare parts, wear items, and maintenance tasks already boring and routine?
+- Does the second site or line actually resemble the first in the ways that matter?
+
+If those questions do not have solid answers, the next rollout should probably be treated as another learning deployment, not as proof that the model is now repeatable.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Robot cell maintenance planning before scale-up"
+		href="/deployment/robot-cell-maintenance-planning-before-scale-up/"
+		description="Use this page when the biggest barrier to scale is still service readiness and ownership discipline."
+	/>
+	<LinkCard
+		title="FAT, SAT, and acceptance criteria for robot cells"
+		href="/deployment/fat-sat-runoff-and-acceptance-criteria-for-robot-cells/"
+		description="Use this page when the issue is weak acceptance logic that lets fragile cells pass into production."
+	/>
+	<LinkCard
+		title="Internal robotics champions and shift support"
+		href="/deployment/internal-robotics-champions-and-shift-support-before-scale-up/"
+		description="Use this page when the first cell still depends on unusual human ownership rather than a normal plant support model."
+	/>
+</div>
