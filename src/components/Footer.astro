@@ -7,12 +7,12 @@ import { siteMeta } from '../utils/site-meta.mjs';
 ---
 
 <footer class="sl-flex">
-	<div class="meta sl-flex">
+	<div class="meta sl-flex" data-nosnippet>
 		<EditLink />
 		<LastUpdated />
 	</div>
 	<Pagination />
-	<section class="footer-standards">
+	<section class="footer-standards" data-nosnippet>
 		<div class="footer-standards__copy">
 			<h2>Editorial standards</h2>
 			<p>
@@ -26,6 +26,10 @@ import { siteMeta } from '../utils/site-meta.mjs';
 			<p class="footer-standards__links">
 				<a href="/about/">About</a>
 				<span aria-hidden="true"> / </span>
+				<a href="/editorial-desk/">Editorial Desk</a>
+				<span aria-hidden="true"> / </span>
+				<a href="/review-desk/">Review Desk</a>
+				<span aria-hidden="true"> / </span>
 				<a href="/editorial-policy/">Editorial Policy</a>
 				<span aria-hidden="true"> / </span>
 				<a href="/contact/">Contact</a>
@@ -34,6 +38,7 @@ import { siteMeta } from '../utils/site-meta.mjs';
 		<div class="footer-standards__meta">
 			<p><strong>Maintained by</strong> {siteMeta.editorialTeamName}</p>
 			<p><strong>Contact</strong> <a href={`mailto:${siteMeta.email}`}>{siteMeta.email}</a></p>
+			<p><strong>Reviewed by</strong> {siteMeta.reviewDeskName}</p>
 			<p><strong>Follow updates</strong> <a href={siteMeta.xUrl}>X</a></p>
 		</div>
 	</section>

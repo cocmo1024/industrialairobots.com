@@ -13,7 +13,7 @@ const updatedLabel =
 
 {
 	route.toc && (
-		<div class="lg:sl-hidden">
+		<div class="lg:sl-hidden" data-nosnippet>
 			<MobileTableOfContents />
 		</div>
 	)
@@ -21,9 +21,13 @@ const updatedLabel =
 
 <div class="right-sidebar-panel sl-hidden lg:sl-block">
 	<div class="right-sidebar-panel__inner">
-		{route.toc && <TableOfContents />}
+		{route.toc && (
+			<div data-nosnippet>
+				<TableOfContents />
+			</div>
+		)}
 		<ReferenceSignals />
-		<section class="editorial-review">
+		<section class="editorial-review" data-nosnippet>
 			<h2>Editorial Review</h2>
 			<p>
 				This site publishes editorial reference pages for manufacturing teams evaluating real robot

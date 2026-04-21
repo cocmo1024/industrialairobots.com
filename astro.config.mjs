@@ -57,6 +57,8 @@ export default defineConfig({
 					items: [
 						'about',
 						'contact',
+						'editorial-desk',
+						'review-desk',
 						'editorial-policy',
 						'privacy',
 						'terms-of-use',
