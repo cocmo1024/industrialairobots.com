@@ -25,30 +25,12 @@ export default defineConfig({
 				{
 					label: 'Reference Areas',
 					items: [
-						{
-							label: 'Applications',
-							autogenerate: { directory: 'applications' },
-						},
-						{
-							label: 'Case Studies',
-							autogenerate: { directory: 'case-studies' },
-						},
-						{
-							label: 'Robot Types',
-							autogenerate: { directory: 'robot-types' },
-						},
-						{
-							label: 'Vision and Sensing',
-							autogenerate: { directory: 'vision-and-sensing' },
-						},
-						{
-							label: 'Cell Design',
-							autogenerate: { directory: 'cell-design' },
-						},
-						{
-							label: 'Deployment',
-							autogenerate: { directory: 'deployment' },
-						},
+						'applications',
+						'case-studies',
+						'robot-types',
+						'vision-and-sensing',
+						'cell-design',
+						'deployment',
 					],
 				},
 				{
