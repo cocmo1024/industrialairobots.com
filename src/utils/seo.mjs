@@ -62,6 +62,20 @@ function getString(value) {
 	return typeof value === 'string' ? value : undefined;
 }
 
+function toIsoDate(value) {
+	if (!value) return undefined;
+	const parsed = value instanceof Date ? value : new Date(value);
+	return Number.isNaN(parsed.getTime()) ? undefined : parsed.toISOString();
+}
+
+function getPublishedTime(route) {
+	return (
+		toIsoDate(route.entry?.data?.datePublished) ??
+		toIsoDate(route.entry?.data?.publishedTime) ??
+		toIsoDate(route.entry?.data?.publishDate)
+	);
+}
+
 function getFirstSectionLabel(route) {
 	const [firstSegment] = getSegments(route.id);
 	if (!firstSegment || SITE_PAGE_IDS.has(firstSegment)) return undefined;
@@ -92,20 +106,48 @@ function buildBreadcrumbs(route, canonicalUrl, title) {
 	return breadcrumbs;
 }
 
+function getSameAsUrls() {
+	return Array.from(
+		new Set([
+			...(Array.isArray(siteMeta.sameAs) ? siteMeta.sameAs : []),
+			...(siteMeta.xUrl ? [siteMeta.xUrl] : []),
+			...(siteMeta.repoUrl ? [siteMeta.repoUrl] : []),
+		].filter(Boolean))
+	);
+}
+
+function getTwitterHandle() {
+	if (!siteMeta.xUrl) return undefined;
+	try {
+		const pathname = new URL(siteMeta.xUrl).pathname.replace(/^\/+/, '').split('/')[0];
+		return pathname ? `@${pathname}` : undefined;
+	} catch {
+		return undefined;
+	}
+}
+
 function buildOrganizationNode() {
+	const logoUrl = toAbsoluteUrl(siteMeta.icon512Path ?? siteMeta.faviconPath);
+	const sameAs = getSameAsUrls();
+
 	return {
 		'@context': 'https://schema.org',
 		'@type': 'Organization',
 		'@id': `${siteMeta.siteUrl}/#organization`,
 		name: siteMeta.name,
+		alternateName: Array.from(
+			new Set([siteMeta.shortName, siteMeta.domain].filter((value) => typeof value === 'string'))
+		),
 		url: `${siteMeta.siteUrl}/`,
 		description: siteMeta.description,
 		email: siteMeta.email,
-		sameAs: siteMeta.sameAs,
+		...(sameAs.length ? { sameAs } : {}),
 		knowsAbout: siteMeta.keywords,
 		logo: {
 			'@type': 'ImageObject',
-			url: toAbsoluteUrl(siteMeta.icon512Path),
+			'@id': `${siteMeta.siteUrl}/#logo`,
+			url: logoUrl,
+			contentUrl: logoUrl,
 			width: 512,
 			height: 512,
 		},
@@ -131,11 +173,6 @@ function buildWebsiteNode() {
 		description: siteMeta.description,
 		inLanguage: siteMeta.languageTag,
 		publisher: { '@id': `${siteMeta.siteUrl}/#organization` },
-		potentialAction: {
-			'@type': 'SearchAction',
-			target: `${siteMeta.siteUrl}/search/?q={search_term_string}`,
-			'query-input': 'required name=search_term_string',
-		},
 	};
 }
 
@@ -147,81 +184,77 @@ export function buildSeo(route, currentUrl) {
 	const canonicalUrl = new URL(currentUrl.pathname, `${siteMeta.siteUrl}/`).toString();
 	const articleSection = getFirstSectionLabel(route);
 	const breadcrumbs = buildBreadcrumbs(route, canonicalUrl, title);
-	const modifiedTime = route.lastUpdated instanceof Date ? route.lastUpdated.toISOString() : undefined;
+	const publishedTime = getPublishedTime(route);
+	const modifiedTime = toIsoDate(route.lastUpdated);
+	const articleTags = Array.from(
+		new Set([...(primaryKeyword ? [primaryKeyword] : []), ...siteMeta.keywords])
+	).slice(0, 8);
+	const imageId = `${canonicalUrl}#primaryimage`;
+	const imageUrl = toAbsoluteUrl(siteMeta.ogImagePath);
 	const imageObject = {
 		'@type': 'ImageObject',
-		url: toAbsoluteUrl(siteMeta.ogImagePath),
+		'@id': imageId,
+		url: imageUrl,
+		contentUrl: imageUrl,
 		width: 1200,
 		height: 630,
+		caption: siteMeta.ogImageAlt,
 	};
-	const authorNode = {
-		'@type': 'Organization',
-		'@id': `${siteMeta.siteUrl}/#organization`,
-		name: siteMeta.name,
-		url: `${siteMeta.siteUrl}/`,
-	};
-	const publisherNode = {
-		'@type': 'Organization',
-		'@id': `${siteMeta.siteUrl}/#organization`,
-		name: siteMeta.name,
-		url: `${siteMeta.siteUrl}/`,
-		logo: imageObject,
-	};
-
+	const webpageId = `${canonicalUrl}#webpage`;
+	const breadcrumbId = `${canonicalUrl}#breadcrumb`;
 	const pageType =
-		pageKind === 'home'
+		pageKind === 'home' || pageKind === 'section'
 			? 'CollectionPage'
-			: pageKind === 'section'
-				? 'CollectionPage'
-				: pageKind === 'content'
-					? 'TechArticle'
-					: PAGE_TYPE_BY_ID[route.id] ?? 'WebPage';
+			: PAGE_TYPE_BY_ID[route.id] ?? 'WebPage';
 
-	const pageNode =
+	const webpageNode =
+		pageKind === 'not-found'
+			? undefined
+			: {
+					'@context': 'https://schema.org',
+					'@type': pageType,
+					'@id': webpageId,
+					name: title,
+					description,
+					url: canonicalUrl,
+					inLanguage: siteMeta.languageTag,
+					isPartOf: { '@id': `${siteMeta.siteUrl}/#website` },
+					primaryImageOfPage: { '@id': imageId },
+					about: siteMeta.keywords,
+					...(breadcrumbs.length > 1 ? { breadcrumb: { '@id': breadcrumbId } } : {}),
+					...(modifiedTime ? { dateModified: modifiedTime } : {}),
+				};
+
+	const articleNode =
 		pageKind === 'content'
 			? {
 					'@context': 'https://schema.org',
-					'@type': pageType,
+					'@type': 'Article',
 					'@id': `${canonicalUrl}#article`,
 					headline: title,
 					description,
 					url: canonicalUrl,
 					inLanguage: siteMeta.languageTag,
-					mainEntityOfPage: canonicalUrl,
-					author: [authorNode],
-					publisher: publisherNode,
-					image: imageObject,
+					mainEntityOfPage: { '@id': webpageId },
+					author: { '@id': `${siteMeta.siteUrl}/#organization` },
+					publisher: { '@id': `${siteMeta.siteUrl}/#organization` },
+					image: { '@id': imageId },
 					isPartOf: { '@id': `${siteMeta.siteUrl}/#website` },
 					isAccessibleForFree: true,
+					about: siteMeta.keywords,
 					...(articleSection ? { articleSection } : {}),
-					...(primaryKeyword
-						? {
-								keywords: Array.from(new Set([primaryKeyword, ...siteMeta.keywords])).join(', '),
-							}
-						: {}),
+					...(articleTags.length ? { keywords: articleTags.join(', ') } : {}),
+					...(publishedTime ? { datePublished: publishedTime } : {}),
 					...(modifiedTime ? { dateModified: modifiedTime } : {}),
 				}
-			: pageKind === 'not-found'
-				? undefined
-				: {
-						'@context': 'https://schema.org',
-						'@type': pageType,
-						'@id': `${canonicalUrl}#webpage`,
-						name: title,
-						description,
-						url: canonicalUrl,
-						inLanguage: siteMeta.languageTag,
-						isPartOf: { '@id': `${siteMeta.siteUrl}/#website` },
-						primaryImageOfPage: imageObject,
-						...(modifiedTime ? { dateModified: modifiedTime } : {}),
-					};
+			: undefined;
 
 	const breadcrumbNode =
 		breadcrumbs.length > 1
 			? {
 					'@context': 'https://schema.org',
 					'@type': 'BreadcrumbList',
-					'@id': `${canonicalUrl}#breadcrumb`,
+					'@id': breadcrumbId,
 					itemListElement: breadcrumbs.map((crumb, index) => ({
 						'@type': 'ListItem',
 						position: index + 1,
@@ -234,22 +267,31 @@ export function buildSeo(route, currentUrl) {
 	return {
 		title,
 		description,
+		canonicalUrl,
 		siteName: siteMeta.name,
 		themeColor: siteMeta.themeColor,
 		ogLocale: siteMeta.ogLocale,
 		ogType: pageKind === 'content' ? 'article' : 'website',
-		imageUrl: toAbsoluteUrl(siteMeta.ogImagePath),
+		imageUrl,
 		imageAlt: siteMeta.ogImageAlt,
 		imageWidth: 1200,
 		imageHeight: 630,
+		publishedTime,
 		modifiedTime,
 		articleSection,
+		articleTags,
+		twitterSite: getTwitterHandle(),
 		robots:
 			pageKind === 'not-found' || NOINDEX_PAGE_IDS.has(route.id)
 				? 'noindex, nofollow, noarchive, max-snippet:0, max-image-preview:none, max-video-preview:0'
 				: 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-		structuredData: [buildOrganizationNode(), buildWebsiteNode(), breadcrumbNode, pageNode].filter(
-			Boolean
-		),
+		structuredData: [
+			buildOrganizationNode(),
+			buildWebsiteNode(),
+			breadcrumbNode,
+			imageObject,
+			webpageNode,
+			articleNode,
+		].filter(Boolean),
 	};
 }
