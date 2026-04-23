@@ -1,0 +1,105 @@
+---
+title: Why do bin-picking pilots stall before scale-up?
+description: A case-study pattern for mixed-part bin-picking projects that work in early trials but fail to earn repeatable rollout confidence.
+referenceType: case-study
+adProfile: case-study
+commercialIntent: high
+reviewCadence: Quarterly review
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Why do bin-picking pilots stall before scale-up?
+
+Bin-picking pilots usually stall for a simple reason: the first successful picks create confidence before the site has actually proven the hard conditions. A pilot can look healthy while still avoiding the tote states, part overlap, lighting drift, and recovery burden that decide whether the cell belongs on a real production schedule.
+
+That is why bin-picking projects often fail quietly. The vision stack is not obviously broken. The robot can pick parts. The project simply never becomes trustworthy enough to scale.
+
+## What the first promising pilot often hides
+
+The pilot usually starts with friendlier conditions than the production floor:
+
+- parts are cleaner and more separated;
+- tote depth is controlled;
+- part families are narrower than the eventual rollout set;
+- lighting is supervised;
+- and manual intervention remains close at hand.
+
+Those conditions are useful for proving technical feasibility, but they are not enough to justify rollout.
+
+## Where the real variation usually enters
+
+The project gets harder when the cell must survive:
+
+- shinier or darker part finishes,
+- mixed orientations at the bottom of a tote,
+- partially depleted bins late in the shift,
+- damaged or oily parts,
+- and changes in presentation after replenishment or manual handling.
+
+A pilot that never tests those states has not really proven the problem. It has only proven that controlled presentation is easier than random presentation.
+
+## Why support burden grows faster than picking rate
+
+Bin-picking projects stall when every difficult tote becomes a support event. The issue is not only cycle time. It is:
+
+- who clears low-confidence picks,
+- who decides when the tote should be restaged,
+- who owns part-orientation misses,
+- and whether operators trust the cell enough to let it keep running through marginal conditions.
+
+If the answer to most of those is "call engineering" or "wait for the integrator," scale-up is already in trouble.
+
+## What a healthy pilot should prove before expansion
+
+Before the site approves more cells, the pilot should prove:
+
+- acceptable performance across the real part-family spread;
+- clear recovery rules for low-confidence or failed picks;
+- a tote replenishment and presentation model that operations can actually maintain;
+- and a cycle profile that remains acceptable after the easy top-layer parts are gone.
+
+That is a very different proof target than a few hours of clean demonstration picking.
+
+## The common management mistake
+
+Management often sees a working pilot and assumes the remaining work is only more camera tuning or more training data. In practice, stalled bin-picking programs usually need:
+
+- tighter part-family boundaries,
+- simpler tote presentation,
+- better replenishment discipline,
+- or a narrower first production use case.
+
+The winning move is often to reduce the scope until the cell becomes operationally boring.
+
+## Questions to ask before funding the second rollout
+
+Before the team scales bin picking, ask:
+
+- Which tote states caused most of the low-confidence events?
+- Did late-bin behavior remain acceptable, or did manual recovery explode?
+- Can shift teams explain the recovery path without engineering nearby?
+- Did part-family expansion hurt more than expected?
+- Is the site solving a perception problem, a presentation problem, or both?
+
+If those answers are still vague, the pilot is not scale-ready.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Vision-guided bin picking for mixed parts and kitting cells"
+		href="/applications/vision-guided-bin-picking-for-mixed-parts-and-kitting-cells/"
+		description="Use the application page to decide whether bin picking is the right automation boundary before the pilot starts."
+	/>
+	<LinkCard
+		title="Part presentation and fixturing for machine tending"
+		href="/cell-design/part-presentation-and-fixturing-for-machine-tending/"
+		description="Use this page when the real improvement path may be better presentation and fixturing, not more perception complexity."
+	/>
+	<LinkCard
+		title="What keeps a robot cell from scaling past the first successful pilot?"
+		href="/deployment/what-keeps-a-robot-cell-from-scaling-past-the-first-successful-pilot/"
+		description="Use this page to connect one stalled bin-picking pilot to the larger scale-up conditions that decide whether the next cell should exist at all."
+	/>
+</div>
