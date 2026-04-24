@@ -1,0 +1,195 @@
+---
+title: Robot Cell RFQ Scope Before Asking for Quotes
+description: A practical RFQ scope guide for factories that want comparable robot-cell quotes instead of vague budgetary proposals.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: robot cell RFQ scope
+searchIntent: select
+decisionStage: shortlist
+targetRoles:
+  - Automation managers
+  - Plant engineers
+  - Manufacturing leaders
+  - System integrators
+contentStatus: cornerstone
+problemSolved: How to define a robot-cell RFQ scope so quotes reflect the real application boundary, product variation, acceptance criteria, support model, and handoff expectations.
+readerTakeaway: You should leave with a practical RFQ structure that makes integrator proposals more comparable and reduces hidden scope risk.
+keyQuestions:
+  - What should a robot cell RFQ include before integrators quote?
+  - Why do robot-cell quotes vary so widely?
+  - How should buyers compare automation proposals beyond robot brand and headline price?
+notFor:
+  - Very early robotics brainstorming with no selected process
+  - Commodity end-effector purchases with no integrated cell scope
+  - Plants that already have a locked corporate automation standard and integrator template
+updateTriggers:
+  - New patterns in robot cell procurement, integrator scope, and acceptance testing
+  - Changes in how AI vision, collaborative robots, and service models affect RFQ scope
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Robot Cell RFQ Scope Before Asking for Quotes
+
+Robot-cell quotes vary wildly when the RFQ describes the desired robot but not the operating problem. One integrator may include guarding, conveyors, EOAT, controls, safety validation, spare parts, training, and runoff assumptions. Another may quote a narrower automation island that looks cheaper until the missing scope returns as change orders.
+
+The strongest RFQ does not try to design the cell for the integrator. It gives enough application evidence that each integrator is solving the same problem. Without that, the buyer is not comparing proposals. The buyer is comparing different interpretations.
+
+## Quick answer
+
+A robot cell RFQ should define the process boundary, product variation, upstream and downstream interfaces, throughput expectation, quality requirement, safety and access assumptions, EOAT and vision uncertainty, acceptance tests, support expectations, and exclusions. If those inputs are vague, the lowest quote is often just the proposal with the most hidden assumptions.
+
+## Why quotes become impossible to compare
+
+Robot quotes diverge for practical reasons:
+
+- one supplier assumes stable parts while another includes presentation work;
+- one includes guarding, safety validation, and access platforms while another excludes them;
+- one assumes existing conveyors and handshakes are ready while another prices modifications;
+- one includes vision lighting and validation while another treats vision as an allowance;
+- one quotes basic training while another includes shift-level recovery training;
+- one includes runoff support while another stops at installation.
+
+The RFQ should force these assumptions into the open.
+
+## The scope items that matter most
+
+| RFQ area | What to provide | Why it matters |
+| --- | --- | --- |
+| Process boundary | Start and end points of robot responsibility | Prevents the robot from inheriting undefined upstream or downstream problems |
+| Product family | Part dimensions, weights, surfaces, variation, and packaging condition | Drives gripper, vision, fixture, speed, and reject strategy |
+| Throughput target | Required rate, peak rate, uptime assumption, and shift pattern | Prevents quoting nominal cycle time without production reality |
+| Interfaces | PLC, safety, conveyors, machine handshakes, recipes, and data needs | Defines controls burden and commissioning risk |
+| Material flow | Infeed, outfeed, buffering, rejects, empty pallets, dunnage, and WIP rules | Decides whether the cell is truly autonomous or constantly waiting |
+| Acceptance | FAT, SAT, runoff, quality, recovery, and ramp criteria | Keeps success from becoming subjective |
+| Support model | Training, spares, documentation, remote access, and service response | Determines whether the cell can survive after handoff |
+
+If the RFQ is thin in these areas, proposals will look cleaner than the real job.
+
+## Define the process boundary in plain language
+
+The RFQ should state:
+
+- where the robot picks from;
+- where it places to;
+- who owns part presentation before the pick;
+- who owns downstream accumulation, reject handling, and operator intervention;
+- whether the robot must handle all SKUs or only a defined subset;
+- what happens when upstream supply is late, blocked, damaged, or inconsistent.
+
+This prevents a common failure: the robot performs its motion correctly, but the cell still misses production because the surrounding process was never scoped.
+
+## Product variation is not a footnote
+
+For palletizing, case packing, tending, inspection, or kitting, product variation should be described with evidence:
+
+- smallest, largest, heaviest, lightest, and most fragile parts;
+- surface finish, porosity, label placement, seams, oil, dust, moisture, or deformation;
+- case or bag quality, overhang, crushed corners, loose flaps, or inconsistent orientation;
+- fixture variation, part nesting, stack tolerance, or operator-loaded positions;
+- expected new SKU introduction rate.
+
+If only the best samples are shown during quoting, the proposal will optimize for a fantasy cell.
+
+## Throughput should include downtime assumptions
+
+An RFQ that says "20 parts per minute" is weaker than one that says:
+
+- required average rate by shift;
+- peak burst requirement and duration;
+- expected upstream starvation and downstream blockage behavior;
+- maximum acceptable recovery time after normal faults;
+- planned changeover frequency;
+- whether missed cycles can be recovered later or become lost production.
+
+Robot cycle time is not cell throughput. The quote should show how the proposal handles the difference.
+
+## Safety, access, and maintainability belong in the RFQ
+
+Safety and access decisions can change the entire cell cost. The RFQ should ask for:
+
+- guarding or collaborative operation assumptions;
+- access to tooling, sensors, nests, conveyors, and maintenance points;
+- lockout and recovery expectations;
+- safe clearing of dropped parts or jams;
+- how operators interact with the cell during normal and abnormal conditions.
+
+Do not let access become a late design compromise. A cell that is difficult to clear will be bypassed or hated.
+
+## EOAT and vision assumptions should be explicit
+
+For many applications, the robot is not the hardest part. The hard part is grip, locate, verify, and release. The RFQ should ask:
+
+- what gripper concept is proposed and why;
+- what failure modes the gripper is expected to tolerate;
+- what wear items exist and how quickly they can be replaced;
+- whether vision is required, optional, or avoided;
+- how lighting, backgrounds, part variation, and retraining will be managed;
+- what happens when the system cannot confidently pick or inspect.
+
+This is especially important in mixed-case palletizing, bin picking, machine tending, and AI visual inspection.
+
+## Acceptance criteria should be quoted, not negotiated at the end
+
+The RFQ should request separate criteria for:
+
+- FAT: sequence, safety logic, core robot motion, simulated interfaces, and expected faults;
+- SAT: site interfaces, utilities, safety validation, access, and first real production interactions;
+- runoff: rate, uptime, recovery, reject behavior, and operator performance over defined production periods;
+- handoff: documentation, backups, spare list, training, and support path.
+
+If acceptance is vague in the RFQ, the project will argue about it later.
+
+## A practical quote comparison rubric
+
+Compare proposals across these dimensions:
+
+| Dimension | Strong proposal signal | Weak proposal signal |
+| --- | --- | --- |
+| Scope clarity | Includes assumptions, exclusions, and owner boundaries | Looks simple but leaves many "by others" items unexplained |
+| Variation handling | Discusses worst-case products and failure modes | Quotes around ideal samples |
+| Recovery design | Defines operator and maintenance recovery | Assumes low fault frequency without recovery detail |
+| Controls integration | Identifies PLC, safety, recipe, and data handoff burden | Treats interfaces as generic |
+| Acceptance | Separates FAT, SAT, runoff, and handoff evidence | Uses one broad acceptance statement |
+| Support | Includes training, spares, backups, and service path | Focuses on installation only |
+
+This rubric often exposes why a higher quote may actually carry less project risk.
+
+## What to exclude deliberately
+
+Good RFQs also state what is not included in phase one:
+
+- future SKU families not yet validated;
+- lights-out operation if staffing and recovery are not ready;
+- upstream process fixes outside the robot cell;
+- enterprise data integration beyond the initial handoff;
+- second-line replication before the first cell proves stable.
+
+Clear exclusions reduce scope creep and make the first deployment easier to judge.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="What makes an industrial robot cell expensive?"
+		href="/deployment/what-makes-an-industrial-robot-cell-expensive/"
+		description="Separate robot price from the system-level cost drivers that should appear in the RFQ."
+	/>
+	<LinkCard
+		title="FAT, SAT, runoff, and acceptance criteria"
+		href="/deployment/fat-sat-runoff-and-acceptance-criteria-for-robot-cells/"
+		description="Turn RFQ expectations into acceptance evidence before the project reaches handoff."
+	/>
+	<LinkCard
+		title="End-of-arm tooling selection"
+		href="/cell-design/end-of-arm-tooling-selection-for-palletizing-and-machine-tending/"
+		description="Go deeper on the grip, release, wear, and product-variation assumptions behind the quote."
+	/>
+	<LinkCard
+		title="Spare parts, service, and integrator support"
+		href="/deployment/spare-parts-service-and-integrator-support-before-robot-rollout/"
+		description="Compare proposals on support readiness, not only automation performance."
+	/>
+</div>
