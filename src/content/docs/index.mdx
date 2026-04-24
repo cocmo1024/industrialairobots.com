@@ -26,7 +26,7 @@ import { Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
 		Start with the manufacturing job, throughput goal, and cell constraint before discussing robot brand or payload.
 	</Card>
 	<Card title="Case studies" icon="document">
-		Implementation patterns translated into reusable lessons around pilot scope, operator adoption, sensing complexity, and rollout discipline.
+		Reusable lessons around pilot scope, operator adoption, sensing complexity, and rollout discipline.
 	</Card>
 	<Card title="Robot types" icon="add-document">
 		Cobots, articulated robots, gantries, and related classes mapped to practical fit instead of marketing labels.
@@ -35,10 +35,10 @@ import { Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
 		Perception, inspection, and guidance layers connected to actual cell performance and deployment risk.
 	</Card>
 	<Card title="Cell design" icon="document">
-		Layout, safety, material flow, guarding, and integration boundaries shaped around real operations.
+		Layout, safety, material flow, guarding, EOAT, and integration boundaries shaped around real operations.
 	</Card>
 	<Card title="Deployment" icon="approve-check-circle">
-		Pilot design, ROI framing, rollout sequencing, and change management for automation programs that have to survive contact with operations.
+		Pilot design, ROI framing, rollout sequencing, and change management for automation programs that have to survive operations.
 	</Card>
 </CardGrid>
 
@@ -53,7 +53,7 @@ import { Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
 	<LinkCard
 		title="Study case patterns"
 		href="/case-studies/"
-		description="See how real pilot and rollout patterns expose hidden integration, adoption, and sensing risks."
+		description="Use case-study pages to see where pilots, adoption, sensing, and recovery behavior fail after the demo."
 	/>
 	<LinkCard
 		title="Compare robot classes"
@@ -68,167 +68,114 @@ import { Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
 	<LinkCard
 		title="Design the cell"
 		href="/cell-design/"
-		description="Translate the use case into safety, layout, handoff, and maintenance reality."
+		description="Translate the use case into safety, layout, handoff, EOAT, and maintenance reality."
 	/>
 	<LinkCard
 		title="Model deployment"
 		href="/deployment/"
-		description="Pressure-test pilot scope, ROI assumptions, and operational adoption before expansion."
+		description="Pressure-test pilot scope, ROI assumptions, service readiness, and operational adoption before expansion."
 	/>
 </div>
 
-## Featured strategic clusters
+## Current priority clusters
+
+The homepage is intentionally selective. New robot application, cell-design, and deployment pages should enter their hubs first; this page promotes only durable entrances with strong buyer or implementation intent.
 
 <div class="portal-links">
 	<LinkCard
 		title="Machine tending rollout"
 		href="/applications/cnc-machine-tending-cells/"
-		description="A durable cluster around one of the highest-value industrial robotics applications and its real deployment tradeoffs."
+		description="A durable cluster around first-cell selection, machine access, operator recovery, and whether tending survives real shift work."
 	/>
 	<LinkCard
 		title="Mixed-case palletizing"
 		href="/applications/end-of-line-palletizing-for-mixed-case-operations/"
-		description="A durable end-of-line cluster built around case variation, operator recovery, and whether palletizing really survives real packaging flow."
+		description="End-of-line automation around case variation, operator recovery, pallet patterns, and production-floor constraints."
 	/>
 	<LinkCard
-		title="Mixed-case palletizing rollout"
-		href="/case-studies/mixed-case-palletizing-rollout-for-volatile-packaging-lines/"
-		description="A rollout-density page for seeing where packaging cells fail after the demo, especially on volatile lines under real shift pressure."
-	/>
-	<LinkCard
-		title="Depalletizing unstable case and bag loads"
+		title="Depalletizing and inbound handling"
 		href="/applications/robot-depalletizing-for-unstable-case-and-bag-handling/"
-		description="A durable inbound-material cluster for plants where load quality and recovery behavior decide whether depalletizing is viable."
+		description="Inbound material-handling pages where load quality, case damage, and recovery logic decide viability."
 	/>
 	<LinkCard
 		title="Case packing and tray loading"
 		href="/applications/robotic-case-packing-and-tray-loading-for-mixed-product-lines/"
-		description="A packaging-material-handling cluster where presentation quality, tray variation, and EOAT burden drive real deployment success."
-	/>
-	<LinkCard
-		title="Empty-pallet and slip-sheet handling"
-		href="/applications/robotic-empty-pallet-and-slip-sheet-handling-for-packaging-lines/"
-		description="A packaging-support cluster where pallet flow, separator handling, and transfer recovery determine whether the robot really removes labor and delay."
-	/>
-	<LinkCard
-		title="Pallet transfer and machine feeding"
-		href="/applications/robotic-pallet-transfer-and-machine-feeding-between-process-steps/"
-		description="A durable material-flow cluster for transfer points where buffers, handshakes, and part presentation decide whether the robot creates value."
+		description="A packaging cluster where product presentation, tray variation, and EOAT burden drive deployment success."
 	/>
 	<LinkCard
 		title="Vision-guided bin picking"
 		href="/applications/vision-guided-bin-picking-for-mixed-parts-and-kitting-cells/"
-		description="A strong mixed-part automation cluster for teams trying to decide when perception-heavy picking is justified and when presentation simplification is smarter."
-	/>
-	<LinkCard
-		title="Why bin-picking pilots stall before scale-up"
-		href="/case-studies/why-do-bin-picking-pilots-stall-before-scale-up/"
-		description="A rollout-density page for the tote states, support burden, and presentation variance that usually block bin-picking expansion."
-	/>
-	<LinkCard
-		title="Best first robot application"
-		href="/applications/what-is-the-best-first-robot-application-for-a-mid-sized-factory/"
-		description="A high-intent first-cell cluster for plants deciding where robotics should start when budget, support depth, and rollout risk are all real constraints."
-	/>
-	<LinkCard
-		title="When robot automation does not make sense"
-		href="/applications/when-does-robot-automation-not-make-sense-in-a-factory/"
-		description="A broad problem-filter page for avoiding robot projects that are still trying to automate instability."
+		description="A high-value cluster for deciding when perception-heavy picking is justified and when presentation simplification is smarter."
 	/>
 	<LinkCard
 		title="AI visual inspection"
 		href="/vision-and-sensing/ai-visual-inspection-for-mixed-model-production/"
-		description="A current inspection cluster tied to quality economics, mixed-model production, and deployment readiness."
+		description="Inspection economics, mixed-model variation, foundation-model boundaries, synthetic data, and pilot acceptance."
 	/>
 	<LinkCard
-		title="Foundation-model inspection boundary"
-		href="/vision-and-sensing/foundation-models-vs-classic-machine-vision-for-industrial-inspection/"
-		description="A high-intent comparison cluster for teams deciding when newer physical-AI vision stacks really outperform classical inspection."
-	/>
-	<LinkCard
-		title="Synthetic data for inspection"
-		href="/vision-and-sensing/synthetic-data-for-industrial-inspection-programs/"
-		description="A higher-level cluster on when synthetic data speeds a real inspection program and when it only looks modern."
-	/>
-	<LinkCard
-		title="Pilot acceptance and scale"
-		href="/deployment/ai-visual-inspection-pilot-acceptance-criteria/"
-		description="A deployment cluster on whether a robotics or vision pilot is truly ready for scale."
-	/>
-	<LinkCard
-		title="Maintenance planning before scale-up"
-		href="/deployment/robot-cell-maintenance-planning-before-scale-up/"
-		description="A scale-up cluster focused on spare parts, fault ownership, and the support model that determines whether rollout survives."
-	/>
-	<LinkCard
-		title="Why a successful pilot still fails to scale"
-		href="/deployment/what-keeps-a-robot-cell-from-scaling-past-the-first-successful-pilot/"
-		description="A high-value rollout page on the ownership, upstream-variation, and support problems that usually block repeatable expansion."
-	/>
-	<LinkCard
-		title="What makes a robot cell expensive"
-		href="/deployment/what-makes-an-industrial-robot-cell-expensive/"
-		description="A cost-driver cluster for teams that need to understand why full system budgets grow far beyond arm price alone."
-	/>
-	<LinkCard
-		title="Support model before rollout"
-		href="/deployment/spare-parts-service-and-integrator-support-before-robot-rollout/"
-		description="A rollout-governance cluster for spare parts, service coverage, and integrator depth before expansion."
-	/>
-	<LinkCard
-		title="End-of-arm tooling selection"
+		title="End-of-arm tooling and gripper fit"
 		href="/cell-design/end-of-arm-tooling-selection-for-palletizing-and-machine-tending/"
-		description="A cell-design cluster where gripper choice determines whether palletizing and machine tending survive real variation."
+		description="EOAT selection, vacuum versus mechanical grippers, wear planning, quick-change tooling, and recipe discipline."
 	/>
 	<LinkCard
-		title="Vacuum vs mechanical grippers"
-		href="/cell-design/vacuum-vs-mechanical-grippers-for-bag-case-and-carton-handling/"
-		description="A practical EOAT cluster for bag, case, and carton handling under real packaging conditions."
-	/>
-	<LinkCard
-		title="Gripper maintenance and wear planning"
-		href="/cell-design/gripper-maintenance-and-wear-planning-for-high-duty-material-handling/"
-		description="A serviceability cluster for high-duty EOAT where wear, consumables, and adjustment drift determine long-term uptime."
-	/>
-	<LinkCard
-		title="Quick-change tooling and recipe control"
-		href="/cell-design/quick-change-grippers-and-tooling-recipes-for-mixed-product-cells/"
-		description="A mixed-product EOAT cluster for deciding when tooling changeovers and recipe discipline justify their added mechanical and operational burden."
-	/>
-	<LinkCard
-		title="Infeed buffering and product staging"
+		title="Infeed buffering and staging"
 		href="/cell-design/infeed-buffering-and-product-staging-for-robot-cells/"
-		description="A cell-design cluster for the staging and queue decisions that usually decide whether packaging and handling cells survive real line behavior."
+		description="The material-flow cluster for the staging and queue decisions that often decide whether a cell hits takt."
 	/>
 	<LinkCard
-		title="Shift support before scale-up"
-		href="/deployment/internal-robotics-champions-and-shift-support-before-scale-up/"
-		description="A rollout-support cluster for building internal robotics ownership beyond the original project team."
+		title="Robot rollout readiness"
+		href="/deployment/what-keeps-a-robot-cell-from-scaling-past-the-first-successful-pilot/"
+		description="Ownership, upstream variation, service depth, spare parts, operator recovery, and support models before scale-up."
 	/>
 	<LinkCard
-		title="Operator training before go-live"
-		href="/deployment/operator-training-and-recovery-procedures-before-robot-go-live/"
-		description="A go-live readiness cluster for restart logic, jam recovery, and shift-level operator confidence before the first real production week."
-	/>
-	<LinkCard
-		title="Production ramp and containment after go-live"
-		href="/deployment/production-ramp-plans-and-containment-rules-after-robot-go-live/"
-		description="A rollout-governance cluster for defining fallback rules, ramp pace, and production protection while a new cell stabilizes."
-	/>
-	<LinkCard
-		title="FAT, SAT, and runoff criteria"
+		title="Acceptance and runoff criteria"
 		href="/deployment/fat-sat-runoff-and-acceptance-criteria-for-robot-cells/"
-		description="A rollout-governance cluster for deciding what the cell must prove before shipment, after install, and during early production runoff."
+		description="FAT, SAT, runoff, production ramp, containment rules, and go-live gates for robot cells."
 	/>
 	<LinkCard
 		title="Second-shift and lights-out readiness"
 		href="/deployment/when-is-a-robot-cell-ready-for-second-shift-or-lights-out-operation/"
-		description="A readiness cluster for deciding whether a cell can really survive reduced staffing, second-shift ownership, and early lights-out ambition."
+		description="A readiness cluster for reduced staffing, recovery ownership, support availability, and early lights-out ambition."
 	/>
 	<LinkCard
 		title="Classic robot product families"
 		href="/robot-types/universal-robots-e-series-and-ur20-ur30-in-factory-automation/"
-		description="Evergreen pages for UR, FANUC, and ABB robot lines that keep appearing in real automation shortlists."
+		description="Evergreen product-line pages for UR, FANUC, ABB, and other robot families that appear in real shortlists."
+	/>
+</div>
+
+## High-intent question paths
+
+<div class="portal-links">
+	<LinkCard
+		title="What is the best first robot application?"
+		href="/applications/what-is-the-best-first-robot-application-for-a-mid-sized-factory/"
+		description="Choose the first cell by value, support depth, variability, and rollout risk rather than novelty."
+	/>
+	<LinkCard
+		title="When does robot automation not make sense?"
+		href="/applications/when-does-robot-automation-not-make-sense-in-a-factory/"
+		description="Filter out projects that are still trying to automate unstable processes, poor presentation, or unclear ownership."
+	/>
+	<LinkCard
+		title="Why do bin-picking pilots stall?"
+		href="/case-studies/why-do-bin-picking-pilots-stall-before-scale-up/"
+		description="Diagnose tote states, part variation, support burden, and presentation problems before scale-up."
+	/>
+	<LinkCard
+		title="What makes a robot cell expensive?"
+		href="/deployment/what-makes-an-industrial-robot-cell-expensive/"
+		description="Understand why total system budgets grow beyond arm price, EOAT, vision, safety, integration, and support."
+	/>
+	<LinkCard
+		title="When is a robot cell ready for lights-out?"
+		href="/deployment/when-is-a-robot-cell-ready-for-second-shift-or-lights-out-operation/"
+		description="Check recovery behavior, fault handling, support coverage, and operator independence before reducing staffing."
+	/>
+	<LinkCard
+		title="How should EOAT be selected?"
+		href="/cell-design/end-of-arm-tooling-selection-for-palletizing-and-machine-tending/"
+		description="Tie gripper choice to product variation, duty cycle, maintenance, changeover, and recovery behavior."
 	/>
 </div>
 
@@ -254,7 +201,7 @@ import { Card, CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
 <Steps>
 	1. Start with the application and define the manufacturing task, variability, and throughput requirement.
 	2. Narrow the robot class before debating vendors, payload tables, or AI terminology.
-	3. Use vision and cell design pages to pressure-test the hidden complexity in sensing, layout, and safety.
+	3. Use vision and cell design pages to pressure-test hidden complexity in sensing, layout, EOAT, and safety.
 	4. Finish with deployment guidance to decide whether the project survives financially and operationally after install.
 </Steps>
 
