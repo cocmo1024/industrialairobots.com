@@ -1,0 +1,193 @@
+---
+title: Mixed-SKU Palletizing Robot Acceptance Criteria
+description: A practical acceptance framework for mixed-SKU palletizing robot cells where case variation, pattern changes, recovery, and shift support matter more than nominal robot motion.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+primaryKeyword: mixed SKU palletizing robot acceptance criteria
+searchIntent: deploy
+decisionStage: implementation
+targetRoles:
+  - Automation managers
+  - Packaging engineers
+  - Plant engineers
+  - System integrators
+contentStatus: cornerstone
+datePublished: 2026-04-25
+lastReviewed: 2026-04-25
+problemSolved: How to define acceptance criteria for a mixed-SKU palletizing robot cell so the project proves real packaging variation, recovery, pattern handling, and support readiness before scale-up.
+readerTakeaway: You should leave with a FAT, SAT, and runoff acceptance model for mixed-case or mixed-SKU palletizing cells.
+keyQuestions:
+  - What should a mixed-SKU palletizing robot prove before acceptance?
+  - How should palletizing acceptance criteria handle case variation and pattern changes?
+  - Why do palletizing cells pass demos but struggle during production runoff?
+notFor:
+  - Single-SKU palletizers with stable products and mature upstream flow
+  - Concept-stage automation studies with no product family or pattern set
+updateTriggers:
+  - New field lessons around mixed-case palletizing, EOAT wear, and packaging variation
+  - Changes in robot, vision, or palletizing software capabilities
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Mixed-SKU Palletizing Robot Acceptance Criteria
+
+Mixed-SKU palletizing is where robot motion is often the easiest part of the project. The harder problems are case quality, pattern changes, label orientation, upstream gaps, dunnage, slipsheets, pallet supply, operator recovery, and what happens during the first week when the "rare" packaging problem appears five times per shift.
+
+Acceptance criteria need to prove the cell can survive that reality. A palletizing robot that stacks ideal cases during a demo has not yet proven it can run a mixed-SKU packaging line.
+
+## Quick answer
+
+Accept a mixed-SKU palletizing cell only after it proves SKU coverage, worst-case case handling, pattern management, upstream and downstream recovery, EOAT reliability, pallet and slip-sheet handling, operator restart procedures, and production runoff across representative shifts. FAT can prove core sequence and planned pattern behavior. SAT must prove site interfaces and real materials. Runoff must prove that production can own the cell without project-team rescue.
+
+## What makes mixed-SKU palletizing different
+
+Mixed-SKU cells carry more risk because variation enters from several directions:
+
+- case size, weight, shape, and stiffness;
+- crushed corners, bowed panels, open flaps, tape failure, or label variation;
+- changing pallet patterns and stack heights;
+- upstream accumulation gaps or surges;
+- pallet quality and placement tolerance;
+- slip-sheet, top-sheet, or dunnage handling;
+- product changeover discipline;
+- operator intervention during jams or missed picks.
+
+Acceptance criteria should include this variation instead of hiding it behind average-rate claims.
+
+## Acceptance stack
+
+| Phase | What it should prove | What it cannot fully prove |
+| --- | --- | --- |
+| FAT | Core sequence, robot reach, EOAT concept, pattern logic, simulated interfaces | Real site flow, damaged packaging, shift recovery, pallet supply behavior |
+| SAT | Installed interfaces, conveyors, guards, pallet handling, real SKU samples, operator access | Long-run stability across full production variation |
+| Runoff | Throughput, recovery, pattern change, operator ownership, fault rate, support model | Future SKUs that were not included in scope |
+
+Do not let FAT success replace production runoff.
+
+## SKU and case-variation criteria
+
+The accepted SKU set should define:
+
+- minimum and maximum case dimensions;
+- minimum and maximum case weight;
+- unstable or flexible packaging examples;
+- label or barcode orientation requirements;
+- damaged but still production-realistic case examples;
+- cases that are explicitly excluded from phase one;
+- expected new-SKU introduction process.
+
+If only perfect cases are tested, the acceptance test is not representative.
+
+## Pattern and recipe criteria
+
+Pattern handling should prove:
+
+- all phase-one pallet patterns;
+- pattern changeover from the operator interface;
+- recipe selection and confirmation;
+- wrong recipe detection where possible;
+- stack stability at planned height;
+- recovery after a stopped or partially completed pallet;
+- handling of mixed lot, partial pallet, or end-of-run conditions if in scope.
+
+Pattern management is a production workflow, not only robot path planning.
+
+## Throughput criteria
+
+Throughput should be measured as cell throughput, not robot cycle time. Include:
+
+- target average rate by SKU family;
+- peak rate and duration;
+- acceptable rate loss during changeover;
+- upstream starvation and downstream blockage handling;
+- time to recover after normal faults;
+- rejected or manual-handled case rate;
+- planned operator interventions.
+
+Nominal picks per minute can look excellent while the line still misses shift output.
+
+## EOAT and wear criteria
+
+End-of-arm tooling should prove:
+
+- grip reliability on best, worst, and realistic cases;
+- release accuracy across pallet positions;
+- handling after vacuum cup, pad, finger, or sensor wear;
+- tool inspection procedure;
+- spare parts and consumables list;
+- recovery after dropped or skewed case;
+- maintenance access without awkward disassembly.
+
+For mixed packaging, EOAT is often the cell's real reliability center.
+
+## Operator recovery criteria
+
+Operators should be tested on:
+
+- clearing a dropped case;
+- restarting after E-stop;
+- recovering from guard door opening;
+- handling a partial pallet;
+- correcting recipe or pattern selection;
+- removing damaged packaging;
+- escalating faults they should not clear.
+
+Acceptance should not depend on the integrator standing beside the cell.
+
+## Runoff evidence
+
+Runoff should capture:
+
+- SKU mix actually run;
+- pallet patterns used;
+- fault categories and frequency;
+- recovery time by fault type;
+- operator interventions;
+- manual bypass events;
+- rejected or manually palletized cases;
+- throughput versus planned rate;
+- support calls and unresolved issues.
+
+This evidence is more useful than a single pass/fail line because it shows whether the cell is ready to scale.
+
+## Stop-go rules
+
+Do not accept the cell as production-ready if:
+
+- worst-case cases were never tested;
+- operators cannot recover common faults;
+- pattern changes require engineering support;
+- EOAT wear items are unknown or unavailable;
+- the cell cannot recover from partial pallet states;
+- upstream variation is blamed without a containment rule;
+- throughput claims ignore real changeover and recovery time.
+
+These issues should be resolved before the project becomes a permanent production burden.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="FAT, SAT, runoff, and acceptance criteria"
+		href="/deployment/fat-sat-runoff-and-acceptance-criteria-for-robot-cells/"
+		description="Use the general acceptance framework behind this palletizing-specific page."
+	/>
+	<LinkCard
+		title="Mixed-case palletizing rollout"
+		href="/case-studies/mixed-case-palletizing-rollout-for-volatile-packaging-lines/"
+		description="See how packaging variation changes rollout risk."
+	/>
+	<LinkCard
+		title="End-of-arm tooling selection"
+		href="/cell-design/end-of-arm-tooling-selection-for-palletizing-and-machine-tending/"
+		description="Go deeper on the tooling assumptions behind palletizing reliability."
+	/>
+	<LinkCard
+		title="Production ramp plans and containment rules"
+		href="/deployment/production-ramp-plans-and-containment-rules-after-robot-go-live/"
+		description="Connect acceptance to the first weeks of production ramp."
+	/>
+</div>
