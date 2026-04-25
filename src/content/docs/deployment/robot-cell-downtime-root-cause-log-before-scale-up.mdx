@@ -1,0 +1,119 @@
+---
+title: Robot cell downtime root-cause log before scale-up
+description: How to build a useful downtime and root-cause log for robot cells before expanding from a pilot into more shifts, SKUs, or sites.
+referenceType: deployment
+adProfile: application
+commercialIntent: high
+reviewCadence: Quarterly review
+contentStatus: cornerstone
+problemSolved: Helps teams separate real robot-cell failure patterns from vague downtime notes before they scale automation.
+readerTakeaway: You should leave with a practical downtime-log structure that captures fault source, recovery path, production impact, and ownership.
+primaryKeyword: robot cell downtime root cause log
+searchIntent: design
+decisionStage: implementation
+targetRoles:
+  - Automation managers
+  - Plant engineers
+  - Production managers
+  - Maintenance leaders
+keyQuestions:
+  - What should a robot cell downtime log include?
+  - How should robot-cell root causes be classified before scale-up?
+  - Which downtime patterns should stop a robot rollout?
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Robot cell downtime root-cause log before scale-up
+
+Robot pilots often look better than they really are because the first team remembers every issue informally. The integrator knows why the cell stopped. The controls engineer remembers which sensor drifted. The day-shift champion knows which operator recovery step worked. That informal knowledge disappears when the cell moves to more shifts, more SKUs, or another site.
+
+A downtime root-cause log turns those lessons into operating evidence. It should not be a generic downtime note field. It should separate robot faults, upstream presentation issues, EOAT wear, safety stops, product variation, machine handshakes, operator recovery, and maintenance response.
+
+## Quick answer
+
+Before scaling a robot cell, track every meaningful stop by source, symptom, duration, recovery action, recurrence, owner, and production impact. The log should show whether downtime is caused by the robot itself, product presentation, upstream or downstream equipment, tooling, sensing, safety systems, operator recovery, or support readiness. If the team cannot explain recurring stops by category, scale-up is premature.
+
+## Why ordinary downtime notes are not enough
+
+Weak logs say:
+
+- robot stopped;
+- jam;
+- sensor issue;
+- operator reset;
+- waiting for maintenance;
+- unknown.
+
+Those notes are too vague to support scale-up. They do not show whether the cell needs better training, better presentation, different EOAT, more spares, revised guarding, controls cleanup, or an integrator change.
+
+## What the log should capture
+
+| Field | Why it matters |
+| --- | --- |
+| Time and shift | Reveals staffing and support-pattern differences |
+| SKU or product family | Shows whether failure is tied to mix or packaging variation |
+| Cell state before stop | Separates production stops from startup, changeover, or recovery states |
+| Stop source | Robot, EOAT, vision, infeed, outfeed, machine handshake, safety, operator, upstream process |
+| First visible symptom | What operators saw before deeper diagnosis |
+| Confirmed root cause | What actually created the stop |
+| Recovery action | What was done to restart safely |
+| Recovery owner | Operator, maintenance, controls, integrator, engineering |
+| Duration | Production impact, not just fault existence |
+| Recurrence | Whether the issue is isolated or systematic |
+| Corrective action | What changed after the event |
+
+This structure makes scale-up decisions less anecdotal.
+
+## Root-cause categories
+
+Use stable categories so multiple cells can be compared later:
+
+1. **Product presentation**: inconsistent orientation, damaged packaging, poor spacing, unstable stack, wrong dunnage.
+2. **EOAT and tooling**: vacuum loss, gripper wear, quick-change error, sensor-on-tool issue.
+3. **Vision and sensing**: failed detection, lighting drift, camera obstruction, model boundary issue.
+4. **Machine handshake**: upstream not ready, downstream blocked, missing permissive, sequence mismatch.
+5. **Robot or motion**: path issue, collision recovery, singularity, payload mismatch, axis fault.
+6. **Safety and access**: nuisance guard stop, unclear access point, repeated door opening.
+7. **Operator recovery**: incorrect reset, skipped step, unclear HMI instruction.
+8. **Maintenance readiness**: missing spare, delayed support, unclear fault ownership.
+
+The goal is not perfect taxonomy. The goal is to stop hiding every stop under "robot fault."
+
+## Stop-go rules before scale-up
+
+Do not expand the cell until:
+
+- the top recurring stop categories are known;
+- at least the highest-impact categories have owners;
+- common recovery actions are documented and trained;
+- spare parts or tooling wear patterns are understood;
+- shift-level support can handle routine stops;
+- and the log shows improvement after corrective actions.
+
+If the same three stop patterns keep returning, the project has not learned enough to scale.
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Production ramp plans and containment rules"
+		href="/deployment/production-ramp-plans-and-containment-rules-after-robot-go-live/"
+		description="Use downtime evidence to shape ramp pace and containment gates."
+	/>
+	<LinkCard
+		title="Operator training and recovery procedures"
+		href="/deployment/operator-training-and-recovery-procedures-before-robot-go-live/"
+		description="Most downtime logs reveal whether operator recovery is truly ready."
+	/>
+	<LinkCard
+		title="What keeps a robot cell from scaling past the first successful pilot?"
+		href="/deployment/what-keeps-a-robot-cell-from-scaling-past-the-first-successful-pilot/"
+		description="Use root-cause evidence to separate pilot success from scalable automation."
+	/>
+	<LinkCard
+		title="Spare parts, service, and integrator support"
+		href="/deployment/spare-parts-service-and-integrator-support-before-robot-rollout/"
+		description="Downtime patterns should feed service and spare-parts planning before rollout."
+	/>
+</div>

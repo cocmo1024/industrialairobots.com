@@ -13,7 +13,7 @@ targetRoles:
   - Automation managers
   - Plant engineers
   - Continuous improvement leaders
-contentStatus: growing
+contentStatus: cornerstone
 problemSolved: Helps teams define what operators must know and what recovery procedures must exist before the robot cell moves from integrator support into normal production.
 readerTakeaway: You should leave with a practical go-live training model tied to restart behavior, escalation rules, and shift-level ownership.
 keyQuestions:
@@ -30,26 +30,28 @@ updateTriggers:
 
 # Operator training and recovery procedures before robot go-live
 
-Go-live is where the support model becomes real. Many cells pass technical acceptance and still fail operationally because operators were trained to avoid the cell, not to run it. When the first jam, mispick, or machine handshake failure appears on a live shift, the plant discovers whether the system is truly owned or just temporarily installed.
+Go-live is where the support model becomes real. Many cells pass technical acceptance and still fail operationally because operators were trained to avoid the cell, not to run it. When the first jam, mispick, rejected part, dropped case, or machine handshake failure appears on a live shift, the plant discovers whether the system is truly owned or just temporarily installed.
 
-Before go-live, operators should be trained on:
-
-- what normal operation looks like;
-- which alerts or conditions they can recover locally;
-- what sequence is required for safe restart;
-- and when the event must escalate to maintenance, controls, or the integrator.
+Before go-live, operators should be trained on what normal operation looks like, which conditions they can recover locally, what sequence is required for safe restart, and when the event must escalate to maintenance, controls, engineering, or the integrator.
 
 If the recovery logic exists only in the integrator's head or in a startup binder no shift team uses, the rollout is not ready.
+
+## Quick answer
+
+A robot cell is ready for operator handoff only when normal running, common faults, safe intervention points, restart sequence, escalation rules, and shift-level ownership have been trained and observed. The operator should not need to understand the robot program deeply, but they must understand the allowed recovery envelope and how to return the cell to production without improvising around safety or quality.
 
 ## What training must cover
 
 At minimum, training should cover:
 
-- cell states and basic terminology;
-- jam and fault recognition;
-- permitted intervention points;
-- restart sequence after common stops;
-- who owns what during abnormal conditions.
+| Training area | What the operator must know |
+| --- | --- |
+| Normal cell states | What running, waiting, starved, blocked, faulted, and recovery-ready states look like |
+| Common faults | Jam, dropped part, mispick, missing product, failed scan, infeed fault, outfeed fault, machine-not-ready state |
+| Safe intervention | Where hands, tools, doors, reset buttons, and teach pendant access are allowed or not allowed |
+| Restart sequence | The exact order required after clearing each routine issue |
+| Escalation boundary | Which symptoms require maintenance, controls, quality, safety, or integrator support |
+| Quality protection | What to inspect before returning product to flow |
 
 That is the practical layer that decides whether the cell survives the first month.
 
@@ -60,23 +62,69 @@ The most common mistake is training operators only on nominal flow. They can wat
 - the cell pauses too long waiting for expert support;
 - or operators improvise unsafe or inconsistent recovery behavior.
 
-Neither outcome scales.
+Neither outcome scales. The first makes automation look fragile. The second creates safety and quality risk.
+
+## Local recovery versus escalation
+
+Not every fault should be escalated. Not every fault should be local. The boundary must be explicit.
+
+| Event type | Usually local recovery | Usually escalate |
+| --- | --- | --- |
+| Expected product jam | Clear jam and restart from documented state | Repeated jams after same upstream condition |
+| Mispick or no-pick | Reset pickup area and retry if procedure allows | Pattern of failed picks suggesting EOAT, vision, or presentation drift |
+| Guard door opened | Follow safe restart procedure | Door opened due to unclear access or repeated nuisance intervention |
+| Scanner or sensor miss | Check product and restart if simple | Sensor alignment, wiring, or recipe mismatch suspected |
+| Robot fault code | Only if the code is on the allowed list | Any unknown code, axis issue, safety fault, or repeated servo fault |
+
+This table should be customized for the actual cell.
 
 ## What a credible go-live standard looks like
 
 The site should be able to show:
 
 - written local recovery procedures for common events;
-- shift-level ownership, not just day-shift ownership;
+- shift-level ownership, not only day-shift engineering ownership;
 - clear escalation boundaries;
-- and observed recovery drills before the cell enters full production.
+- observed recovery drills before full production;
+- fault screenshots or HMI states that match the procedure;
+- a named owner for updating training when the cell changes;
+- and a first-month review process for recurring stops.
 
 If those are missing, the cell may be technically ready but operationally unready.
 
 ## What should not stay in operator scope
 
-Operators should not be expected to improvise around unclear safety boundaries, program edits, or ambiguous machine states. Training should expand confidence inside the allowed recovery envelope, not push risk down to the shift team.
+Operators should not be expected to improvise around:
+
+- unclear safety boundaries;
+- program edits;
+- ambiguous robot fault codes;
+- recipe changes that affect quality;
+- EOAT wear diagnosis;
+- vision model or camera adjustment;
+- or machine-state problems that require controls knowledge.
+
+Training should expand confidence inside the allowed recovery envelope, not push risk down to the shift team.
+
+## Evidence to collect before go-live
+
+Ask for:
+
+1. a recovery matrix for expected faults;
+2. restart procedure screenshots or HMI references;
+3. sign-off that every shift has observed and practiced common recoveries;
+4. a list of faults operators are not allowed to reset;
+5. a short path for escalating repeated stops;
+6. and a first-30-days review log for faults, downtime, and procedure updates.
+
+This evidence is more useful than a training attendance sheet alone.
 
 ## Why this page matters
 
 This topic causes repeat rollout failures because it sits between integration sign-off and live production reality. Plants often discover too late that the robot was commissioned, but not operationally handed over. That gap is where small stoppages become shift-long delays and where early trust in the cell can be lost very quickly.
+
+## Compare next
+
+- [Production ramp plans and containment rules after robot go-live](/deployment/production-ramp-plans-and-containment-rules-after-robot-go-live/)
+- [When is a robot cell ready for second shift or lights-out operation?](/deployment/when-is-a-robot-cell-ready-for-second-shift-or-lights-out-operation/)
+- [FAT, SAT, runoff, and acceptance criteria for robot cells](/deployment/fat-sat-runoff-and-acceptance-criteria-for-robot-cells/)

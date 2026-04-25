@@ -20,12 +20,28 @@ If the packaging task stays in a disciplined plane, the footprint is tight, and 
 - Reach flexibility matters more than minimal footprint
 - Multiple infeed or outfeed conditions have to be handled in one cell
 - Packaging motion is only one part of a broader automation sequence
+- The robot may need to approach cases, trays, parts, or cartons from different angles
+- Future SKU or layout changes are likely enough to justify extra motion flexibility
 
 ## SCARA robots tend to fit when
 
 - The motion envelope is tighter and more repeatable
 - Speed and compactness matter more than broad reach geometry
 - The work can stay within a disciplined operating plane
+- Product presentation is well controlled
+- Vertical travel, wrist orientation, and reach complexity stay modest
+
+## Decision table
+
+| Packaging condition | SCARA usually has the advantage | Articulated usually has the advantage |
+| --- | --- | --- |
+| Short pick-and-place motion | Yes | Sometimes overbuilt |
+| Tight footprint with repeatable product flow | Yes | Only if reach angles are awkward |
+| Multiple pickup or drop heights | Maybe | Usually stronger |
+| Frequent SKU geometry changes | Maybe | Usually stronger |
+| Need to reach around equipment | Weak | Stronger |
+| Very high planar cadence | Strong | Depends on arm and motion profile |
+| Future cell reconfiguration likely | Limited | Stronger |
 
 ## What teams underestimate
 
@@ -38,6 +54,12 @@ The robot comparison only makes sense if the packaging task itself is well defin
 
 If those are still moving targets, the robot comparison is premature.
 
+## The cost trap
+
+SCARA may look less expensive and simpler, but it can become expensive if the application later needs reach, orientation, or SKU flexibility it was never meant to provide. Articulated robots may look safer because they are more flexible, but they can add unnecessary footprint, guarding, programming, and cycle-time burden when the task is really a compact planar pick-and-place job.
+
+The correct economic comparison is not robot price alone. It is robot price plus fixture discipline, changeover burden, EOAT complexity, programming time, guarding, maintenance, and the cost of future layout changes.
+
 ## A practical decision rule
 
 Choose SCARA first when the packaging motion is short, planar, highly repeatable, and physically constrained. Choose articulated first when the cell has to absorb layout complexity, reach around equipment, or support a wider future operating envelope without immediate redesign.
@@ -45,6 +67,19 @@ Choose SCARA first when the packaging motion is short, planar, highly repeatable
 ## Where teams choose the wrong one
 
 Teams tend to choose the wrong platform when they buy for a demo motion instead of the full packaging boundary. That usually means buying SCARA where future geometry will expand, or buying articulated where the real job would have benefited more from planar speed and compactness.
+
+## Acceptance questions before selection
+
+Before locking the robot class, answer:
+
+1. What is the maximum real SKU envelope, not only the pilot SKU?
+2. How many pickup and drop positions must the cell support?
+3. Does product orientation vary enough to require wrist flexibility?
+4. Will operators or maintenance need clear access around the robot?
+5. Is the expected cadence limited by robot motion, product presentation, or downstream equipment?
+6. What happens if the next packaging format changes height, weight, or gripping surface?
+
+If the team cannot answer these questions, a robot-class comparison is still too early.
 
 ## Compare next
 
