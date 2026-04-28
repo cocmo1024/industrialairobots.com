@@ -1,0 +1,228 @@
+---
+title: Robot Payload, Reach, and Cycle Time Shortlist Before RFQ
+description: How manufacturing teams should translate payload, reach, EOAT, product variation, and cycle-time reality into a robot shortlist before asking integrators for quotes.
+referenceType: robot-type
+adProfile: robot-type
+commercialIntent: high
+reviewCadence: Quarterly review
+contentStatus: growing
+primaryKeyword: robot payload reach cycle time shortlist
+searchIntent: select
+decisionStage: shortlist
+targetRoles:
+  - Manufacturing engineers
+  - Plant managers
+  - Automation engineers
+  - Robotics project leads
+datePublished: 2026-04-28
+lastReviewed: 2026-04-28
+problemSolved: Helps teams avoid RFQs that compare robot arms by nominal payload or reach while ignoring EOAT, duty cycle, safety margin, and real cell throughput.
+readerTakeaway: You should leave with a practical shortlist method for turning payload, reach, cycle time, and process variation into a better first robot class decision.
+keyQuestions:
+  - How much payload margin should a robot shortlist include?
+  - Why is reach more than maximum arm radius?
+  - How should cycle time be estimated before RFQ?
+  - What information should be given to integrators before quoting?
+notFor:
+  - Teams already locked into a specific robot platform
+  - Applications where a validated standard cell has already been selected
+updateTriggers:
+  - New robot families or payload classes that materially change shortlist boundaries
+  - Field lessons around cycle-time, EOAT, or reach-margin failures
+---
+
+import { LinkCard, Steps } from '@astrojs/starlight/components';
+
+# Robot Payload, Reach, and Cycle Time Shortlist Before RFQ
+
+Robot shortlists often start with catalog numbers: payload, reach, repeatability, speed, and price. That seems rational until the first quote cycle exposes the real problem. The selected arm may carry the part, but not the gripper. It may reach the pickup point, but not with a useful wrist orientation. It may meet cycle time in a simulation, but not after guarding, sensing, approach paths, settling time, and recovery behavior are included.
+
+Before asking for quotes, the team should translate the application into a robot-class boundary. That boundary should describe payload with tooling, useful reach, motion envelope, cycle-time budget, product variation, duty expectations, and recovery behavior. Otherwise every integrator will fill in assumptions differently.
+
+## Quick answer
+
+Shortlist the robot around **loaded EOAT payload**, **usable reach inside the cell**, and **cell cycle time**, not around maximum catalog payload or maximum reach alone. Add margin for gripper weight, cable dress, part variation, acceleration, wrist orientation, tool offset, safety approach paths, and future SKU drift. If the shortlist cannot explain those assumptions, the RFQ is premature.
+
+The goal is not to pick the final robot model before integrator input. The goal is to prevent proposals from solving different problems.
+
+## Payload is not just part weight
+
+Nominal payload is one of the easiest numbers to misuse.
+
+The real payload includes:
+
+- the part or package,
+- the end-of-arm tool,
+- vacuum cups, fingers, clamps, compliance devices, or magnets,
+- sensors on the tool,
+- brackets and adapters,
+- hoses, fittings, and cable dress burden,
+- retained product during acceleration,
+- and any off-center moment caused by the tool geometry.
+
+A 10 kg part does not automatically belong on a 10 kg robot. If the tool weighs 4 kg, the center of gravity is offset, and acceleration matters, the real application may need a higher payload class.
+
+## Payload margin should be explicit
+
+Use a margin model before RFQ.
+
+| Payload factor | Why it matters |
+| --- | --- |
+| EOAT weight | Often consumes more capacity than early estimates assume |
+| Part weight variation | Wet, full, boxed, wrapped, or off-spec products may weigh more |
+| Center of gravity | Offset loads reduce practical capability |
+| Acceleration and deceleration | Faster motion increases mechanical demand |
+| Wrist orientation | Some poses are less forgiving than nominal payload charts imply |
+| Future SKU drift | The cell may inherit heavier or larger products later |
+
+If the team does not know the EOAT weight yet, the RFQ should say so. Hiding that uncertainty produces false precision.
+
+## Reach means useful reach, not maximum radius
+
+Maximum reach is a brochure number. Useful reach is the robot's ability to hit the required points with the correct tool orientation, clearance, approach path, and recovery access.
+
+Useful reach must include:
+
+- pickup position,
+- drop position,
+- approach and retract distance,
+- clearance around guarding, conveyors, machines, racks, and fixtures,
+- wrist orientation at the task point,
+- tool length and offset,
+- safe home position,
+- recovery positions,
+- and maintenance access.
+
+A robot may technically reach a point but still be a poor fit if it reaches it near the edge of its envelope, with awkward posture, poor speed, limited clearance, or fragile cable routing.
+
+## Cycle time is a cell property
+
+Robot motion time is only one part of cycle time.
+
+Cell cycle time includes:
+
+- product detection or ready signal,
+- robot approach,
+- grip or pickup confirmation,
+- motion to transfer,
+- placement or release,
+- settling time,
+- outfeed confirmation,
+- return or next approach,
+- tool vacuum build or clamp response,
+- vision or barcode time if used,
+- safety-zone interactions,
+- and recovery from normal variation.
+
+If a quote promises robot cycle time but ignores infeed, outfeed, sensing, or machine handshakes, it is not answering the production question.
+
+## The early shortlist table
+
+Before RFQ, build a table like this:
+
+| Question | Needed answer before quoting |
+| --- | --- |
+| What is the heaviest real item? | Include worst normal product, not only average |
+| What is estimated EOAT mass? | Include unknown range if final tool is not designed |
+| What is the farthest useful reach point? | Include wrist orientation and tool offset |
+| What is the required cell rate? | State parts per minute, cases per hour, or machine takt |
+| What variation must the first cell handle? | Define first-phase SKU or part family boundary |
+| What recovery actions must be possible? | Define operator, maintenance, and integrator recovery expectations |
+| What shift pattern must it survive? | One shift pilot, two-shift production, or lights-out ambition |
+
+This table helps integrators quote the same scope instead of guessing.
+
+## How robot class changes with the boundary
+
+| Boundary condition | Shortlist effect |
+| --- | --- |
+| Low payload, frequent human interaction, modest speed | Cobot may deserve first review |
+| Higher payload, faster cycle, guarded cell | Traditional six-axis robot often becomes cleaner |
+| Planar motion, compact footprint, high cadence | SCARA may fit if orientation and reach stay simple |
+| Long reach, mixed pickup/drop geometry | Articulated robot usually has stronger flexibility |
+| Heavy EOAT or offset load | Move up payload class before optimizing price |
+| Future SKU growth likely | Avoid a robot that only barely fits today's best case |
+
+Robot class should follow the cell problem. It should not be chosen because the team likes the category label.
+
+## Common RFQ failure modes
+
+Weak robot RFQs usually contain one of these mistakes:
+
+- part weight but no EOAT estimate;
+- max reach point but no tool orientation;
+- target throughput but no upstream/downstream timing;
+- product list but no first-phase SKU boundary;
+- layout sketch but no recovery access;
+- safety concept but no operator intervention pattern;
+- brand preference but no payload and cycle-time evidence;
+- or cycle-time promise without explaining what is included.
+
+Those gaps do not just make quotes inconsistent. They create change orders later.
+
+## A stronger pre-RFQ evidence pack
+
+Give integrators:
+
+- product weights and dimensions;
+- worst-normal product examples;
+- target cycle rate and shift pattern;
+- pickup and drop geometry;
+- layout constraints and access constraints;
+- current operator method and pain points;
+- known variation and defect conditions;
+- desired EOAT assumptions or open uncertainty;
+- recovery expectations;
+- acceptance-test expectations;
+- and rollout ambition beyond the first cell.
+
+This does not over-constrain the integrator. It removes ambiguity around the business problem.
+
+## Practical shortlist rule
+
+If two robot classes both appear possible, choose the class that reduces total cell risk, not the one with the most attractive catalog number.
+
+That means:
+
+- do not choose a smaller robot if payload margin is fragile;
+- do not choose a larger robot if footprint and guarding become the real bottleneck;
+- do not choose a cobot if the cell will be guarded and throughput-heavy anyway;
+- do not choose SCARA if future reach and orientation flexibility are likely;
+- and do not let future flexibility justify a cell that is too expensive for the first repeatable win.
+
+## Pre-RFQ checklist
+
+<Steps>
+	1. Document true payload including part, EOAT, attachments, and uncertainty.
+	2. Map useful reach points with wrist orientation, tool offset, and clearance.
+	3. Break cell cycle time into robot motion, sensing, gripping, handshakes, and recovery.
+	4. Define first-phase SKU or part family boundary.
+	5. State shift pattern, uptime expectation, and support model.
+	6. Identify where payload, reach, or cycle margin is still unknown.
+	7. Ask integrators to quote around the same assumptions and name exclusions explicitly.
+</Steps>
+
+## Compare next
+
+<div class="portal-links">
+	<LinkCard
+		title="Robot cell RFQ scope before asking for quotes"
+		href="/deployment/robot-cell-rfq-scope-before-asking-for-quotes/"
+		description="Use this page when the robot boundary needs to become a complete integrator RFQ."
+	/>
+	<LinkCard
+		title="Cobots vs industrial robots"
+		href="/robot-types/cobots-vs-industrial-robots/"
+		description="Use this page when the shortlist still depends on whether collaboration is operationally real."
+	/>
+	<LinkCard
+		title="Articulated vs SCARA for packaging"
+		href="/robot-types/articulated-vs-scara-for-packaging/"
+		description="Use this page when speed, footprint, reach, and orientation create the main class decision."
+	/>
+	<LinkCard
+		title="End-of-arm tooling selection"
+		href="/cell-design/end-of-arm-tooling-selection-for-palletizing-and-machine-tending/"
+		description="Use this page when payload and cycle assumptions depend heavily on EOAT design."
+	/>
+</div>
