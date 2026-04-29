@@ -106,6 +106,44 @@ Ask these questions:
 
 If the last answer is weak, the collaborative path is probably being overrated.
 
+## CRX vs standard FANUC decision table
+
+| Decision point | CRX-leaning answer | Standard FANUC-leaning answer |
+| --- | --- | --- |
+| Operator interaction | Operators must approach, load, recover, or inspect near the robot frequently | The cell can be structured around dedicated access and guarding |
+| Cycle pressure | The robot is not the bottleneck and softer collaborative behavior is acceptable | Cycle time, acceleration, and repeatability discipline are central |
+| Part presentation | Trays, fixtures, or stations are simple enough for a flexible cell | Presentation is engineered and repeatable enough for a dedicated cell |
+| Support model | The plant values approachable operation and adoption for a first or flexible cell | The plant already supports conventional robot cells and wants robustness |
+| Safety design | Collaborative posture materially reduces layout friction | Guarding is needed anyway, so collaboration adds little operational value |
+
+This table should be used before the RFQ. If a team waits until quotation stage, the conversation often becomes brand and payload first, while the real decision is still cell architecture.
+
+## What the RFQ should say
+
+A useful RFQ for machine loading or inspection should include:
+
+- part weight, geometry, surface condition, and orientation tolerance;
+- required machine states and handshakes;
+- expected cycle target and acceptable recovery time;
+- whether the station is collaborative, guarded, or still undecided;
+- who will recover common faults on second shift;
+- whether inspection is visual confirmation, measurement, classification, or traceability evidence;
+- expected number of product variants in the first year.
+
+If those facts are missing, a CRX versus standard-robot comparison will be too shallow to protect the project.
+
+## Where CRX can be a bad fit even when it can do the motion
+
+CRX can still be the wrong answer when:
+
+- the plant will guard the cell heavily anyway;
+- every second of cycle time matters;
+- the process has dirty, wet, sharp, or harsh conditions that push the cell toward a dedicated industrial posture;
+- end-of-arm tooling and fixtures dominate the risk more than operator access;
+- the support team already prefers conventional robot recovery and programming patterns.
+
+This is not a criticism of CRX. It is the normal boundary of collaborative deployment.
+
 ## Why this remains durable traffic
 
 CRX and broader FANUC searches stay valuable because readers are usually:

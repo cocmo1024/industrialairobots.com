@@ -1,89 +1,188 @@
 ---
 title: Cobot Machine Tending Pilot
-description: A pilot pattern focused on machine tending, operator trust, recovery design, and realistic scale-up criteria.
+description: A practical cobot machine-tending pilot pattern covering machine handshakes, part presentation, operator recovery, uptime metrics, and scale-up gates.
 referenceType: case-study
 adProfile: case-study
 commercialIntent: high
 reviewCadence: Quarterly review
+contentStatus: cornerstone
+problemSolved: Helps plants scope a cobot machine-tending pilot so it proves recovery behavior, operator fit, and machine-interface readiness instead of only proving arm motion.
+readerTakeaway: You should leave with a practical pilot scorecard, rollout gate, and failure-mode checklist for deciding whether a cobot tending cell deserves expansion.
+primaryKeyword: cobot machine tending pilot
+searchIntent: select
+decisionStage: implementation
+targetRoles:
+  - Manufacturing engineers
+  - Automation managers
+  - Plant operations leaders
+  - Robotics integrators
+keyQuestions:
+  - What should a cobot machine-tending pilot prove before scale-up?
+  - Which machine-side details make cobot tending pilots fail?
+  - How should plants measure operator recovery, support burden, and real uptime?
+notFor:
+  - Plants expecting a cobot to solve unstable part presentation without process discipline
+  - Teams choosing a robot brand before defining machine handshake and recovery behavior
+  - Fully fenced high-speed tending cells where collaborative deployment is not a meaningful design goal
+updateTriggers:
+  - New lessons from machine tending deployments
+  - Changes in collaborative robot safety or support expectations
+  - New public machine-tending cell economics or packaged-cell patterns
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
 
 # Cobot Machine Tending Pilot
 
-This pattern fits plants that want a first robot cell without starting with a fully fenced, fully isolated automation project. That sounds straightforward, but the real question is not whether a cobot can move parts in and out of a machine. The real question is whether the cell can recover cleanly from interruptions, coexist with operators, and keep running without leaning on one expert every time something drifts.
+A cobot machine-tending pilot is attractive because it looks like a lower-risk first robot cell. The plant can start small, keep operators near the process, and avoid the perceived commitment of a large fenced automation project. That can be true, but only if the pilot is scoped to test the real failure modes.
 
-A cobot machine-tending pilot is strongest when the site needs a contained first cell, the tending task is mechanically credible, and operator interaction is part of the actual operating model. It becomes weak when the project uses the word "cobot" as a shortcut around machine-handshake logic, part presentation quality, or recovery ownership.
+The real question is not whether a cobot can move parts in and out of a machine. The real question is whether the cell can recover cleanly from interruptions, coexist with operators, and keep running without leaning on one expert every time something drifts.
 
-## What the pilot should validate
+## Quick answer
 
-- How parts are presented and recovered when upstream variation appears
-- Whether operator interaction genuinely reduces deployment friction
-- How maintenance and reset procedures affect real uptime
+A cobot tending pilot is credible when it proves five things:
+
+1. the machine exposes reliable ready, cycle-complete, door, clamp, and fault states;
+2. part presentation remains stable over a real shift, not only during demo cycles;
+3. operators can recover common faults without waiting for the integrator;
+4. intervention frequency is low enough to protect the labor case;
+5. the pilot has a clear expansion gate instead of a vague "it works" conclusion.
+
+If the pilot only proves normal-cycle motion, it is not ready to justify rollout.
 
 ## What this usually looks like on the floor
 
-In practice, this kind of pilot often shows up around one or two CNC assets with enough idle time to make loading labor visible but not enough complexity to justify a larger fenced system on day one. Typical examples include:
+This pilot often appears around one or two CNC assets with enough idle time to make loading labor visible but not enough complexity to justify a larger fenced system on day one. Typical examples include:
 
 - a vertical machining center loading one stable part family from trays or vises;
 - a twin-door lathe where one operator is currently walking between machines;
-- a small machining cell where operators already perform deburr, inspection, and load/unload work in the same area.
+- a small machining cell where operators already perform deburr, inspection, and load / unload work in the same area;
+- a low-volume part family where the plant wants proof before standardizing EOAT, carts, or machine-door interfaces.
 
 The operational details matter more than the label "cobot." Coolant splash, chip carryover, part orientation, chuck confirmation, and what happens when a finished part sticks in the gripper often decide whether the pilot remains manageable.
 
-## The common trap
+## Pilot scope that is narrow enough and real enough
 
-Teams often over-focus on collaborative branding and under-model the harder parts of the job: machine handshake logic, guarding boundaries, restart behavior, and what changeovers really do to uptime. That usually produces a pilot that looks safe and approachable during demos, but still behaves like a support-heavy custom cell on the floor.
+A good first pilot should be narrow enough to diagnose but real enough to expose production friction.
 
-## What a credible pilot scope looks like
+| Scope element | Weak pilot | Strong pilot |
+| --- | --- | --- |
+| Part family | Hand-picked sample part | Defined part family with expected variation |
+| Machine interface | Manual assumptions and operator workarounds | Documented ready, cycle, door, clamp, and fault states |
+| Presentation | Perfect demo tray | Actual tray, drawer, fixture, or cart condition |
+| Recovery | Integrator resets faults | Operators recover the top stoppages |
+| Measurement | Robot cycle time | Machine uptime, interventions, recovery time, and support calls |
+| Scale gate | "Demo looked good" | Written expansion criteria tied to production behavior |
 
-A credible scope usually includes:
-
-- a defined part family instead of an artificially easy sample part;
-- realistic machine stop, door, and ready-state behavior;
-- operator recovery drills for the most common stoppages;
-- and a support model that still works after the integrator leaves.
-
-If the pilot only proves arm motion and normal-cycle handling, it is not yet proving rollout health.
+This is where many pilots become too easy. An easy pilot can still be useful, but it should not be mistaken for scale evidence.
 
 ## The machine-side details that make or break the pilot
 
-In a real plant, the pilot usually succeeds or fails at a few very specific boundaries:
+In a real plant, the pilot usually succeeds or fails at a few specific boundaries:
 
 - whether the machine exposes clear cycle-complete, door-open, and part-clamped states;
 - whether the incoming part has a repeatable handoff condition instead of a loosely managed tray;
 - whether chip buildup or coolant contamination changes pickup reliability over a full shift;
-- whether the operator can clear the top two stoppages without waiting for controls or integrator help.
+- whether the operator can clear the top two stoppages without waiting for controls or integrator help;
+- whether restart behavior after a bad pick, stuck part, or machine fault is documented.
 
-That is why the best first pilot is usually narrower than management expects. It should be small enough to understand, but real enough to surface those machine-side details.
+The best first pilot is usually smaller than management expects. It should be small enough to understand, but real enough to surface those machine-side details.
 
 ## What should be measured
 
 Useful pilot measures include:
 
-- sustained cycle impact on the machine, not just robot motion speed;
+- sustained machine utilization impact, not only robot motion speed;
 - intervention frequency per shift;
 - time to recover the most common faults;
 - operator and maintenance confidence after training;
-- and the amount of support still needed from controls or the integrator.
+- false starts caused by poor handshakes or unclear states;
+- support calls that still require controls, integrator, or vendor help;
+- changeover time if the part family is not fixed.
 
-Useful context behind those metrics also matters. For example, if intervention frequency rises only during fixture changeover or only when the tray is half-empty, that tells the team much more than a blended weekly average.
+The context behind those metrics matters. If intervention frequency rises only during fixture changeover or only when the tray is half-empty, that tells the team much more than a blended weekly average.
 
-## Why this page matters
+## A practical pilot scorecard
 
-This pattern stays relevant because many first-cell robotics programs start here. It sits close to real machine utilization, but still looks approachable enough to win internal funding. That combination makes it one of the easiest places for a plant to confuse a healthy pilot with an attractive demo. A useful case pattern should help the team see that difference early.
+Use a simple scorecard before deciding whether to expand.
+
+| Area | Pass signal | Hold signal |
+| --- | --- | --- |
+| Machine handshake | Ready, clamp, door, cycle, and fault states are stable | Operators still manually interpret machine condition |
+| Part presentation | Pickup remains reliable across the real tray or fixture state | The cell needs frequent manual re-nesting |
+| Recovery | Operators can clear common faults with written steps | Integrator support is still required for ordinary resets |
+| Safety and access | Operators understand when and how to interact with the cell | Access behavior depends on informal habits |
+| Labor case | Intervention burden does not erase expected value | One operator still babysits the cell |
+| Scale readiness | Expansion criteria and next machine candidate are defined | The team only says the pilot "worked" |
+
+This scorecard is intentionally operational. A pilot that passes technically but fails supportability should not scale.
+
+## The common trap
+
+Teams often over-focus on collaborative branding and under-model the harder parts of the job:
+
+- machine handshake logic;
+- guarding boundaries;
+- restart behavior;
+- operator recovery ownership;
+- what changeovers really do to uptime.
+
+That usually produces a pilot that looks safe and approachable during demos, but still behaves like a support-heavy custom cell on the floor.
+
+## What a scale-up gate should require
+
+Before copying the pilot to more machines, require:
+
+1. a stable part-family boundary;
+2. a documented machine-interface standard;
+3. an operator recovery guide;
+4. a spare-parts and EOAT wear plan;
+5. a measured intervention baseline;
+6. a named support owner after go-live;
+7. a decision on whether the next cell should remain collaborative or move to a more conventional industrial robot layout.
+
+The last point matters. A successful cobot pilot does not prove every later machine should use a cobot. It proves the plant has learned enough to choose the next architecture honestly.
+
+## When the pilot should stop
+
+Stop or redesign the pilot when:
+
+- presentation is too variable to automate without upstream discipline;
+- the machine does not expose usable states and the plant will not fix the interface;
+- operators cannot recover common faults after training;
+- safety behavior depends on workarounds;
+- the support burden remains concentrated in one expert;
+- the labor case only works in the ideal cycle.
+
+Ending a weak pilot early is better than scaling a fragile pattern.
+
+## Why this case pattern matters
+
+This pattern stays relevant because many first-cell robotics programs start here. It sits close to real machine utilization, but still looks approachable enough to win internal funding. That combination makes it one of the easiest places for a plant to confuse a healthy pilot with an attractive demo.
+
+A useful case pattern should help the team see that difference early.
 
 ## Compare next
 
 <div class="portal-links">
 	<LinkCard
-		title="Palletizing and machine tending"
-		href="/applications/palletizing-and-machine-tending/"
-		description="Use the application lens to separate end-of-line stability from machine-interface complexity."
+		title="CNC machine tending cells"
+		href="/applications/cnc-machine-tending-cells/"
+		description="Use the application page when the machine interface and production task need deeper design treatment."
+	/>
+	<LinkCard
+		title="Cobot vs six-axis for machine tending"
+		href="/robot-types/cobot-vs-six-axis-for-machine-tending/"
+		description="Decide whether the collaborative path is still the best architecture after the pilot exposes real constraints."
 	/>
 	<LinkCard
 		title="ROI and pilot design"
 		href="/deployment/roi-and-pilot-design/"
-		description="Pressure-test whether the pilot is representative enough to support real rollout decisions."
+		description="Pressure-test whether pilot evidence is representative enough to support a real business case."
+	/>
+	<LinkCard
+		title="FANUC CRX and standard robots"
+		href="/robot-types/fanuc-crx-and-fanuc-standard-robots-for-machine-loading-and-inspection/"
+		description="Use a brand-family lens only after the machine-tending boundary is clear."
 	/>
 </div>
