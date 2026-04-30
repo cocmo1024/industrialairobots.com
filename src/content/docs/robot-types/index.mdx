@@ -1,6 +1,22 @@
 ---
 title: Robot Types
 description: Reference pages for industrial robot classes and how they fit specific automation tasks, staffing realities, and plant constraints.
+referenceType: robot-type
+adProfile: robot-type
+commercialIntent: high
+reviewCadence: Monthly review
+primaryKeyword: industrial robot types
+searchIntent: compare
+decisionStage: solution-aware
+targetRoles:
+  - Manufacturing engineers
+  - Automation managers
+  - Plant engineers
+  - Integrators
+contentStatus: cornerstone
+problemSolved: Helps teams narrow the robot class before RFQ instead of choosing from payload charts, brand familiarity, or demo appeal.
+readerTakeaway: You should leave with a practical class-selection path across cobots, standard six-axis robots, compact arms, SCARA-style choices, and application-first constraints.
+lastReviewed: 2026-05-01
 ---
 
 import { LinkCard, Steps } from '@astrojs/starlight/components';
@@ -8,6 +24,18 @@ import { LinkCard, Steps } from '@astrojs/starlight/components';
 # Robot Types
 
 Robot-type pages should help a plant narrow the class that matches the work, not turn payload charts into strategy. The wrong robot class usually shows up later as awkward guarding, fragile EOAT, poor uptime, or a cell that looked elegant in a demo but does not survive shift pressure.
+
+## Quick robot-type map
+
+| Robot type or shortlist class | Strong fit | Weak fit |
+| --- | --- | --- |
+| Collaborative robot | Lower-payload tasks, easier first-cell adoption, flexible tending, constrained facilities | High-speed guarded work, heavy parts, dirty duty cycles, unrealistic collaboration claims |
+| Standard six-axis industrial robot | Higher duty, stronger acceleration, conventional guarded cells, repeatable production | Projects that need simple operator proximity more than throughput |
+| Compact industrial arm | Small-footprint machine loading, inspection, kitting, fixture-adjacent work | Large reach, heavy payload, or high-inertia EOAT |
+| SCARA-style automation | Fast planar handling, assembly, packaging, simple vertical motion | Complex orientation, deep reach, or broad spatial manipulation |
+| Gantry or Cartesian system | Long travel, heavy loads, structured pick/place, machine rows | Flexible multi-SKU manipulation where six-axis motion matters |
+
+The class decision should happen before vendor preference. A familiar brand cannot fix a wrong class boundary.
 
 ## What matters more than the brochure
 
@@ -17,6 +45,19 @@ The useful comparison is rarely just collaborative versus traditional, or six-ax
 - how much cycle time pressure exists,
 - what kind of guarding and access are realistic,
 - and whether the cell needs graceful recovery when upstream conditions degrade.
+
+## What should be known before RFQ
+
+Before requesting quotes, define:
+
+1. real part weight including gripper, adapters, cables, and safety margin;
+2. required reach at the actual pick/place positions, not maximum brochure reach;
+3. cycle-time target including robot motion, sensing, machine wait, and recovery;
+4. number of product families and changeover frequency;
+5. guarding, operator access, and maintenance access expectations;
+6. fault recovery owner on first shift, second shift, and weekends.
+
+If those items are still vague, the RFQ will reward sales confidence instead of engineering fit.
 
 ## Core paths
 
