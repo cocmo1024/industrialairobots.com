@@ -95,6 +95,19 @@ CRX can be attractive in both, but only if the collaborative posture reduces rea
 
 The most common mistake is assuming CRX is the safer procurement choice because it feels more modern and more approachable. In reality, the safer choice is the one that makes the whole cell easier to run. Sometimes that is CRX. Sometimes it is a standard industrial robot with a more honest enclosure and support model.
 
+The second mistake is treating "collaborative" as a safety conclusion. It is not. It is a design input. The actual cell still needs a risk assessment, application-specific guarding decisions, safe access behavior, tooling review, fixture review, and a recovery model. A CRX cell can still require guarding or restricted access if the part, tool, speed, pinch points, sharp edges, or machine interface make open collaboration unrealistic.
+
+The third mistake is evaluating the arm before evaluating the machine. Machine loading and inspection cells usually fail at the boundary between the robot and the process:
+
+- the machine does not expose clean ready, cycle-complete, door, clamp, and fault states;
+- part presentation is less repeatable than the demo tray;
+- operators do not know how to recover a failed pick or stuck part;
+- inspection rejects do not have a clean handling path;
+- EOAT wear changes pickup quality after the first week;
+- the cell cannot explain whether a stop was robot, machine, part, or operator caused.
+
+Those details should shape the CRX versus standard FANUC decision before payload and reach dominate the conversation.
+
 ## A practical selection test
 
 Ask these questions:
@@ -118,6 +131,20 @@ If the last answer is weak, the collaborative path is probably being overrated.
 
 This table should be used before the RFQ. If a team waits until quotation stage, the conversation often becomes brand and payload first, while the real decision is still cell architecture.
 
+## Selection by application pattern
+
+Different applications push the decision in different directions.
+
+| Application pattern | CRX may fit when | Standard FANUC may fit when |
+| --- | --- | --- |
+| CNC machine loading | Operators still work near the station, cycle pressure is moderate, and recovery access matters. | The cell runs high-volume production with engineered guarding, high duty cycle, and tight cycle discipline. |
+| Inspection loading and unloading | The robot supports a mixed manual/automated quality station and operator interaction remains useful. | Inspection is embedded in a dedicated automated line with fixed presentation and high throughput expectations. |
+| Small batch tending | Product mix and operator involvement are part of the operating model. | Changeovers are engineered and the plant wants a repeatable cell standard. |
+| Part transfer between process steps | The transfer path is low-risk and benefits from flexible access. | The transfer must run continuously, quickly, or inside a harsher industrial environment. |
+| First robotics pilot | The plant needs approachable adoption and training confidence. | The first pilot is already a fenced production cell with clear integration support. |
+
+This is why a plant can make two correct FANUC decisions in the same year: CRX for one pilot cell and a standard robot for the next production cell.
+
 ## What the RFQ should say
 
 A useful RFQ for machine loading or inspection should include:
@@ -131,6 +158,32 @@ A useful RFQ for machine loading or inspection should include:
 - expected number of product variants in the first year.
 
 If those facts are missing, a CRX versus standard-robot comparison will be too shallow to protect the project.
+
+Add these support questions before vendor comparison:
+
+- Who owns first-line recovery on second and third shift?
+- Which faults can operators clear without integrator support?
+- Which program changes are allowed locally and which require controls review?
+- What spare EOAT, gripper fingers, sensors, and cables must be stocked?
+- How will the plant measure intervention frequency after go-live?
+- What is the trigger for moving from collaborative layout to guarded industrial layout?
+
+Those questions protect the rollout. The robot can be technically correct and still fail if the support model is unrealistic.
+
+## A practical scoring model
+
+Use a simple score before choosing the robot class.
+
+| Score area | CRX-leaning signal | Standard FANUC-leaning signal |
+| --- | --- | --- |
+| Cycle pressure | Robot is not the bottleneck. | Robot speed and duty cycle determine line value. |
+| Human access | Frequent safe access is useful. | Human access is rare or should be controlled. |
+| Part risk | Parts are light, manageable, and not sharp or hazardous. | Parts, tools, or fixtures make open access unattractive. |
+| Cell maturity | The plant is learning and needs approachable recovery. | The plant already runs conventional robot cells. |
+| Layout | Collaborative posture reduces real footprint or access friction. | Guarding is needed anyway. |
+| Support | Operators can own routine recovery. | Maintenance and controls own a more formal cell standard. |
+
+If most answers land in the right column, forcing CRX into the project may add narrative value but not operational value.
 
 ## Where CRX can be a bad fit even when it can do the motion
 
