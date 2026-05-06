@@ -1,0 +1,188 @@
+---
+title: First 90 Days After Robot Cell Go-Live
+description: A practical first-90-days operating plan for robot cells after go-live, covering downtime, recovery, training, maintenance, spares, and scale readiness.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+contentStatus: cornerstone
+problemSolved: Helps manufacturers turn a newly launched robot cell into a stable operating asset instead of declaring success too early after commissioning.
+readerTakeaway: You should leave with a 30-60-90 day review model for measuring robot cell stability, operator recovery, maintenance readiness, and rollout risk.
+primaryKeyword: first 90 days after robot cell go live
+searchIntent: deploy
+decisionStage: implementation
+targetRoles:
+  - Automation managers
+  - Manufacturing engineers
+  - Plant managers
+  - Maintenance leaders
+  - System integrators
+keyQuestions:
+  - What should a plant monitor after a robot cell goes live?
+  - How should teams review robot cell downtime, recovery, and maintenance in the first 90 days?
+  - When is a robot cell stable enough to use as a template for rollout?
+notFor:
+  - Lab demos or short prototype cells that will not run production shifts
+  - Mature robot programs with a formal post-launch reliability process already in place
+  - Applications where the robot is not tied to production output, labor planning, or service readiness
+updateTriggers:
+  - New practical lessons from robot cell go-live reviews
+  - Changes in common maintenance, integrator handoff, or rollout practices
+  - New case examples where early post-launch data changes expansion decisions
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# First 90 Days After Robot Cell Go-Live
+
+Robot cell go-live is not the finish line. It is the start of the period where the plant learns whether the cell can survive normal production conditions: imperfect parts, shift changes, maintenance handoffs, operator recovery, SKU variation, upstream shortages, downstream blockage, and the slow loss of project-team attention.
+
+The first 90 days should be managed as an operating review, not a celebration lap. A cell can pass factory acceptance, site acceptance, and the first production run while still being too fragile to copy across the plant.
+
+## Quick answer
+
+In the first 90 days after robot cell go-live, track downtime causes, recovery time, manual interventions, operator confidence, gripper wear, nuisance faults, part presentation defects, maintenance response, spare-part use, and whether performance survives multiple shifts. The cell is not scale-ready until support behavior is stable, not merely until cycle time looks good.
+
+## Why the first 90 days matter
+
+Commissioning proves that the robot can run. The first 90 days prove whether the plant can own it.
+
+The difference is important:
+
+| Commissioning proves | First 90 days prove |
+| --- | --- |
+| The robot follows the intended sequence | The cell survives real product, shift, and staffing variation |
+| Safety devices and handshakes work | Operators know how to recover without engineering help |
+| Cycle time is plausible | Throughput is stable after breaks, changeovers, jams, and restarts |
+| The integrator can debug the cell | Maintenance can separate robot, tooling, machine, and product causes |
+| Acceptance criteria were met | Expansion assumptions are still realistic |
+
+A robot cell that needs constant expert attention may still be technically successful, but it is not operationally mature.
+
+## The 30-60-90 review model
+
+Use three reviews instead of one vague post-launch meeting.
+
+| Review | Main question | What to decide |
+| --- | --- | --- |
+| Day 30 | Is the cell running safely and recovering predictably? | Fix urgent recovery, training, and nuisance fault issues |
+| Day 60 | Are downtime patterns and maintenance needs understood? | Update spares, PM tasks, operator aids, and root-cause priorities |
+| Day 90 | Is the cell stable enough to scale or standardize? | Approve, delay, narrow, or redesign rollout assumptions |
+
+The first review protects production. The second review protects support. The third review protects future capital decisions.
+
+## What to measure from day one
+
+Do not rely only on robot uptime. Robot uptime can look good while the cell loses production through small repeated interventions.
+
+Track:
+
+- robot faults by category;
+- safety stops and reset causes;
+- gripper, vacuum, fixture, and part-presentation failures;
+- upstream starvation and downstream blockage;
+- manual intervention count and duration;
+- restart time after faults, jams, changeovers, and breaks;
+- operator calls for engineering, maintenance, or integrator support;
+- rejected picks, dropped parts, misloads, bad pallet patterns, or failed inspections;
+- shift-to-shift performance differences;
+- spare-part usage and wear-item replacement.
+
+This data should be simple enough for supervisors and maintenance to use. If the log is too complex, it will decay.
+
+Related page: <LinkCard title="Robot Cell Downtime Root Cause Log Before Scale-Up" href="/deployment/robot-cell-downtime-root-cause-log-before-scale-up/" />
+
+## Day 30: recovery and ownership
+
+The first month should answer: can normal shift personnel recover the cell?
+
+Review:
+
+- common stop causes;
+- whether HMI messages are understandable;
+- whether recovery steps are documented at the cell;
+- whether operators know when to clear, reset, call maintenance, or escalate;
+- whether safety stops create confusion;
+- whether the robot returns to a known state after interruptions;
+- whether part presentation issues are blamed on the robot when the real cause is upstream.
+
+The most useful Day 30 action is often not mechanical. It is clearer recovery logic and better operator guidance.
+
+Related page: <LinkCard title="Operator Training and Recovery Procedures Before Robot Go-Live" href="/deployment/operator-training-and-recovery-procedures-before-robot-go-live/" />
+
+## Day 60: maintenance and wear
+
+The second month should answer: is the support model realistic?
+
+Review:
+
+- wear items used faster than expected;
+- vacuum cup, finger, sensor, cable, hose, and fixture wear;
+- air consumption and contamination issues;
+- calibration drift or vision lighting changes;
+- robot backup, program version, and recipe management;
+- PM tasks added after real production use;
+- whether maintenance has the tools and access needed for common failures;
+- whether the integrator is still being called for issues that should move in-house.
+
+This is also the point where spare-part assumptions should be corrected. A plant should not wait for the first serious outage to discover that a small wear item has a long lead time.
+
+Related page: <LinkCard title="Spare Parts, Service, and Integrator Support Before Robot Rollout" href="/deployment/spare-parts-service-and-integrator-support-before-robot-rollout/" />
+
+## Day 90: scale readiness
+
+The third month should answer: can this cell be a template?
+
+Review:
+
+| Scale question | Evidence |
+| --- | --- |
+| Is downtime understood? | Root-cause log shows repeatable categories, not vague "robot fault" notes |
+| Can operators recover? | Most common stops are handled without engineering support |
+| Can maintenance own first response? | PM tasks, backups, spares, and troubleshooting steps are active |
+| Is throughput stable? | Output survives shift changes, changeovers, and normal upstream variation |
+| Are parts presented consistently? | Gripper and vision issues are not masking upstream process instability |
+| Is integrator dependency acceptable? | Escalation is clear and response expectations are realistic |
+| Can the next cell reuse standards? | Layout, tooling, HMI, safety, documentation, and acceptance lessons are captured |
+
+If these answers are weak, the best decision may be to stabilize the first cell before approving the second.
+
+## Common early warning signs
+
+Watch for these signals:
+
+- the cell meets cycle time only when an engineer is nearby;
+- operators bypass or avoid the cell during difficult products;
+- faults are logged as generic robot problems;
+- maintenance is unsure whether issues belong to robot, tooling, machine, vision, or product flow;
+- spare parts are borrowed from other equipment;
+- integrator response is informal and depends on one person;
+- the cell runs well on day shift but poorly on nights or weekends;
+- the plant starts planning copy cells before post-launch data is reviewed.
+
+These are not reasons to abandon automation. They are reasons to slow the rollout decision until the support model catches up.
+
+## What to standardize after the first 90 days
+
+If the cell is stable, capture the standard:
+
+- accepted layout and service clearance;
+- gripper or EOAT bill of materials;
+- fixture and part-presentation lessons;
+- HMI messages and recovery screens;
+- safety reset and restart procedure;
+- robot and PLC backup process;
+- operator training checklist;
+- PM and inspection tasks;
+- spare-part list with local stock decisions;
+- acceptance criteria for the next cell.
+
+This standard is how the first cell becomes an asset for rollout instead of a one-off achievement.
+
+## Next-step references
+
+<LinkCard title="Production Ramp Plans and Containment Rules After Robot Go-Live" href="/deployment/production-ramp-plans-and-containment-rules-after-robot-go-live/" />
+
+<LinkCard title="Robot Cell Maintenance Planning Before Scale-Up" href="/deployment/robot-cell-maintenance-planning-before-scale-up/" />
+
+<LinkCard title="What Keeps a Robot Cell from Scaling Past the First Successful Pilot?" href="/deployment/what-keeps-a-robot-cell-from-scaling-past-the-first-successful-pilot/" />
