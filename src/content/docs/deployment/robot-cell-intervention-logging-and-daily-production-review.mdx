@@ -1,0 +1,234 @@
+---
+title: Robot Cell Intervention Logging and Daily Production Review
+description: How to use robot cell intervention logs and daily review meetings to separate true robot faults from upstream, tooling, product, and recovery problems.
+referenceType: deployment
+adProfile: deployment
+commercialIntent: high
+reviewCadence: Quarterly review
+contentStatus: cornerstone
+problemSolved: Helps factories convert robot cell interruptions into actionable operating knowledge instead of vague complaints that the robot is unreliable.
+readerTakeaway: You should leave with a practical intervention log model, daily review agenda, fault taxonomy, and escalation path for robot cells after go-live.
+primaryKeyword: robot cell intervention log
+searchIntent: deploy
+decisionStage: operations
+targetRoles:
+  - Automation managers
+  - Manufacturing engineers
+  - Maintenance leaders
+  - Production supervisors
+  - System integrators
+keyQuestions:
+  - What should be logged when operators intervene in a robot cell?
+  - How should daily production reviews separate robot faults from upstream and tooling problems?
+  - Which robot cell metrics are useful after go-live?
+notFor:
+  - Lab demos without production shifts or operator ownership
+  - Mature robot programs that already have audited downtime and intervention taxonomies
+  - One-off robot cells where no scale-up, support, or improvement decisions are expected
+updateTriggers:
+  - New practical lessons from robot cell post-go-live reviews
+  - Changes in common robot downtime, operator recovery, or maintenance ownership practices
+  - New case examples where better intervention logging changes scale-up decisions
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+
+# Robot Cell Intervention Logging and Daily Production Review
+
+Robot cells usually produce enough data to confuse a team, but not enough context to improve the cell. A fault code says something stopped. It rarely says whether the real cause was part presentation, a worn gripper, bad label orientation, upstream starvation, operator recovery, downstream blockage, nuisance safety trips, or a robot program issue.
+
+That is why intervention logging matters. Every time a person enters the cell, resets the robot, clears a jam, adjusts product, wipes a sensor, changes a vacuum cup, restarts a feeder, or calls maintenance, the plant learns something about whether the cell is becoming stable or just being rescued.
+
+## Quick answer
+
+A robot cell intervention log should capture what stopped, who intervened, what they observed, what action restored production, how long recovery took, whether the cause was robot, tooling, product, upstream, downstream, safety, controls, or operator procedure, and whether the issue repeated. The daily review should focus on repeat patterns, not blame. The goal is to reduce avoidable human rescue events before the cell is copied to more shifts or more lines.
+
+## Why intervention logs are different from fault logs
+
+Robot fault logs are useful, but they are not enough.
+
+| Fault log tells you | Intervention log tells you |
+| --- | --- |
+| Which controller or device reported a fault | What the operator found at the cell |
+| When the stop occurred | How long production was actually affected |
+| Which alarm code was active | What action restored production |
+| Whether the robot was in fault | Whether the robot was the real constraint |
+| A technical category | A production pattern |
+
+A cell can have few robot faults and still require constant operator attention. A cell can also show many robot faults when the root cause is bad part presentation or product variation. The intervention log bridges that gap.
+
+Related page: <LinkCard title="Robot Cell Downtime Root Cause Log Before Scale-Up" href="/deployment/robot-cell-downtime-root-cause-log-before-scale-up/" />
+
+## What counts as an intervention
+
+Log any human action that was needed to restore or protect production.
+
+Examples:
+
+- clearing a part jam;
+- resetting a robot fault;
+- jogging the robot;
+- repositioning a part or pallet;
+- replacing a vacuum cup, finger, pad, or sensor;
+- wiping a camera lens or sensor;
+- re-teaching a position;
+- clearing downstream accumulation;
+- restarting an infeed;
+- adjusting a fixture;
+- bypassing or acknowledging a nuisance stop;
+- calling maintenance or the integrator;
+- running manual mode to catch up production.
+
+Do not limit the log to official downtime. Short interventions are often the earliest signal that the cell is not ready for lights-out assumptions.
+
+## The minimum fields
+
+Keep the log short enough for production use.
+
+| Field | Why it matters |
+| --- | --- |
+| Time and shift | Finds shift patterns and staffing effects |
+| Product, SKU, recipe, or part family | Exposes product-specific instability |
+| Cell state before intervention | Shows whether the issue began during run, start, changeover, or recovery |
+| Symptom | Captures what was visible to the operator |
+| Alarm or fault code | Links human observation to controller data |
+| Action taken | Identifies what actually restored production |
+| Recovery time | Measures operational impact |
+| Cause category | Separates robot, tooling, product, upstream, downstream, safety, controls, and procedure |
+| Repeat issue | Prevents treating recurring problems as random |
+| Owner | Assigns follow-up to production, maintenance, controls, tooling, quality, or integrator |
+
+If the log takes too long to fill out, people will stop using it. If it has no cause category, the daily review will become a story session.
+
+## Cause taxonomy
+
+Use categories that point to action.
+
+| Category | Typical examples | Usual owner |
+| --- | --- | --- |
+| Robot program | Position, path, speed, recovery branch | Controls or integrator |
+| EOAT or tooling | Vacuum loss, worn cup, gripper slip, mechanical interference | Maintenance or tooling |
+| Part presentation | Incorrect orientation, inconsistent stack, poor singulation | Manufacturing engineering |
+| Product variation | Warped part, label position, bag shape, weak carton | Quality or process owner |
+| Upstream flow | Starved cell, late part arrival, inconsistent infeed | Production |
+| Downstream flow | Blocked conveyor, full pallet discharge, case sealer delay | Production or maintenance |
+| Vision or sensing | Missed detection, dirty lens, lighting shift | Controls or maintenance |
+| Safety device | Door, scanner, light curtain, zone reset | Safety and controls |
+| Operator procedure | Wrong reset sequence, unclear HMI, training gap | Production supervisor |
+| Maintenance response | No spare, unclear PM, delayed troubleshooting | Maintenance leader |
+
+The category should be good enough to decide who must act next. It does not need courtroom-level certainty during the first log entry.
+
+## Daily review agenda
+
+A daily robot cell review should be short and evidence-based.
+
+Suggested agenda:
+
+1. Review production result against target.
+2. Count total interventions.
+3. List top three repeat intervention types.
+4. Separate robot faults from cell-system causes.
+5. Review longest recovery events.
+6. Confirm whether any safety or bypass behavior occurred.
+7. Assign one owner per repeat issue.
+8. Decide which issue needs engineering help.
+9. Update operator aids, PM tasks, or spare parts if needed.
+10. Carry unresolved issues to the next day.
+
+Avoid reviewing every alarm code. The goal is to identify patterns that block stable production.
+
+Related page: <LinkCard title="First 90 Days After Robot Cell Go-Live" href="/deployment/first-90-days-after-robot-cell-go-live/" />
+
+## The metrics that matter
+
+Use metrics that show whether support burden is falling.
+
+| Metric | Why it matters |
+| --- | --- |
+| Interventions per shift | Shows how much human rescue the cell needs |
+| Minutes lost per intervention | Shows recovery burden, not just frequency |
+| Repeat interventions by category | Points to fixable patterns |
+| Manual-mode minutes | Reveals hidden production rescue |
+| Calls to maintenance or integrator | Shows whether local ownership is improving |
+| Interventions during changeover | Shows whether SKU onboarding is stable |
+| Interventions after breaks or restarts | Reveals restart fragility |
+| First-time operator recovery rate | Shows whether procedures are usable |
+
+Robot uptime alone is not enough. A cell with high uptime and high intervention count is not stable.
+
+## Common review mistakes
+
+Avoid these patterns:
+
+- calling every stop a robot problem;
+- ignoring short interventions because they do not cross the downtime threshold;
+- treating operator workarounds as normal operation;
+- counting only controller faults and not manual recovery;
+- not tying interventions to product or SKU;
+- not distinguishing tooling wear from program errors;
+- letting the integrator own every recurring issue after handoff;
+- using the log to blame operators instead of improving recovery;
+- reviewing data weekly when the cell is still unstable daily.
+
+The log is a learning tool. If people fear it, it will become incomplete.
+
+## How to start without software
+
+The first version can be a paper sheet, spreadsheet, or simple form.
+
+Start with:
+
+```text
+Date:
+Shift:
+Product or SKU:
+Time stopped:
+Time recovered:
+Visible symptom:
+Alarm or screen message:
+Action taken:
+Cause category:
+Repeat issue? yes/no:
+Owner:
+Follow-up:
+```
+
+After two weeks, review whether the categories are clear enough. If the plant cannot sort the top repeat issues from the log, simplify the fields.
+
+## When to escalate
+
+Escalate beyond daily production review when:
+
+- the same issue repeats across shifts;
+- the same issue appears on multiple SKUs;
+- recovery depends on one expert;
+- operators use manual mode to catch up regularly;
+- safety devices are bypassed, defeated, or treated as nuisance stops;
+- spare parts are consumed faster than expected;
+- the robot program requires frequent touch-up;
+- interventions do not fall after training and PM updates.
+
+Escalation should be specific: tooling change, program update, fixture change, operator aid, spare kit, upstream process fix, or integrator review.
+
+Related page: <LinkCard title="Operator Training and Recovery Procedures Before Robot Go-Live" href="/deployment/operator-training-and-recovery-procedures-before-robot-go-live/" />
+
+## Scale-up decision
+
+Before copying the cell, ask:
+
+- Which interventions are still accepted as normal?
+- Which interventions need engineering correction?
+- Which interventions are product-specific?
+- Which interventions can operators recover safely without expert help?
+- Which interventions would be unacceptable on a second shift?
+- Which interventions would break lights-out assumptions?
+- Which data fields should become standard for the next cell?
+
+A repeatable intervention log turns the first cell into a learning asset. Without it, the second cell may repeat the same mistakes with a larger budget.
+
+Next-step references:
+
+- <LinkCard title="Production Ramp Plans and Containment Rules After Robot Go-Live" href="/deployment/production-ramp-plans-and-containment-rules-after-robot-go-live/" />
+- <LinkCard title="Gripper Maintenance and Wear Planning for High-Duty Material Handling" href="/cell-design/gripper-maintenance-and-wear-planning-for-high-duty-material-handling/" />
+- <LinkCard title="What Keeps a Robot Cell from Scaling Past the First Successful Pilot?" href="/deployment/what-keeps-a-robot-cell-from-scaling-past-the-first-successful-pilot/" />
