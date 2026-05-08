@@ -95,6 +95,34 @@ The strongest rollout usually starts by:
 
 That keeps flexibility aligned with actual value.
 
+## Recipe control checklist
+
+Quick-change tooling should have a recipe model that operators can trust:
+
+| Recipe element | Why it matters |
+| --- | --- |
+| Tool ID | Confirms the physical EOAT matches the intended product |
+| Grip parameters | Separates vacuum zones, clamp force, stroke, or compliance settings |
+| Motion limits | Prevents a tool-specific envelope from being reused incorrectly |
+| Sensor checks | Confirms part present, tool seated, utilities connected, and pickup quality |
+| Changeover instruction | Makes setup repeatable across shifts |
+| Maintenance status | Blocks worn or unverified tools from being used silently |
+
+Without recipe discipline, quick-change hardware only moves complexity from mechanics into operations.
+
+## Acceptance test
+
+Test the system with:
+
+1. correct tool and correct recipe;
+2. correct tool and wrong recipe;
+3. wrong tool and correct recipe;
+4. worn tool or weak vacuum condition;
+5. operator interruption during changeover;
+6. restart after emergency stop during a tooling state.
+
+The cell should fail safe, explain the mismatch, and give operators a recoverable path. If it simply alarms without context, the quick-change system will become a support burden.
+
 ## What to read next
 
 - [Vacuum vs mechanical grippers for bag, case, and carton handling](/cell-design/vacuum-vs-mechanical-grippers-for-bag-case-and-carton-handling/)

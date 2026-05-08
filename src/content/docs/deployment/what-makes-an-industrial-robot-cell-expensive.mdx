@@ -85,9 +85,56 @@ Budget assumptions are usually too low when any of these are still unresolved:
 
 If those questions are unanswered, the budget is not yet tied to the real application.
 
+## Cost drivers by cell type
+
+The same robot arm can sit inside very different cost structures:
+
+| Cell type | Typical hidden cost driver | Why it matters |
+| --- | --- | --- |
+| Machine tending | machine interface, door logic, part presentation, recovery | The robot must coordinate with existing machine states and operator access |
+| Palletizing | case variation, slip sheets, pallet patterns, safety access | High throughput can expose small presentation and stacking problems quickly |
+| Vision inspection | lighting, false positives, evidence workflow, reject handling | The cost is often in decision governance, not only the camera |
+| Material handling transfer | buffers, queue states, EOAT wear, downstream readiness | The robot becomes part of material-flow reliability |
+| Welding or process robotics | fixtures, path programming, process quality, fume/safety controls | The robot is only one part of a broader process cell |
+
+This is why "robot cell cost" is too broad as a search or buying question. The better question is which uncertainty the cell must absorb.
+
+## Where under-budgeting usually begins
+
+Under-budgeting often starts before quoting. Teams describe the task in ideal conditions:
+
+- parts are shown in the best orientation;
+- machines are assumed to return clean ready signals;
+- operators are assumed to recover faults correctly;
+- product variation is collapsed into one example;
+- safety access is treated as layout detail;
+- maintenance effort is ignored until after go-live.
+
+The quote then reflects the simplified task, not the production task. Later, the project does not simply "run over." It catches up to the reality that was excluded from the initial scope.
+
 ## Use this page correctly
 
 This page is not a quote sheet. It is a decision page for separating "robot cost" from "system cost." That distinction matters because many disappointing projects were not underpriced robots. They were under-modeled systems.
+
+## A practical budget-risk review
+
+Before funding, score each item as low, medium, or high uncertainty:
+
+- product presentation stability;
+- EOAT complexity and wear;
+- vision or sensing confidence;
+- safety and access constraints;
+- machine handshakes and fault recovery;
+- product family or recipe variation;
+- operator intervention rate;
+- maintenance and spare-part readiness;
+- integrator support dependency after commissioning.
+
+If three or more are high uncertainty, the budget should include more discovery, a narrower pilot, or a larger risk reserve. If the team refuses to add that reserve, the project should narrow scope until the uncertainty becomes testable.
+
+## The commercial takeaway
+
+The most expensive robot cells are not always the most advanced. They are the ones where the project team buys a cell before it has defined the real operating boundary. Strong cost control starts with honest application definition, then pilot design, then vendor scope. Reversing that order usually makes the final system more expensive than the initial business case promised.
 
 ## Compare next
 

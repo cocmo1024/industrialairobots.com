@@ -14,6 +14,18 @@ targetRoles:
   - Operations managers
   - Robotics integrators
 contentStatus: seed
+problemSolved: Helps plants decide whether a machine-tending cell is mature enough for lower-supervision shifts and what evidence should exist before the move.
+readerTakeaway: You should leave with a night-shift readiness checklist tied to intervention burden, recovery logic, staffing, maintenance coverage, and escalation paths.
+keyQuestions:
+  - What should be true before moving a robot cell into night-shift operation?
+  - Which failures usually appear only when support staff are thinner?
+  - What evidence proves the rollout is ready to scale beyond a supervised pilot?
+notFor:
+  - Daytime-only pilots that have not yet completed basic commissioning
+  - Cells where operators are not allowed to perform any recovery action
+updateTriggers:
+  - New lessons from machine-tending rollout support models
+  - Changes in robot-cell service, remote support, or maintenance readiness patterns
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
@@ -65,6 +77,58 @@ Before moving into lower-supervision operation, the site should already know:
 - and whether the maintenance team can restore the cell without waiting for day-shift engineering.
 
 Night-shift rollout is not just a scheduling decision. It is a maturity test.
+
+## The evidence package before approval
+
+Treat night-shift approval like a small launch review. The cell should have an evidence package that includes:
+
+| Evidence | What it proves |
+| --- | --- |
+| Intervention log from supervised shifts | Shows which stops are still human-dependent |
+| Recovery time by stop reason | Separates nuisance faults from production-impacting failures |
+| Operator reset instructions | Confirms recovery is teachable, not tribal knowledge |
+| Maintenance coverage map | Shows who responds to gripper, sensor, fixture, and machine-interface problems |
+| Spare parts and consumables list | Prevents a cheap missing part from stopping an unsupervised shift |
+| Escalation path | Defines when operators call maintenance, engineering, integrator, or vendor support |
+
+If this package does not exist, the site is not really approving night-shift automation. It is hoping the daytime support model will stretch.
+
+## What usually breaks after supervision drops
+
+The first night-shift problems are rarely dramatic robot failures. More often they are small, repeated conditions:
+
+- the robot stops because a blank, casting, tray, or pallet is slightly outside presentation limits;
+- the machine returns an ambiguous ready, busy, or fault state;
+- the gripper loses vacuum or wear margin but does not fail cleanly;
+- the operator knows how to restart the robot but not how to reset the upstream machine;
+- maintenance can fix the mechanical issue but cannot interpret the robot or PLC alarm path;
+- a recoverable stop becomes a long outage because no one owns the next decision.
+
+This is why [robot cell intervention logging](/deployment/robot-cell-intervention-logging-and-daily-production-review/) is more valuable than a generic uptime number. The intervention pattern tells you whether the cell is becoming more autonomous or merely better supervised.
+
+## A practical go / hold / stop rule
+
+Use a simple decision rule before expanding hours:
+
+- **Go** when the top recurring interventions are documented, teachable, and recoverable by the night-shift support model.
+- **Hold** when the cell runs well but still depends on one daytime expert for normal recovery.
+- **Stop** when safety resets, machine handshakes, or tooling faults are not understood well enough to recover consistently.
+
+This rule keeps the rollout honest. Night shift should validate operational maturity, not become the place where weak commissioning is discovered by operators under pressure.
+
+## What to measure for the first 30 nights
+
+For the first month, track:
+
+- stops per shift by reason code;
+- minutes lost by reason code;
+- recoveries handled by operator versus maintenance versus engineering;
+- repeat stops after reset;
+- missed parts, misloads, and machine-interface failures;
+- quality holds or inspection escapes tied to the cell;
+- support calls outside normal staffing.
+
+The target is not perfect operation. The target is a shrinking list of understood, owned, and preventable interventions. That is the difference between a pilot that works and an asset that can be scaled.
 
 ## Related deployment pages
 

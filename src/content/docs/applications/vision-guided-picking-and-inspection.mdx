@@ -14,6 +14,18 @@ targetRoles:
   - Vision system buyers
   - Integrators
 contentStatus: growing
+problemSolved: Helps teams scope robotic vision-guided picking and inspection so sensing uncertainty, reject handling, and recovery logic are tested before production rollout.
+readerTakeaway: You should leave with a practical model for deciding whether the cell is an inspection project, a guidance project, or a combined system with higher exception burden.
+keyQuestions:
+  - When should picking and inspection be combined in one robot cell?
+  - What vision risks should be proven before rollout?
+  - How should low-confidence and reject events be handled?
+notFor:
+  - Camera-only inspection projects with no robotic handling
+  - Robot demos that use controlled lighting and ideal part presentation only
+updateTriggers:
+  - New field lessons in AI vision, inspection evidence, and robotic picking deployment
+  - Changes in vision-system pricing, lighting, and model-monitoring practice
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
@@ -80,6 +92,45 @@ Strong first deployments usually narrow the problem:
 - define how human intervention is logged and learned from.
 
 That creates the evidence needed to decide whether the cell should expand, split into stages, or stay tightly bounded.
+
+## Inspection and guidance should be separated first
+
+Before combining them, define which job is primary:
+
+| Primary job | Main risk | What to prove first |
+| --- | --- | --- |
+| Vision-guided picking | location, orientation, occlusion, grip success | Robot can pick real production variation without constant search or recovery |
+| Automated inspection | lighting, defect definition, false accept/reject | Inspection decision is stable enough to influence production |
+| Combined pick and inspect | uncertainty compounds across both tasks | Low-confidence handling does not destroy throughput or trust |
+
+Combining tasks can be justified, but only after the team understands where uncertainty enters the cell.
+
+## Evidence workflow
+
+Inspection cells need an evidence workflow, not just a pass/fail output. Define:
+
+- which images or measurements are stored;
+- how rejects are reviewed;
+- how false rejects and false accepts are tracked;
+- who can override the decision;
+- whether evidence is tied to lot, part, pallet, or machine state;
+- how model or rule changes are reviewed later.
+
+This protects the cell from becoming a black box that operators either overtrust or bypass.
+
+## Acceptance criteria
+
+Before go-live, test:
+
+1. normal presentation across the real product range;
+2. dirty, reflective, rotated, or partially occluded parts;
+3. lighting drift over the shift;
+4. ambiguous defect cases;
+5. low-confidence routing;
+6. recovery after a missed pick or false reject;
+7. operator review of stored evidence.
+
+The cell should be judged by stable production behavior, not by best-case demo images.
 
 ## Compare next
 

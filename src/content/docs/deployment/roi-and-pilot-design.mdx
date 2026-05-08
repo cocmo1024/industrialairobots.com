@@ -14,6 +14,18 @@ targetRoles:
   - Manufacturing engineers
   - Robotics integrators
 contentStatus: cornerstone
+problemSolved: Helps automation teams design robot pilots that produce credible ROI evidence instead of clean demos that fail after scale-up.
+readerTakeaway: You should leave with a pilot design model that tests throughput, quality, recovery, support ownership, and hidden operating burden before capital expansion.
+keyQuestions:
+  - What should a robotics pilot prove before scale-up?
+  - Which ROI assumptions usually fail after installation?
+  - How should teams measure recovery and support burden?
+notFor:
+  - Teams seeking a simple arm-price payback calculator without application data
+  - Projects already locked into a final cell design and vendor scope
+updateTriggers:
+  - New robot-cell deployment cost patterns
+  - Changes in labor, safety, service, vision, or EOAT economics
 ---
 
 import { LinkCard } from '@astrojs/starlight/components';
@@ -70,6 +82,34 @@ Useful pilot metrics often include:
 
 Those measures create a more honest view of rollout potential than labor assumptions alone.
 
+## A practical ROI model
+
+A credible robotics ROI model should separate benefits, costs, and confidence. A simple structure is:
+
+| Model area | Inputs to include | Why it matters |
+| --- | --- | --- |
+| Throughput value | units per hour, uptime, starvation, blocked time, changeover impact | Prevents nominal cycle time from overstating real output |
+| Labor effect | direct touch time, supervision, material handling, recovery, inspection | Avoids pretending that all human time disappears |
+| Quality effect | rejects, rework, missed inspections, handling damage, traceability | Captures value that may matter more than labor in some cells |
+| Support cost | maintenance time, spares, integrator support, training, downtime response | Keeps the cell from looking cheap only during commissioning |
+| Risk reserve | unresolved variation, sensing risk, tooling wear, safety changes | Makes uncertainty visible before scale-up |
+
+The strongest payback case is not the one with the shortest spreadsheet payback. It is the one where the assumptions have been tested in the production state the plant will actually run.
+
+## Pilot acceptance criteria
+
+Define acceptance before the pilot begins. Useful criteria include:
+
+- sustained output over full shifts, not just a demonstration window;
+- intervention rate by cause and by product family;
+- recovery time after the top expected abnormal states;
+- scrap or quality impact compared with the current process;
+- operator ability to recover defined faults without engineering help;
+- maintenance ability to replace wear parts and restore the cell;
+- confirmed safety and access behavior during normal clearing.
+
+If the pilot acceptance criteria are vague, stakeholders will argue from anecdotes. A hard pilot turns the conversation into evidence.
+
 ## Why pilot design and robot choice are linked
 
 Robot-class choice, sensing complexity, and cell layout can all change the ROI model. A pilot that ignores those relationships may understate integration cost or overstate scalability.
@@ -85,6 +125,17 @@ Weak pilots usually miss one of three things:
 - or they prove technical motion without proving the support model.
 
 Any of those can produce a misleading payback case.
+
+## The decision after the pilot
+
+The pilot should end with one of four decisions:
+
+1. **Scale** because the pilot proved value, recovery, quality, and support maturity.
+2. **Narrow and repeat** because the application is promising but variation or support burden is not understood.
+3. **Redesign** because the cell concept is viable but tooling, sensing, layout, or handshakes are wrong.
+4. **Stop** because the process instability, economics, or support model does not justify automation now.
+
+This is healthier than treating every pilot as a success that only needs more budget. The best robotics programs stop weak applications early and reinvest in cells that can become durable production assets.
 
 ## Compare next
 

@@ -88,3 +88,61 @@ Those are operating-model failures. The robot only exposes them.
 ## What a healthy first version looks like
 
 The healthiest early version of this application is usually narrower than teams want. It handles a smaller transfer family, a smaller set of buffer states, and a tighter recovery model than the eventual scaled system. That is not weakness. It is how the site learns whether the transfer boundary is stable enough to justify broader automation.
+
+## Buffer design is the real application boundary
+
+The robot should not be used as a substitute for an undefined buffer. Before layout work goes too far, define:
+
+| Buffer question | Why it matters |
+| --- | --- |
+| How many positions can wait before pickup? | Sets the real cycle-time and starvation risk |
+| What happens when the downstream process is blocked? | Prevents the robot from holding a part with nowhere safe to go |
+| Can the upstream process continue while the robot is faulted? | Decides whether the robot becomes a single point of line stoppage |
+| How are empty, partial, and misaligned pallets detected? | Determines sensing and operator recovery needs |
+| Who clears a bad pallet, tray, or nest? | Turns recovery from an improvisation into an operating procedure |
+
+When these questions are answered late, the robot cell becomes expensive because the team is redesigning material flow around a machine that was already quoted.
+
+## EOAT and presentation fit
+
+End-of-arm tooling should be selected from the way parts arrive, not from the nominal part geometry alone. A transfer cell may need:
+
+- vacuum zones for porous or uneven surfaces;
+- fingers or clamps for positive retention during motion;
+- compliance for small presentation variation;
+- quick-change tooling for product families;
+- sensors that confirm part presence and pickup quality;
+- sacrificial wear parts that maintenance can replace without engineering support.
+
+The key design question is whether tooling solves normal variation or only perfect-presentation demos. If the EOAT works only when parts are staged by the project team, the pilot is not representative.
+
+## Machine handshake acceptance test
+
+The handoff between robot and machine should be tested with abnormal states, not only nominal cycle flow:
+
+1. downstream machine not ready;
+2. upstream queue empty;
+3. part present but misaligned;
+4. robot places part and downstream rejects the state;
+5. emergency stop and restart mid-transfer;
+6. operator removes a pallet during recovery.
+
+The acceptance criterion is not just that the cell restarts. It is that the system returns to a known state without ambiguous part ownership.
+
+## Scale-up rule
+
+Do not scale this application by adding more SKUs, more stations, or more transfers until the first cell proves:
+
+- stable presentation over real shifts;
+- known recovery for every common buffer state;
+- operator-safe access to bad parts or pallets;
+- measured intervention frequency by cause;
+- maintenance ownership of EOAT wear and sensors.
+
+That scale-up rule protects ROI. A robot that moves parts well in the demo can still fail commercially if every variation becomes a support call.
+
+## Related pages
+
+- [End-of-arm tooling selection for palletizing and machine tending](/cell-design/end-of-arm-tooling-selection-for-palletizing-and-machine-tending/)
+- [Robot cell intervention logging and daily production review](/deployment/robot-cell-intervention-logging-and-daily-production-review/)
+- [What makes an industrial robot cell expensive?](/deployment/what-makes-an-industrial-robot-cell-expensive/)
