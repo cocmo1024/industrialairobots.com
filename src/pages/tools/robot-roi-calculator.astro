@@ -1,0 +1,88 @@
+---
+import ToolPage from '../../components/ToolPage.astro';
+import Field from '../../components/Field.astro';
+---
+<ToolPage
+  slug="robot-roi-calculator"
+  title="Robot ROI Calculator: Payback Period, NPV and 5-Year Return"
+  description="Free robot ROI calculator. Enter cell cost, labor rate, shifts and running costs to get payback months, NPV and return. Works for cobots and industrial robots."
+  lede="Enter the numbers from your own quote and payroll. Nothing is pre-filled from industry averages except the editable example values below."
+>
+  <Fragment slot="inputs">
+    <h2 style="margin:0;font-size:1rem">Investment</h2>
+    <div class="fields">
+      <Field id="inv" label="Total cell cost" unit="$" value="150000" step="1000" />
+      <Field id="opex" label="Running cost per year" unit="$" value="6000" step="500" />
+      <Field id="other" label="Other savings per year" unit="$" value="0" step="500" />
+    </div>
+    <h2 style="margin:8px 0 0;font-size:1rem">Labor the cell replaces or redeploys</h2>
+    <div class="fields">
+      <Field id="ops" label="Operators per shift" value="1" step="0.25" />
+      <Field id="shifts" label="Shifts per day" value="2" step="1" />
+      <Field id="hours" label="Hours per shift" value="8" step="0.5" />
+      <Field id="days" label="Working days per year" value="250" step="1" />
+      <Field id="rate" label="Burdened labor cost" unit="$/h" value="30" step="0.5" />
+    </div>
+    <h2 style="margin:8px 0 0;font-size:1rem">Finance</h2>
+    <div class="fields">
+      <Field id="years" label="Evaluation period" unit="years" value="5" step="1" min="1" max="15" />
+      <Field id="disc" label="Discount rate" unit="%" value="8" step="0.5" />
+    </div>
+  </Fragment>
+
+  <Fragment slot="results">
+    <h2>Payback</h2>
+    <div class="big" id="payback">—</div>
+    <dl class="kv">
+      <dt>Labor hours per year</dt><dd id="hrs">—</dd>
+      <dt>Labor savings per year</dt><dd id="lab">—</dd>
+      <dt>Net savings per year</dt><dd id="net">—</dd>
+      <dt>Net over period</dt><dd id="tot">—</dd>
+      <dt>NPV</dt><dd id="npv">—</dd>
+      <dt>Return on investment</dt><dd id="roi">—</dd>
+    </dl>
+    <p class="err" id="err" hidden>Check the inputs: costs and hours must be zero or more.</p>
+  </Fragment>
+
+  <h2>How the calculation works</h2>
+  <ul>
+    <li><strong>Labor hours per year</strong> = operators per shift × shifts per day × hours per shift × working days.</li>
+    <li><strong>Net savings per year</strong> = labor hours × burdened labor cost + other savings − running cost.</li>
+    <li><strong>Payback</strong> = total cell cost ÷ net savings per year (shown in months).</li>
+    <li><strong>NPV</strong> = −cell cost + Σ net savings ÷ (1 + discount rate)<sup>year</sup>, over the evaluation period.</li>
+    <li><strong>ROI</strong> = (net savings × years − cell cost) ÷ cell cost.</li>
+  </ul>
+  <h2>What to put in “total cell cost”</h2>
+  <p>The robot arm is often well under half of a working cell. Include the gripper or end-of-arm tooling, guarding or safety scanners, part presentation (fixtures, feeders, conveyors), integration engineering, programming, installation, training and commissioning. Ask your integrator to break these out in the quote.</p>
+  <h2>Common mistakes</h2>
+  <ul>
+    <li>Using the wage instead of the <strong>burdened</strong> cost (wage plus benefits, payroll taxes and overhead).</li>
+    <li>Counting a full operator when the cell still needs someone to load, unload or clear faults part of the time — use fractions such as 0.5.</li>
+    <li>Leaving out the ramp-up period: few cells reach target output in their first weeks.</li>
+    <li>Ignoring tax incentives or depreciation — add them under “other savings” only if your finance team confirms them.</li>
+  </ul>
+  <p class="note">This is a screening estimate, not financial advice. Results depend entirely on your inputs.</p>
+</ToolPage>
+
+<script>
+  import { roi } from '../../lib/calc/roi';
+  import { val, out, money, fmt, bindForm, valid } from '../../lib/ui';
+  bindForm(document.getElementById('calc') as HTMLFormElement, () => {
+    const i = {
+      investment: val('inv'), annualOperatingCost: val('opex'), otherAnnualSavings: val('other'),
+      operatorsPerShift: val('ops'), shiftsPerDay: val('shifts'), hoursPerShift: val('hours'), daysPerYear: val('days'),
+      laborRate: val('rate'), years: val('years'), discountRatePct: val('disc'),
+    };
+    const ok = valid(Object.values(i), true) && i.years >= 1;
+    document.getElementById('err')!.hidden = ok;
+    if (!ok) return;
+    const r = roi(i);
+    out('payback', r.paybackMonths === null ? 'Never' : `${fmt(r.paybackMonths, 1)} months`);
+    out('hrs', fmt(r.laborHoursPerYear));
+    out('lab', '$' + money(r.annualLaborSavings));
+    out('net', '$' + money(r.annualNetSavings));
+    out('tot', '$' + money(r.netOverPeriod));
+    out('npv', '$' + money(r.npv));
+    out('roi', `${fmt(r.roiPct, 0)} %`);
+  });
+</script>

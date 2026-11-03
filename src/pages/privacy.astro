@@ -1,0 +1,18 @@
+---
+import Prose from '../layouts/Prose.astro';
+import { SITE } from '../site';
+---
+<Prose title="Privacy" heading="Privacy policy" description="Privacy policy for Industrial AI Robots: no accounts, calculator inputs stay in your browser, and what hosting and advertising partners may collect." noindex>
+  <p>Last updated: 2026-11-03.</p>
+  <h2>What we collect</h2>
+  <ul>
+    <li><strong>No accounts.</strong> The site has no sign-up and no forms that store your data.</li>
+    <li><strong>Calculators run in your browser.</strong> Inputs are kept in the page address so you can share a result; they are not sent to us.</li>
+    <li><strong>Hosting logs.</strong> The site is served by Cloudflare, which processes technical request data (such as IP address and browser type) to deliver and protect the site.</li>
+    <li><strong>Email.</strong> If you write to us, we keep your message to reply and to track corrections.</li>
+  </ul>
+  <h2>Advertising</h2>
+  <p>We may show ads served by Google AdSense. Google and its partners use cookies to serve ads based on prior visits to this and other websites. You can opt out of personalized advertising at <a href="https://adssettings.google.com/" rel="nofollow noopener">Google Ads Settings</a>. Visitors in the EEA, UK and Switzerland are asked for consent through a certified consent message before personalized ads are shown.</p>
+  <h2>Contact</h2>
+  <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+</Prose>

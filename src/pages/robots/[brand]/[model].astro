@@ -1,0 +1,123 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import RobotCard from '../../../components/RobotCard.astro';
+import {
+  robots, brandBySlug, categoryBySlug, formatSpec, specKeysFor, similar, robotUrl, brandUrl, categoryUrl,
+  SPEC_DEFS, STATUS_LABEL, fullName,
+} from '../../../lib/db';
+import type { Robot } from '../../../data/schema';
+import { SITE } from '../../../site';
+
+export function getStaticPaths() {
+  return robots.map((r) => ({ params: { brand: r.brand, model: r.slug }, props: { r } }));
+}
+interface Props { r: Robot }
+const { r } = Astro.props;
+const brand = brandBySlug(r.brand)!;
+const cat = categoryBySlug(r.category)!;
+const keys = specKeysFor(r);
+const sim = similar(r);
+const name = fullName(r);
+const isArm = r.category !== 'humanoid-robots';
+
+const s = r.specs;
+const headline = [
+  s.payloadKg !== undefined ? `${formatSpec('payloadKg', s.payloadKg)} payload` : '',
+  s.reachMm !== undefined ? `${formatSpec('reachMm', s.reachMm)} reach` : '',
+  s.heightMm !== undefined ? `${formatSpec('heightMm', s.heightMm)} tall` : '',
+].filter(Boolean).join(', ');
+const title = `${name} Specs: ${isArm ? 'Payload, Reach, Repeatability' : 'Height, Payload, Price & Status'}`;
+const description = `${name} specifications${headline ? ` — ${headline}` : ''}. ${STATUS_LABEL[r.status]}. Every value cited to ${brand.name}; compare with similar ${cat.short.toLowerCase()}.`.slice(0, 160);
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name,
+  brand: { '@type': 'Brand', name: brand.name },
+  category: cat.name,
+  description: r.summary,
+  url: SITE.url + robotUrl(r),
+  additionalProperty: keys.filter((k) => s[k] !== undefined).map((k) => ({
+    '@type': 'PropertyValue', name: SPEC_DEFS[k].label, value: formatSpec(k, s[k]),
+  })),
+};
+const compareIds = [r, ...sim.slice(0, 2)].map((x) => `${x.brand}/${x.slug}`).join(',');
+---
+<Base title={title} description={description} jsonLd={ld}>
+  <PageHead
+    eyebrow={`${brand.name} · ${cat.short}`}
+    title={`${name} specifications`}
+    lede={r.summary}
+    crumbs={[{ name: 'Robots', href: '/robots/' }, { name: brand.name, href: brandUrl(brand.slug) }, { name: r.name }]}
+  >
+    <p><span class:list={['badge', r.status]}>{STATUS_LABEL[r.status]}</span> <span class="muted" style="color:var(--ink-muted);font-size:.85rem">Checked {r.updated}</span></p>
+  </PageHead>
+
+  <div class="wrap two" style="margin-top:32px">
+    <div>
+      <h2 style="margin-top:0">Specifications</h2>
+      <div class="table-wrap">
+        <table class="spec">
+          <tbody>
+            {keys.map((k) => (
+              <tr>
+                <th scope="row">{SPEC_DEFS[k].label}</th>
+                {s[k] === undefined
+                  ? <td class="missing">Not stated by the cited source</td>
+                  : <td>{formatSpec(k, s[k])}{r.specNotes?.[k] && <small>{r.specNotes[k]}</small>}</td>}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {r.notes && r.notes.length > 0 && (
+        <>
+          <h2>More from the manufacturer</h2>
+          <div class="table-wrap">
+            <table class="spec"><tbody>
+              {r.notes.map((n) => <tr><th scope="row">{n.label}</th><td style="font-family:var(--font-sans);font-weight:500">{n.value}</td></tr>)}
+            </tbody></table>
+          </div>
+        </>
+      )}
+
+      <h2>Sources</h2>
+      <ol class="sources">
+        {r.sources.map((src) => <li><a href={src.url} rel="nofollow noopener" target="_blank">{src.publisher}: {src.title}</a> <span class="muted">— read {src.retrieved}</span></li>)}
+      </ol>
+      <p class="muted" style="font-size:.9rem">Values are copied from the manufacturer as published and may change. Rated payload assumes the manufacturer’s load conditions — check the load diagram for your tool and part. <a href={`/contact/?robot=${r.brand}/${r.slug}`}>Report a correction</a> · <a href="/methodology/">How we source data</a></p>
+    </div>
+
+    <aside class="stack">
+      <div class="card">
+        <h3>Compare</h3>
+        <p>Put the {r.name} side by side with similar {cat.short.toLowerCase()}.</p>
+        <p style="margin-top:12px"><a class="btn" href={`/compare/?r=${compareIds}`}>Compare specs</a></p>
+      </div>
+      {isArm && (
+        <div class="card">
+          <h3>Engineering tools</h3>
+          <ul style="padding-left:1.1em;margin:8px 0 0">
+            <li><a href="/tools/vacuum-gripper-calculator/">Size a vacuum gripper</a></li>
+            <li><a href="/tools/cycle-time-calculator/">Cycle time → throughput</a></li>
+            <li><a href="/tools/robot-roi-calculator/">Payback & ROI</a></li>
+          </ul>
+        </div>
+      )}
+      <div class="card">
+        <h3>{brand.name}</h3>
+        <p>{brand.summary}</p>
+        <p style="margin-top:10px"><a href={brandUrl(brand.slug)}>All {brand.name} robots →</a></p>
+      </div>
+    </aside>
+  </div>
+
+  {sim.length > 0 && (
+    <div class="wrap section">
+      <div class="section-head"><h2>Similar {cat.short.toLowerCase()}</h2><a href={categoryUrl(cat.slug)}>All {cat.short.toLowerCase()} →</a></div>
+      <div class="grid">{sim.map((x) => <RobotCard robot={x} />)}</div>
+    </div>
+  )}
+</Base>

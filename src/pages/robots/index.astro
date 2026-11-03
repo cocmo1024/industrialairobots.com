@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { robots, brands, categories, brandBySlug, categoryBySlug, formatSpec, robotUrl, STATUS_LABEL } from '../../lib/db';
+const usedCats = categories.filter((c) => robots.some((r) => r.category === c.slug));
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'Dataset',
+  name: 'Industrial AI Robots — robot specification database',
+  description: 'Specifications of industrial robots, cobots and humanoid robots, each value cited to the manufacturer.',
+  url: 'https://industrialairobots.com/robots/',
+  license: 'https://creativecommons.org/licenses/by/4.0/',
+  creator: { '@type': 'Organization', name: 'Industrial AI Robots' },
+  distribution: [{ '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: 'https://industrialairobots.com/data/robots.json' }],
+};
+---
+<Base title="Robot Database: Specs for Industrial Robots, Cobots, Humanoids" description="Filter industrial robots, cobots and humanoids by payload, reach and type. Every spec is cited to the manufacturer, with a free JSON download." jsonLd={ld}>
+  <PageHead eyebrow="Robot database" title="Find a robot by payload, reach and type" lede="Every value is copied from the manufacturer’s own page and linked to it. If a maker doesn’t state a number, we show a dash — we don’t guess." crumbs={[{ name: 'Robots' }]} />
+
+  <div class="wrap section">
+    <form class="fields card" id="finder" role="search" aria-label="Filter robots">
+      <div><label for="q">Search</label><input id="q" type="search" placeholder="e.g. UR20, humanoid" autocomplete="off" /></div>
+      <div><label for="cat">Type</label><select id="cat"><option value="">All types</option>{usedCats.map((c) => <option value={c.slug}>{c.short}</option>)}</select></div>
+      <div><label for="brand">Brand</label><select id="brand"><option value="">All brands</option>{brands.map((b) => <option value={b.slug}>{b.name}</option>)}</select></div>
+      <div><label for="pay">Min payload <span class="unit">kg</span></label><input id="pay" type="number" min="0" step="0.5" inputmode="decimal" /></div>
+      <div><label for="reach">Min reach <span class="unit">mm</span></label><input id="reach" type="number" min="0" step="50" inputmode="numeric" /></div>
+    </form>
+
+    <p class="muted" id="count" aria-live="polite" style="margin:16px 0 10px">{robots.length} robots</p>
+    <div class="table-wrap">
+      <table id="table">
+        <thead><tr>
+          <th><button type="button" class="sort" data-k="name">Model</button></th><th>Type</th>
+          <th class="num"><button type="button" class="sort" data-k="pay">Payload</button></th>
+          <th class="num"><button type="button" class="sort" data-k="reach">Reach</button></th>
+          <th class="num">Repeat.</th><th class="num"><button type="button" class="sort" data-k="weight">Weight</button></th><th>Status</th>
+        </tr></thead>
+        <tbody>
+          {robots.map((r) => (
+            <tr data-name={`${brandBySlug(r.brand)?.name} ${r.name} ${r.family ?? ''} ${categoryBySlug(r.category)?.name}`.toLowerCase()}
+                data-cat={r.category} data-brand={r.brand} data-pay={r.specs.payloadKg ?? ''} data-reach={r.specs.reachMm ?? ''} data-weight={r.specs.weightKg ?? ''}>
+              <td><a href={robotUrl(r)}><strong>{r.name}</strong></a><br /><span class="muted" style="font-size:.85rem">{brandBySlug(r.brand)?.name}</span></td>
+              <td>{categoryBySlug(r.category)?.short}</td>
+              <td class="num mono">{formatSpec('payloadKg', r.specs.payloadKg)}</td>
+              <td class="num mono">{formatSpec('reachMm', r.specs.reachMm)}</td>
+              <td class="num mono">{formatSpec('repeatabilityMm', r.specs.repeatabilityMm)}</td>
+              <td class="num mono">{formatSpec('weightKg', r.specs.weightKg)}</td>
+              <td><span class:list={['badge', r.status]}>{STATUS_LABEL[r.status]}</span></td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:.9rem;margin-top:12px">Download the full dataset: <a href="/data/robots.json">robots.json</a> (CC BY 4.0 — credit “Industrial AI Robots” with a link). Missing a robot? <a href="/contact/">Tell us</a>.</p>
+  </div>
+</Base>
+
+<style>
+  .sort { all: unset; cursor: pointer; }
+  .sort::after { content: ' ↕'; opacity: .45; }
+  .sort:focus-visible { outline: 2px solid var(--accent); }
+</style>
+
+<script>
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const q = $<HTMLInputElement>('q'), cat = $<HTMLSelectElement>('cat'), brand = $<HTMLSelectElement>('brand');
+  const pay = $<HTMLInputElement>('pay'), reach = $<HTMLInputElement>('reach'), count = $('count');
+  const tbody = document.querySelector('#table tbody')!;
+  const rows = [...tbody.querySelectorAll<HTMLTableRowElement>('tr')];
+
+  // Restore filters from the URL so filtered views can be shared.
+  const params = new URLSearchParams(location.search);
+  q.value = params.get('q') ?? ''; cat.value = params.get('type') ?? ''; brand.value = params.get('brand') ?? '';
+  pay.value = params.get('payload') ?? ''; reach.value = params.get('reach') ?? '';
+
+  function apply() {
+    const text = q.value.trim().toLowerCase();
+    const minP = parseFloat(pay.value), minR = parseFloat(reach.value);
+    let n = 0;
+    for (const tr of rows) {
+      const d = tr.dataset;
+      const ok = (!text || d.name!.includes(text)) && (!cat.value || d.cat === cat.value) && (!brand.value || d.brand === brand.value)
+        && (isNaN(minP) || (d.pay !== '' && Number(d.pay) >= minP)) && (isNaN(minR) || (d.reach !== '' && Number(d.reach) >= minR));
+      tr.hidden = !ok; if (ok) n++;
+    }
+    count.textContent = `${n} of ${rows.length} robots`;
+    const p = new URLSearchParams();
+    if (q.value) p.set('q', q.value); if (cat.value) p.set('type', cat.value); if (brand.value) p.set('brand', brand.value);
+    if (pay.value) p.set('payload', pay.value); if (reach.value) p.set('reach', reach.value);
+    history.replaceState(null, '', p.toString() ? `?${p}` : location.pathname);
+  }
+  document.getElementById('finder')!.addEventListener('input', apply);
+  document.getElementById('finder')!.addEventListener('submit', (e) => e.preventDefault());
+
+  let dir = 1, last = '';
+  document.querySelectorAll<HTMLButtonElement>('.sort').forEach((b) => b.addEventListener('click', () => {
+    const k = b.dataset.k!; dir = k === last ? -dir : 1; last = k;
+    const val = (tr: HTMLTableRowElement) => (k === 'name' ? tr.dataset.name! : tr.dataset[k] === '' ? Infinity : Number(tr.dataset[k]));
+    rows.sort((a, c) => { const x = val(a), y = val(c); return (x < y ? -1 : x > y ? 1 : 0) * dir; }).forEach((tr) => tbody.appendChild(tr));
+  }));
+  apply();
+</script>

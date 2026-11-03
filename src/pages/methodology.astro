@@ -1,0 +1,29 @@
+---
+import Prose from '../layouts/Prose.astro';
+import { robots } from '../lib/db';
+const sourceCount = new Set(robots.flatMap((r) => r.sources.map((s) => s.url))).size;
+---
+<Prose title="Data Methodology" heading="How we source robot data" description="How Industrial AI Robots sources and checks robot specifications: manufacturer pages only, dated citations, status labels and a public correction process." lede="No source, no number. Here is exactly what that means.">
+  <h2>Sources</h2>
+  <ul>
+    <li>Specifications come from the manufacturer’s own product page, datasheet or manual. Distributor listings and third-party spec aggregators are not used as sources — they often disagree with each other and with the maker.</li>
+    <li>Every robot page lists its sources with the date we read them. The database currently cites {sourceCount} primary sources for {robots.length} robots.</li>
+    <li>If the cited source does not state a value, the page shows “Not stated by the cited source” (or “—” in tables). We do not fill gaps with estimates.</li>
+    <li>Qualifiers the manufacturer gives (for example “about 35 kg with battery” or “arm load varies with pose”) are kept next to the number.</li>
+  </ul>
+  <h2>Status labels</h2>
+  <ul>
+    <li><strong>In production</strong> — the manufacturer offers the model for sale.</li>
+    <li><strong>Early access</strong> — available only to selected customers or pilots, per the manufacturer.</li>
+    <li><strong>Preliminary specs</strong> — the manufacturer itself marks the figures as preliminary or subject to change.</li>
+    <li><strong>Discontinued</strong> — no longer offered; kept for reference.</li>
+  </ul>
+  <h2>Comparisons</h2>
+  <p>Manufacturers measure under their own conditions. Rated payload, reach and speed are not always comparable one-to-one across brands; our pages say so where it matters, and the <a href="/guides/how-to-read-a-robot-datasheet/">datasheet guide</a> explains the differences.</p>
+  <h2>Calculators</h2>
+  <p>Each calculator shows its formula and its limits. The formulas are covered by automated tests against hand-worked examples, and results are screening estimates — not a substitute for a qualified engineer, a risk assessment or the manufacturer’s documentation.</p>
+  <h2>Corrections</h2>
+  <p>Found an error or a newer datasheet? <a href="/contact/">Send it to us</a> with the source link. Confirmed corrections are applied and the page’s “checked” date is updated.</p>
+  <h2>Open data</h2>
+  <p>The full database is available as <a href="/data/robots.json">robots.json</a> under CC BY 4.0. Please credit “Industrial AI Robots” with a link to this site.</p>
+</Prose>

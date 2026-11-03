@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { brands, robotsByBrand, brandUrl } from '../../lib/db';
+const list = [...brands].sort((a, b) => a.name.localeCompare(b.name));
+---
+<Base title="Robot Manufacturers" description="Industrial robot, cobot and humanoid manufacturers in the Industrial AI Robots database, with every model's specs cited to the maker.">
+  <PageHead eyebrow="Database" title="Robot manufacturers" lede="Brands covered so far. Coverage grows model by model — each one checked against the manufacturer’s own page." crumbs={[{ name: 'Robots', href: '/robots/' }, { name: 'Brands' }]} />
+  <div class="wrap section">
+    <div class="grid">
+      {list.map((b) => (
+        <a class="card" href={brandUrl(b.slug)}>
+          <div class="kicker">{b.country} · {robotsByBrand(b.slug).length} models</div>
+          <h3>{b.name}</h3>
+          <p>{b.summary}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

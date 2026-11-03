@@ -1,108 +1,20 @@
 import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
-import { docsLoader } from '@astrojs/starlight/loaders';
-import { docsSchema } from '@astrojs/starlight/schema';
 
-export const collections = {
-	docs: defineCollection({
-		loader: docsLoader(),
-		schema: docsSchema({
-			extend: z.object({
-				referenceType: z
-					.enum([
-						'home',
-						'foundation',
-						'policy',
-						'application',
-						'robot-type',
-						'vision',
-						'cell-design',
-						'deployment',
-						'case-study',
-					])
-					.optional(),
-				adProfile: z
-					.enum([
-						'foundation',
-						'policy',
-						'application',
-						'case-study',
-						'robot-type',
-						'vision',
-						'cell-design',
-						'deployment',
-					])
-					.optional(),
-				commercialIntent: z.enum(['low', 'medium', 'high']).optional(),
-				reviewCadence: z.string().optional(),
-				primaryKeyword: z.string().optional(),
-				searchIntent: z.enum(['learn', 'compare', 'select', 'design', 'deploy']).optional(),
-				decisionStage: z
-					.enum([
-						'problem-aware',
-						'solution-aware',
-						'vendor-aware',
-						'shortlist',
-						'implementation',
-						'operations',
-					])
-					.optional(),
-				targetRoles: z.array(z.string()).optional(),
-				contentStatus: z.enum(['seed', 'growing', 'cornerstone']).optional(),
-				contentCluster: z.string().optional(),
-				canonicalCluster: z.string().optional(),
-				pageType: z
-					.enum([
-						'home',
-						'foundation',
-						'policy',
-						'hub',
-						'reference',
-						'application-guide',
-						'vendor-profile',
-						'product-family',
-						'protocol-guide',
-						'comparison',
-						'decision-guide',
-						'implementation-guide',
-						'security-checklist',
-						'cost-model',
-						'playbook',
-						'rfp-checklist',
-						'market-signal',
-						'question-answer',
-						'prompt-library',
-						'tool-guide',
-						'tool-comparison',
-						'evaluation',
-						'workflow',
-						'syntax-reference',
-						'editor-comparison',
-						'publishing-guide',
-						'case-study',
-						'robot-type',
-						'vision-guide',
-						'cell-design',
-						'deployment-guide',
-						'hardware-guide',
-						'reliability-guide',
-						'network-path',
-					])
-					.optional(),
-				lifecycle: z
-					.enum(['evergreen', 'market-signal', 'seasonal', 'policy', 'hub'])
-					.optional(),
-				refreshPriority: z.enum(['low', 'medium', 'high']).optional(),
-				authorKey: z.string().optional(),
-				editorKey: z.string().optional(),
-				datePublished: z.coerce.date().optional(),
-				lastReviewed: z.coerce.date().optional(),
-				problemSolved: z.string().optional(),
-				readerTakeaway: z.string().optional(),
-				keyQuestions: z.array(z.string()).optional(),
-				notFor: z.array(z.string()).optional(),
-				updateTriggers: z.array(z.string()).optional(),
-			}),
-		}),
-	}),
-};
+const guides = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/guides' }),
+  schema: z.object({
+    title: z.string().max(70),
+    description: z.string().min(70).max(160),
+    /** Topic cluster; see docs/STRATEGY.md for the list. */
+    topic: z.enum(['selection', 'specs', 'cost-roi', 'safety', 'applications', 'physical-ai']),
+    published: z.coerce.date(),
+    updated: z.coerce.date(),
+    /** Primary sources the guide relies on. */
+    sources: z.array(z.object({ title: z.string(), url: z.url() })).default([]),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { guides };

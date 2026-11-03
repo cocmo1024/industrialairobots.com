@@ -1,0 +1,18 @@
+---
+import Prose from '../layouts/Prose.astro';
+import { SITE } from '../site';
+---
+<Prose title="About" heading="About Industrial AI Robots" description="Industrial AI Robots is an independent, source-cited reference for industrial robots, cobots and humanoids, built for engineers and buyers." lede="An independent reference for people who specify, buy and deploy robots.">
+  <p>Industrial AI Robots helps engineers, plant managers and buyers shortlist robots and design the cell around them. The site has three parts:</p>
+  <ul>
+    <li><a href="/robots/">A robot database</a> — industrial arms, cobots and humanoid robots, with every specification copied from the manufacturer and linked to its source.</li>
+    <li><a href="/tools/">Engineering calculators</a> — ROI, cycle time, vacuum gripper sizing and safety distance, with the formulas shown in full.</li>
+    <li><a href="/guides/">Guides</a> — practical explanations that connect the data to decisions.</li>
+  </ul>
+  <h2>Independence</h2>
+  <p>We are not a robot manufacturer, distributor or integrator, and no manufacturer pays to be listed or to change its data. If that ever changes for any part of the site — for example sponsored placements — it will be labeled clearly on the page where it appears.</p>
+  <h2>How we work</h2>
+  <p>Our rule is simple: no source, no number. Read the <a href="/methodology/">data methodology</a> for details on sources, status labels and corrections.</p>
+  <h2>Contact</h2>
+  <p>Corrections, missing robots and partnership questions: <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+</Prose>

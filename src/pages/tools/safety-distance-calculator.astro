@@ -1,0 +1,65 @@
+---
+import ToolPage from '../../components/ToolPage.astro';
+import Field from '../../components/Field.astro';
+---
+<ToolPage
+  slug="safety-distance-calculator"
+  title="Light Curtain Safety Distance Calculator (ISO 13855)"
+  description="Minimum safety distance for a light curtain on a robot cell: S = K·T + C per ISO 13855:2010, with stopping time, response time and resolution."
+  lede="Minimum mounting distance for a light curtain approached at right angles, using the ISO 13855:2010 formulas."
+>
+  <Fragment slot="inputs">
+    <div class="fields">
+      <Field id="stop" label="Machine stopping time" unit="ms" value="200" step="1" />
+      <Field id="resp" label="Light curtain response time" unit="ms" value="15" step="1" />
+      <Field id="res" label="Resolution (detection capability)" unit="mm" value="30" step="1" max="70" />
+    </div>
+    <p class="muted" style="font-size:.88rem;margin:0">Stopping time must be measured (or taken from the robot maker’s stopping data for your speed, payload and extension) and include the safety controller.</p>
+  </Fragment>
+
+  <Fragment slot="results">
+    <h2>Minimum distance S</h2>
+    <div class="big"><span id="s">—</span><small>mm</small></div>
+    <dl class="kv">
+      <dt>Total time T</dt><dd id="t">—</dd>
+      <dt>Approach speed K</dt><dd id="k">—</dd>
+      <dt>Intrusion distance C</dt><dd id="c">—</dd>
+    </dl>
+    <p style="color:var(--ink-muted);font-size:.88rem;margin:14px 0 0" id="rule"></p>
+    <p class="err" id="err" hidden></p>
+  </Fragment>
+
+  <h2>The formula</h2>
+  <p><strong>S = K × T + C</strong>, where T is the total stopping time (machine + control + protective device) in seconds.</p>
+  <ul>
+    <li><strong>Resolution d ≤ 40 mm</strong> (finger and hand detection): C = 8 × (d − 14). Use K = 2000 mm/s; if S is 100–500 mm keep it (minimum 100 mm). If S exceeds 500 mm, recalculate with K = 1600 mm/s; S may then not be less than 500 mm.</li>
+    <li><strong>40 mm &lt; d ≤ 70 mm</strong> (body detection): S = 1600 × T + 850.</li>
+  </ul>
+  <h2>Limits of this tool</h2>
+  <ul>
+    <li>It covers perpendicular approach to a vertical light curtain only — not parallel (horizontal) or angled approach, multi-beam devices, reaching over the field, or area scanners.</li>
+    <li>ISO 13855 was revised in 2024. These are the ISO 13855:2010 / EN ISO 13855:2010 formulas. Check which edition applies in your market and confirm the result against it.</li>
+    <li>The result is an input to your risk assessment, not a substitute for it. Have a qualified safety engineer validate the installation.</li>
+  </ul>
+</ToolPage>
+
+<script>
+  import { safetyDistance } from '../../lib/calc/safety-distance';
+  import { val, out, fmt, bindForm, valid } from '../../lib/ui';
+  bindForm(document.getElementById('calc') as HTMLFormElement, () => {
+    const i = { machineStopMs: val('stop'), deviceResponseMs: val('resp'), resolutionMm: val('res') };
+    const err = document.getElementById('err')!;
+    if (!valid(Object.values(i))) { err.hidden = false; err.textContent = 'All inputs must be greater than zero.'; return; }
+    try {
+      const r = safetyDistance(i);
+      err.hidden = true;
+      out('s', fmt(r.distanceMm, 0));
+      out('t', `${fmt(r.totalTimeS, 3)} s`);
+      out('k', `${r.k} mm/s`);
+      out('c', `${fmt(r.c, 0)} mm`);
+      out('rule', r.rule);
+    } catch (e) {
+      err.hidden = false; err.textContent = (e as Error).message;
+    }
+  });
+</script>

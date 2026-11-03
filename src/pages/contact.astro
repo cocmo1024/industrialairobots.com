@@ -1,0 +1,22 @@
+---
+import Prose from '../layouts/Prose.astro';
+import { SITE } from '../site';
+---
+<Prose title="Contact & Corrections" description="Send a spec correction, suggest a robot for the database, or ask about partnerships with Industrial AI Robots." lede="Corrections and missing robots are the most useful messages we get.">
+  <h2>Email</h2>
+  <p><a id="mail" href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+  <h2>For a correction, please include</h2>
+  <ul>
+    <li>The page or robot (for example <code>fanuc/crx-10ia</code>).</li>
+    <li>The value that is wrong and the correct value.</li>
+    <li>A link to the manufacturer’s page or datasheet that shows it.</li>
+  </ul>
+  <h2>Manufacturers</h2>
+  <p>If you make robots and want your models listed or your data updated, send the product page or datasheet links. Listing is free and is never conditional on payment.</p>
+  <script define:vars={{ email: SITE.email }}>
+    const r = new URLSearchParams(location.search).get('robot');
+    if (r && /^[a-z0-9-]+\/[a-z0-9-]+$/.test(r)) {
+      document.getElementById('mail').href = `mailto:${email}?subject=${encodeURIComponent('Correction: ' + r)}`;
+    }
+  </script>
+</Prose>

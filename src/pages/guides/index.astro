@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { TOPICS } from '../../lib/topics';
+const guides = (await getCollection('guides', (g) => !g.data.draft)).sort((a, b) => +b.data.updated - +a.data.updated);
+---
+<Base title="Industrial Robot Guides" description="Practical guides to selecting, specifying and deploying industrial robots, cobots and humanoids — with sources and links to the spec database.">
+  <PageHead eyebrow="Guides" title="Guides for robot buyers and engineers" lede="Practical, source-cited explanations. Each guide links to the data and tools you need to act on it." crumbs={[{ name: 'Guides' }]} />
+  <div class="wrap section">
+    <div class="grid">
+      {guides.map((g) => (
+        <a class="card" href={`/guides/${g.id}/`}>
+          <div class="kicker">{TOPICS[g.data.topic]}</div>
+          <h3>{g.data.title}</h3>
+          <p>{g.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</Base>

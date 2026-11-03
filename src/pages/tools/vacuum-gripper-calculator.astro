@@ -1,0 +1,71 @@
+---
+import ToolPage from '../../components/ToolPage.astro';
+import Field from '../../components/Field.astro';
+import { FRICTION_PRESETS } from '../../lib/calc/vacuum';
+---
+<ToolPage
+  slug="vacuum-gripper-calculator"
+  title="Vacuum Gripper Calculator: Suction Cup Size and Holding Force"
+  description="Calculate the holding force and minimum suction cup diameter for a robot vacuum gripper from part mass, acceleration, friction, safety factor and vacuum level."
+  lede="Size suction cups for a robot gripper using the standard load cases published by vacuum component makers."
+>
+  <Fragment slot="inputs">
+    <div class="fields">
+      <Field id="m" label="Part mass" unit="kg" value="10" step="0.1" />
+      <Field id="a" label="Max acceleration" unit="m/s²" value="5" step="0.5" />
+      <Field id="n" label="Number of cups" value="4" step="1" min="1" />
+      <Field id="vac" label="Vacuum level" unit="kPa below atm." value="60" step="1" max="95" />
+      <Field id="s" label="Safety factor" value="2" step="0.1" min="1" />
+      <div><label for="mu">Surface (friction μ)</label><select id="mu">{FRICTION_PRESETS.map((f) => <option value={f.value} selected={f.value === 0.5}>{f.label} — {f.value}</option>)}</select></div>
+    </div>
+    <div><label for="lc">Load case</label>
+      <select id="lc">
+        <option value="horizontal-vertical">I — Cups face down on a flat part, lift vertically</option>
+        <option value="horizontal-horizontal">II — Cups face down on a flat part, move sideways</option>
+        <option value="vertical-vertical">III — Cups on a vertical face, lift vertically</option>
+      </select>
+    </div>
+  </Fragment>
+
+  <Fragment slot="results">
+    <h2>Minimum cup diameter</h2>
+    <div class="big"><span id="d">—</span><small>mm effective</small></div>
+    <dl class="kv">
+      <dt>Required holding force</dt><dd id="f">—</dd>
+      <dt>Force per cup</dt><dd id="fc">—</dd>
+      <dt>Suction area per cup</dt><dd id="ac">—</dd>
+    </dl>
+    <p class="err" id="err" hidden>Inputs must be positive; vacuum below 100 kPa; safety factor at least 1.</p>
+  </Fragment>
+
+  <h2>Load cases</h2>
+  <ul>
+    <li><strong>I — horizontal gripper, vertical move:</strong> F = m × (g + a) × S</li>
+    <li><strong>II — horizontal gripper, horizontal move:</strong> F = m × (g + a ÷ μ) × S</li>
+    <li><strong>III — vertical gripper, vertical move:</strong> F = (m ÷ μ) × (g + a) × S</li>
+  </ul>
+  <p>Required area per cup = F ÷ (number of cups × vacuum level). Diameter = √(4 × area ÷ π). With g = 9.81 m/s² and 1 kPa = 0.001 N/mm².</p>
+  <h2>Before you order cups</h2>
+  <ul>
+    <li>The result is the <em>effective</em> suction diameter. Real cups lose area when they compress; check the theoretical suction force in the cup datasheet, not just the nominal size.</li>
+    <li>Use a safety factor of at least 1.5; vacuum makers generally recommend 2 or more for porous, oily or flexible parts and for rotation during transfer.</li>
+    <li>Porous parts (cardboard, wood, textiles) leak — the vacuum level you can hold depends on the generator flow, not just its rated vacuum.</li>
+    <li>Friction values are typical starting points. Test with real parts.</li>
+  </ul>
+</ToolPage>
+
+<script>
+  import { sizeVacuum, type LoadCase } from '../../lib/calc/vacuum';
+  import { val, sel, out, fmt, bindForm, valid } from '../../lib/ui';
+  bindForm(document.getElementById('calc') as HTMLFormElement, () => {
+    const i = { massKg: val('m'), accelMs2: val('a'), cups: Math.round(val('n')), vacuumKpa: val('vac'), safetyFactor: val('s'), friction: val('mu'), loadCase: sel('lc') as LoadCase };
+    const ok = valid([i.massKg, i.cups, i.vacuumKpa, i.safetyFactor, i.friction]) && valid([i.accelMs2], true) && i.vacuumKpa < 100 && i.safetyFactor >= 1;
+    document.getElementById('err')!.hidden = ok;
+    if (!ok) return;
+    const r = sizeVacuum(i);
+    out('d', fmt(r.diameterMm, 1));
+    out('f', `${fmt(r.forceN, 0)} N`);
+    out('fc', `${fmt(r.forcePerCupN, 1)} N`);
+    out('ac', `${fmt(r.areaPerCupMm2, 0)} mm²`);
+  });
+</script>

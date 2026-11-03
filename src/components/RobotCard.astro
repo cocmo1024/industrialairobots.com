@@ -1,0 +1,16 @@
+---
+import type { Robot } from '../data/schema';
+import { brandBySlug, categoryBySlug, formatSpec, robotUrl, SPEC_DEFS, STATUS_LABEL } from '../lib/db';
+interface Props { robot: Robot }
+const { robot: r } = Astro.props;
+const cat = categoryBySlug(r.category)!;
+const keys = cat.keySpecs.slice(0, 3);
+---
+<a class="card" href={robotUrl(r)}>
+  <div class="kicker">{brandBySlug(r.brand)?.name} · {cat.short}</div>
+  <h3>{r.name}</h3>
+  {r.status !== 'production' && <span class:list={['badge', r.status]}>{STATUS_LABEL[r.status]}</span>}
+  <dl class="mini">
+    {keys.map((k) => <div><dt>{SPEC_DEFS[k].short}</dt><dd>{formatSpec(k, r.specs[k])}</dd></div>)}
+  </dl>
+</a>

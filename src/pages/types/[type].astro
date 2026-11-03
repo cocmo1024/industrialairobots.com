@@ -1,0 +1,35 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { categories, robotsByCategory, brandBySlug, formatSpec, robotUrl, SPEC_DEFS, STATUS_LABEL } from '../../lib/db';
+import type { Category } from '../../data/schema';
+
+// Only types that have robots get a page (no empty pages).
+export function getStaticPaths() {
+  return categories.filter((c) => robotsByCategory(c.slug).length > 0).map((c) => ({ params: { type: c.slug }, props: { c } }));
+}
+interface Props { c: Category }
+const { c } = Astro.props;
+const list = robotsByCategory(c.slug).sort((a, b) => (a.specs.payloadKg ?? 0) - (b.specs.payloadKg ?? 0));
+---
+<Base title={c.title} description={c.description}>
+  <PageHead eyebrow="Robot type" title={c.name} lede={c.intro} crumbs={[{ name: 'Types', href: '/types/' }, { name: c.short }]} />
+  <div class="wrap section">
+    <div class="section-head"><h2 style="margin:0">{list.length} models compared</h2><a href={`/compare/?r=${list.slice(0, 3).map((r) => `${r.brand}/${r.slug}`).join(',')}`}>Compare side by side →</a></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Model</th><th>Status</th>{c.keySpecs.map((k) => <th class="num">{SPEC_DEFS[k].short}</th>)}</tr></thead>
+        <tbody>
+          {list.map((r) => (
+            <tr>
+              <td><a href={robotUrl(r)}><strong>{r.name}</strong></a><br /><span class="muted" style="font-size:.85rem">{brandBySlug(r.brand)?.name}</span></td>
+              <td><span class:list={['badge', r.status]}>{STATUS_LABEL[r.status]}</span></td>
+              {c.keySpecs.map((k) => <td class="num mono">{formatSpec(k, r.specs[k])}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:.9rem;margin-top:12px">“—” means the manufacturer’s page we cite does not state the value. Open a model for its sources.</p>
+  </div>
+</Base>

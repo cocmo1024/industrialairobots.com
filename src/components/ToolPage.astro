@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from './PageHead.astro';
+import { TOOLS } from '../lib/tools';
+import { SITE } from '../site';
+interface Props { slug: (typeof TOOLS)[number]['slug']; title: string; description: string; lede: string }
+const { slug, title, description, lede } = Astro.props;
+const tool = TOOLS.find((t) => t.slug === slug)!;
+const others = TOOLS.filter((t) => t.slug !== slug);
+const ld = {
+  '@context': 'https://schema.org', '@type': 'WebApplication', name: tool.name, url: `${SITE.url}/tools/${slug}/`,
+  applicationCategory: 'BusinessApplication', operatingSystem: 'Any (web browser)', isAccessibleForFree: true,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+};
+---
+<Base title={title} description={description} jsonLd={ld}>
+  <PageHead eyebrow="Engineering tool" title={tool.name} lede={lede} crumbs={[{ name: 'Tools', href: '/tools/' }, { name: tool.short }]} />
+  <div class="wrap section">
+    <div class="calc">
+      <form class="card stack" id="calc" onsubmit="return false"><slot name="inputs" /></form>
+      <section class="results" aria-live="polite"><slot name="results" /></section>
+    </div>
+    <article class="prose section"><slot /></article>
+    <div class="section">
+      <h2>More tools</h2>
+      <div class="grid">{others.map((t) => <a class="card" href={`/tools/${t.slug}/`}><h3>{t.name}</h3><p>{t.blurb}</p></a>)}</div>
+    </div>
+  </div>
+</Base>

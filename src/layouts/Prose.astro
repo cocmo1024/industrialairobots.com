@@ -1,0 +1,10 @@
+---
+import Base from './Base.astro';
+import PageHead from '../components/PageHead.astro';
+interface Props { title: string; description: string; heading?: string; lede?: string; noindex?: boolean }
+const { title, description, heading, lede, noindex } = Astro.props;
+---
+<Base title={title} description={description} noindex={noindex}>
+  <PageHead title={heading ?? title} lede={lede} crumbs={[{ name: heading ?? title }]} />
+  <div class="wrap section"><article class="prose"><slot /></article></div>
+</Base>

@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { categories, robotsByCategory, categoryUrl } from '../../lib/db';
+---
+<Base title="Robot Types" description="Industrial robots, cobots, SCARA, delta, humanoid robots and mobile manipulators — what each type is for, with spec tables.">
+  <PageHead eyebrow="Database" title="Robot types" lede="Start from the kind of robot, then narrow by payload and reach." crumbs={[{ name: 'Types' }]} />
+  <div class="wrap section">
+    <div class="grid">
+      {categories.map((c) => {
+        const n = robotsByCategory(c.slug).length;
+        return n > 0
+          ? <a class="card" href={categoryUrl(c.slug)}><div class="kicker">{n} models</div><h3>{c.name}</h3><p>{c.intro}</p></a>
+          : <div class="card" style="opacity:.7"><div class="kicker">Coming soon</div><h3>{c.name}</h3><p>{c.intro}</p></div>;
+      })}
+    </div>
+  </div>
+</Base>

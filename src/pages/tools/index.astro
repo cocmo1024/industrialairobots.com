@@ -1,0 +1,11 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { TOOLS } from '../../lib/tools';
+---
+<Base title="Robot Engineering Calculators" description="Free calculators for robot cells: ROI and payback, cycle time and throughput, vacuum gripper sizing and light curtain safety distance.">
+  <PageHead eyebrow="Tools" title="Engineering calculators for robot cells" lede="Formulas shown in full, results shareable by link, tested against hand calculations. Free, no sign-up." crumbs={[{ name: 'Tools' }]} />
+  <div class="wrap section">
+    <div class="grid">{TOOLS.map((t) => <a class="card" href={`/tools/${t.slug}/`}><div class="kicker">Calculator</div><h3>{t.name}</h3><p>{t.blurb}</p></a>)}</div>
+  </div>
+</Base>

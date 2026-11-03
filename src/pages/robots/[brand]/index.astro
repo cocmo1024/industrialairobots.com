@@ -1,0 +1,25 @@
+---
+import Base from '../../../layouts/Base.astro';
+import PageHead from '../../../components/PageHead.astro';
+import RobotCard from '../../../components/RobotCard.astro';
+import { brands, robotsByBrand } from '../../../lib/db';
+import type { Brand } from '../../../data/schema';
+
+export function getStaticPaths() {
+  return brands.map((b) => ({ params: { brand: b.slug }, props: { b } }));
+}
+interface Props { b: Brand }
+const { b } = Astro.props;
+const list = robotsByBrand(b.slug);
+---
+<Base
+  title={`${b.name} Robots: Models and Specs`}
+  description={`${b.name} robot models in our database with payload, reach and other specs cited to ${b.name}. ${b.summary}`.slice(0, 160)}
+>
+  <PageHead eyebrow={`Brand · ${b.country}`} title={`${b.name} robots`} lede={b.summary}
+    crumbs={[{ name: 'Robots', href: '/robots/' }, { name: 'Brands', href: '/brands/' }, { name: b.name }]} />
+  <div class="wrap section">
+    <p class="muted">{list.length} model{list.length === 1 ? '' : 's'} in the database so far. Official site: <a href={b.website} rel="nofollow noopener" target="_blank">{b.website.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></p>
+    <div class="grid">{list.map((r) => <RobotCard robot={r} />)}</div>
+  </div>
+</Base>

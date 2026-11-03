@@ -1,0 +1,82 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { robots, toClient, SPEC_ORDER, SPEC_DEFS, categories } from '../../lib/db';
+const data = robots.map(toClient);
+const labels = Object.fromEntries(SPEC_ORDER.map((k) => [k, SPEC_DEFS[k].label]));
+const catNames = Object.fromEntries(categories.map((c) => [c.slug, c.short]));
+---
+<Base title="Compare Robots Side by Side: Payload, Reach, Specs" description="Compare up to four industrial robots, cobots or humanoids side by side. Specs cited to manufacturers; shareable comparison links.">
+  <PageHead eyebrow="Compare" title="Compare robots side by side" lede="Pick up to four robots. The link updates as you go, so you can share the comparison with your team." crumbs={[{ name: 'Compare' }]} />
+  <div class="wrap section">
+    <div class="fields card" id="pickers"></div>
+    <div class="table-wrap" style="margin-top:20px"><table id="cmp" class="spec"></table></div>
+    <p class="muted" style="font-size:.9rem;margin-top:12px">Best value in each numeric row is highlighted where “higher is better” or “lower is better” is clear (payload, reach, repeatability). “—” = not stated by the cited source. Open each robot for its sources.</p>
+  </div>
+  <script id="robot-data" type="application/json" set:html={JSON.stringify({ data, labels, order: SPEC_ORDER, catNames })} />
+</Base>
+
+<style>
+  #cmp th[scope='col'] { font-family: var(--font-sans); }
+  #cmp td.best { color: var(--accent-ink); }
+  #cmp td.best::after { content: ' ●'; font-size: .6em; vertical-align: middle; }
+</style>
+
+<script>
+  import { formatSpec } from '../../lib/format';
+  import type { Specs } from '../../data/schema';
+  type R = { id: string; name: string; brand: string; category: string; url: string; status: string; specs: Record<string, unknown> };
+  const { data, labels, order, catNames } = JSON.parse(document.getElementById('robot-data')!.textContent!) as
+    { data: R[]; labels: Record<string, string>; order: string[]; catNames: Record<string, string> };
+  const byId = new Map(data.map((r) => [r.id, r]));
+  const MAX = 4;
+  const better: Record<string, 1 | -1> = { payloadKg: 1, payloadMaxKg: 1, reachMm: 1, repeatabilityMm: -1 };
+
+  const initial = (new URLSearchParams(location.search).get('r') ?? '').split(',').filter((id) => byId.has(id)).slice(0, MAX);
+  let picked: string[] = initial.length ? initial : data.slice(0, 2).map((r) => r.id);
+
+  const pickers = document.getElementById('pickers')!;
+  const table = document.getElementById('cmp')!;
+  const esc = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+
+  function renderPickers() {
+    pickers.innerHTML = '';
+    for (let i = 0; i < MAX; i++) {
+      const wrap = document.createElement('div');
+      const id = `p${i}`;
+      const opts = ['<option value="">— none —</option>', ...data.map((r) =>
+        `<option value="${r.id}"${picked[i] === r.id ? ' selected' : ''}>${esc(r.brand)} ${esc(r.name)} (${esc(catNames[r.category])})</option>`)];
+      wrap.innerHTML = `<label for="${id}">Robot ${i + 1}</label><select id="${id}">${opts.join('')}</select>`;
+      wrap.querySelector('select')!.addEventListener('change', (e) => {
+        const v = (e.target as HTMLSelectElement).value;
+        const next = [...picked]; next[i] = v; picked = next.filter(Boolean);
+        update();
+      });
+      pickers.appendChild(wrap);
+    }
+  }
+
+  function render() {
+    const rs = picked.map((id) => byId.get(id)!).filter(Boolean);
+    if (!rs.length) { table.innerHTML = '<tbody><tr><td>Pick at least one robot.</td></tr></tbody>'; return; }
+    const keys = order.filter((k) => rs.some((r) => r.specs[k] !== undefined));
+    const head = `<thead><tr><th></th>${rs.map((r) => `<th scope="col"><a href="${r.url}">${esc(r.brand)} ${esc(r.name)}</a></th>`).join('')}</tr></thead>`;
+    const body = keys.map((k) => {
+      const vals = rs.map((r) => r.specs[k]);
+      let best: number | undefined;
+      const nums = vals.filter((v): v is number => typeof v === 'number');
+      if (better[k] && nums.length > 1) best = better[k] === 1 ? Math.max(...nums) : Math.min(...nums);
+      const cells = vals.map((v) => v === undefined ? '<td class="missing">—</td>'
+        : `<td${best !== undefined && v === best ? ' class="best"' : ''}>${esc(formatSpec(k as keyof Specs, v))}</td>`).join('');
+      return `<tr><th scope="row">${esc(labels[k])}</th>${cells}</tr>`;
+    }).join('');
+    table.innerHTML = head + `<tbody>${body}</tbody>`;
+  }
+
+  function update() {
+    const url = picked.length ? `?r=${picked.join(',')}` : location.pathname;
+    history.replaceState(null, '', url);
+    renderPickers(); render();
+  }
+  update();
+</script>

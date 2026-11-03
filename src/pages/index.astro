@@ -1,0 +1,93 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import RobotCard from '../components/RobotCard.astro';
+import { robots, brands, robotsByCategory, categories, categoryUrl } from '../lib/db';
+import { TOOLS } from '../lib/tools';
+import { TOPICS } from '../lib/topics';
+import { SITE } from '../site';
+
+const humanoids = robotsByCategory('humanoid-robots');
+const arms = robots.filter((r) => r.category !== 'humanoid-robots').sort((a, b) => (b.specs.payloadKg ?? 0) - (a.specs.payloadKg ?? 0));
+const guides = (await getCollection('guides', (g) => !g.data.draft)).sort((a, b) => +b.data.updated - +a.data.updated).slice(0, 3);
+const sourceCount = new Set(robots.flatMap((r) => r.sources.map((s) => s.url))).size;
+const usedCats = categories.filter((c) => robotsByCategory(c.slug).length > 0);
+const ld = [
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url,
+    potentialAction: { '@type': 'SearchAction', target: `${SITE.url}/robots/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url, logo: `${SITE.url}/favicon.svg` },
+];
+---
+<Base title="Industrial AI Robots — Robot Specs, Comparisons & Engineering Tools" bareTitle description={SITE.description} jsonLd={ld}>
+  <section class="band">
+    <div class="wrap hero">
+      <div class="eyebrow">Industrial robots · Cobots · Humanoids · Physical AI</div>
+      <h1>Choose the right robot with numbers you can check.</h1>
+      <p class="lede">A spec database where every value links to the manufacturer, side-by-side comparisons, and engineering calculators for the cell around the robot.</p>
+      <form class="hero-search" action="/robots/" method="get" role="search">
+        <label class="sr-only" for="hq">Search robots</label>
+        <input id="hq" name="q" type="search" placeholder="Search a model, brand or type — e.g. UR20, Atlas, cobot" autocomplete="off" />
+        <button class="btn" type="submit">Search</button>
+      </form>
+      <div class="chips">
+        {usedCats.map((c) => <a href={categoryUrl(c.slug)}>{c.short}</a>)}
+        <a href="/robots/?payload=20">Payload ≥ 20 kg</a>
+        <a href="/robots/?reach=1500">Reach ≥ 1500 mm</a>
+      </div>
+      <dl class="stats">
+        <div><dt>Robots</dt><dd>{robots.length}</dd></div>
+        <div><dt>Brands</dt><dd>{brands.length}</dd></div>
+        <div><dt>Primary sources</dt><dd>{sourceCount}</dd></div>
+        <div><dt>Calculators</dt><dd>{TOOLS.length}</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="section">
+      <div class="section-head"><h2>Humanoid robots for industry</h2><a href="/types/humanoid-robots/">Full humanoid tracker →</a></div>
+      <p class="muted" style="max-width:720px">Official specs only, with status labels — so you can tell a product you can order from a preliminary spec sheet.</p>
+      <div class="grid">{humanoids.map((r) => <RobotCard robot={r} />)}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2>Robot arms and cobots</h2><a href="/robots/">Open the robot finder →</a></div>
+      <div class="grid">{arms.slice(0, 8).map((r) => <RobotCard robot={r} />)}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2>Engineering calculators</h2><a href="/tools/">All tools →</a></div>
+      <div class="grid">{TOOLS.map((t) => <a class="card" href={`/tools/${t.slug}/`}><div class="kicker">Calculator</div><h3>{t.name}</h3><p>{t.blurb}</p></a>)}</div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><h2>Guides</h2><a href="/guides/">All guides →</a></div>
+      <div class="grid">{guides.map((g) => <a class="card" href={`/guides/${g.id}/`}><div class="kicker">{TOPICS[g.data.topic]}</div><h3>{g.data.title}</h3><p>{g.data.description}</p></a>)}</div>
+    </section>
+
+    <section class="section card rule">
+      <div>
+        <div class="eyebrow">Our data rule</div>
+        <h2 style="margin-top:0">No source, no number.</h2>
+        <p>Robot marketing is full of numbers measured under different conditions. We copy specs from the manufacturer’s own page, link that page, and record the date we read it. If a maker doesn’t publish a value, we show a dash instead of a guess. Spotted an error? <a href="/contact/">Send a correction</a>.</p>
+      </div>
+      <a class="btn ghost" href="/methodology/">Read the methodology</a>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .hero { padding-top: 64px; padding-bottom: 56px; }
+  .hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); max-width: 860px; }
+  .hero-search { display: flex; gap: 8px; max-width: 640px; margin-top: 26px; }
+  .hero-search input { flex: 1; min-width: 0; font-family: var(--font-sans); background: #fff; color: #11151a; border: 0; padding: 13px 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .chips a { font-size: .85rem; text-decoration: none; padding: 5px 11px; border: 1px solid var(--ink-line); border-radius: 99px; background: rgb(255 255 255 / 4%); }
+  .chips a:hover { border-color: var(--accent); color: #fff; }
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, max-content)); gap: 12px 40px; margin: 40px 0 0; }
+  .stats dt { font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); }
+  .stats dd { margin: 0; font-family: var(--font-mono); font-size: 1.9rem; font-weight: 600; color: #fff; }
+  @media (max-width: 560px) { .stats { grid-template-columns: repeat(2, 1fr); } .hero { padding-top: 44px; } }
+  .rule { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; padding: 28px; }
+  .rule > div { max-width: 760px; }
+</style>

@@ -1,0 +1,80 @@
+import type { Robot, Source } from '../schema';
+
+const R = '2026-11-03';
+const eSeries: Source = {
+  url: 'https://www.universal-robots.com/products/e-series/',
+  title: 'e-Series collaborative robots',
+  publisher: 'Universal Robots',
+  retrieved: R,
+};
+
+export const robots: Robot[] = [
+  {
+    slug: 'ur3e-540',
+    brand: 'universal-robots',
+    name: 'UR3e-540',
+    family: 'e-Series',
+    category: 'cobots',
+    status: 'production',
+    summary: 'The smallest Universal Robots e-Series arm, rated for 3 kg with 540 mm reach, for benchtop assembly and small-part handling.',
+    specs: { payloadKg: 3, reachMm: 540, repeatabilityMm: 0.03, weightKg: 11.2, footprintMm: 128 },
+    sources: [eSeries],
+    updated: R,
+  },
+  {
+    slug: 'ur7e-920',
+    brand: 'universal-robots',
+    name: 'UR7e-920',
+    family: 'e-Series',
+    category: 'cobots',
+    status: 'production',
+    summary: 'A 7.5 kg e-Series cobot with 920 mm reach, run on the CB7 controller.',
+    specs: { payloadKg: 7.5, reachMm: 920, repeatabilityMm: 0.03, weightKg: 20.6, footprintMm: 151, maxTcpSpeedMs: 4, controller: 'CB7' },
+    sources: [
+      { url: 'https://www.universal-robots.com/products/ur7e-920/', title: 'UR7e-920', publisher: 'Universal Robots', retrieved: R },
+      eSeries,
+    ],
+    updated: R,
+  },
+  {
+    slug: 'ur12e-1300',
+    brand: 'universal-robots',
+    name: 'UR12e-1300',
+    family: 'e-Series',
+    category: 'cobots',
+    status: 'production',
+    summary: 'A 12.5 kg e-Series cobot with 1300 mm reach, common in machine tending and light palletizing.',
+    specs: { payloadKg: 12.5, reachMm: 1300, repeatabilityMm: 0.05, weightKg: 33.5, footprintMm: 190, maxTcpSpeedMs: 4, controller: 'CB7' },
+    sources: [
+      { url: 'https://www.universal-robots.com/products/ur12e-1300/', title: 'UR12e-1300', publisher: 'Universal Robots', retrieved: R },
+      eSeries,
+    ],
+    updated: R,
+  },
+  {
+    slug: 'ur16e',
+    brand: 'universal-robots',
+    name: 'UR16e',
+    family: 'e-Series',
+    category: 'cobots',
+    status: 'production',
+    summary: 'A short-reach, high-payload e-Series cobot: 16 kg at 900 mm reach.',
+    specs: { payloadKg: 16, reachMm: 900, repeatabilityMm: 0.05, weightKg: 33.1, footprintMm: 190 },
+    sources: [eSeries],
+    updated: R,
+  },
+  {
+    slug: 'ur20',
+    brand: 'universal-robots',
+    name: 'UR20',
+    family: 'UR Series',
+    category: 'cobots',
+    status: 'production',
+    summary: 'A long-reach UR Series cobot rated 20 kg (25 kg extended payload) at 1750 mm, aimed at palletizing and welding.',
+    specs: { payloadKg: 20, payloadMaxKg: 25, reachMm: 1750, repeatabilityMm: 0.01, weightKg: 64, footprintMm: 245, maxTcpSpeedMs: 5, ipRating: 'IP65' },
+    specNotes: { payloadMaxKg: 'Extended payload as listed by Universal Robots' },
+    notes: [{ label: 'Cleanroom', value: 'ISO Class 4 (per Universal Robots)' }],
+    sources: [{ url: 'https://www.universal-robots.com/products/ur20/', title: 'UR20', publisher: 'Universal Robots', retrieved: R }],
+    updated: R,
+  },
+];

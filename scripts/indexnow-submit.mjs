@@ -1,72 +1,19 @@
-import { execFileSync } from 'node:child_process';
-import { siteMeta } from '../src/utils/site-meta.mjs';
+// Submit URLs to IndexNow (Bing, Yandex, etc.) after a deploy.
+// Usage: npm run indexnow            → every URL in dist/sitemap.xml
+//        npm run indexnow -- /robots/fanuc/crx-10ia/ /tools/   → only these paths
+import { readFileSync } from 'node:fs';
 
-const args = process.argv.slice(2);
-const manualTargets = args.filter((value) => value.startsWith('http') || value.startsWith('/'));
-const useAll = args.includes('--all');
-const range = args.find((value) => value.startsWith('--range='))?.slice(8) ?? 'HEAD~1..HEAD';
+const HOST = 'industrialairobots.com';
+const KEY = 'c7c0317f-3864-4fb8-9520-589781c244f9'; // key file: public/<KEY>.txt
 
-function listFiles(commandArgs) {
-	const output = execFileSync('git', commandArgs, {
-		encoding: 'utf8',
-		stdio: ['ignore', 'pipe', 'ignore'],
-	});
-	return output.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
-}
+const args = process.argv.slice(2).filter((a) => a.startsWith('/') || a.startsWith('http'));
+const urls = args.length
+  ? args.map((a) => (a.startsWith('http') ? a : `https://${HOST}${a}`))
+  : [...readFileSync('dist/sitemap.xml', 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 
-function docPathToUrl(filePath) {
-	if (!filePath.startsWith('src/content/docs/')) return undefined;
-
-	const relative = filePath
-		.replace(/^src\/content\/docs\//, '')
-		.replace(/\.mdx?$/, '')
-		.replace(/\/index$/, '');
-
-	if (!relative || relative === 'index') {
-		return `${siteMeta.siteUrl}/`;
-	}
-
-	return `${siteMeta.siteUrl}/${relative}/`;
-}
-
-async function submit(urlList) {
-	const response = await fetch('https://api.indexnow.org/indexnow', {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/json; charset=utf-8' },
-		body: JSON.stringify({
-			host: siteMeta.domain,
-			key: siteMeta.indexNowKey,
-			keyLocation: `${siteMeta.siteUrl}/${siteMeta.indexNowKey}.txt`,
-			urlList,
-		}),
-	});
-
-	if (!response.ok) {
-		const details = await response.text();
-		throw new Error(`IndexNow request failed (${response.status}): ${details}`);
-	}
-}
-
-let urls;
-
-if (manualTargets.length) {
-	urls = manualTargets.map((target) =>
-		target.startsWith('http') ? target : new URL(target, `${siteMeta.siteUrl}/`).toString()
-	);
-} else if (useAll) {
-	urls = listFiles(['ls-files', 'src/content/docs']).map(docPathToUrl).filter(Boolean);
-} else {
-	urls = listFiles(['diff', '--name-only', '--diff-filter=AMR', range, '--', 'src/content/docs'])
-		.map(docPathToUrl)
-		.filter(Boolean);
-}
-
-urls = Array.from(new Set(urls));
-
-if (!urls.length) {
-	console.log(`No public URLs found for IndexNow submission in ${siteMeta.domain}.`);
-	process.exit(0);
-}
-
-await submit(urls);
-console.log(`Submitted ${urls.length} URL(s) to IndexNow for ${siteMeta.domain}.`);
+const res = await fetch('https://api.indexnow.org/indexnow', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json; charset=utf-8' },
+  body: JSON.stringify({ host: HOST, key: KEY, keyLocation: `https://${HOST}/${KEY}.txt`, urlList: urls }),
+});
+console.log(`IndexNow: ${res.status} ${res.statusText} — ${urls.length} URL(s)`);

@@ -1,0 +1,23 @@
+# Old Starlight site (retired 2026-11-03). Only URLs with a real equivalent are redirected;
+# other old article URLs return the 404 page. Old URL list: _记录/industrialairobots.com/会话_20261103_新站框架/old-urls.txt
+/robot-types/cobots-vs-industrial-robots/ /types/cobots/ 301
+/robot-types/fanuc-crx-and-fanuc-standard-robots-for-machine-loading-and-inspection/ /robots/fanuc/ 301
+/robot-types/universal-robots-e-series-and-ur20-ur30-in-factory-automation/ /robots/universal-robots/ 301
+/robot-types/robot-payload-reach-and-cycle-time-shortlist-before-rfq/ /guides/how-to-read-a-robot-datasheet/ 301
+/robot-types/ /types/ 301
+/deployment/roi-and-pilot-design/ /tools/robot-roi-calculator/ 301
+/deployment/what-makes-an-industrial-robot-cell-expensive/ /tools/robot-roi-calculator/ 301
+/cell-design/vacuum-cup-sizing-air-consumption-and-part-release-for-palletizing-cells/ /tools/vacuum-gripper-calculator/ 301
+/cell-design/safety-layout-and-throughput/ /tools/safety-distance-calculator/ 301
+/applications/ /guides/ 301
+/case-studies/ /guides/ 301
+/cell-design/ /tools/ 301
+/deployment/ /guides/ 301
+/vision-and-sensing/ /guides/ 301
+/editorial-policy/ /methodology/ 301
+/editorial-desk/ /about/ 301
+/review-desk/ /about/ 301
+/advertising/ /about/ 301
+/affiliate-disclosure/ /about/ 301
+/disclaimer/ /terms/ 301
+/terms-of-use/ /terms/ 301
