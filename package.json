@@ -11,7 +11,8 @@
     "test": "vitest run",
     "check:site": "node scripts/check-site.mjs",
     "verify": "npm run test && npm run check && npm run build && npm run check:site",
-    "indexnow": "node scripts/indexnow-submit.mjs"
+    "indexnow": "node scripts/indexnow-submit.mjs",
+    "check:sources": "node scripts/check-sources.mjs"
   },
   "dependencies": {
     "@fontsource-variable/space-grotesk": "^5.3.0",

@@ -85,7 +85,7 @@ export const robots: Robot[] = [
       { label: 'Repeatability', value: 'Conflicting on the manufacturer site: ±0.01 mm on the model page, ±0.1 mm on the UR Series overview. Confirm with the datasheet.' },
     ],
     sources: [
-      { url: 'https://www.universal-robots.com/products/ur20/', title: 'UR20', publisher: 'Universal Robots', retrieved: R },
+      { url: 'https://www.universal-robots.com/products/ur20-1750/', title: 'UR20', publisher: 'Universal Robots', retrieved: R },
       urSeries,
     ],
     updated: R,

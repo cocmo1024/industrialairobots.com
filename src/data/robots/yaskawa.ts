@@ -91,7 +91,7 @@ export const robots: Robot[] = [
     specs: { payloadKg: 10, reachMm: 1200 },
     specNotes: { reachMm: 'Horizontal reach' },
     notes: [{ label: 'Vertical reach', value: '2400 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/collaborative', title: 'Collaborative robots (HC Series)', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/collaborative/hc-series', title: 'Collaborative robots (HC Series)', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
     updated: R,
   },
   {
@@ -105,7 +105,7 @@ export const robots: Robot[] = [
     specs: { payloadKg: 20, reachMm: 1700 },
     specNotes: { reachMm: 'Horizontal reach' },
     notes: [{ label: 'Vertical reach', value: '3400 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/collaborative', title: 'Collaborative robots (HC Series)', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/collaborative/hc-series', title: 'Collaborative robots (HC Series)', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
     updated: R,
   },
   {
@@ -119,7 +119,7 @@ export const robots: Robot[] = [
     specs: { payloadKg: 30, reachMm: 1700 },
     specNotes: { reachMm: 'Horizontal reach' },
     notes: [{ label: 'Vertical reach', value: '3400 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/collaborative', title: 'Collaborative robots (HC Series)', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/collaborative/hc-series', title: 'Collaborative robots (HC Series)', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
     updated: R,
   },
 ];

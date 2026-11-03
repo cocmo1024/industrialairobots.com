@@ -9,6 +9,8 @@
 - Skipped for now: Doosan (compare page shows identical specs for different models), ABB GoFa/IRB 1200 and Epson (no per-model specs on readable pages), Figure 03 and Apptronik Apollo 2 (no published specs), 1X NEO (home robot, out of scope).
 - New tool: palletizing calculator (`src/lib/calc/pallet.ts`, tests in `tests/pallet.test.ts`).
 - Cloudflare: redirect rule "从 WWW 重定向到根" deployed (https://www.* → https://${1}, 301, query kept). Verified live.
+- GSC (sc-domain:industrialairobots.com): resubmitted https://industrialairobots.com/sitemap.xml (42 URLs) — "已成功提交站点地图". IndexNow: 202, 42 URLs.
+- `docs/AI_OPERATIONS_PLAN.md`: one-year AI operations plan (2026-11 → 2027-10), cadence, KPIs, decision gates (ads Jun 2027, leads Aug 2027). `npm run check:sources` added; 14 redirected source URLs updated to final addresses (0 broken). About page now states AI-assisted operation.
 
 ## 2026-11-03 — Site rebuilt from scratch (framework release)
 
@@ -23,5 +25,5 @@ Notes from data collection:
 - Third-party humanoid spec sites disagree widely; Agility only publishes preliminary Digit 5 figures (payload 23 kg, reach 2.2 m). We list only those.
 - Not yet added (no official spec page reachable): ABB GoFa, KUKA LBR iisy, Apptronik Apollo, Figure.
 
-Owner to-dos: confirm contact email. (www redirect done; sitemap submission see later entry.)
+Owner to-dos: confirm contact email.
 Next: Phase 1 in `docs/STRATEGY.md`.

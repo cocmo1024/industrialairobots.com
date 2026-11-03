@@ -3,12 +3,14 @@
 Independent, source-cited reference for industrial robots, cobots and humanoids: spec database, comparisons, engineering calculators, guides. Strategy and roadmap: `docs/STRATEGY.md`. Handoff log: `HANDOFF.md`.
 
 ## Must read
-- `docs/STRATEGY.md` before structural or scope changes; `docs/SEO_PLAN.md` for indexing rules and SEO roadmap.
+- `docs/STRATEGY.md` before structural or scope changes; `docs/SEO_PLAN.md` for indexing rules and SEO roadmap; `docs/AI_OPERATIONS_PLAN.md` for the month-by-month operating plan and session checklist.
 - `CONTENT_UPDATE_GUIDE.md` before adding/changing/removing content.
 
 ## Commands
 - `npm run dev` — local dev
 - `npm run verify` — tests + `astro check` + build + `scripts/check-site.mjs` (must pass before commit)
+- `npm run check:sources` — monthly audit of manufacturer source links (after build)
+- `npm run indexnow` — notify IndexNow of sitemap URLs (or pass paths)
 
 ## Rules
 - No source, no number. Specs only from manufacturer pages; unknown = leave blank.

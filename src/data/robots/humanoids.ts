@@ -18,7 +18,7 @@ export const robots: Robot[] = [
       { label: 'Operating temperature', value: '−20 to 40 °C' },
       { label: 'Named deployment', value: 'Field testing on sequencing tasks at a Hyundai facility' },
     ],
-    sources: [{ url: 'https://bostondynamics.com/atlas/', title: 'Atlas', publisher: 'Boston Dynamics', retrieved: R }],
+    sources: [{ url: 'https://bostondynamics.com/products/atlas/', title: 'Atlas', publisher: 'Boston Dynamics', retrieved: R }],
     updated: R,
   },
   {
@@ -61,7 +61,7 @@ export const robots: Robot[] = [
       { label: 'Max joint torque (knee)', value: '90 N·m (EDU: 120 N·m)' },
       { label: 'Battery', value: '13-cell lithium, 9000 mAh, quick release' },
     ],
-    sources: [{ url: 'https://www.unitree.com/g1', title: 'Unitree G1', publisher: 'Unitree Robotics', retrieved: R }],
+    sources: [{ url: 'https://www.unitree.com/g1/', title: 'Unitree G1', publisher: 'Unitree Robotics', retrieved: R }],
     updated: R,
   },
   {
@@ -78,7 +78,7 @@ export const robots: Robot[] = [
       { label: 'Max joint torque', value: '360 N·m (knee); about 220 N·m (hip)' },
       { label: 'Degrees of freedom', value: '5 per leg, 4 per arm (expandable)' },
     ],
-    sources: [{ url: 'https://www.unitree.com/h1', title: 'Unitree H1', publisher: 'Unitree Robotics', retrieved: R }],
+    sources: [{ url: 'https://www.unitree.com/h1/', title: 'Unitree H1', publisher: 'Unitree Robotics', retrieved: R }],
     updated: R,
   },
   {

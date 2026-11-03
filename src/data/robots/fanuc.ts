@@ -29,7 +29,7 @@ export const robots: Robot[] = [
     ],
     sources: [
       {
-        url: 'https://www.fanucamerica.com/products/robots/series/collaborative-robot/crx-10ia',
+        url: 'https://www.fanucamerica.com/products/robot/crx-10ia',
         title: 'CRX-10iA collaborative robot',
         publisher: 'FANUC America',
         retrieved: R,
@@ -58,7 +58,7 @@ export const robots: Robot[] = [
     specNotes: { ipRating: 'Body; wrist and J3 arm IP67' },
     sources: [
       {
-        url: 'https://www.fanucamerica.com/products/robots/series/m-20/m-20id-25',
+        url: 'https://www.fanucamerica.com/products/robot/m-20id-25',
         title: 'M-20iD/25 industrial robot',
         publisher: 'FANUC America',
         retrieved: R,
@@ -75,7 +75,7 @@ export const robots: Robot[] = [
     status: 'production',
     summary: 'The smallest arm in the FANUC CRX cobot line: 5 kg payload and 994 mm reach.',
     specs: { payloadKg: 5, reachMm: 994, axes: 6, repeatabilityMm: 0.03, weightKg: 25, ipRating: 'IP67', controller: 'R-30iB Plus', mounting: ['Floor', 'Angle', 'Inverted'] },
-    sources: [{ url: 'https://www.fanucamerica.com/products/robots/series/collaborative-robot/crx-5ia', title: 'CRX-5iA', publisher: 'FANUC America', retrieved: R }],
+    sources: [{ url: 'https://www.fanucamerica.com/products/robot/crx-5ia', title: 'CRX-5iA', publisher: 'FANUC America', retrieved: R }],
     updated: R,
   },
   {
@@ -87,7 +87,7 @@ export const robots: Robot[] = [
     status: 'production',
     summary: 'The long-arm version of the CRX-10iA: 10 kg payload with 1418 mm reach.',
     specs: { payloadKg: 10, reachMm: 1418, axes: 6, repeatabilityMm: 0.05, weightKg: 39, ipRating: 'IP67', controller: 'R-30iB Plus', mounting: ['Floor', 'Angle', 'Inverted'] },
-    sources: [{ url: 'https://www.fanucamerica.com/products/robots/series/collaborative-robot/crx-10ia-l', title: 'CRX-10iA/L', publisher: 'FANUC America', retrieved: R }],
+    sources: [{ url: 'https://www.fanucamerica.com/products/robot/crx-10ia-l', title: 'CRX-10iA/L', publisher: 'FANUC America', retrieved: R }],
     updated: R,
   },
   {
@@ -99,7 +99,7 @@ export const robots: Robot[] = [
     status: 'production',
     summary: 'A 20 kg FANUC CRX cobot with 1418 mm reach.',
     specs: { payloadKg: 20, reachMm: 1418, axes: 6, repeatabilityMm: 0.04, weightKg: 41, ipRating: 'IP67', controller: 'R-30iB Plus', mounting: ['Floor', 'Angle', 'Inverted'] },
-    sources: [{ url: 'https://www.fanucamerica.com/products/robots/series/collaborative-robot/crx-20ia-l', title: 'CRX-20iA/L', publisher: 'FANUC America', retrieved: R }],
+    sources: [{ url: 'https://www.fanucamerica.com/products/robot/crx-20ia-l', title: 'CRX-20iA/L', publisher: 'FANUC America', retrieved: R }],
     updated: R,
   },
   {
@@ -115,7 +115,7 @@ export const robots: Robot[] = [
       { label: 'Palletizing option', value: '40 kg wrist-down payload' },
       { label: 'Reach note', value: 'Spec table: 1889 mm; the page text also mentions 1756 mm' },
     ],
-    sources: [{ url: 'https://www.fanucamerica.com/products/robots/series/collaborative-robot/crx-30ia', title: 'CRX-30iA', publisher: 'FANUC America', retrieved: R }],
+    sources: [{ url: 'https://www.fanucamerica.com/products/robot/crx-30ia', title: 'CRX-30iA', publisher: 'FANUC America', retrieved: R }],
     updated: R,
   },
   {
@@ -128,7 +128,7 @@ export const robots: Robot[] = [
     summary: 'A compact 7 kg FANUC robot with 717 mm reach and ±0.01 mm repeatability.',
     specs: { payloadKg: 7, reachMm: 717, axes: 6, repeatabilityMm: 0.01, weightKg: 25, ipRating: 'IP67', controller: 'R-30iB Plus', mounting: ['Floor', 'Angle', 'Inverted'] },
     specNotes: { ipRating: 'IP69K optional (body and wrist)' },
-    sources: [{ url: 'https://www.fanucamerica.com/products/robots/series/lr-mate/lr-mate-200id', title: 'LR Mate 200iD', publisher: 'FANUC America', retrieved: R }],
+    sources: [{ url: 'https://www.fanucamerica.com/products/robot/lr-mate-200id', title: 'LR Mate 200iD', publisher: 'FANUC America', retrieved: R }],
     updated: R,
   },
   {
@@ -141,7 +141,7 @@ export const robots: Robot[] = [
     summary: 'A 12 kg hollow-arm FANUC handling robot with 1441 mm reach.',
     specs: { payloadKg: 12, reachMm: 1441, axes: 6, repeatabilityMm: 0.02, weightKg: 145, ipRating: 'IP54 (IP65 optional)', controller: 'R-30iB Plus', mounting: ['Floor', 'Angle', 'Inverted'] },
     specNotes: { ipRating: 'Body; wrist and J3 arm IP67' },
-    sources: [{ url: 'https://www.fanucamerica.com/products/robots/series/m-10/m-10id-12', title: 'M-10iD/12', publisher: 'FANUC America', retrieved: R }],
+    sources: [{ url: 'https://www.fanucamerica.com/products/robot/m-10id-12', title: 'M-10iD/12', publisher: 'FANUC America', retrieved: R }],
     updated: R,
   },
   {
@@ -154,7 +154,7 @@ export const robots: Robot[] = [
     summary: 'A 165 kg, 2655 mm heavy-payload FANUC robot for spot welding and material handling.',
     specs: { payloadKg: 165, reachMm: 2655, axes: 6, repeatabilityMm: 0.05, weightKg: 1090, ipRating: 'IP54 (IP56 optional)', controller: 'R-30iB Plus', mounting: ['Floor'] },
     specNotes: { ipRating: 'Body; wrist and J3 arm IP67' },
-    sources: [{ url: 'https://www.fanucamerica.com/products/robots/series/r-2000/r-2000ic-165f', title: 'R-2000iC/165F', publisher: 'FANUC America', retrieved: R }],
+    sources: [{ url: 'https://www.fanucamerica.com/products/robot/r-2000ic-165f', title: 'R-2000iC/165F', publisher: 'FANUC America', retrieved: R }],
     updated: R,
   },
 ];

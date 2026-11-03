@@ -10,7 +10,7 @@ sources:
   - title: "IEC 60529 — Degrees of protection provided by enclosures (IP Code)"
     url: "https://webstore.iec.ch/en/publication/2452"
   - title: "FANUC America — CRX-10iA specifications (example of wrist moment and inertia data)"
-    url: "https://www.fanucamerica.com/products/robots/series/collaborative-robot/crx-10ia"
+    url: "https://www.fanucamerica.com/products/robot/crx-10ia"
 ---
 
 Robot datasheets look alike, but the headline numbers are measured under the maker’s own conditions. Reading them correctly saves you from the most common shortlisting mistake: picking a robot whose rated payload covers your part on paper but not with your gripper, at your speed, at full extension.
