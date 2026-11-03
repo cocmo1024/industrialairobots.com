@@ -43,4 +43,18 @@ export const BRANDS: Brand[] = [
     website: 'https://www.unitree.com/',
     summary: 'Humanoid and quadruped robots, including the G1 and H1 humanoids.',
   },
+  {
+    slug: 'kuka',
+    name: 'KUKA',
+    country: 'Germany',
+    website: 'https://www.kuka.com/',
+    summary: 'Industrial robots from the small KR AGILUS to heavy-payload arms, plus the LBR iisy and LBR iiwa collaborative lines.',
+  },
+  {
+    slug: 'ubtech',
+    name: 'UBTECH Robotics',
+    country: 'China',
+    website: 'https://www.ubtrobot.com/',
+    summary: 'Humanoid robots including the Walker S industrial series.',
+  },
 ];

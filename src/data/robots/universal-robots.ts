@@ -8,6 +8,13 @@ const eSeries: Source = {
   retrieved: R,
 };
 
+const urSeries: Source = {
+  url: 'https://www.universal-robots.com/products/ur-series/',
+  title: 'UR Series collaborative robots',
+  publisher: 'Universal Robots',
+  retrieved: R,
+};
+
 export const robots: Robot[] = [
   {
     slug: 'ur3e-540',
@@ -71,10 +78,78 @@ export const robots: Robot[] = [
     category: 'cobots',
     status: 'production',
     summary: 'A long-reach UR Series cobot rated 20 kg (25 kg extended payload) at 1750 mm, aimed at palletizing and welding.',
-    specs: { payloadKg: 20, payloadMaxKg: 25, reachMm: 1750, repeatabilityMm: 0.01, weightKg: 64, footprintMm: 245, maxTcpSpeedMs: 5, ipRating: 'IP65' },
+    specs: { payloadKg: 20, payloadMaxKg: 25, reachMm: 1750, weightKg: 64, footprintMm: 245, maxTcpSpeedMs: 5, ipRating: 'IP65' },
     specNotes: { payloadMaxKg: 'Extended payload as listed by Universal Robots' },
-    notes: [{ label: 'Cleanroom', value: 'ISO Class 4 (per Universal Robots)' }],
-    sources: [{ url: 'https://www.universal-robots.com/products/ur20/', title: 'UR20', publisher: 'Universal Robots', retrieved: R }],
+    notes: [
+      { label: 'Cleanroom', value: 'ISO Class 4 (per Universal Robots)' },
+      { label: 'Repeatability', value: 'Conflicting on the manufacturer site: ±0.01 mm on the model page, ±0.1 mm on the UR Series overview. Confirm with the datasheet.' },
+    ],
+    sources: [
+      { url: 'https://www.universal-robots.com/products/ur20/', title: 'UR20', publisher: 'Universal Robots', retrieved: R },
+      urSeries,
+    ],
+    updated: R,
+  },
+  {
+    slug: 'ur8-long',
+    brand: 'universal-robots',
+    name: 'UR8 Long',
+    family: 'UR Series',
+    category: 'cobots',
+    status: 'production',
+    summary: 'A long-reach UR Series cobot: 8 kg (10 kg extended) at 1750 mm, for applications that need reach more than payload.',
+    specs: { payloadKg: 8, payloadMaxKg: 10, reachMm: 1750, repeatabilityMm: 0.08, weightKg: 44.7, footprintMm: 204, maxTcpSpeedMs: 5 },
+    specNotes: { payloadMaxKg: 'Extended payload as listed by Universal Robots' },
+    sources: [urSeries],
+    updated: R,
+  },
+  {
+    slug: 'ur15',
+    brand: 'universal-robots',
+    name: 'UR15',
+    family: 'UR Series',
+    category: 'cobots',
+    status: 'production',
+    summary: 'A 15 kg (17.5 kg extended) UR Series cobot with 1300 mm reach and 5 m/s maximum TCP speed.',
+    specs: { payloadKg: 15, payloadMaxKg: 17.5, reachMm: 1300, repeatabilityMm: 0.05, weightKg: 40.7, footprintMm: 204, maxTcpSpeedMs: 5, ipRating: 'IP65' },
+    specNotes: { payloadMaxKg: 'Extended payload capacity as listed by Universal Robots' },
+    notes: [{ label: 'Cleanroom', value: 'Class 4 (per Universal Robots)' }],
+    sources: [
+      { url: 'https://www.universal-robots.com/products/ur15-cb5/', title: 'UR15', publisher: 'Universal Robots', retrieved: R },
+      urSeries,
+    ],
+    updated: R,
+  },
+  {
+    slug: 'ur18',
+    brand: 'universal-robots',
+    name: 'UR18',
+    family: 'UR Series',
+    category: 'cobots',
+    status: 'production',
+    summary: 'A compact high-payload UR Series cobot: 18 kg at 950 mm reach.',
+    specs: { payloadKg: 18, reachMm: 950, repeatabilityMm: 0.05, weightKg: 39.2, footprintMm: 204, maxTcpSpeedMs: 4 },
+    sources: [urSeries],
+    updated: R,
+  },
+  {
+    slug: 'ur30',
+    brand: 'universal-robots',
+    name: 'UR30',
+    family: 'UR Series',
+    category: 'cobots',
+    status: 'production',
+    summary: 'The highest-payload Universal Robots cobot: 30 kg (35 kg extended) at 1300 mm reach.',
+    specs: { payloadKg: 30, payloadMaxKg: 35, reachMm: 1300, weightKg: 63.5, footprintMm: 245, maxTcpSpeedMs: 4, ipRating: 'IP65' },
+    specNotes: { payloadMaxKg: 'Extended payload as listed by Universal Robots' },
+    notes: [
+      { label: 'Cleanroom', value: 'Class 4 (per Universal Robots)' },
+      { label: 'Repeatability', value: 'Conflicting on the manufacturer site: ±0.01 mm on the model page, ±0.1 mm on the UR Series overview. Confirm with the datasheet.' },
+    ],
+    sources: [
+      { url: 'https://www.universal-robots.com/products/ur30-1300/', title: 'UR30-1300', publisher: 'Universal Robots', retrieved: R },
+      urSeries,
+    ],
     updated: R,
   },
 ];

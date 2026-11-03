@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { robots, fullName, robotUrl } from '../lib/db';
+import { robots, fullName, robotUrl, isIndexable } from '../lib/db';
 import { TOOLS } from '../lib/tools';
 import { SITE } from '../site';
 
@@ -16,7 +16,7 @@ export const GET: APIRoute = () => {
     `- [Methodology](${SITE.url}/methodology/)`,
     '',
     '## Robots',
-    ...robots.map((r) => `- [${fullName(r)}](${SITE.url}${robotUrl(r)})`),
+    ...robots.filter(isIndexable).map((r) => `- [${fullName(r)}](${SITE.url}${robotUrl(r)})`),
     '',
     '## Tools',
     ...TOOLS.map((t) => `- [${t.name}](${SITE.url}/tools/${t.slug}/): ${t.blurb}`),

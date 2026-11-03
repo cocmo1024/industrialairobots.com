@@ -3,7 +3,7 @@
 Independent, source-cited reference for industrial robots, cobots and humanoids: spec database, comparisons, engineering calculators, guides. Strategy and roadmap: `docs/STRATEGY.md`. Handoff log: `HANDOFF.md`.
 
 ## Must read
-- `docs/STRATEGY.md` before structural or scope changes.
+- `docs/STRATEGY.md` before structural or scope changes; `docs/SEO_PLAN.md` for indexing rules and SEO roadmap.
 - `CONTENT_UPDATE_GUIDE.md` before adding/changing/removing content.
 
 ## Commands

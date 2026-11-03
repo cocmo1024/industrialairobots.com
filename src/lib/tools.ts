@@ -19,6 +19,12 @@ export const TOOLS = [
     blurb: 'Required holding force and minimum suction cup diameter for your part, motion and vacuum level.',
   },
   {
+    slug: 'palletizing-calculator',
+    name: 'Palletizing calculator',
+    short: 'Palletizing',
+    blurb: 'Cases per layer, layers and load mass for EUR, GMA and ISO pallets — plus the robot payload you need.',
+  },
+  {
     slug: 'safety-distance-calculator',
     name: 'Light curtain safety distance calculator',
     short: 'Safety distance',

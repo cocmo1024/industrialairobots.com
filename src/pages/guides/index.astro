@@ -5,7 +5,7 @@ import PageHead from '../../components/PageHead.astro';
 import { TOPICS } from '../../lib/topics';
 const guides = (await getCollection('guides', (g) => !g.data.draft)).sort((a, b) => +b.data.updated - +a.data.updated);
 ---
-<Base title="Industrial Robot Guides" description="Practical guides to selecting, specifying and deploying industrial robots, cobots and humanoids — with sources and links to the spec database.">
+<Base title="Industrial Robot Guides" noindex={guides.length < 3} description="Practical guides to selecting, specifying and deploying industrial robots, cobots and humanoids — with sources and links to the spec database.">
   <PageHead eyebrow="Guides" title="Guides for robot buyers and engineers" lede="Practical, source-cited explanations. Each guide links to the data and tools you need to act on it." crumbs={[{ name: 'Guides' }]} />
   <div class="wrap section">
     <div class="grid">

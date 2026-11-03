@@ -1,0 +1,102 @@
+---
+import ToolPage from '../../components/ToolPage.astro';
+import Field from '../../components/Field.astro';
+import { PALLET_PRESETS } from '../../lib/calc/pallet';
+---
+<ToolPage
+  slug="palletizing-calculator"
+  title="Palletizing Calculator: Cases per Layer, Layers and Pallet Load"
+  description="Free palletizing calculator: cases per layer, layers, cases per pallet and load mass for EUR, GMA and ISO pallets, including two-block rotated patterns."
+  lede="Work out how many cases fit on a pallet before you size the robot, gripper and cycle time."
+>
+  <Fragment slot="inputs">
+    <div><label for="preset">Pallet</label>
+      <select id="preset">
+        {PALLET_PRESETS.map((p, i) => <option value={i}>{p.label}</option>)}
+        <option value="custom">Custom size</option>
+      </select>
+    </div>
+    <div class="fields">
+      <Field id="pl" label="Pallet length" unit="mm" value="1200" step="1" />
+      <Field id="pw" label="Pallet width" unit="mm" value="800" step="1" />
+      <Field id="ph" label="Pallet height" unit="mm" value="144" step="1" />
+      <Field id="mh" label="Max load height" unit="mm, incl. pallet" value="1800" step="10" />
+      <Field id="mk" label="Max load mass" unit="kg, 0 = no limit" value="0" step="10" />
+      <Field id="oh" label="Overhang per side" unit="mm" value="0" step="1" />
+    </div>
+    <h2 style="margin:8px 0 0;font-size:1rem">Case</h2>
+    <div class="fields">
+      <Field id="cl" label="Length" unit="mm" value="400" step="1" />
+      <Field id="cw" label="Width" unit="mm" value="300" step="1" />
+      <Field id="ch" label="Height" unit="mm" value="250" step="1" />
+      <Field id="cm" label="Mass" unit="kg" value="8" step="0.1" />
+      <Field id="pick" label="Cases per pick" value="1" step="1" min="1" />
+      <Field id="tool" label="Gripper mass" unit="kg" value="5" step="0.1" />
+    </div>
+  </Fragment>
+
+  <Fragment slot="results">
+    <h2>Cases per pallet</h2>
+    <div class="big"><span id="cases">—</span><small>cases</small></div>
+    <dl class="kv">
+      <dt>Cases per layer</dt><dd id="perlayer">—</dd>
+      <dt>Pattern</dt><dd id="pattern">—</dd>
+      <dt>Layers</dt><dd id="layers">—</dd>
+      <dt>Load mass</dt><dd id="load">—</dd>
+      <dt>Loaded height</dt><dd id="height">—</dd>
+      <dt>Area use</dt><dd id="area">—</dd>
+      <dt>Robot payload needed</dt><dd id="payload">—</dd>
+    </dl>
+    <p style="color:var(--ink-muted);font-size:.88rem;margin:14px 0 0" id="limit"></p>
+    <p style="margin:14px 0 0"><a id="find" class="btn" href="/robots/">Find robots with this payload</a></p>
+    <p class="err" id="err" hidden>Dimensions and mass must be greater than zero.</p>
+  </Fragment>
+
+  <h2>How it works</h2>
+  <ul>
+    <li><strong>Cases per layer:</strong> the best of (a) every case in one orientation and (b) a two-block pattern where part of the layer is rotated 90°. Overhang is added to both sides of the pallet.</li>
+    <li><strong>Layers</strong> = (max load height − pallet height) ÷ case height, rounded down — then reduced if the mass limit is reached first.</li>
+    <li><strong>Robot payload needed</strong> = cases per pick × case mass + gripper mass. Compare it with the robot’s rated payload <em>and</em> its load diagram — see <a href="/guides/how-to-read-a-robot-datasheet/">how to read a robot datasheet</a>.</li>
+  </ul>
+  <h2>What this does not check</h2>
+  <ul>
+    <li>Interlocking (brick or pinwheel) patterns for load stability, and labels that must face outwards — real patterns often give up a case per layer for these.</li>
+    <li>Case crush strength and the load the bottom layer can carry.</li>
+    <li>Gripper clearance between cases and the reach to the far corner of the top layer — check the robot’s reach against pallet diagonal plus height.</li>
+  </ul>
+</ToolPage>
+
+<script>
+  import { palletize, PALLET_PRESETS } from '../../lib/calc/pallet';
+  import { val, out, fmt, bindForm, valid } from '../../lib/ui';
+  const form = document.getElementById('calc') as HTMLFormElement;
+  const preset = document.getElementById('preset') as HTMLSelectElement;
+  const set = (id: string, v: number) => ((document.getElementById(id) as HTMLInputElement).value = String(v));
+  preset.addEventListener('change', () => {
+    const p = PALLET_PRESETS[Number(preset.value)];
+    if (p) { set('pl', p.l); set('pw', p.w); set('ph', p.h); }
+  });
+  bindForm(form, () => {
+    const i = {
+      palletLengthMm: val('pl'), palletWidthMm: val('pw'), palletHeightMm: val('ph'), maxLoadHeightMm: val('mh'),
+      maxLoadKg: val('mk'), overhangMm: val('oh'), caseLengthMm: val('cl'), caseWidthMm: val('cw'), caseHeightMm: val('ch'), caseMassKg: val('cm'),
+    };
+    const pick = Math.round(val('pick')), tool = val('tool');
+    const ok = valid([i.palletLengthMm, i.palletWidthMm, i.maxLoadHeightMm, i.caseLengthMm, i.caseWidthMm, i.caseHeightMm, i.caseMassKg, pick])
+      && valid([i.palletHeightMm, i.maxLoadKg, i.overhangMm, tool], true);
+    document.getElementById('err')!.hidden = ok;
+    if (!ok) return;
+    const r = palletize(i);
+    const payload = pick * i.caseMassKg + tool;
+    out('cases', fmt(r.cases));
+    out('perlayer', fmt(r.layout.count));
+    out('pattern', r.layout.pattern);
+    out('layers', fmt(r.layers));
+    out('load', `${fmt(r.loadKg, 1)} kg`);
+    out('height', `${fmt(r.loadHeightMm)} mm`);
+    out('area', `${fmt(r.areaUsePct, 0)} %`);
+    out('payload', `${fmt(payload, 1)} kg`);
+    out('limit', r.massLimited ? 'Layers limited by the mass limit.' : 'Layers limited by the height limit.');
+    (document.getElementById('find') as HTMLAnchorElement).href = `/robots/?payload=${Math.ceil(payload)}`;
+  });
+</script>

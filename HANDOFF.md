@@ -1,5 +1,15 @@
 # HANDOFF — industrialairobots.com
 
+## 2026-11-03 (later) — Phase 1 batch 1, indexing policy, SEO plan
+
+- Owner direction: submit only high-value pages to Google; long-term SEO; become the industry hub and tool. Written up in `docs/SEO_PLAN.md`.
+- Indexing policy in code (`src/lib/db.ts`): robot page indexed only if quality score ≥ 5; brand hub needs ≥ 2 indexable models, type hub ≥ 3; guides hub needs ≥ 3 guides; contact is noindex. Sitemap built from the same rules; `check-site` enforces consistency.
+- Database 12 → 36 models (+UR8 Long, UR15, UR18, UR30; FANUC CRX-5iA, CRX-10iA/L, CRX-20iA/L, CRX-30iA, LR Mate 200iD, M-10iD/12, R-2000iC/165F; Yaskawa GP7, GP8, GP12, GP180, HC10DTP, HC20DTP, HC30PL; KUKA KR AGILUS ×4; Unitree H2; UBTECH Walker S2). New brands: KUKA, UBTECH. 22 indexed, 14 noindex (thin: Yaskawa, KUKA, Digit 5, Walker S2 — enrich from datasheets).
+- UR20/UR30 repeatability removed: UR's own pages conflict (±0.01 mm model page vs ±0.1 mm series overview); shown as a note.
+- Skipped for now: Doosan (compare page shows identical specs for different models), ABB GoFa/IRB 1200 and Epson (no per-model specs on readable pages), Figure 03 and Apptronik Apollo 2 (no published specs), 1X NEO (home robot, out of scope).
+- New tool: palletizing calculator (`src/lib/calc/pallet.ts`, tests in `tests/pallet.test.ts`).
+- Cloudflare: redirect rule "从 WWW 重定向到根" deployed (https://www.* → https://${1}, 301, query kept). Verified live.
+
 ## 2026-11-03 — Site rebuilt from scratch (framework release)
 
 - Old Starlight article site (70 URLs, last commit 32a8e4d) removed at the owner's request. Old content stays in git history before this commit. Old URL list: `D:\Claude\web\_记录\industrialairobots.com\会话_20261103_新站框架\old-urls.txt`.
@@ -13,5 +23,5 @@ Notes from data collection:
 - Third-party humanoid spec sites disagree widely; Agility only publishes preliminary Digit 5 figures (payload 23 kg, reach 2.2 m). We list only those.
 - Not yet added (no official spec page reachable): ABB GoFa, KUKA LBR iisy, Apptronik Apollo, Figure.
 
-Owner to-dos: www → apex redirect rule in Cloudflare; GSC sitemap resubmission; confirm contact email.
+Owner to-dos: confirm contact email. (www redirect done; sitemap submission see later entry.)
 Next: Phase 1 in `docs/STRATEGY.md`.

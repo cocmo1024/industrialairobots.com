@@ -7,9 +7,10 @@ import { robots as ur } from '../data/robots/universal-robots';
 import { robots as fanuc } from '../data/robots/fanuc';
 import { robots as yaskawa } from '../data/robots/yaskawa';
 import { robots as humanoids } from '../data/robots/humanoids';
+import { robots as kuka } from '../data/robots/kuka';
 
 // Add new data files here.
-const ALL: Robot[] = [...ur, ...fanuc, ...yaskawa, ...humanoids];
+const ALL: Robot[] = [...ur, ...fanuc, ...yaskawa, ...kuka, ...humanoids];
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -106,3 +107,22 @@ export function toClient(r: Robot) {
   };
 }
 export type ClientRobot = ReturnType<typeof toClient>;
+
+// ---------------------------------------------------------------------------
+// Indexing policy (docs/SEO_PLAN.md §2): only pages with enough real data are
+// offered to search engines. Thin pages stay live and linked for visitors but
+// carry noindex and are left out of the sitemap until they are enriched.
+// ---------------------------------------------------------------------------
+
+/** Minimum quality score for a robot page to be indexed. */
+export const MIN_ROBOT_SCORE = 5;
+/** Data depth of a robot entry: published spec fields + up to 2 extra sourced facts. */
+export function robotScore(r: Robot): number {
+  const specs = Object.values(r.specs).filter((v) => v !== undefined).length;
+  return specs + Math.min(r.notes?.length ?? 0, 2);
+}
+export const isIndexable = (r: Robot) => robotScore(r) >= MIN_ROBOT_SCORE;
+/** Brand hub: needs at least 2 indexable models. */
+export const brandIndexable = (slug: string) => robotsByBrand(slug).filter(isIndexable).length >= 2;
+/** Type hub: needs at least 3 indexable models. */
+export const categoryIndexable = (slug: CategorySlug) => robotsByCategory(slug).filter(isIndexable).length >= 3;

@@ -25,11 +25,11 @@ Not the goal: news churn, generic "what is a robot" essays, raw pageview volume.
 
 | Pillar | URL | What it is | Status |
 |---|---|---|---|
-| Robot database | `/robots/`, `/robots/<brand>/`, `/robots/<brand>/<model>/` | One page per model; finder with filters | Live, 12 models |
+| Robot database | `/robots/`, `/robots/<brand>/`, `/robots/<brand>/<model>/` | One page per model; finder with filters | Live, 36 models (22 indexed) |
 | Types | `/types/`, `/types/<type>/` | Category hubs with spec tables (cobots, industrial-robots, humanoid-robots, scara-robots, delta-robots, mobile-manipulators) | Live for types with data; empty types get no page |
 | Brands | `/brands/` | Manufacturer index | Live, 6 brands |
 | Compare | `/compare/?r=a,b,c` | Client-side compare, canonical `/compare/` | Live |
-| Tools | `/tools/<slug>/` | Calculators, formulas shown, unit-tested | Live, 4 tools |
+| Tools | `/tools/<slug>/` | Calculators, formulas shown, unit-tested | Live, 5 tools |
 | Guides | `/guides/<slug>/` | Source-cited explainers linking data and tools | Live, 1 guide |
 | Open data | `/data/robots.json` | Full dataset, CC BY 4.0 | Live |
 | Trust | `/methodology/`, `/about/`, `/contact/` | Sourcing rules, corrections | Live |
@@ -83,6 +83,6 @@ Exit / review conditions: if after ~6 months of Phase 1 content the site has < 3
 
 ## 7. Open items needing the owner
 
-- `www.industrialairobots.com` serves 200 (duplicate host). Needs a Cloudflare redirect rule www → apex (Cloudflare settings change: owner approval).
+- ~~www → apex redirect~~ done 2026-11-03 (Cloudflare redirect rule).
 - Confirm GSC property and resubmit `https://industrialairobots.com/sitemap.xml`.
 - Contact email currently `cqq365@gmail.com` (carried over from old site) — confirm or replace.

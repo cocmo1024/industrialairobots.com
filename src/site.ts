@@ -42,6 +42,7 @@ export const FOOTER_NAV = [
       { href: '/tools/robot-roi-calculator/', label: 'Robot ROI calculator' },
       { href: '/tools/cycle-time-calculator/', label: 'Cycle time & throughput' },
       { href: '/tools/vacuum-gripper-calculator/', label: 'Vacuum gripper sizing' },
+      { href: '/tools/palletizing-calculator/', label: 'Palletizing calculator' },
       { href: '/tools/safety-distance-calculator/', label: 'Safety distance (ISO 13855)' },
     ],
   },

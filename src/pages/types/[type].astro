@@ -1,7 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
-import { categories, robotsByCategory, brandBySlug, formatSpec, robotUrl, SPEC_DEFS, STATUS_LABEL } from '../../lib/db';
+import { categories, robotsByCategory, categoryIndexable, brandBySlug, formatSpec, robotUrl, SPEC_DEFS, STATUS_LABEL } from '../../lib/db';
 import type { Category } from '../../data/schema';
 
 // Only types that have robots get a page (no empty pages).
@@ -12,7 +12,7 @@ interface Props { c: Category }
 const { c } = Astro.props;
 const list = robotsByCategory(c.slug).sort((a, b) => (a.specs.payloadKg ?? 0) - (b.specs.payloadKg ?? 0));
 ---
-<Base title={c.title} description={c.description}>
+<Base title={c.title} description={c.description} noindex={!categoryIndexable(c.slug)}>
   <PageHead eyebrow="Robot type" title={c.name} lede={c.intro} crumbs={[{ name: 'Types', href: '/types/' }, { name: c.short }]} />
   <div class="wrap section">
     <div class="section-head"><h2 style="margin:0">{list.length} models compared</h2><a href={`/compare/?r=${list.slice(0, 3).map((r) => `${r.brand}/${r.slug}`).join(',')}`}>Compare side by side →</a></div>

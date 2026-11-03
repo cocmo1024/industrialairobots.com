@@ -21,3 +21,17 @@ describe('robot database', () => {
     expect(specKeysFor(robots[0]).length).toBeGreaterThan(3);
   });
 });
+
+import { isIndexable, robotScore, MIN_ROBOT_SCORE } from '../src/lib/db';
+
+describe('indexing policy', () => {
+  it('indexes only robots with enough sourced data', () => {
+    for (const r of robots) expect(isIndexable(r), r.slug).toBe(robotScore(r) >= MIN_ROBOT_SCORE);
+  });
+  it('keeps thin entries out of the index', () => {
+    const thin = robots.find((r) => r.slug === 'walker-s2')!;
+    expect(isIndexable(thin)).toBe(false);
+    const rich = robots.find((r) => r.slug === 'crx-10ia')!;
+    expect(isIndexable(rich)).toBe(true);
+  });
+});

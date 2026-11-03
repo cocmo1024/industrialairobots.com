@@ -4,7 +4,7 @@ import PageHead from '../../../components/PageHead.astro';
 import RobotCard from '../../../components/RobotCard.astro';
 import {
   robots, brandBySlug, categoryBySlug, formatSpec, specKeysFor, similar, robotUrl, brandUrl, categoryUrl,
-  SPEC_DEFS, STATUS_LABEL, fullName,
+  SPEC_DEFS, STATUS_LABEL, fullName, isIndexable,
 } from '../../../lib/db';
 import type { Robot } from '../../../data/schema';
 import { SITE } from '../../../site';
@@ -44,7 +44,7 @@ const ld = {
 };
 const compareIds = [r, ...sim.slice(0, 2)].map((x) => `${x.brand}/${x.slug}`).join(',');
 ---
-<Base title={title} description={description} jsonLd={ld}>
+<Base title={title} description={description} jsonLd={ld} noindex={!isIndexable(r)}>
   <PageHead
     eyebrow={`${brand.name} · ${cat.short}`}
     title={`${name} specifications`}
