@@ -57,4 +57,18 @@ export const BRANDS: Brand[] = [
     website: 'https://www.ubtrobot.com/',
     summary: 'Humanoid robots including the Walker S industrial series.',
   },
+  {
+    slug: 'doosan-robotics',
+    name: 'Doosan Robotics',
+    country: 'South Korea',
+    website: 'https://www.doosanrobotics.com/',
+    summary: 'Collaborative robots across the P, H, M, A and E series, from 5 kg to 30 kg payload.',
+  },
+  {
+    slug: 'techman',
+    name: 'Techman Robot',
+    country: 'Taiwan',
+    website: 'https://www.tm-robot.com/',
+    summary: 'TM AI Cobot series: collaborative robot arms with a camera and vision system built into the arm.',
+  },
 ];

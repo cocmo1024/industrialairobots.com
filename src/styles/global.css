@@ -198,3 +198,6 @@ input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: -1
 .site-footer a { color: var(--ink-muted); text-decoration: none; }
 .site-footer a:hover { color: #fff; }
 .site-footer .legal { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--ink-line); font-size: 0.85rem; }
+
+/* Tables inside guides scroll on their own on narrow screens */
+.prose table { display: block; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }

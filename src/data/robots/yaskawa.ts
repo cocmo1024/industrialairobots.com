@@ -1,29 +1,30 @@
-import type { Robot } from '../schema';
+import type { Robot, Source } from '../schema';
 
 const R = '2026-11-03';
+const PUB = 'Yaskawa America (Motoman)';
+const page = (slug: string, title: string): Source => ({
+  url: `https://www.motoman.com/en-us/products/robots/industrial/assembly-handling/gp-series/${slug}`,
+  title,
+  publisher: PUB,
+  retrieved: R,
+});
+const sheet = (path: string, title: string): Source => ({
+  url: `https://www.motoman.com/getmedia/${path}.pdf.aspx`,
+  title,
+  publisher: PUB,
+  retrieved: R,
+});
+const ALL_MOUNTS = ['Floor', 'Wall', 'Tilt', 'Ceiling'];
+const GP7_GP8 = sheet('1a40ce78-99c3-4e43-bbce-b9318263f464/GP7_GP8', 'GP7 / GP8 datasheet (PDF)');
+const HC_PAGE: Source = {
+  url: 'https://www.motoman.com/en-us/products/robots/collaborative/hc-series',
+  title: 'HC Series collaborative robots',
+  publisher: PUB,
+  retrieved: R,
+};
+const COLLAB_SPEED = { label: 'TCP speed', value: '1000 mm/s collaborative mode; 2000 mm/s non-collaborative mode' };
 
 export const robots: Robot[] = [
-  {
-    slug: 'gp25',
-    brand: 'yaskawa',
-    name: 'Motoman GP25',
-    family: 'GP',
-    category: 'industrial-robots',
-    status: 'production',
-    summary: 'A 25 kg general-purpose Motoman handling robot with 1730 mm horizontal reach on the YRC1000 controller.',
-    specs: { payloadKg: 25, reachMm: 1730, controller: 'YRC1000' },
-    specNotes: { reachMm: 'Horizontal reach' },
-    notes: [{ label: 'Vertical reach', value: '3089 mm' }],
-    sources: [
-      {
-        url: 'https://www.motoman.com/en-us/products/robots/industrial/assembly-handling/gp-series/gp25',
-        title: 'GP25 robot',
-        publisher: 'Yaskawa America (Motoman)',
-        retrieved: R,
-      },
-    ],
-    updated: R,
-  },
   {
     slug: 'gp7',
     brand: 'yaskawa',
@@ -31,11 +32,15 @@ export const robots: Robot[] = [
     family: 'GP',
     category: 'industrial-robots',
     status: 'production',
-    summary: 'A 7 kg high-speed Motoman handling and assembly robot with 927 mm horizontal reach.',
-    specs: { payloadKg: 7, reachMm: 927, controller: 'YRC1000 / YRC1000micro' },
+    summary: 'A 7 kg high-speed Motoman handling and assembly robot with 927 mm horizontal reach and ±0.01 mm repeatability.',
+    specs: { payloadKg: 7, reachMm: 927, axes: 6, repeatabilityMm: 0.01, weightKg: 34, ipRating: 'IP67', controller: 'YRC1000 / YRC1000micro', mounting: ALL_MOUNTS },
     specNotes: { reachMm: 'Horizontal reach' },
-    notes: [{ label: 'Vertical reach', value: '1693 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/industrial/assembly-handling/gp-series/gp7', title: 'GP7 robot', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    notes: [
+      { label: 'Vertical reach', value: '1693 mm' },
+      { label: 'Wrist moment (R / B / T)', value: '17 / 17 / 10 N·m' },
+      { label: 'Wrist inertia (R / B / T)', value: '0.5 / 0.5 / 0.2 kg·m²' },
+    ],
+    sources: [page('gp7', 'GP7 robot'), GP7_GP8],
     updated: R,
   },
   {
@@ -45,11 +50,15 @@ export const robots: Robot[] = [
     family: 'GP',
     category: 'industrial-robots',
     status: 'production',
-    summary: 'An 8 kg compact Motoman assembly and handling robot with 727 mm horizontal reach.',
-    specs: { payloadKg: 8, reachMm: 727, controller: 'YRC1000 / YRC1000micro' },
+    summary: 'An 8 kg compact Motoman assembly and handling robot with 727 mm horizontal reach and ±0.01 mm repeatability.',
+    specs: { payloadKg: 8, reachMm: 727, axes: 6, repeatabilityMm: 0.01, weightKg: 32, ipRating: 'IP67', controller: 'YRC1000 / YRC1000micro', mounting: ALL_MOUNTS },
     specNotes: { reachMm: 'Horizontal reach' },
-    notes: [{ label: 'Vertical reach', value: '1312 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/industrial/assembly-handling/gp-series/gp8', title: 'GP8 robot', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    notes: [
+      { label: 'Vertical reach', value: '1312 mm' },
+      { label: 'Wrist moment (R / B / T)', value: '17 / 17 / 10 N·m' },
+      { label: 'Wrist inertia (R / B / T)', value: '0.5 / 0.5 / 0.2 kg·m²' },
+    ],
+    sources: [page('gp8', 'GP8 robot'), GP7_GP8],
     updated: R,
   },
   {
@@ -59,11 +68,33 @@ export const robots: Robot[] = [
     family: 'GP',
     category: 'industrial-robots',
     status: 'production',
-    summary: 'A 12 kg Motoman handling robot with 1440 mm horizontal reach.',
-    specs: { payloadKg: 12, reachMm: 1440, controller: 'YRC1000 / YRC1000micro' },
-    specNotes: { reachMm: 'Horizontal reach' },
-    notes: [{ label: 'Vertical reach', value: '2511 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/industrial/assembly-handling/gp-series/gp12', title: 'GP12 robot', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    summary: 'A 12 kg hollow-arm Motoman handling robot with 1440 mm horizontal reach and ±0.02 mm repeatability.',
+    specs: { payloadKg: 12, reachMm: 1440, axes: 6, repeatabilityMm: 0.02, weightKg: 150, ipRating: 'IP54 (IP65 optional)', controller: 'YRC1000 / YRC1000micro', mounting: ALL_MOUNTS },
+    specNotes: { reachMm: 'Horizontal reach', ipRating: 'Body; wrist IP67. IP65 body with the XP package' },
+    notes: [
+      { label: 'Vertical reach', value: '2511 mm' },
+      { label: 'Wrist moment (R / B / T)', value: '22 / 22 / 9.8 N·m' },
+      { label: 'Wrist inertia (R / B / T)', value: '0.65 / 0.65 / 0.17 kg·m²' },
+    ],
+    sources: [page('gp12', 'GP12 robot'), sheet('1d6a21d4-3984-46d7-9159-eb08fedb2ac3/GP12', 'GP12 datasheet (PDF)')],
+    updated: R,
+  },
+  {
+    slug: 'gp25',
+    brand: 'yaskawa',
+    name: 'Motoman GP25',
+    family: 'GP',
+    category: 'industrial-robots',
+    status: 'production',
+    summary: 'A 25 kg general-purpose Motoman handling robot with 1730 mm horizontal reach on the YRC1000 controller.',
+    specs: { payloadKg: 25, reachMm: 1730, axes: 6, repeatabilityMm: 0.02, weightKg: 250, ipRating: 'IP54 (IP65 optional)', controller: 'YRC1000', mounting: ALL_MOUNTS },
+    specNotes: { reachMm: 'Horizontal reach', ipRating: 'Body; wrist IP67. IP65 body with the XP package' },
+    notes: [
+      { label: 'Vertical reach', value: '3089 mm' },
+      { label: 'Wrist moment (R / B / T)', value: '52 / 52 / 32 N·m' },
+      { label: 'Wrist inertia (R / B / T)', value: '2.3 / 2.3 / 1.2 kg·m²' },
+    ],
+    sources: [page('gp25', 'GP25 robot'), sheet('ee9262e6-e35f-4efd-b071-163c2cae822b/GP25', 'GP25 datasheet (PDF)')],
     updated: R,
   },
   {
@@ -73,11 +104,11 @@ export const robots: Robot[] = [
     family: 'GP',
     category: 'industrial-robots',
     status: 'production',
-    summary: 'A 180 kg heavy-payload Motoman robot with 2702 mm horizontal reach.',
-    specs: { payloadKg: 180, reachMm: 2702, controller: 'YRC1000' },
-    specNotes: { reachMm: 'Horizontal reach' },
+    summary: 'A 180 kg heavy-payload Motoman robot with 2702 mm horizontal reach, for machine tending and material handling.',
+    specs: { payloadKg: 180, reachMm: 2702, axes: 6, repeatabilityMm: 0.05, weightKg: 1020, ipRating: 'IP54 (IP65 optional)', controller: 'YRC1000', mounting: ['Floor'] },
+    specNotes: { reachMm: 'Horizontal reach', ipRating: 'Body; wrist IP67. IP65 body with the XP package' },
     notes: [{ label: 'Vertical reach', value: '3393 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/industrial/assembly-handling/gp-series/gp180', title: 'GP180 robot', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    sources: [page('gp180', 'GP180 robot'), sheet('176a39ff-c27d-4607-b131-84c01abdcc78/gp180', 'GP180 datasheet (PDF)')],
     updated: R,
   },
   {
@@ -87,11 +118,11 @@ export const robots: Robot[] = [
     family: 'HC',
     category: 'cobots',
     status: 'production',
-    summary: 'A 10 kg Yaskawa collaborative robot with 1200 mm horizontal reach.',
-    specs: { payloadKg: 10, reachMm: 1200 },
-    specNotes: { reachMm: 'Horizontal reach' },
-    notes: [{ label: 'Vertical reach', value: '2400 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/collaborative/hc-series', title: 'Collaborative robots (HC Series)', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    summary: 'A 10 kg Yaskawa collaborative robot with power and force limiting on all six axes, IP67 throughout and 1200 mm effective reach.',
+    specs: { payloadKg: 10, reachMm: 1200, axes: 6, repeatabilityMm: 0.05, weightKg: 58, ipRating: 'IP67', controller: 'YRC1000micro', mounting: ALL_MOUNTS },
+    specNotes: { reachMm: 'Effective reach (1379 mm maximum reach)', ipRating: 'All axes' },
+    notes: [COLLAB_SPEED, { label: 'Safety', value: 'Power and force limiting on all six axes; Cat. 3 PL e (per Yaskawa)' }],
+    sources: [HC_PAGE, sheet('6bee5ac1-77ed-43da-aa0c-8d3e493d3aea/ds_hc10dtp', 'HC10DTP datasheet (PDF)')],
     updated: R,
   },
   {
@@ -101,11 +132,11 @@ export const robots: Robot[] = [
     family: 'HC',
     category: 'cobots',
     status: 'production',
-    summary: 'A 20 kg Yaskawa collaborative robot with 1700 mm horizontal reach.',
-    specs: { payloadKg: 20, reachMm: 1700 },
-    specNotes: { reachMm: 'Horizontal reach' },
-    notes: [{ label: 'Vertical reach', value: '3400 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/collaborative/hc-series', title: 'Collaborative robots (HC Series)', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    summary: 'A 20 kg Yaskawa collaborative robot with 1700 mm effective reach (1900 mm maximum) and IP67 on all axes.',
+    specs: { payloadKg: 20, reachMm: 1700, axes: 6, repeatabilityMm: 0.05, ipRating: 'IP67', controller: 'YRC1000micro', mounting: ALL_MOUNTS },
+    specNotes: { reachMm: 'Effective reach (1900 mm maximum reach)', ipRating: 'All axes' },
+    notes: [COLLAB_SPEED, { label: 'Safety', value: 'Power and force limiting; Cat. 3 PL e (per Yaskawa)' }],
+    sources: [HC_PAGE, sheet('1c365c4a-7973-4826-b35e-09ea82ce3b74/ds_HC20DTP', 'HC20DTP datasheet (PDF)')],
     updated: R,
   },
   {
@@ -115,11 +146,11 @@ export const robots: Robot[] = [
     family: 'HC',
     category: 'cobots',
     status: 'production',
-    summary: 'A 30 kg Yaskawa collaborative robot with 1700 mm horizontal reach, aimed at palletizing.',
-    specs: { payloadKg: 30, reachMm: 1700 },
-    specNotes: { reachMm: 'Horizontal reach' },
-    notes: [{ label: 'Vertical reach', value: '3400 mm' }],
-    sources: [{ url: 'https://www.motoman.com/en-us/products/robots/collaborative/hc-series', title: 'Collaborative robots (HC Series)', publisher: 'Yaskawa America (Motoman)', retrieved: R }],
+    summary: 'A 30 kg floor-mounted Yaskawa collaborative robot for palletizing, with reach that drops from 1700 mm to 1600 mm above 27 kg.',
+    specs: { payloadKg: 30, reachMm: 1700, axes: 6, repeatabilityMm: 0.05, weightKg: 140, ipRating: 'IP67', controller: 'YRC1000micro', mounting: ['Floor'] },
+    specNotes: { reachMm: 'Maximum reach below 27 kg payload; 1600 mm above 27 kg', ipRating: 'All axes' },
+    notes: [COLLAB_SPEED],
+    sources: [HC_PAGE, sheet('9eaa1ed1-fc8b-4772-b0c8-7499f2551c53/ds_HC30PL', 'HC30PL datasheet (PDF)')],
     updated: R,
   },
 ];

@@ -1,5 +1,15 @@
 # HANDOFF — industrialairobots.com
 
+## 2026-11-03 (evening) — Phase 1 batch 2
+
+- Enriched from official datasheets so they pass the index bar: Yaskawa GP7/GP8/GP12/GP25/GP180, HC10DTP/HC20DTP/HC30PL (motoman.com getmedia PDFs: repeatability, weight, IP, mounting, wrist moment/inertia where the table extracted cleanly) and KUKA KR AGILUS ×4 (my.KUKA product data: ISO 9283 repeatability, max payload, IP, cleanroom, motion range — my.KUKA needs a JS browser; WebFetch only sees a loading page).
+- Skipped on purpose: GP180 wrist moment/inertia and HC10DTP R/B wrist values (PDF cells misaligned), HC20DTP weight (not extractable), HC30PL safety PL (datasheet says PL e in one place and PL d in another), Techman TM5-900 ("coming soon").
+- New brands: Doosan Robotics (10 models; model pages give payload/reach/repeatability only → noindex until catalog data), Techman Robot (5 models; payload, reach, weight, IP, built-in vision → indexed).
+- Database 36 → 51 robots; sitemap 42 → 65 URLs. Guides 1 → 3 (cobot vs industrial robot; repeatability vs accuracy), so /guides/ is now indexed.
+- ISO 10218-1/-2:2025 confirmed on iso.org (73933/73934); ISO 10218-2:2025 incorporates most of ISO/TS 15066 — reflected in the cobot guide.
+- Guide tables scroll on narrow screens.
+- Next (Nov plan): ABB (try one.robotics.abb.com per-variant pages or product specification PDFs), Epson/Denso SCARA, Doosan catalog PDF to lift Doosan over the index bar.
+
 ## 2026-11-03 (later) — Phase 1 batch 1, indexing policy, SEO plan
 
 - Owner direction: submit only high-value pages to Google; long-term SEO; become the industry hub and tool. Written up in `docs/SEO_PLAN.md`.
