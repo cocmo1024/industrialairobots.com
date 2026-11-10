@@ -12,6 +12,7 @@ export const GET: APIRoute = () => {
     'Every robot specification is copied from the manufacturer and cited with a link and retrieval date. Missing values are left blank, never estimated.',
     '',
     '## Data',
+    `- [Full content (plain text)](${SITE.url}/llms-full.txt)`,
     `- [Robot dataset (JSON, CC BY 4.0)](${SITE.url}/data/robots.json)`,
     `- [Methodology](${SITE.url}/methodology/)`,
     '',

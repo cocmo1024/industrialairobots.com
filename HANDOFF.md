@@ -1,5 +1,14 @@
 # HANDOFF — industrialairobots.com
 
+## 2026-11-09 — Operations handover to Muse
+
+- Owner handed site operations to Muse in a dedicated chat and confirmed: run it on the existing annual plan (`docs/AI_OPERATIONS_PLAN.md`). End goal clarified by the owner: **grow to large industry traffic first, then monetize by selling advertising — not by selling the domain or the site.** Ads stay off until the owner approves the gate (`src/site.ts` switch unchanged); the Aug 2027 lead-generation gate in the operations plan is no longer the default route.
+- Baseline re-verified locally at handover: `npm run verify` passes (21 tests, check-site OK — 85 HTML files, 65 sitemap URLs, 21 redirects).
+- Added `/llms-full.txt`, generated from the same database (all 51 robots with specs and sources, brands, robot types, calculators, full guide texts), and linked it from `/llms.txt`.
+- Contact email: `src/site.ts` already carries cqq365@gmail.com — treated as the confirmed contact, no change made.
+- Recurring operations now run as scheduled tasks owned by the site goal: weekly batch (Mon), monthly source audit (5th), monthly KPI and AI-answer audit (12th), quarterly strategy review (Jan/Apr/Jul/Oct 16th).
+- Next: November catch-up per the plan — ABB (datasheets), Epson/Denso SCARA, Doosan catalog enrichment, 51 → ~80 robots.
+
 ## 2026-11-03 (evening) — Phase 1 batch 2
 
 - Enriched from official datasheets so they pass the index bar: Yaskawa GP7/GP8/GP12/GP25/GP180, HC10DTP/HC20DTP/HC30PL (motoman.com getmedia PDFs: repeatability, weight, IP, mounting, wrist moment/inertia where the table extracted cleanly) and KUKA KR AGILUS ×4 (my.KUKA product data: ISO 9283 repeatability, max payload, IP, cleanroom, motion range — my.KUKA needs a JS browser; WebFetch only sees a loading page).
