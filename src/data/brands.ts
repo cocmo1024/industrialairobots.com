@@ -71,4 +71,11 @@ export const BRANDS: Brand[] = [
     website: 'https://www.tm-robot.com/',
     summary: 'TM AI Cobot series: collaborative robot arms with a camera and vision system built into the arm.',
   },
+  {
+    slug: 'epson',
+    name: 'Epson',
+    country: 'Japan',
+    website: 'https://epson.com/robots',
+    summary: 'Epson Robots (Seiko Epson): SCARA and 6-axis industrial robots, plus the AX6 collaborative robot.',
+  },
 ];

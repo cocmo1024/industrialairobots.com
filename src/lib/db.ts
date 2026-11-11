@@ -10,9 +10,10 @@ import { robots as humanoids } from '../data/robots/humanoids';
 import { robots as kuka } from '../data/robots/kuka';
 import { robots as doosan } from '../data/robots/doosan';
 import { robots as techman } from '../data/robots/techman';
+import { robots as epson } from '../data/robots/epson';
 
 // Add new data files here.
-const ALL: Robot[] = [...ur, ...fanuc, ...yaskawa, ...kuka, ...doosan, ...techman, ...humanoids];
+const ALL: Robot[] = [...ur, ...fanuc, ...yaskawa, ...kuka, ...doosan, ...techman, ...epson, ...humanoids];
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
