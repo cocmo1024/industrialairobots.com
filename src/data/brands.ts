@@ -13,7 +13,7 @@ export const BRANDS: Brand[] = [
     name: 'FANUC',
     country: 'Japan',
     website: 'https://www.fanucamerica.com/',
-    summary: 'Industrial robots, CRX collaborative robots and CNC controls.',
+    summary: 'Industrial robots, CRX collaborative robots and CNC controls. The robot lineup runs from the compact LR Mate assembly arms to the heavy-payload R-2000iC handling series; every model here is listed with manufacturer-sourced specs.',
   },
   {
     slug: 'yaskawa',
@@ -70,6 +70,20 @@ export const BRANDS: Brand[] = [
     country: 'Taiwan',
     website: 'https://www.tm-robot.com/',
     summary: 'TM AI Cobot series: collaborative robot arms with a camera and vision system built into the arm.',
+  },
+  {
+    slug: 'denso',
+    name: 'DENSO Robotics',
+    country: 'Japan',
+    website: 'https://www.densorobotics.com/',
+    summary: 'Small industrial robots from DENSO Wave: VS 5/6-axis articulated arms, HS-A1 SCARA robots and larger VM/VLA arms.',
+  },
+  {
+    slug: 'abb',
+    name: 'ABB Robotics',
+    country: 'Switzerland',
+    website: 'https://new.abb.com/products/robotics',
+    summary: 'Articulated robots from the IRB 1010 to the IRB 8700, IRB 920T SCARA robots, and the GoFa and YuMi collaborative lines.',
   },
   {
     slug: 'epson',

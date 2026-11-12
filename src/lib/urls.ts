@@ -1,6 +1,7 @@
 import { getCollection } from 'astro:content';
 import { robots, brands, categories, robotUrl, brandUrl, categoryUrl, isIndexable, brandIndexable, categoryIndexable } from './db';
 import { TOOLS } from './tools';
+import { COMPARISONS, comparisonUrl } from '../data/comparisons';
 
 export interface PageEntry { path: string; lastmod?: string }
 
@@ -14,6 +15,7 @@ export async function indexablePages(): Promise<PageEntry[]> {
     { path: '/brands/' },
     { path: '/types/' },
     { path: '/compare/' },
+    ...COMPARISONS.map((c) => ({ path: comparisonUrl(c), lastmod: latest })),
     { path: '/tools/' },
     ...(guides.length >= 3 ? [{ path: '/guides/' }] : []),
     { path: '/about/' },

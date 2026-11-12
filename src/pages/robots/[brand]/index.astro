@@ -2,8 +2,10 @@
 import Base from '../../../layouts/Base.astro';
 import PageHead from '../../../components/PageHead.astro';
 import RobotCard from '../../../components/RobotCard.astro';
-import { brands, robotsByBrand, brandIndexable } from '../../../lib/db';
+import { brands, robotsByBrand, brandIndexable, categoryBySlug, categoryUrl, formatSpec, isIndexable } from '../../../lib/db';
 import type { Brand } from '../../../data/schema';
+import { comparisonUrl } from '../../../data/comparisons';
+import { comparisonsForBrand, comparisonRobots, displayName } from '../../../lib/comparisons';
 
 export function getStaticPaths() {
   return brands.map((b) => ({ params: { brand: b.slug }, props: { b } }));
@@ -11,9 +13,21 @@ export function getStaticPaths() {
 interface Props { b: Brand }
 const { b } = Astro.props;
 const list = robotsByBrand(b.slug);
+const indexable = brandIndexable(b.slug);
+const fullData = list.filter(isIndexable).length;
+
+const cats = [...new Set(list.map((r) => r.category))];
+const payloads = list.map((r) => r.specs.payloadKg).filter((v): v is number => v !== undefined);
+const reaches = list.map((r) => r.specs.reachMm).filter((v): v is number => v !== undefined);
+const facts: string[] = [];
+if (payloads.length > 1) facts.push(`payloads ${formatSpec('payloadKg', Math.min(...payloads))}–${formatSpec('payloadKg', Math.max(...payloads))}`);
+else if (payloads.length === 1) facts.push(`payload ${formatSpec('payloadKg', payloads[0])}`);
+if (reaches.length) facts.push(`reach up to ${formatSpec('reachMm', Math.max(...reaches))}`);
+
+const pairs = comparisonsForBrand(b.slug);
 ---
 <Base
-  noindex={!brandIndexable(b.slug)}
+  noindex={!indexable}
   title={`${b.name} Robots: Models and Specs`}
   description={`${b.name} robot models in our database with payload, reach and other specs cited to ${b.name}. ${b.summary}`.slice(0, 160)}
 >
@@ -21,6 +35,37 @@ const list = robotsByBrand(b.slug);
     crumbs={[{ name: 'Robots', href: '/robots/' }, { name: 'Brands', href: '/brands/' }, { name: b.name }]} />
   <div class="wrap section">
     <p class="muted">{list.length} model{list.length === 1 ? '' : 's'} in the database so far. Official site: <a href={b.website} rel="nofollow noopener" target="_blank">{b.website.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></p>
+    <p class="muted">
+      Coverage: {cats.map((slug, i) => (
+        <>{i > 0 && ' · '}<a href={categoryUrl(slug)}>{categoryBySlug(slug)!.name}</a></>
+      ))}{facts.length > 0 && <> · {facts.join(' · ')}</>}
+    </p>
+    {!indexable && (
+      <p class="muted">Coverage of this brand is still building out: {fullData} of {list.length} model{list.length === 1 ? '' : 's'} so far carries full datasheet-level data, and models are upgraded as their manufacturer sources are checked. Until then this hub stays out of the sitemap (see <a href="/methodology/">how we source data</a>).</p>
+    )}
     <div class="grid">{list.map((r) => <RobotCard robot={r} />)}</div>
+
+    {pairs.length > 0 && (
+      <>
+        <div class="section-head" style="margin-top:36px"><h2>Head-to-head</h2><a href="/compare/">All comparisons →</a></div>
+        <div class="grid">
+          {pairs.map((c) => {
+            const [x, y] = comparisonRobots(c);
+            return (
+              <a class="card" href={comparisonUrl(c)}>
+                <div class="kicker">Comparison</div>
+                <h3>{displayName(x)} vs {displayName(y)}</h3>
+                <p>{c.takeaway}</p>
+              </a>
+            );
+          })}
+        </div>
+      </>
+    )}
+
+    <p class="muted" style="margin-top:28px">
+      Compare any of these side by side in the <a href="/compare/">interactive compare tool</a>,
+      or browse <a href="/brands/">all manufacturers</a> and <a href="/types/">robot types</a>.
+    </p>
   </div>
 </Base>

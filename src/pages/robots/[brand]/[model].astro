@@ -8,6 +8,8 @@ import {
 } from '../../../lib/db';
 import type { Robot } from '../../../data/schema';
 import { SITE } from '../../../site';
+import { comparisonUrl } from '../../../data/comparisons';
+import { comparisonFor } from '../../../lib/comparisons';
 
 export function getStaticPaths() {
   return robots.map((r) => ({ params: { brand: r.brand, model: r.slug }, props: { r } }));
@@ -43,6 +45,7 @@ const ld = {
   })),
 };
 const compareIds = [r, ...sim.slice(0, 2)].map((x) => `${x.brand}/${x.slug}`).join(',');
+const pairInfo = comparisonFor(r);
 ---
 <Base title={title} description={description} jsonLd={ld} noindex={!isIndexable(r)}>
   <PageHead
@@ -95,6 +98,9 @@ const compareIds = [r, ...sim.slice(0, 2)].map((x) => `${x.brand}/${x.slug}`).jo
         <h3>Compare</h3>
         <p>Put the {r.name} side by side with similar {cat.short.toLowerCase()}.</p>
         <p style="margin-top:12px"><a class="btn" href={`/compare/?r=${compareIds}`}>Compare specs</a></p>
+        {pairInfo && (
+          <p style="margin-top:12px">Head-to-head: <a href={comparisonUrl(pairInfo.c)}>{r.name} vs {pairInfo.other.name} — read the verdict →</a></p>
+        )}
       </div>
       {isArm && (
         <div class="card">

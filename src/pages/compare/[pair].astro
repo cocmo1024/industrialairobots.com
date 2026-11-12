@@ -1,0 +1,133 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import { COMPARISONS, type Comparison } from '../../data/comparisons';
+import { comparisonRobots, displayName } from '../../lib/comparisons';
+import {
+  SPEC_ORDER, SPEC_DEFS, formatSpec, specKeysFor, robotUrl, brandUrl, categoryUrl,
+  brandBySlug, categoryBySlug, STATUS_LABEL,
+} from '../../lib/db';
+import type { Robot } from '../../data/schema';
+import { SITE } from '../../site';
+
+export function getStaticPaths() {
+  return COMPARISONS.map((c) => ({ params: { pair: c.slug }, props: { c } }));
+}
+interface Props { c: Comparison }
+const { c } = Astro.props;
+const [a, b] = comparisonRobots(c);
+const pair: Robot[] = [a, b];
+const nameA = displayName(a);
+const nameB = displayName(b);
+const brandA = brandBySlug(a.brand)!;
+const brandB = brandBySlug(b.brand)!;
+const cat = categoryBySlug(a.category)!;
+
+const keySet = new Set([...specKeysFor(a), ...specKeysFor(b)]);
+const keys = SPEC_ORDER.filter((k) => keySet.has(k));
+const hasNotes = pair.some((r) => (r.notes?.length ?? 0) > 0);
+const interactive = `/compare/?r=${a.brand}/${a.slug},${b.brand}/${b.slug}`;
+
+const ld = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: c.title,
+  itemListElement: pair.map((r, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    url: SITE.url + robotUrl(r),
+    name: displayName(r),
+  })),
+};
+---
+<Base title={c.title} description={c.description} jsonLd={ld}>
+  <PageHead
+    eyebrow={`Compare · ${cat.short}`}
+    title={`${nameA} vs ${nameB}`}
+    lede={c.lede}
+    crumbs={[{ name: 'Compare', href: '/compare/' }, { name: `${a.name} vs ${b.name}` }]}
+  />
+
+  <div class="wrap section">
+    <h2 style="margin-top:0">Specifications side by side</h2>
+    <div class="table-wrap">
+      <table class="spec">
+        <thead>
+          <tr>
+            <th></th>
+            <th scope="col"><a href={robotUrl(a)}>{nameA}</a></th>
+            <th scope="col"><a href={robotUrl(b)}>{nameB}</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Availability</th>
+            <td>{STATUS_LABEL[a.status]}</td>
+            <td>{STATUS_LABEL[b.status]}</td>
+          </tr>
+          {keys.map((k) => (
+            <tr>
+              <th scope="row">{SPEC_DEFS[k].label}</th>
+              {pair.map((r) => (
+                r.specs[k] === undefined
+                  ? <td class="missing">Not stated by the cited source</td>
+                  : <td>{formatSpec(k, r.specs[k])}{r.specNotes?.[k] && <small>{r.specNotes[k]}</small>}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:.9rem;margin-top:12px">
+      Every value is copied from the manufacturer source cited on each robot’s page — open
+      <a href={robotUrl(a)}>{nameA}</a> or <a href={robotUrl(b)}>{nameB}</a> for the sources.
+      Rated payload assumes the manufacturer’s load conditions. Want more robots in the table?
+      <a href={interactive}>Open this pair in the interactive compare tool</a>.
+    </p>
+
+    {hasNotes && (
+      <>
+        <h2>Also published by the manufacturers</h2>
+        <div class="two">
+          {pair.map((r) => (
+            (r.notes?.length ?? 0) > 0 && (
+              <div>
+                <h3 style="margin-top:0">{displayName(r)}</h3>
+                <div class="table-wrap">
+                  <table class="spec"><tbody>
+                    {r.notes!.map((n) => <tr><th scope="row">{n.label}</th><td style="font-family:var(--font-sans);font-weight:500">{n.value}</td></tr>)}
+                  </tbody></table>
+                </div>
+              </div>
+            )
+          ))}
+        </div>
+      </>
+    )}
+
+    <h2>How they differ</h2>
+    {c.analysis.map((p) => <p style="max-width:72ch">{p}</p>)}
+
+    <h2>Which should you choose?</h2>
+    <div class="two">
+      <div class="card">
+        <h3 style="margin-top:0">Choose the {a.name}</h3>
+        <p>{c.chooseA}</p>
+        <p style="margin-top:12px"><a class="btn" href={robotUrl(a)}>Full {nameA} specs</a></p>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">Choose the {b.name}</h3>
+        <p>{c.chooseB}</p>
+        <p style="margin-top:12px"><a class="btn" href={robotUrl(b)}>Full {nameB} specs</a></p>
+      </div>
+    </div>
+    <p style="max-width:72ch;margin-top:20px"><strong>Bottom line:</strong> {c.bottomLine}</p>
+
+    <p class="muted" style="font-size:.9rem;margin-top:24px">
+      Keep exploring: <a href={brandUrl(brandA.slug)}>all {brandA.name} robots</a> ·
+      <a href={brandUrl(brandB.slug)}>all {brandB.name} robots</a> ·
+      <a href={categoryUrl(cat.slug)}>all {cat.short.toLowerCase()}</a> ·
+      more pairs in the <a href="/compare/">robot comparison</a> pilot — <a href="/methodology/">how we source data</a>.
+    </p>
+  </div>
+</Base>
