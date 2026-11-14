@@ -157,4 +157,27 @@ export const robots: Robot[] = [
     sources: [{ url: 'https://www.fanucamerica.com/products/robot/r-2000ic-165f', title: 'R-2000iC/165F', publisher: 'FANUC America', retrieved: R }],
     updated: R,
   },
+  {
+    slug: 'p-55-15-21a',
+    brand: 'fanuc',
+    name: 'P-55/15-21A',
+    family: 'Paint Series',
+    category: 'industrial-robots',
+    status: 'production',
+    summary: "FANUC's 15 kg painting robot with 2050 mm reach and ±0.03 mm repeatability — the first FANUC paint robot built on the R-50iA controller, supporting 0K, 1K and 2K paint systems.",
+    specs: { payloadKg: 15, reachMm: 2050, axes: 6, repeatabilityMm: 0.03, weightKg: 410, controller: 'R-50iA', mounting: ['Floor', 'Angle', 'Wall', 'Inverted'] },
+    notes: [
+      { label: 'Wrist moment (J4 / J5 / J6)', value: '27.5 / 27.5 / 9.8 N·m' },
+      { label: 'Wrist inertia (J4 / J5 / J6)', value: '0.71 / 0.71 / 0.13 kg·m²' },
+      { label: 'Motion range', value: 'J1 310°, J2 215°, J3 220°, J4 720°, J5 720°, J6 720°' },
+      { label: 'Configurations', value: 'Available in right-hand and left-hand configurations for mirrored paint-line layouts (FANUC Europe).' },
+      { label: 'Hazardous areas', value: 'Purge enclosure allows use in ATEX Zone 1 environments (FANUC Europe).' },
+      { label: 'Europe launch', value: 'Launched in Europe in November 2026 following its debut at PaintExpo 2026 in Karlsruhe (FANUC Europe).' },
+    ],
+    sources: [
+      { url: 'https://www.fanucamerica.com/products/robot/p-55-15-21a', title: 'P-55/15-21A paint robot', publisher: 'FANUC America', retrieved: '2026-11-13' },
+      { url: 'https://www.fanuc.eu/eu-en/news/fanuc-launches-next-generation-paint-robot-greater-flexibility-easier-maintenance-and-future', title: 'FANUC launches next-generation paint robot', publisher: 'FANUC Europe', retrieved: '2026-11-13' },
+    ],
+    updated: '2026-11-13',
+  },
 ];

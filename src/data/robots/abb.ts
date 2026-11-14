@@ -423,4 +423,102 @@ export const robots: Robot[] = [
     sources: [RANGE, COBOT_TABLE],
     updated: R,
   },
+  {
+    slug: 'irb-1700-12-145',
+    brand: 'abb',
+    name: 'IRB 1700-12/1.45',
+    family: 'IRB 1700',
+    category: 'industrial-robots',
+    status: 'production',
+    summary:
+      "ABB's compact 12 kg industrial robot with 1450 mm reach on the OmniCore controller platform, for precision handling, arc welding, deburring, sanding and machine tending; public debut at CIIF in Shanghai in October 2026.",
+    specs: {
+      payloadKg: 12,
+      reachMm: 1450,
+      controller: 'OmniCore',
+    },
+    notes: [
+      {
+        label: 'Path repeatability',
+        value:
+          'ABB quotes path repeatability down to 0.03 mm for the IRB 1700 family; per-variant repeatability is not published, so the repeatability field is left blank.',
+      },
+      {
+        label: 'Controllers',
+        value: 'Supports OmniCore C30XT, C90XT, V250XT and V400XT controllers (ABB).',
+      },
+      {
+        label: 'Service interval',
+        value: 'Up to 20,000 hours between oil changes (ABB).',
+      },
+      {
+        label: 'Joint speed',
+        value: 'Maximum joint speed up to 700 °/s (family figure published by ABB).',
+      },
+    ],
+    sources: [
+      {
+        url: 'https://www.abb.com/global/en/areas/robotics/products/robots/articulated-robots/medium-robots/irb-1700',
+        title: 'IRB 1700',
+        publisher: 'ABB',
+        retrieved: '2026-11-13',
+      },
+      {
+        url: 'https://www.abb.com/global/en/news/139390/prsrl-abb-robotics-introduces-two-new-high-performance-robots-for-precision-manufacturing',
+        title: 'ABB Robotics introduces two new high-performance robots for precision manufacturing',
+        publisher: 'ABB',
+        retrieved: '2026-11-13',
+      },
+    ],
+    updated: '2026-11-13',
+  },
+  {
+    slug: 'irb-1700-10-165',
+    brand: 'abb',
+    name: 'IRB 1700-10/1.65',
+    family: 'IRB 1700',
+    category: 'industrial-robots',
+    status: 'production',
+    summary:
+      "ABB's compact 10 kg industrial robot with 1650 mm reach on the OmniCore controller platform, for precision handling, arc welding, deburring, sanding and machine tending; public debut at CIIF in Shanghai in October 2026.",
+    specs: {
+      payloadKg: 10,
+      reachMm: 1650,
+      controller: 'OmniCore',
+    },
+    notes: [
+      {
+        label: 'Path repeatability',
+        value:
+          'ABB quotes path repeatability down to 0.03 mm for the IRB 1700 family; per-variant repeatability is not published, so the repeatability field is left blank.',
+      },
+      {
+        label: 'Controllers',
+        value: 'Supports OmniCore C30XT, C90XT, V250XT and V400XT controllers (ABB).',
+      },
+      {
+        label: 'Service interval',
+        value: 'Up to 20,000 hours between oil changes (ABB).',
+      },
+      {
+        label: 'Joint speed',
+        value: 'Maximum joint speed up to 700 °/s (family figure published by ABB).',
+      },
+    ],
+    sources: [
+      {
+        url: 'https://www.abb.com/global/en/areas/robotics/products/robots/articulated-robots/medium-robots/irb-1700',
+        title: 'IRB 1700',
+        publisher: 'ABB',
+        retrieved: '2026-11-13',
+      },
+      {
+        url: 'https://www.abb.com/global/en/news/139390/prsrl-abb-robotics-introduces-two-new-high-performance-robots-for-precision-manufacturing',
+        title: 'ABB Robotics introduces two new high-performance robots for precision manufacturing',
+        publisher: 'ABB',
+        retrieved: '2026-11-13',
+      },
+    ],
+    updated: '2026-11-13',
+  },
 ];

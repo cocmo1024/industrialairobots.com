@@ -152,4 +152,134 @@ export const robots: Robot[] = [
     ],
     updated: R,
   },
+  {
+    slug: 'ur10g-1750',
+    brand: 'universal-robots',
+    name: 'UR10g-1750',
+    family: 'g-Series',
+    category: 'cobots',
+    status: 'production',
+    summary:
+      "Universal Robots' long-reach Gen 7 cobot: 1750 mm reach, 8 kg rated payload (10 kg extended), IP65 sealing and ±0.08 mm pose repeatability, running PolyScope X on the CB7 Core controller.",
+    specs: {
+      payloadKg: 8,
+      payloadMaxKg: 10,
+      reachMm: 1750,
+      axes: 6,
+      repeatabilityMm: 0.08,
+      weightKg: 44.7,
+      ipRating: 'IP65',
+      controller: 'CB7 Core',
+      maxTcpSpeedMs: 5,
+      footprintMm: 204,
+    },
+    specNotes: {
+      payloadMaxKg: 'Extended payload per the product page; also the maximum payload in UR’s g-Series datasheet.',
+      weightKg: 'Arm weight per the product page; the g-Series datasheet lists 47.3 kg including cable.',
+    },
+    notes: [
+      {
+        label: 'Platform',
+        value:
+          'Gen 7 platform model with TP7 Core teach pendant and SP7 Smart Panel; the g-Series tool flange provides 1 Gb Ethernet and 24/48 V, 3 A continuous power for direct sensor and camera integration.',
+      },
+      {
+        label: 'Safety',
+        value:
+          'PLd Cat. 3 safety architecture (EN ISO 13849-1); g-Series arms certified to ISO 10218-1 and UL 1740 (Universal Robots).',
+      },
+    ],
+    sources: [
+      { url: 'https://www.universal-robots.com/products/ur10g-1750/', title: 'UR10g-1750 collaborative robot arm', publisher: 'Universal Robots', retrieved: '2026-11-13' },
+      { url: 'https://www.universal-robots.com/manuals/latest/en/datasheets/comp_g-serie/', title: 'g-Series robot arm specification', publisher: 'Universal Robots', retrieved: '2026-11-13' },
+      { url: 'https://www.universal-robots.com/news-and-media/news-center/introducing-gen-7-tomorrows-automation-built-for-today/', title: 'Introducing Gen 7: tomorrow’s automation, built for today', publisher: 'Universal Robots', retrieved: '2026-11-13' },
+    ],
+    updated: '2026-11-13',
+  },
+  {
+    slug: 'ur17g-1300',
+    brand: 'universal-robots',
+    name: 'UR17g-1300',
+    family: 'g-Series',
+    category: 'cobots',
+    status: 'production',
+    summary:
+      'Gen 7 cobot with 1300 mm reach and a 15 kg rated payload (17.5 kg extended), IP65 sealing and ±0.05 mm pose repeatability, running PolyScope X on the CB7 Core controller.',
+    specs: {
+      payloadKg: 15,
+      payloadMaxKg: 17.5,
+      reachMm: 1300,
+      axes: 6,
+      repeatabilityMm: 0.05,
+      weightKg: 40.7,
+      ipRating: 'IP65',
+      controller: 'CB7 Core',
+      maxTcpSpeedMs: 5,
+      footprintMm: 204,
+    },
+    specNotes: {
+      payloadMaxKg: 'Extended payload per the product page; also the maximum payload in UR’s g-Series datasheet.',
+      weightKg: 'Arm weight per the product page; the g-Series datasheet lists 43.4 kg including cable.',
+    },
+    notes: [
+      {
+        label: 'Platform',
+        value:
+          'Gen 7 platform model with TP7 Core teach pendant and SP7 Smart Panel; the g-Series tool flange provides 1 Gb Ethernet and 24/48 V, 3 A continuous power for direct sensor and camera integration.',
+      },
+      {
+        label: 'Safety',
+        value:
+          'PLd Cat. 3 safety architecture (EN ISO 13849-1); g-Series arms certified to ISO 10218-1 and UL 1740 (Universal Robots).',
+      },
+    ],
+    sources: [
+      { url: 'https://www.universal-robots.com/products/ur17g-1300/', title: 'UR17g-1300 collaborative robot arm', publisher: 'Universal Robots', retrieved: '2026-11-13' },
+      { url: 'https://www.universal-robots.com/manuals/latest/en/datasheets/comp_g-serie/', title: 'g-Series robot arm specification', publisher: 'Universal Robots', retrieved: '2026-11-13' },
+      { url: 'https://www.universal-robots.com/news-and-media/news-center/introducing-gen-7-tomorrows-automation-built-for-today/', title: 'Introducing Gen 7: tomorrow’s automation, built for today', publisher: 'Universal Robots', retrieved: '2026-11-13' },
+    ],
+    updated: '2026-11-13',
+  },
+  {
+    slug: 'ur18g-950',
+    brand: 'universal-robots',
+    name: 'UR18g-950',
+    family: 'g-Series',
+    category: 'cobots',
+    status: 'production',
+    summary:
+      'Compact heavy-duty Gen 7 cobot with 18 kg payload, 950 mm reach and 4 m/s maximum TCP speed, with IP65 sealing and ±0.05 mm pose repeatability on the CB7 Core controller.',
+    specs: {
+      payloadKg: 18,
+      reachMm: 950,
+      axes: 6,
+      repeatabilityMm: 0.05,
+      weightKg: 39.2,
+      ipRating: 'IP65',
+      controller: 'CB7 Core',
+      maxTcpSpeedMs: 4,
+      footprintMm: 204,
+    },
+    specNotes: {
+      weightKg: 'Arm weight per the product page; the g-Series datasheet lists 42 kg including cable.',
+    },
+    notes: [
+      {
+        label: 'Platform',
+        value:
+          'Gen 7 platform model with TP7 Core teach pendant and SP7 Smart Panel; the g-Series tool flange provides 1 Gb Ethernet and 24/48 V, 3 A continuous power for direct sensor and camera integration.',
+      },
+      {
+        label: 'Safety',
+        value:
+          'PLd Cat. 3 safety architecture (EN ISO 13849-1); g-Series arms certified to ISO 10218-1 and UL 1740 (Universal Robots).',
+      },
+    ],
+    sources: [
+      { url: 'https://www.universal-robots.com/products/ur18g-950/', title: 'UR18g-950 collaborative robot arm', publisher: 'Universal Robots', retrieved: '2026-11-13' },
+      { url: 'https://www.universal-robots.com/manuals/latest/en/datasheets/comp_g-serie/', title: 'g-Series robot arm specification', publisher: 'Universal Robots', retrieved: '2026-11-13' },
+      { url: 'https://www.universal-robots.com/news-and-media/news-center/introducing-gen-7-tomorrows-automation-built-for-today/', title: 'Introducing Gen 7: tomorrow’s automation, built for today', publisher: 'Universal Robots', retrieved: '2026-11-13' },
+    ],
+    updated: '2026-11-13',
+  },
 ];
