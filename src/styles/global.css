@@ -13,6 +13,8 @@
   --accent: #ff5a1f;
   --accent-ink: #c43c08;
   --accent-soft: #fff0e9;
+  --btn-bg: #c43c08;
+  --btn-bg-hover: #9e2f06;
   --data: #0b7fa6;
   --ok: #18794e;
   --warn: #a35a00;
@@ -42,6 +44,8 @@
     --accent: #ff6a33;
     --accent-ink: #ff8a5c;
     --accent-soft: #2a1710;
+    --btn-bg: #cf4209;
+    --btn-bg-hover: #b03a07;
     --data: #3cc4ec;
     --ok: #4cc38a;
     --warn: #f0a648;
@@ -110,7 +114,10 @@ main { min-height: 60vh; padding-bottom: 72px; }
 .band a { color: var(--ink-text); }
 .page-head { padding-top: 40px; padding-bottom: 34px; }
 .page-head h1 { max-width: 900px; }
-.eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-ink); margin-bottom: 10px; }
+@media (prefers-color-scheme: dark) {
+  .eyebrow { color: var(--accent); }
+}
 
 /* Breadcrumbs */
 .crumbs { font-size: 0.85rem; color: var(--ink-muted); margin-bottom: 14px; }
@@ -167,8 +174,8 @@ td.num, th.num { text-align: right; white-space: nowrap; }
 .sources li { margin-bottom: 6px; }
 
 /* Buttons & forms */
-.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--accent); color: #fff; border: 0; border-radius: var(--radius-sm); padding: 10px 16px; font: 600 0.95rem var(--font-sans); text-decoration: none; cursor: pointer; }
-.btn:hover { background: var(--accent-ink); color: #fff; }
+.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--btn-bg); color: #fff; border: 0; border-radius: var(--radius-sm); padding: 10px 16px; font: 600 0.95rem var(--font-sans); text-decoration: none; cursor: pointer; }
+.btn:hover { background: var(--btn-bg-hover); color: #fff; }
 .btn.ghost { background: transparent; color: inherit; border: 1px solid var(--line-strong); }
 .btn.ghost:hover { border-color: var(--accent); color: inherit; }
 label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 4px; }

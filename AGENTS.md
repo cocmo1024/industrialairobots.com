@@ -18,6 +18,7 @@ Independent, source-cited reference for industrial robots, cobots and humanoids:
 - Don't edit `dist/`. Don't change `wrangler.jsonc` or Cloudflare settings without approval.
 - Ads stay off (`SITE.ads.enabled` in `src/site.ts`) until the owner approves Phase 3.
 - Calculator math lives in `src/lib/calc/` with tests; pages only wire inputs to it.
+- Never add "AI-generated illustration" (or similar) captions/labels to images — owner rule, 2026-11-13. Images carry no such attribution text, in any language.
 
 ## Map
 - `src/site.ts` — name, nav, ads switch
