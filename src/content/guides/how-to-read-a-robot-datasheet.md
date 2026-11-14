@@ -13,6 +13,10 @@ sources:
     url: "https://www.fanucamerica.com/products/robot/crx-10ia"
 ---
 
+## The short answer
+
+**Rated payload** is the mass the robot can carry at its flange under the conditions set out in the manufacturer’s load diagram — and everything mounted counts towards it: gripper, tool changer, cables and the part itself. **Reach** is measured to a maker-defined wrist reference point, not to the tip of your tool. **Repeatability**, measured to ISO 9283, is how tightly the robot returns to a taught point — it is not absolute accuracy, which is usually much larger and rarely printed. **IP rating** (IEC 60529) grades the enclosure’s sealing against dust and water. Every headline number is only valid under the conditions printed next to it.
+
 Robot datasheets look alike, but the headline numbers are measured under the maker’s own conditions. Reading them correctly saves you from the most common shortlisting mistake: picking a robot whose rated payload covers your part on paper but not with your gripper, at your speed, at full extension.
 
 ## Rated payload is a best case

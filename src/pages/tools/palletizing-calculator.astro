@@ -48,6 +48,7 @@ import { PALLET_PRESETS } from '../../lib/calc/pallet';
       <dt>Robot payload needed</dt><dd id="payload">—</dd>
     </dl>
     <p style="color:var(--ink-muted);font-size:var(--fs-7);margin:14px 0 0" id="limit"></p>
+    <p style="margin:14px 0 0"><strong>Robot payload needed</strong> = cases per pick × case mass + gripper mass — compare it with the robot’s rated payload <em>and</em> its load diagram.</p>
     <p style="margin:14px 0 0"><a id="find" class="btn" href="/robots/">Find robots with this payload</a></p>
     <p class="err" id="err" hidden>Dimensions and mass must be greater than zero.</p>
   </Fragment>
@@ -58,6 +59,8 @@ import { PALLET_PRESETS } from '../../lib/calc/pallet';
     <li><strong>Layers</strong> = (max load height − pallet height) ÷ case height, rounded down — then reduced if the mass limit is reached first.</li>
     <li><strong>Robot payload needed</strong> = cases per pick × case mass + gripper mass. Compare it with the robot’s rated payload <em>and</em> its load diagram — see <a href="/guides/how-to-read-a-robot-datasheet/">how to read a robot datasheet</a>.</li>
   </ul>
+  <h2>Worked example</h2>
+  <p>On the pre-filled values — a EUR pallet (1200 × 800 mm, 144 mm high), 400 × 300 × 250 mm cases of 8 kg and a 1,800 mm maximum load height — the best layer is 8 cases in a 4 × 2 pattern, and 6 layers fit under the height limit: <strong>48 cases per pallet, 384 kg of load, 1,644 mm loaded height</strong>. With one case per pick and a 5 kg gripper, the robot payload to check is 1 × 8 kg + 5 kg = <strong>13 kg</strong>.</p>
   <h2>What this does not check</h2>
   <ul>
     <li>Interlocking (brick or pinwheel) patterns for load stability, and labels that must face outwards — real patterns often give up a case per layer for these.</li>

@@ -3,15 +3,73 @@ import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import { robots, brands, categories, brandBySlug, categoryBySlug, formatSpec, robotUrl, STATUS_LABEL } from '../../lib/db';
 const usedCats = categories.filter((c) => robots.some((r) => r.category === c.slug));
+// Dataset dates track the per-entry `updated` (last checked) field: dateModified is the
+// most recent entry check, datePublished the earliest. Never hard-code these.
+const dateModified = robots.map((r) => r.updated).sort().at(-1)!;
+const datePublished = robots.map((r) => r.updated).sort()[0];
 const ld = {
   '@context': 'https://schema.org',
   '@type': 'Dataset',
-  name: 'Industrial AI Robots — robot specification database',
-  description: 'Specifications of industrial robots, cobots and humanoid robots, each value cited to the manufacturer.',
+  '@id': 'https://industrialairobots.com/robots/#dataset',
+  name: 'Industrial AI Robots — Robot Specification Database',
+  alternateName: [
+    'Industrial robot specifications database',
+    'Cobot and humanoid robot specs dataset',
+    'industrialairobots.com robots.json dataset',
+  ],
+  description:
+    `Specifications for ${robots.length} industrial robot arms, collaborative robots (cobots), ` +
+    `SCARA robots and humanoid robots from ${brands.length} manufacturers. Every value is ` +
+    `transcribed from the manufacturer's own product page, datasheet or manual; each record in ` +
+    `the JSON download carries its own source URL, publisher and retrieval date. Values a ` +
+    `manufacturer does not publish are left blank, never estimated. Each record also carries a ` +
+    `status label (in production, early access, preliminary specs, discontinued) and the date ` +
+    `the entry was last checked; entries are re-checked on a rolling basis.`,
   url: 'https://industrialairobots.com/robots/',
+  mainEntityOfPage: 'https://industrialairobots.com/robots/',
+  identifier: 'https://industrialairobots.com/data/robots.json',
+  keywords: ['industrial robots', 'cobot specifications', 'humanoid robots', 'robot database',
+    'rated payload', 'reach', 'repeatability', 'SCARA', 'physical AI'],
+  inLanguage: 'en',
+  isAccessibleForFree: true,
   license: 'https://creativecommons.org/licenses/by/4.0/',
-  creator: { '@type': 'Organization', name: 'Industrial AI Robots' },
-  distribution: [{ '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: 'https://industrialairobots.com/data/robots.json' }],
+  creditText:
+    'Specification values © their respective manufacturers. Compilation and annotations ' +
+    '© Industrial AI Robots, CC BY 4.0 — credit “Industrial AI Robots” with a link.',
+  version: dateModified,
+  datePublished,
+  dateModified,
+  creator: { '@id': 'https://industrialairobots.com/#organization' },
+  publisher: { '@id': 'https://industrialairobots.com/#organization' },
+  measurementTechnique:
+    'Manual transcription from the robot manufacturer’s official product page, datasheet or ' +
+    'manual (the only accepted source class; distributor and aggregator listings are not used). ' +
+    'Manufacturer qualifiers are preserved in a per-value note field. Unpublished values are ' +
+    'omitted. See https://industrialairobots.com/methodology/ for the full sourcing rules.',
+  variableMeasured: [
+    { '@type': 'PropertyValue', propertyID: 'payloadKg', name: 'Rated payload', unitText: 'kg', description: 'Nominal payload at the manufacturer’s stated load conditions and load diagram.' },
+    { '@type': 'PropertyValue', propertyID: 'payloadMaxKg', name: 'Max / extended payload', unitText: 'kg', description: 'Extended or peak payload where the manufacturer publishes one.' },
+    { '@type': 'PropertyValue', propertyID: 'reachMm', name: 'Reach', unitText: 'mm', description: 'Maximum reach from the base (J1) axis, as published.' },
+    { '@type': 'PropertyValue', propertyID: 'axes', name: 'Axes', description: 'Number of robot axes (articulated arms).' },
+    { '@type': 'PropertyValue', propertyID: 'dof', name: 'Degrees of freedom', description: 'Total actuated degrees of freedom as published (humanoid and mobile robots).' },
+    { '@type': 'PropertyValue', propertyID: 'repeatabilityMm', name: 'Repeatability', unitText: 'mm', description: 'Pose repeatability as published (± value); repeatability is not accuracy.' },
+    { '@type': 'PropertyValue', propertyID: 'weightKg', name: 'Robot weight', unitText: 'kg', description: 'Manipulator weight as published; inclusion of cables/controller follows the manufacturer’s wording and per-value notes. Conflicting manufacturer documents → left blank with the conflict noted.' },
+    { '@type': 'PropertyValue', propertyID: 'heightMm', name: 'Height', unitText: 'mm', description: 'Standing height (humanoid and mobile robots).' },
+    { '@type': 'PropertyValue', propertyID: 'maxTcpSpeedMs', name: 'Max TCP speed', unitText: 'm/s', description: 'Maximum tool-centre-point speed as published.' },
+    { '@type': 'PropertyValue', propertyID: 'speedMs', name: 'Moving speed', unitText: 'm/s', description: 'Locomotion speed as published (humanoid and mobile robots).' },
+    { '@type': 'PropertyValue', propertyID: 'runtimeH', name: 'Runtime per charge', unitText: 'h', description: 'Operating time per battery charge as published.' },
+    { '@type': 'PropertyValue', propertyID: 'batteryWh', name: 'Battery capacity', unitText: 'Wh', description: 'Battery capacity as published.' },
+    { '@type': 'PropertyValue', propertyID: 'ipRating', name: 'Protection rating', description: 'IEC 60529 IP code as published (text); wrist-only ratings qualified in the per-value note.' },
+    { '@type': 'PropertyValue', propertyID: 'footprintMm', name: 'Base footprint', unitText: 'mm', description: 'Base mounting footprint diameter as published.' },
+    { '@type': 'PropertyValue', propertyID: 'mounting', name: 'Mounting', description: 'Permitted mounting orientations as published, as a list.' },
+    { '@type': 'PropertyValue', propertyID: 'controller', name: 'Controller', description: 'Manufacturer controller model named for the robot (text).' },
+    { '@type': 'PropertyValue', propertyID: 'priceUsd', name: 'Published price', unitText: 'USD', description: 'Public list price in USD — recorded only when the manufacturer itself publishes one; absent otherwise.' },
+  ],
+  distribution: [{
+    '@type': 'DataDownload',
+    encodingFormat: 'application/json',
+    contentUrl: 'https://industrialairobots.com/data/robots.json',
+  }],
 };
 ---
 <Base title="Robot Database: Specs for Industrial Robots, Cobots, Humanoids" description="Filter industrial robots, cobots and humanoids by payload, reach and type. Every spec is cited to the manufacturer, with a free JSON download." jsonLd={ld}>

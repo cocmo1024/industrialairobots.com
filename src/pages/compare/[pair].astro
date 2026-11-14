@@ -49,6 +49,10 @@ const ld = {
   />
 
   <div class="wrap section">
+    <div class="card" style="margin-bottom:28px">
+      <div class="eyebrow">Verdict</div>
+      {c.verdict.map((p) => <p style="max-width:72ch">{p}</p>)}
+    </div>
     <h2 style="margin-top:0">Specifications side by side</h2>
     <div class="table-wrap">
       <table class="spec">

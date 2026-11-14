@@ -16,8 +16,8 @@ const iso = (x: Date) => x.toISOString().slice(0, 10);
 const ld = {
   '@context': 'https://schema.org', '@type': 'Article', headline: d.title, description: d.description,
   datePublished: iso(d.published), dateModified: iso(d.updated), url: `${SITE.url}/guides/${g.id}/`,
-  author: { '@type': 'Organization', name: SITE.name, url: SITE.url },
-  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  author: { '@id': `${SITE.url}/#organization` },
+  publisher: { '@id': `${SITE.url}/#organization` },
 };
 ---
 <Base title={d.title} description={d.description} ogType="article" jsonLd={ld}>

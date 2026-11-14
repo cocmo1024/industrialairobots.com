@@ -7,7 +7,7 @@ import { FRICTION_PRESETS } from '../../lib/calc/vacuum';
   slug="vacuum-gripper-calculator"
   title="Vacuum Gripper Calculator: Suction Cup Size and Holding Force"
   description="Calculate the holding force and minimum suction cup diameter for a robot vacuum gripper from part mass, acceleration, friction, safety factor and vacuum level."
-  lede="Size suction cups for a robot gripper using the standard load cases published by vacuum component makers."
+  lede="Size suction cups for a robot gripper using the three standard load cases published in Schmalz’s Vacuum Knowledge system-design guide."
 >
   <Fragment slot="inputs">
     <div class="fields">
@@ -39,12 +39,15 @@ import { FRICTION_PRESETS } from '../../lib/calc/vacuum';
   </Fragment>
 
   <h2>Load cases</h2>
+  <p>The three load cases, the friction reference values and the safety-factor guidance on this page follow the system-design method in <a href="https://www.schmalz.com/en-mx/support/know-how/vacuum-knowledge/the-vacuum-system-and-its-components/system-design-calculation-example/suction-cup-selection" rel="nofollow noopener" target="_blank">Vacuum Knowledge</a>, the published calculation guide of vacuum component maker J. Schmalz GmbH (the guide’s worked example ends in a per-cup suction force, F<sub>S</sub> = F<sub>TH</sub> ÷ n, exactly as calculated here).</p>
   <ul>
     <li><strong>I — horizontal gripper, vertical move:</strong> F = m × (g + a) × S</li>
     <li><strong>II — horizontal gripper, horizontal move:</strong> F = m × (g + a ÷ μ) × S</li>
     <li><strong>III — vertical gripper, vertical move:</strong> F = (m ÷ μ) × (g + a) × S</li>
   </ul>
   <p>Required area per cup = F ÷ (number of cups × vacuum level). Diameter = √(4 × area ÷ π). With g = 9.81 m/s² and 1 kPa = 0.001 N/mm².</p>
+  <h2>Worked example</h2>
+  <p>On the pre-filled values — a 10 kg part, 5 m/s² acceleration, 4 cups, −60 kPa vacuum, safety factor 2 and load case I — the required holding force is 10 × (9.81 + 5) × 2 = <strong>296.2 N</strong>, or 74.1 N per cup, which needs 1,234 mm² of effective area per cup and a minimum effective cup diameter of about <strong>39.6 mm</strong>.</p>
   <h2>Before you order cups</h2>
   <ul>
     <li>The result is the <em>effective</em> suction diameter. Real cups lose area when they compress; check the theoretical suction force in the cup datasheet, not just the nominal size.</li>

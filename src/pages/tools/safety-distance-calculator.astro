@@ -35,6 +35,9 @@ import Field from '../../components/Field.astro';
     <li><strong>Resolution d ≤ 40 mm</strong> (finger and hand detection): C = 8 × (d − 14). Use K = 2000 mm/s; if S is 100–500 mm keep it (minimum 100 mm). If S exceeds 500 mm, recalculate with K = 1600 mm/s; S may then not be less than 500 mm.</li>
     <li><strong>40 mm &lt; d ≤ 70 mm</strong> (body detection): S = 1600 × T + 850.</li>
   </ul>
+  <h2>Worked example</h2>
+  <p>With a 100 ms machine stopping time, a 20 ms light-curtain response and a 14 mm resolution, T = 0.12 s and C = 8 × (14 − 14) = 0, so ISO 13855:2010 gives a minimum distance S of 2000 × 0.12 + 0 = <strong>240 mm</strong>.</p>
+  <p>With a slower machine — 280 ms stopping time plus 20 ms response, and a 30 mm resolution — T = 0.30 s and C = 8 × (30 − 14) = 128 mm. The first pass, 2000 × 0.30 + 128 = 728 mm, exceeds 500 mm, so the formula is recalculated with K = 1600 mm/s: S = 1600 × 0.30 + 128 = <strong>608 mm</strong> (and the recalculated S may not fall below 500 mm).</p>
   <h2>Limits of this tool</h2>
   <ul>
     <li>It covers perpendicular approach to a vertical light curtain only — not parallel (horizontal) or angled approach, multi-beam devices, reaching over the field, or area scanners.</li>

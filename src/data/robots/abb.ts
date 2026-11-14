@@ -289,7 +289,7 @@ export const robots: Robot[] = [
     family: 'CRB 15000 GoFa',
     category: 'cobots',
     status: 'production',
-    summary: "ABB's GoFa collaborative robot in its 5 kg version (CRB 15000-5/0.95), with joint torque sensors and lead-through programming on the OmniCore C30.",
+    summary: "ABB's GoFa 5 (CRB 15000-5/0.95) is a 5 kg cobot with 950 mm reach, ±0.02 mm repeatability and IP54 protection, with joint torque sensors and lead-through programming on the OmniCore C30 (ABB).",
     specs: {
       payloadKg: 5,
       reachMm: 950,
@@ -324,7 +324,7 @@ export const robots: Robot[] = [
     family: 'CRB 15000 GoFa',
     category: 'cobots',
     status: 'production',
-    summary: "ABB's long-reach GoFa cobot (CRB 15000-10/1.52): 10 kg payload and the longest reach in the GoFa family, with IP67 protection.",
+    summary: "ABB's GoFa 10 (CRB 15000-10/1.52) is a 10 kg cobot with 1,520 mm reach — the longest in the GoFa family — ±0.02 mm repeatability and IP67 protection (ABB).",
     specs: {
       payloadKg: 10,
       payloadMaxKg: 12,
@@ -361,7 +361,7 @@ export const robots: Robot[] = [
     family: 'CRB 15000 GoFa',
     category: 'cobots',
     status: 'production',
-    summary: "ABB's highest-payload GoFa cobot (CRB 15000-12/1.27): 12 kg payload with IP67 protection for machine tending, handling and polishing.",
+    summary: "ABB's GoFa 12 (CRB 15000-12/1.27) is a 12 kg cobot with 1,270 mm reach, ±0.02 mm repeatability and IP67 protection for machine tending, handling and polishing (ABB).",
     specs: {
       payloadKg: 12,
       payloadMaxKg: 14,

@@ -13,9 +13,13 @@ const guides = (await getCollection('guides', (g) => !g.data.draft)).sort((a, b)
 const sourceCount = new Set(robots.flatMap((r) => r.sources.map((s) => s.url))).size;
 const usedCats = categories.filter((c) => robotsByCategory(c.slug).length > 0);
 const ld = [
-  { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url,
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.name, url: SITE.url, inLanguage: 'en',
+    publisher: { '@id': `${SITE.url}/#organization` },
     potentialAction: { '@type': 'SearchAction', target: `${SITE.url}/robots/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
-  { '@context': 'https://schema.org', '@type': 'Organization', name: SITE.name, url: SITE.url, logo: `${SITE.url}/favicon.svg` },
+  { '@context': 'https://schema.org', '@type': 'Organization', '@id': `${SITE.url}/#organization`,
+    name: SITE.name, url: SITE.url, description: SITE.description, email: SITE.email,
+    logo: { '@type': 'ImageObject', url: `${SITE.url}/logo.png`, width: 512, height: 512 },
+    contactPoint: { '@type': 'ContactPoint', contactType: 'corrections', email: SITE.email, url: `${SITE.url}/contact/` } },
 ];
 ---
 <Base title="Industrial AI Robots — Robot Specs, Comparisons & Engineering Tools" bareTitle description={SITE.description} jsonLd={ld}>

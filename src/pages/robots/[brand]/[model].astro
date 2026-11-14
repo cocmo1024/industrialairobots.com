@@ -29,6 +29,14 @@ const headline = [
   s.reachMm !== undefined ? `${formatSpec('reachMm', s.reachMm)} reach` : '',
   s.heightMm !== undefined ? `${formatSpec('heightMm', s.heightMm)} tall` : '',
 ].filter(Boolean).join(', ');
+// One-line key-specs sentence above the table, assembled only from fields the
+// manufacturer actually publishes for this model (missing fields are skipped).
+const keySpecs = [
+  s.payloadKg !== undefined ? `${formatSpec('payloadKg', s.payloadKg)} rated payload` : '',
+  s.reachMm !== undefined ? `${formatSpec('reachMm', s.reachMm)} reach` : '',
+  s.repeatabilityMm !== undefined ? `${formatSpec('repeatabilityMm', s.repeatabilityMm)} repeatability` : '',
+  s.weightKg !== undefined ? `${formatSpec('weightKg', s.weightKg)} robot weight` : '',
+].filter(Boolean).join(', ');
 const title = `${name} Specs: ${isArm ? 'Payload, Reach, Repeatability' : 'Height, Payload, Price & Status'}`;
 const description = `${name} specifications${headline ? ` — ${headline}` : ''}. ${STATUS_LABEL[r.status]}. Every value cited to ${brand.name}; compare with similar ${cat.short.toLowerCase()}.`.slice(0, 160);
 
@@ -60,6 +68,7 @@ const pairInfo = comparisonFor(r);
   <div class="wrap two" style="margin-top:32px">
     <div>
       <h2 style="margin-top:0">Specifications</h2>
+      {keySpecs && <p style="max-width:72ch"><strong>Key specs:</strong> {keySpecs} — as published by {brand.name}.</p>}
       <div class="table-wrap">
         <table class="spec">
           <tbody>

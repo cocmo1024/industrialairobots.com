@@ -19,10 +19,14 @@ const fullData = list.filter(isIndexable).length;
 const cats = [...new Set(list.map((r) => r.category))];
 const payloads = list.map((r) => r.specs.payloadKg).filter((v): v is number => v !== undefined);
 const reaches = list.map((r) => r.specs.reachMm).filter((v): v is number => v !== undefined);
-const facts: string[] = [];
-if (payloads.length > 1) facts.push(`payloads ${formatSpec('payloadKg', Math.min(...payloads))}–${formatSpec('payloadKg', Math.max(...payloads))}`);
-else if (payloads.length === 1) facts.push(`payload ${formatSpec('payloadKg', payloads[0])}`);
-if (reaches.length) facts.push(`reach up to ${formatSpec('reachMm', Math.max(...reaches))}`);
+// Standalone answer sentence (not fragments): all figures computed from the db.
+const factParts: string[] = [];
+if (payloads.length > 1) factParts.push(`payloads from ${formatSpec('payloadKg', Math.min(...payloads))} to ${formatSpec('payloadKg', Math.max(...payloads))}`);
+else if (payloads.length === 1) factParts.push(`a payload of ${formatSpec('payloadKg', payloads[0])}`);
+if (reaches.length) factParts.push(`reach up to ${formatSpec('reachMm', Math.max(...reaches))}`);
+const factSentence = factParts.length > 0
+  ? `This database lists ${list.length} ${b.name} model${list.length === 1 ? '' : 's'} with specs cited to the manufacturer: ${factParts.join(' and ')}.`
+  : '';
 
 const pairs = comparisonsForBrand(b.slug);
 ---
@@ -35,10 +39,11 @@ const pairs = comparisonsForBrand(b.slug);
     crumbs={[{ name: 'Robots', href: '/robots/' }, { name: 'Brands', href: '/brands/' }, { name: b.name }]} />
   <div class="wrap section">
     <p class="muted">{list.length} model{list.length === 1 ? '' : 's'} in the database so far. Official site: <a href={b.website} rel="nofollow noopener" target="_blank">{b.website.replace(/^https:\/\/(www\.)?/, '').replace(/\/$/, '')}</a></p>
+    {factSentence && <p>{factSentence}</p>}
     <p class="muted">
       Coverage: {cats.map((slug, i) => (
         <>{i > 0 && ' · '}<a href={categoryUrl(slug)}>{categoryBySlug(slug)!.name}</a></>
-      ))}{facts.length > 0 && <> · {facts.join(' · ')}</>}
+      ))}
     </p>
     {!indexable && (
       <p class="muted">Coverage of this brand is still building out: {fullData} of {list.length} model{list.length === 1 ? '' : 's'} so far carries full datasheet-level data, and models are upgraded as their manufacturer sources are checked. Until then this hub stays out of the sitemap (see <a href="/methodology/">how we source data</a>).</p>

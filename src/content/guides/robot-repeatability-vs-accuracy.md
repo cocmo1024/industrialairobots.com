@@ -13,6 +13,8 @@ sources:
     url: "https://www.universal-robots.com/products/ur-series/"
 ---
 
+**TL;DR:** Datasheets quote repeatability, not accuracy — repeatability is how tightly the robot returns to the same taught point, accuracy is how close it gets to a commanded point. ISO 9283 defines both, and accuracy is usually much worse.
+
 Almost every robot datasheet quotes **repeatability**. Very few quote **accuracy**. They are different properties, and confusing them is one of the most common causes of a robot cell that works perfectly when taught by hand but misses when driven by CAD data or a vision system.
 
 ## Definitions

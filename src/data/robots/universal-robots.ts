@@ -160,7 +160,7 @@ export const robots: Robot[] = [
     category: 'cobots',
     status: 'production',
     summary:
-      "Universal Robots' long-reach Gen 7 cobot: 1750 mm reach, 8 kg rated payload (10 kg extended), IP65 sealing and ±0.08 mm pose repeatability, running PolyScope X on the CB7 Core controller.",
+      "Universal Robots' long-reach Gen 7 cobot: 1750 mm reach, 8 kg rated payload (10 kg extended), IP65 sealing and ±0.08 mm pose repeatability, running PolyScope X on the CB7 Core controller. All figures per Universal Robots' product page and g-Series datasheet.",
     specs: {
       payloadKg: 8,
       payloadMaxKg: 10,
@@ -204,7 +204,7 @@ export const robots: Robot[] = [
     category: 'cobots',
     status: 'production',
     summary:
-      'Gen 7 cobot with 1300 mm reach and a 15 kg rated payload (17.5 kg extended), IP65 sealing and ±0.05 mm pose repeatability, running PolyScope X on the CB7 Core controller.',
+      'Gen 7 cobot with 1300 mm reach and a 15 kg rated payload (17.5 kg extended), IP65 sealing and ±0.05 mm pose repeatability, running PolyScope X on the CB7 Core controller. All figures per Universal Robots’ product page and g-Series datasheet.',
     specs: {
       payloadKg: 15,
       payloadMaxKg: 17.5,

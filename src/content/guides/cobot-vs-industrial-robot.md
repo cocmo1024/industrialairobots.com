@@ -17,7 +17,7 @@ sources:
     url: "https://www.motoman.com/getmedia/6bee5ac1-77ed-43da-aa0c-8d3e493d3aea/ds_hc10dtp.pdf.aspx"
 ---
 
-"Cobot or industrial robot?" is usually the first question in a robot project — and it is slightly the wrong question. Safety standards treat **collaboration as a property of the application**, not of the robot arm. A cobot holding a knife is not a safe collaborative application; an industrial robot can work near people with the right sensors and safety functions. Start from the task, then pick the arm.
+**TL;DR:** Collaboration is a property of the application, not of the arm (ISO/TS 15066): choose a cobot when people work beside the arm unfenced and changeovers are frequent; choose an industrial robot when payload, speed or sealing exceed cobot classes.
 
 ## The short answer
 
@@ -27,6 +27,8 @@ sources:
 | High speed, high payload, long continuous cycles, harsh environment | Industrial robot |
 | Small parts, tight space, high precision at speed | Small industrial robot (often with a scanner or light curtain instead of a full fence) |
 | A mobile cart or AMR mounting | Cobot (lighter, lower power) |
+
+"Cobot or industrial robot?" is usually the first question in a robot project — and it is slightly the wrong question. Safety standards treat **collaboration as a property of the application**, not of the robot arm. A cobot holding a knife is not a safe collaborative application; an industrial robot can work near people with the right sensors and safety functions. Start from the task, then pick the arm.
 
 ## How they compare on the datasheet
 

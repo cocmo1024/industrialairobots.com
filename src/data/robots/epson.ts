@@ -11,7 +11,7 @@ export const robots: Robot[] = [
     category: 'cobots',
     status: 'production',
     summary:
-      "Epson's first collaborative robot: a 6-axis carbon-fibre arm with the compact RC-A101 controller. Orders opened in Japan only on 29 October 2026; no international release date has been announced.",
+      "The AX6-A901S is Epson's first cobot: 6 kg payload, 900 mm reach, ±0.03 mm repeatability (Epson datasheet). Orders opened in Japan only on 29 October 2026; no international release date has been announced.",
     specs: {
       payloadKg: 6,
       reachMm: 900,

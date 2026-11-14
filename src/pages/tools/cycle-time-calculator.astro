@@ -44,6 +44,8 @@ import Field from '../../components/Field.astro';
     <li><strong>Max cycle time for a target</strong> = 3600 × parts per cycle × efficiency ÷ target per hour.</li>
     <li><strong>Takt time</strong> = available time per day ÷ daily demand. The real cycle time (after efficiency) must be shorter.</li>
   </ul>
+  <h2>Worked example</h2>
+  <p>At the pre-filled 12 s cycle time with 1 part per cycle, ideal output is 3600 ÷ 12 = 300 parts/h; at 85 % efficiency that becomes <strong>255 parts/h</strong> — 2,040 parts per 8 h shift, or <strong>4,080 parts/day</strong> over two shifts.</p>
   <h2>Where cycle time really goes</h2>
   <p>Robot motion is often the smaller part of a cycle. Gripper open/close and vacuum build-up, waiting for a machine door or a CNC cycle, vision acquisition and processing, and safety-rated speed limits when people are nearby all add time. Measure a full cycle on a simulation or a trial cell before committing to an output figure.</p>
 </ToolPage>
