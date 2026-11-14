@@ -22,7 +22,7 @@ const list = robotsByCategory(c.slug).sort((a, b) => (a.specs.payloadKg ?? 0) - 
         <tbody>
           {list.map((r) => (
             <tr>
-              <td><a href={robotUrl(r)}><strong>{r.name}</strong></a><br /><span class="muted" style="font-size:.85rem">{brandBySlug(r.brand)?.name}</span></td>
+              <td><a href={robotUrl(r)}><strong>{r.name}</strong></a><br /><span class="muted" style="font-size:var(--fs-6)">{brandBySlug(r.brand)?.name}</span></td>
               <td><span class:list={['badge', r.status]}>{STATUS_LABEL[r.status]}</span></td>
               {c.keySpecs.map((k) => <td class="num mono">{formatSpec(k, r.specs[k])}</td>)}
             </tr>
@@ -30,6 +30,6 @@ const list = robotsByCategory(c.slug).sort((a, b) => (a.specs.payloadKg ?? 0) - 
         </tbody>
       </table>
     </div>
-    <p class="muted" style="font-size:.9rem;margin-top:12px">“—” means the manufacturer’s page we cite does not state the value. Open a model for its sources.</p>
+    <p class="muted" style="font-size:var(--fs-8);margin-top:12px">“—” means the manufacturer’s page we cite does not state the value. Open a model for its sources.</p>
   </div>
 </Base>

@@ -78,7 +78,7 @@ const ld = {
         </tbody>
       </table>
     </div>
-    <p class="muted" style="font-size:.9rem;margin-top:12px">
+    <p class="muted" style="font-size:var(--fs-8);margin-top:12px">
       Every value is copied from the manufacturer source cited on each robot’s page — open
       <a href={robotUrl(a)}>{nameA}</a> or <a href={robotUrl(b)}>{nameB}</a> for the sources.
       Rated payload assumes the manufacturer’s load conditions. Want more robots in the table?
@@ -123,7 +123,7 @@ const ld = {
     </div>
     <p style="max-width:72ch;margin-top:20px"><strong>Bottom line:</strong> {c.bottomLine}</p>
 
-    <p class="muted" style="font-size:.9rem;margin-top:24px">
+    <p class="muted" style="font-size:var(--fs-8);margin-top:24px">
       Keep exploring: <a href={brandUrl(brandA.slug)}>all {brandA.name} robots</a> ·
       <a href={brandUrl(brandB.slug)}>all {brandB.name} robots</a> ·
       <a href={categoryUrl(cat.slug)}>all {cat.short.toLowerCase()}</a> ·

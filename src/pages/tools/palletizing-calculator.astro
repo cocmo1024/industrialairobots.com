@@ -24,7 +24,7 @@ import { PALLET_PRESETS } from '../../lib/calc/pallet';
       <Field id="mk" label="Max load mass" unit="kg, 0 = no limit" value="0" step="10" />
       <Field id="oh" label="Overhang per side" unit="mm" value="0" step="1" />
     </div>
-    <h2 style="margin:8px 0 0;font-size:1rem">Case</h2>
+    <h2 style="margin:8px 0 0;font-size:var(--fs-11)">Case</h2>
     <div class="fields">
       <Field id="cl" label="Length" unit="mm" value="400" step="1" />
       <Field id="cw" label="Width" unit="mm" value="300" step="1" />
@@ -47,7 +47,7 @@ import { PALLET_PRESETS } from '../../lib/calc/pallet';
       <dt>Area use</dt><dd id="area">—</dd>
       <dt>Robot payload needed</dt><dd id="payload">—</dd>
     </dl>
-    <p style="color:var(--ink-muted);font-size:.88rem;margin:14px 0 0" id="limit"></p>
+    <p style="color:var(--ink-muted);font-size:var(--fs-7);margin:14px 0 0" id="limit"></p>
     <p style="margin:14px 0 0"><a id="find" class="btn" href="/robots/">Find robots with this payload</a></p>
     <p class="err" id="err" hidden>Dimensions and mass must be greater than zero.</p>
   </Fragment>

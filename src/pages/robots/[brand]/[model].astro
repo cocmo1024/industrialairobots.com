@@ -54,7 +54,7 @@ const pairInfo = comparisonFor(r);
     lede={r.summary}
     crumbs={[{ name: 'Robots', href: '/robots/' }, { name: brand.name, href: brandUrl(brand.slug) }, { name: r.name }]}
   >
-    <p><span class:list={['badge', r.status]}>{STATUS_LABEL[r.status]}</span> <span class="muted" style="color:var(--ink-muted);font-size:.85rem">Checked {r.updated}</span></p>
+    <p><span class:list={['badge', r.status]}>{STATUS_LABEL[r.status]}</span> <span class="muted" style="color:var(--ink-muted);font-size:var(--fs-6)">Checked {r.updated}</span></p>
   </PageHead>
 
   <div class="wrap two" style="margin-top:32px">
@@ -90,7 +90,7 @@ const pairInfo = comparisonFor(r);
       <ol class="sources">
         {r.sources.map((src) => <li><a href={src.url} rel="nofollow noopener" target="_blank">{src.publisher}: {src.title}</a> <span class="muted">— read {src.retrieved}</span></li>)}
       </ol>
-      <p class="muted" style="font-size:.9rem">Values are copied from the manufacturer as published and may change. Rated payload assumes the manufacturer’s load conditions — check the load diagram for your tool and part. <a href={`/contact/?robot=${r.brand}/${r.slug}`}>Report a correction</a> · <a href="/methodology/">How we source data</a></p>
+      <p class="muted" style="font-size:var(--fs-8)">Values are copied from the manufacturer as published and may change. Rated payload assumes the manufacturer’s load conditions — check the load diagram for your tool and part. <a href={`/contact/?robot=${r.brand}/${r.slug}`}>Report a correction</a> · <a href="/methodology/">How we source data</a></p>
     </div>
 
     <aside class="stack">

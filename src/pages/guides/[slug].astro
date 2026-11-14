@@ -22,7 +22,7 @@ const ld = {
 ---
 <Base title={d.title} description={d.description} ogType="article" jsonLd={ld}>
   <PageHead eyebrow={TOPICS[d.topic]} title={d.title} crumbs={[{ name: 'Guides', href: '/guides/' }, { name: d.title }]}>
-    <p style="color:var(--ink-muted);font-size:.85rem;margin:0">Updated <time datetime={iso(d.updated)}>{iso(d.updated)}</time></p>
+    <p style="color:var(--ink-muted);font-size:var(--fs-6);margin:0">Updated <time datetime={iso(d.updated)}>{iso(d.updated)}</time></p>
   </PageHead>
   <div class="wrap section">
     <article class="prose">

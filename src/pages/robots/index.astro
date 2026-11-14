@@ -39,7 +39,7 @@ const ld = {
           {robots.map((r) => (
             <tr data-name={`${brandBySlug(r.brand)?.name} ${r.name} ${r.family ?? ''} ${categoryBySlug(r.category)?.name}`.toLowerCase()}
                 data-cat={r.category} data-brand={r.brand} data-pay={r.specs.payloadKg ?? ''} data-reach={r.specs.reachMm ?? ''} data-weight={r.specs.weightKg ?? ''}>
-              <td><a href={robotUrl(r)}><strong>{r.name}</strong></a><br /><span class="muted" style="font-size:.85rem">{brandBySlug(r.brand)?.name}</span></td>
+              <td><a href={robotUrl(r)}><strong>{r.name}</strong></a><br /><span class="muted" style="font-size:var(--fs-6)">{brandBySlug(r.brand)?.name}</span></td>
               <td>{categoryBySlug(r.category)?.short}</td>
               <td class="num mono">{formatSpec('payloadKg', r.specs.payloadKg)}</td>
               <td class="num mono">{formatSpec('reachMm', r.specs.reachMm)}</td>
@@ -51,7 +51,7 @@ const ld = {
         </tbody>
       </table>
     </div>
-    <p class="muted" style="font-size:.9rem;margin-top:12px">Download the full dataset: <a href="/data/robots.json">robots.json</a> (CC BY 4.0 — credit “Industrial AI Robots” with a link). Missing a robot? <a href="/contact/">Tell us</a>.</p>
+    <p class="muted" style="font-size:var(--fs-8);margin-top:12px">Download the full dataset: <a href="/data/robots.json">robots.json</a> (CC BY 4.0 — credit “Industrial AI Robots” with a link). Missing a robot? <a href="/contact/">Tell us</a>.</p>
   </div>
 </Base>
 

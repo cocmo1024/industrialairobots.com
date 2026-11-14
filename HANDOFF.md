@@ -1,5 +1,14 @@
 # HANDOFF — industrialairobots.com
 
+## 2026-11-13 — Industrial UI Standard v1.2 retrofit (audit + batches 1–2)
+
+Owner decision (via the methodology chat): this site is built/retrofitted to the Industrial UI Construction Standard v1.2 (`~/workspace/industrial-ui-standard/standard-v1.md`, skill `industrial_ui_standard`) — the second full external case, data-site type. Presentation/structure only; calculator math, data and indexing rules untouched. Full audit and gap list: goal workspace `hidden_files/ui-standard-gap-list-2026-11-13.md`; checker baseline recorded (`checker/baselines/iar-site.json`).
+
+- Audit verdict: 4 confirmed L0 defects, all in the primary button and eyebrow label; the R5 color census (31 candidates) resolved to 0 violations after human classification (orange = signal, cyan = data encoding, green/amber = status, blue-grays = neutral base); R8 numeric presentation compliant; no wild empty states; R10 not applicable (no print surface).
+- Batch 1 (presentation, commit 8b843b3): `.btn` contrast fixed via new `--btn-bg` / `--btn-bg-hover` tokens (light #c43c08 → white 5.25:1; dark #cf4209 → 4.73:1; dark hover 2.32 → 6.08:1); `.eyebrow` light theme moved to --accent-ink (2.88 → 4.86:1), dark unchanged. --accent/--accent-ink values untouched. iuicheck L0 = 0 after the batch; live CSS read back.
+- Batch 2 (structure, this commit): R6 font-size tokenization — 51 declarations across 12 files moved to an `--fs-*` ladder (13 body steps + 4 display clamps + `--fs-root: 16px` anchor); 3 em-relative exceptions kept with written reasons (0.92em mono scaling, 0.45em unit suffix, .6em cell marker). Conservation proven: resolved font-size multisets identical before/after at src and dist level; iuicheck R6 token share 100%, L0 stays 0, `npm run verify` passes.
+- Going forward: all new pages (de pilot first) are built to the template tokens/anatomy from the start and accepted against the standard's section-5 checklists. Three v1.3 inputs for the standard were recorded in the gap list (R5 blue-gray false positives, checker should exclude dist/, L0 needs cascade awareness).
+
 ## 2026-11-12 — High-priority batch executed early (database 52 → 82, compare pilots shipped)
 
 Owner approved pulling high-priority November items forward instead of waiting for the 2026-11-16 weekly batch. Executed same day; `npm run verify` passes on the combined tree (125 HTML files, 116 sitemap URLs, 21 redirects).

@@ -78,15 +78,15 @@ const ld = [
 
 <style>
   .hero { padding-top: 64px; padding-bottom: 56px; }
-  .hero h1 { font-size: clamp(2.2rem, 6vw, 4rem); max-width: 860px; }
+  .hero h1 { font-size: var(--fs-d4); max-width: 860px; }
   .hero-search { display: flex; gap: 8px; max-width: 640px; margin-top: 26px; }
   .hero-search input { flex: 1; min-width: 0; font-family: var(--font-sans); background: #fff; color: #11151a; border: 0; padding: 13px 14px; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-  .chips a { font-size: .85rem; text-decoration: none; padding: 5px 11px; border: 1px solid var(--ink-line); border-radius: 99px; background: rgb(255 255 255 / 4%); }
+  .chips a { font-size: var(--fs-6); text-decoration: none; padding: 5px 11px; border: 1px solid var(--ink-line); border-radius: 99px; background: rgb(255 255 255 / 4%); }
   .chips a:hover { border-color: var(--accent); color: #fff; }
   .stats { display: grid; grid-template-columns: repeat(4, minmax(0, max-content)); gap: 12px 40px; margin: 40px 0 0; }
-  .stats dt { font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); }
-  .stats dd { margin: 0; font-family: var(--font-mono); font-size: 1.9rem; font-weight: 600; color: #fff; }
+  .stats dt { font-family: var(--font-mono); font-size: var(--fs-1); text-transform: uppercase; letter-spacing: .08em; color: var(--ink-muted); }
+  .stats dd { margin: 0; font-family: var(--font-mono); font-size: var(--fs-13); font-weight: 600; color: #fff; }
   @media (max-width: 560px) { .stats { grid-template-columns: repeat(2, 1fr); } .hero { padding-top: 44px; } }
   .rule { display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between; padding: 28px; }
   .rule > div { max-width: 760px; }

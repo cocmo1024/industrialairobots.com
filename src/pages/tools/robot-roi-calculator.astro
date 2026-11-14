@@ -9,13 +9,13 @@ import Field from '../../components/Field.astro';
   lede="Enter the numbers from your own quote and payroll. Nothing is pre-filled from industry averages except the editable example values below."
 >
   <Fragment slot="inputs">
-    <h2 style="margin:0;font-size:1rem">Investment</h2>
+    <h2 style="margin:0;font-size:var(--fs-11)">Investment</h2>
     <div class="fields">
       <Field id="inv" label="Total cell cost" unit="$" value="150000" step="1000" />
       <Field id="opex" label="Running cost per year" unit="$" value="6000" step="500" />
       <Field id="other" label="Other savings per year" unit="$" value="0" step="500" />
     </div>
-    <h2 style="margin:8px 0 0;font-size:1rem">Labor the cell replaces or redeploys</h2>
+    <h2 style="margin:8px 0 0;font-size:var(--fs-11)">Labor the cell replaces or redeploys</h2>
     <div class="fields">
       <Field id="ops" label="Operators per shift" value="1" step="0.25" />
       <Field id="shifts" label="Shifts per day" value="2" step="1" />
@@ -23,7 +23,7 @@ import Field from '../../components/Field.astro';
       <Field id="days" label="Working days per year" value="250" step="1" />
       <Field id="rate" label="Burdened labor cost" unit="$/h" value="30" step="0.5" />
     </div>
-    <h2 style="margin:8px 0 0;font-size:1rem">Finance</h2>
+    <h2 style="margin:8px 0 0;font-size:var(--fs-11)">Finance</h2>
     <div class="fields">
       <Field id="years" label="Evaluation period" unit="years" value="5" step="1" min="1" max="15" />
       <Field id="disc" label="Discount rate" unit="%" value="8" step="0.5" />
